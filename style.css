@@ -5,7 +5,7 @@ body {
 
 .hero {
     height: 100vh;
-    background: url('img/hero-bg.jpg') no-repeat center center;
+    background: url('https://via.placeholder.com/1920x1080') no-repeat center center;
     background-size: cover;
     color: white;
     text-align: center;
