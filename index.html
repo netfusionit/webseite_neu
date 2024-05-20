@@ -28,6 +28,7 @@
             </div>
         </div>
     </div>
+
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container-fluid">
@@ -409,8 +410,8 @@
 </html>
 <!--Modal on Pageload -->
 <script>
-    $(document).ready(function () {
-        var welcomeModal = new bootstrap.Modal(document.getElementById('welcomeModal'));
+    document.addEventListener('DOMContentLoaded', function () {
+        var welcomeModal = new bootstrap.Modal(document.getElementById('welcomeModal'), {});
         welcomeModal.show();
     });
 </script>
