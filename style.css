@@ -14,13 +14,13 @@ body {
     justify-content: center;
 }
 
-.services .card {
-    transition: transform 0.2s;
+.services .service-card:hover .card-body {
+    transform: scale(1.05);
 }
 
-    .services .card:hover {
-        transform: scale(1.05);
-    }
+.services .service-card .card-body {
+    transition: transform 0.2s;
+}
 
 .portfolio-item {
     position: relative;
@@ -54,10 +54,29 @@ body {
     opacity: 1;
 }
 
-.team .team-member {
+.skills .skill {
     transition: transform 0.2s;
 }
 
-    .team .team-member:hover {
+    .skills .skill:hover {
         transform: translateY(-10px);
+    }
+
+.light-mode {
+    background-color: white;
+    color: black;
+}
+
+.dark-mode {
+    background-color: #121212;
+    color: white;
+}
+
+    .dark-mode .bg-light {
+        background-color: #1f1f1f !important;
+        color: white;
+    }
+
+    .dark-mode .navbar-light .navbar-nav .nav-link {
+        color: white;
     }

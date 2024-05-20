@@ -8,7 +8,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
 </head>
-<body>
+<body class="light-mode">
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container-fluid">
@@ -28,24 +28,57 @@
                         <a class="nav-link" href="referenzen.html">Referenzen</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="team.html">Team</a>
+                        <a class="nav-link" href="skills.html">Skills</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="kontakt.html">Kontakt</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="darkModeToggle">Dark Mode</a>
+                    </li>
                 </ul>
+                <form class="d-flex ms-3">
+                    <input class="form-control me-2" type="search" placeholder="Suche" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Suche</button>
+                </form>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="hero bg-primary text-white text-center d-flex align-items-center justify-content-center">
-        <div class="container">
-            <h1 class="display-4 animate__animated animate__fadeInDown">Willkommen bei NetFusionIT</h1>
-            <p class="lead animate__animated animate__fadeInUp">Ihr Partner für innovative IT-Lösungen</p>
-            <a href="leistungen.html" class="btn btn-light btn-lg animate__animated animate__zoomIn">Unsere Leistungen</a>
+    <!-- Hero Carousel -->
+    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://via.placeholder.com/800x400" class="d-block w-100" alt="Slide 1">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Willkommen bei NetFusionIT</h5>
+                    <p>Ihr Partner für innovative IT-Lösungen.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://via.placeholder.com/800x400" class="d-block w-100" alt="Slide 2">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Maßgeschneiderte IT-Beratung</h5>
+                    <p>Optimieren Sie Ihre Geschäftsprozesse mit unseren Experten.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://via.placeholder.com/800x400" class="d-block w-100" alt="Slide 3">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Individuelle Softwareentwicklung</h5>
+                    <p>Erfüllen Sie Ihre Geschäftsanforderungen mit unseren Lösungen.</p>
+                </div>
+            </div>
         </div>
-    </header>
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
 
     <!-- About Section -->
     <section class="py-5 bg-light" id="about">
@@ -72,29 +105,32 @@
             </div>
             <div class="row text-center">
                 <div class="col-lg-4 mb-4">
-                    <div class="card border-0 shadow-sm">
+                    <div class="card border-0 shadow-sm service-card">
                         <div class="card-body">
-                            <i class="bi bi-laptop display-4 text-primary"></i>
+                            <img src="https://via.placeholder.com/300x200" class="img-fluid mb-3 rounded" alt="IT-Beratung">
                             <h3 class="card-title mt-3">IT-Beratung</h3>
                             <p class="card-text">Unsere Experten bieten maßgeschneiderte IT-Beratung, um Ihre Geschäftsprozesse zu optimieren.</p>
+                            <button class="btn btn-primary mt-3">Mehr erfahren</button>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 mb-4">
-                    <div class="card border-0 shadow-sm">
+                    <div class="card border-0 shadow-sm service-card">
                         <div class="card-body">
-                            <i class="bi bi-code-slash display-4 text-primary"></i>
+                            <img src="https://via.placeholder.com/300x200" class="img-fluid mb-3 rounded" alt="Softwareentwicklung">
                             <h3 class="card-title mt-3">Softwareentwicklung</h3>
                             <p class="card-text">Wir entwickeln individuelle Softwarelösungen, die Ihre Geschäftsanforderungen erfüllen.</p>
+                            <button class="btn btn-primary mt-3">Mehr erfahren</button>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 mb-4">
-                    <div class="card border-0 shadow-sm">
+                    <div class="card border-0 shadow-sm service-card">
                         <div class="card-body">
-                            <i class="bi bi-headset display-4 text-primary"></i>
+                            <img src="https://via.placeholder.com/300x200" class="img-fluid mb-3 rounded" alt="IT-Support">
                             <h3 class="card-title mt-3">IT-Support</h3>
                             <p class="card-text">Unser Support-Team ist rund um die Uhr für Sie da, um Ihre IT-Systeme zu unterstützen.</p>
+                            <button class="btn btn-primary mt-3">Mehr erfahren</button>
                         </div>
                     </div>
                 </div>
@@ -102,122 +138,40 @@
         </div>
     </section>
 
-    <!-- Portfolio Section -->
-    <section class="portfolio bg-light py-5" id="portfolio">
+    <!-- Skills Section -->
+    <section class="skills bg-dark text-white py-5" id="skills">
         <div class="container">
             <div class="text-center mb-5">
-                <h2 class="display-6">Unsere Projekte</h2>
-                <p class="lead">Einige unserer erfolgreich abgeschlossenen Projekte.</p>
+                <h2 class="display-6">Unsere Fähigkeiten</h2>
+                <p class="lead">Unsere Experten beherrschen eine Vielzahl von Technologien und Methoden, um Ihre IT-Projekte erfolgreich umzusetzen.</p>
             </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="portfolio-item position-relative overflow-hidden shadow-sm">
-                        <img src="https://via.placeholder.com/600x400" class="img-fluid rounded" alt="Projekt 1">
-                        <div class="portfolio-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
-                            <div class="text-center text-white">
-                                <h3>Projekt 1</h3>
-                                <p>Beschreibung des Projekts 1.</p>
-                            </div>
-                        </div>
+            <div class="row text-center">
+                <div class="col-lg-3 mb-4">
+                    <div class="skill">
+                        <i class="bi bi-code-slash display-4"></i>
+                        <h3>Webentwicklung</h3>
+                        <p>HTML, CSS, JavaScript, React</p>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="portfolio-item position-relative overflow-hidden shadow-sm">
-                        <img src="https://via.placeholder.com/600x400" class="img-fluid rounded" alt="Projekt 2">
-                        <div class="portfolio-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
-                            <div class="text-center text-white">
-                                <h3>Projekt 2</h3>
-                                <p>Beschreibung des Projekts 2.</p>
-                            </div>
-                        </div>
+                <div class="col-lg-3 mb-4">
+                    <div class="skill">
+                        <i class="bi bi-shield-lock display-4"></i>
+                        <h3>Cybersecurity</h3>
+                        <p>Penetration Testing, Verschlüsselung</p>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="portfolio-item position-relative overflow-hidden shadow-sm">
-                        <img src="https://via.placeholder.com/600x400" class="img-fluid rounded" alt="Projekt 3">
-                        <div class="portfolio-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
-                            <div class="text-center text-white">
-                                <h3>Projekt 3</h3>
-                                <p>Beschreibung des Projekts 3.</p>
-                            </div>
-                        </div>
+                <div class="col-lg-3 mb-4">
+                    <div class="skill">
+                        <i class="bi bi-bar-chart display-4"></i>
+                        <h3>Data Science</h3>
+                        <p>Python, R, Machine Learning</p>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="portfolio-item position-relative overflow-hidden shadow-sm">
-                        <img src="https://via.placeholder.com/600x400" class="img-fluid rounded" alt="Projekt 4">
-                        <div class="portfolio-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
-                            <div class="text-center text-white">
-                                <h3>Projekt 4</h3>
-                                <p>Beschreibung des Projekts 4.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="portfolio-item position-relative overflow-hidden shadow-sm">
-                        <img src="https://via.placeholder.com/600x400" class="img-fluid rounded" alt="Projekt 5">
-                        <div class="portfolio-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
-                            <div class="text-center text-white">
-                                <h3>Projekt 5</h3>
-                                <p>Beschreibung des Projekts 5.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="portfolio-item position-relative overflow-hidden shadow-sm">
-                        <img src="https://via.placeholder.com/600x400" class="img-fluid rounded" alt="Projekt 6">
-                        <div class="portfolio-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
-                            <div class="text-center text-white">
-                                <h3>Projekt 6</h3>
-                                <p>Beschreibung des Projekts 6.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Team Section -->
-    <section class="team py-5" id="team">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="display-6">Unser Team</h2>
-                <p class="lead">Lernen Sie die Experten kennen, die hinter NetFusionIT stehen.</p>
-            </div>
-            <div class="row">
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="team-member text-center">
-                        <img src="https://via.placeholder.com/200x200" class="img-fluid rounded-circle mb-3" alt="Teammitglied 1">
-                        <h4>Mitglied A</h4>
-                        <p class="text-muted">Position A</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="team-member text-center">
-                        <img src="https://via.placeholder.com/200x200" class="img-fluid rounded-circle mb-3" alt="Teammitglied 2">
-                        <h4>Mitglied B</h4>
-                        <p class="text-muted">Position B</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="team-member text-center">
-                        <img src="https://via.placeholder.com/200x200" class="img-fluid rounded-circle mb-3" alt="Teammitglied 3">
-                        <h4>Mitglied C</h4>
-                        <p class="text-muted">Position C</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="team-member text-center">
-                        <img src="https://via.placeholder.com/200x200" class="img-fluid rounded-circle mb-3" alt="Teammitglied 4">
-                        <h4>Mitglied D</h4>
-                        <p class="text-muted">Position D</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                <div class="col-lg-3 mb-4">
+                    <div class="skill">
+                        <i class="bi bi-cloud display-4"></i>
+                        <h3>Cloud Computing</h3>
+                        <p>AWS, Azure, Google Cloud</p>
                     </div>
                 </div>
             </div>
@@ -225,7 +179,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section class="contact bg-light py-5" id="contact">
+    <section class="contact py-5" id="contact">
         <div class="container">
             <div class="text-center mb-5">
                 <h2 class="display-6">Kontaktieren Sie uns</h2>

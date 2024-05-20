@@ -1,6 +1,10 @@
-// Add your custom JavaScript here
+// Dark Mode Toggle
+document.getElementById('darkModeToggle').addEventListener('click', function () {
+    document.body.classList.toggle('dark-mode');
+    document.body.classList.toggle('light-mode');
+});
 
-// Example: Smooth scrolling for anchor links
+// Smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
