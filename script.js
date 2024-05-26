@@ -13,10 +13,19 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         });
     });
 });
-/*Info-Modal*/
+
+// Modal on Pageload
 document.addEventListener('DOMContentLoaded', function () {
-    var welcomeModal = new bootstrap.Modal(document.getElementById('welcomeModal'), {
-        keyboard: false
-    });
+    var welcomeModal = new bootstrap.Modal(document.getElementById('welcomeModal'), {});
     welcomeModal.show();
+});
+
+// Animate on Scroll
+window.addEventListener('scroll', () => {
+    document.querySelectorAll('.animate-on-scroll').forEach(element => {
+        if (element.getBoundingClientRect().top < window.innerHeight) {
+            element.classList.add('animate__animated');
+            element.classList.add('animate__fadeInUp');
+        }
+    });
 });
