@@ -51,68 +51,80 @@
         </a>
     </div>
     
-    <div class="container mt-5">
-        <h1>Willkommen bei NetFusionIT</h1>
-        <p>Wir bieten Internetdienstleistungen, Netzwerktechnik, Webdesign (Wordpress) und Service und Wartung.</p>
-    </div>
-    
-    <div class="container mt-5">
-        <section id="about-us">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="icon-box">
-                        <img src="/img/icon1.png" alt="Icon 1">
-                        <h3>Lorem Ipsum</h3>
-                        <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi.</p>
+    <!-- Featured Services Section -->
+    <section id="featured-services" class="featured-services section">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-xl-4 col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-item d-flex">
+                        <div class="icon flex-shrink-0"><i class="bi bi-briefcase"></i></div>
+                        <div>
+                            <h4 class="title"><a href="#" class="stretched-link">Lorem Ipsum</a></h4>
+                            <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="icon-box">
-                        <img src="/img/icon2.png" alt="Icon 2">
-                        <h3>Dolor Sit Amet</h3>
-                        <p>Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea.</p>
+                <div class="col-xl-4 col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-item d-flex">
+                        <div class="icon flex-shrink-0"><i class="bi bi-card-checklist"></i></div>
+                        <div>
+                            <h4 class="title"><a href="#" class="stretched-link">Dolor Sitema</a></h4>
+                            <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip exa</p>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="icon-box">
-                        <img src="/img/icon3.png" alt="Icon 3">
-                        <h3>Sed ut perspiciatis</h3>
-                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</p>
+                <div class="col-xl-4 col-lg-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-item d-flex">
+                        <div class="icon flex-shrink-0"><i class="bi bi-bar-chart"></i></div>
+                        <div>
+                            <h4 class="title"><a href="#" class="stretched-link">Sed ut perspiciatis</a></h4>
+                            <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum</p>
+                        </div>
                     </div>
                 </div>
             </div>
-            
-            <div class="row mt-5">
-                <div class="col-md-6">
-                    <h2>Unleashing Potential with Creative Strategy</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    <ul class="list-unstyled">
-                        <li><i class="fa fa-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                        <li><i class="fa fa-check-circle"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-                        <li><i class="fa fa-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+        </div>
+    </section><!-- /Featured Services Section -->
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
+                    <p class="who-we-are">Who We Are</p>
+                    <h3>Unleashing Potential with Creative Strategy</h3>
+                    <p class="fst-italic">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                        magna aliqua.
+                    </p>
+                    <ul>
+                        <li><i class="bi bi-check-circle"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></li>
+                        <li><i class="bi bi-check-circle"></i> <span>Duis aute irure dolor in reprehenderit in voluptate velit.</span></li>
+                        <li><i class="bi bi-check-circle"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</span></li>
                     </ul>
-                    <a href="#more" class="btn btn-primary">Read More</a>
+                    <a href="#" class="read-more"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
                 </div>
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <img src="/img/image1.jpg" class="img-fluid" alt="Image 1">
+                <div class="col-lg-6 about-images" data-aos="fade-up" data-aos-delay="200">
+                    <div class="row gy-4">
+                        <div class="col-lg-6">
+                            <img src="assets/img/about-company-1.jpg" class="img-fluid" alt="">
                         </div>
-                        <div class="col-md-6">
-                            <img src="/img/image2.jpg" class="img-fluid" alt="Image 2">
-                        </div>
-                        <div class="col-md-6 mt-4">
-                            <img src="/img/image3.jpg" class="img-fluid" alt="Image 3">
-                        </div>
-                        <div class="col-md-6 mt-4">
-                            <img src="/img/image4.jpg" class="img-fluid" alt="Image 4">
+                        <div class="col-lg-6">
+                            <div class="row gy-4">
+                                <div class="col-lg-12">
+                                    <img src="assets/img/about-company-2.jpg" class="img-fluid" alt="">
+                                </div>
+                                <div class="col-lg-12">
+                                    <img src="assets/img/about-company-3.jpg" class="img-fluid" alt="">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-    </div>
-    
+        </div>
+    </section><!-- /About Section -->
+
     <?php include 'footer.php'; ?>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
