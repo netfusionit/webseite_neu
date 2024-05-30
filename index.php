@@ -21,6 +21,7 @@
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Internetdienstleistungen</h5>
                     <p>Wir bieten maßgeschneiderte Internetlösungen für Ihr Unternehmen.</p>
+                    <a href="#section1" class="btn btn-primary">Mehr erfahren</a>
                 </div>
             </div>
             <div class="carousel-item">
@@ -28,6 +29,7 @@
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Netzwerktechnik</h5>
                     <p>Professionelle Netzwerklösungen für eine nahtlose Kommunikation.</p>
+                    <a href="#section2" class="btn btn-primary">Mehr erfahren</a>
                 </div>
             </div>
             <div class="carousel-item">
@@ -35,6 +37,7 @@
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Webdesign</h5>
                     <p>Kreative Webdesigns, die beeindrucken und konvertieren.</p>
+                    <a href="#section3" class="btn btn-primary">Mehr erfahren</a>
                 </div>
             </div>
         </div>
