@@ -35,33 +35,37 @@ body {
 # Featured Services Section
 --------------------------------------------------------------*/
 .featured-services {
-    --background-color: color-mix(in srgb, var(--accent-color), transparent 94%);
+    background-color: #f0f8ff;
     padding: 40px 0;
+    border-radius: 10px;
 }
 
     .featured-services .service-item {
-        position: relative;
-        padding-top: 20px;
+        background-color: #e0f7fa;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
     }
 
+        .featured-services .service-item:hover {
+            transform: translateY(-10px);
+        }
+
         .featured-services .service-item .icon {
-            background-color: color-mix(in srgb, var(--accent-color), transparent 80%);
+            background-color: #007bff;
             width: 72px;
             height: 72px;
-            position: relative;
             margin-right: 15px;
-            line-height: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: ease-in-out 0.3s;
+            border-radius: 50%;
         }
 
             .featured-services .service-item .icon i {
-                color: var(--accent-color);
+                color: #fff;
                 font-size: 32px;
-                z-index: 2;
-                position: relative;
             }
 
         .featured-services .service-item .title {
@@ -71,24 +75,18 @@ body {
         }
 
             .featured-services .service-item .title a {
-                color: var(--heading-color);
+                color: #333;
+                text-decoration: none;
             }
 
                 .featured-services .service-item .title a:hover {
-                    color: var(--accent-color);
+                    color: #007bff;
                 }
 
         .featured-services .service-item .description {
             font-size: 14px;
+            color: #666;
         }
-
-        .featured-services .service-item:hover .icon {
-            background-color: var(--accent-color);
-        }
-
-            .featured-services .service-item:hover .icon i {
-                color: var(--contrast-color);
-            }
 
 /*--------------------------------------------------------------
 # About Section
@@ -100,7 +98,7 @@ body {
     .about .content .who-we-are {
         text-transform: uppercase;
         margin-bottom: 15px;
-        color: color-mix(in srgb, var(--default-color), transparent 40%);
+        color: #6c757d;
     }
 
     .about .content h3 {
@@ -115,12 +113,14 @@ body {
 
         .about .content ul li {
             padding-bottom: 10px;
+            display: flex;
+            align-items: center;
         }
 
         .about .content ul i {
             font-size: 1.25rem;
-            margin-right: 4px;
-            color: var(--accent-color);
+            margin-right: 8px;
+            color: #007bff;
         }
 
     .about .content p:last-child {
@@ -128,9 +128,9 @@ body {
     }
 
     .about .content .read-more {
-        background: var(--accent-color);
-        color: var(--contrast-color);
-        font-family: var(--heading-font);
+        background: #007bff;
+        color: #fff;
+        font-family: Arial, sans-serif;
         font-weight: 500;
         font-size: 16px;
         letter-spacing: 1px;
@@ -140,6 +140,8 @@ body {
         display: inline-flex;
         align-items: center;
         justify-content: center;
+        margin-top: 20px;
+        text-decoration: none;
     }
 
         .about .content .read-more i {
@@ -150,7 +152,7 @@ body {
         }
 
         .about .content .read-more:hover {
-            background: color-mix(in srgb, var(--accent-color), transparent 20%);
+            background: #0056b3;
             padding-right: 19px;
         }
 
@@ -160,4 +162,5 @@ body {
 
     .about .about-images img {
         border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
