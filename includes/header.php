@@ -9,7 +9,7 @@
 </head>
 <body>
 <header>
-    <div class="container">
+    <div class="container text-center py-4">
         <h1>NetFusion IT Services</h1>
         <p>Netzwerktechnik | Webdesign | Service & Support</p>
     </div>

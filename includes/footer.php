@@ -1,6 +1,6 @@
 </div> <!-- /.container -->
 <footer>
-    <div class="container">
+    <div class="container text-center py-3">
         <p>&copy; 2024 NetFusion IT Services. Alle Rechte vorbehalten.</p>
     </div>
 </footer>
