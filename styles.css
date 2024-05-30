@@ -1,5 +1,10 @@
 body {
-    padding-top: 56px;
+    padding-top: 0; /* Entferne das Padding oben */
+    margin: 0; /* Entferne den Margin oben */
+}
+
+.navbar {
+    margin-bottom: 0; /* Entferne den Margin unten */
 }
 
 .carousel-item img {
