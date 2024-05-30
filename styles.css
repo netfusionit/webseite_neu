@@ -1,13 +1,13 @@
-<?php
-$servername = "localhost";
-$username = "netfuweb";
-$password = "netfuweb01";
-$dbname = "netfusion_webseite";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+body {
+    padding-top: 56px;
 }
 
-? >
+.carousel-item img {
+    height: 65vh;
+    object-fit: cover;
+}
+
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 1rem;
+}
