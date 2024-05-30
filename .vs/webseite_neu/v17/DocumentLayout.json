@@ -3,6 +3,50 @@
   "WorkspaceRootPath": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\includes\\functions.php||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:includes\\functions.php||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\blog_admin.php||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:blog_admin.php||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\post.php||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:post.php||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\blog.php||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:blog.php||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\contact.php||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:contact.php||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\index.php||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:index.php||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\includes\\footer.php||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:includes\\footer.php||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\includes\\header.php||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:includes\\header.php||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\css\\styles.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:css\\styles.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\includes\\db.php||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:includes\\db.php||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\js\\scripts.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:js\\scripts.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Florian-Fynn Scheibe\\Source\\Repos\\webseite_neu\\AlteVersion\\script.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:AlteVersion\\script.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
@@ -42,11 +86,154 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "scripts.js",
+              "DocumentMoniker": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\js\\scripts.js",
+              "RelativeDocumentMoniker": "js\\scripts.js",
+              "ToolTip": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\js\\scripts.js",
+              "RelativeToolTip": "js\\scripts.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-05-30T11:18:19.188Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "functions.php",
+              "DocumentMoniker": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\includes\\functions.php",
+              "RelativeDocumentMoniker": "includes\\functions.php",
+              "ToolTip": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\includes\\functions.php",
+              "RelativeToolTip": "includes\\functions.php",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002338|",
+              "WhenOpened": "2024-05-30T11:17:54.457Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "db.php",
+              "DocumentMoniker": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\includes\\db.php",
+              "RelativeDocumentMoniker": "includes\\db.php",
+              "ToolTip": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\includes\\db.php",
+              "RelativeToolTip": "includes\\db.php",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002338|",
+              "WhenOpened": "2024-05-30T11:17:47.129Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "footer.php",
+              "DocumentMoniker": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\includes\\footer.php",
+              "RelativeDocumentMoniker": "includes\\footer.php",
+              "ToolTip": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\includes\\footer.php",
+              "RelativeToolTip": "includes\\footer.php",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002338|",
+              "WhenOpened": "2024-05-30T11:17:40.179Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "header.php",
+              "DocumentMoniker": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\includes\\header.php",
+              "RelativeDocumentMoniker": "includes\\header.php",
+              "ToolTip": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\includes\\header.php",
+              "RelativeToolTip": "includes\\header.php",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002338|",
+              "WhenOpened": "2024-05-30T11:17:32.925Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "styles.css",
+              "DocumentMoniker": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\css\\styles.css",
+              "RelativeDocumentMoniker": "css\\styles.css",
+              "ToolTip": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\css\\styles.css",
+              "RelativeToolTip": "css\\styles.css",
+              "ViewState": "AQIAABYAAAAAAAAAAAAgwFQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-05-30T11:17:15.33Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "post.php",
+              "DocumentMoniker": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\post.php",
+              "RelativeDocumentMoniker": "post.php",
+              "ToolTip": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\post.php",
+              "RelativeToolTip": "post.php",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002338|",
+              "WhenOpened": "2024-05-30T11:17:03.929Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "blog.php",
+              "DocumentMoniker": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\blog.php",
+              "RelativeDocumentMoniker": "blog.php",
+              "ToolTip": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\blog.php",
+              "RelativeToolTip": "blog.php",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002338|",
+              "WhenOpened": "2024-05-30T11:16:56.886Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "contact.php",
+              "DocumentMoniker": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\contact.php",
+              "RelativeDocumentMoniker": "contact.php",
+              "ToolTip": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\contact.php",
+              "RelativeToolTip": "contact.php",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002338|",
+              "WhenOpened": "2024-05-30T11:16:48.604Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "blog_admin.php",
+              "DocumentMoniker": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\blog_admin.php",
+              "RelativeDocumentMoniker": "blog_admin.php",
+              "ToolTip": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\blog_admin.php",
+              "RelativeToolTip": "blog_admin.php",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAEAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002338|",
+              "WhenOpened": "2024-05-30T11:16:40.399Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "index.php",
+              "DocumentMoniker": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\index.php",
+              "RelativeDocumentMoniker": "index.php",
+              "ToolTip": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\index.php",
+              "RelativeToolTip": "index.php",
+              "ViewState": "AQIAAFYAAAAAAAAAAAAQwJoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002338|",
+              "WhenOpened": "2024-05-30T11:16:30.548Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
               "Title": "kontakt.html",
               "DocumentMoniker": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\AlteVersion\\kontakt.html",
               "RelativeDocumentMoniker": "AlteVersion\\kontakt.html",
@@ -54,11 +241,12 @@
               "RelativeToolTip": "AlteVersion\\kontakt.html",
               "ViewState": "AQIAAEUAAAAAAAAAAAAIwG4AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2024-05-26T17:36:55.396Z"
+              "WhenOpened": "2024-05-26T17:36:55.396Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 15,
               "Title": "blog.html",
               "DocumentMoniker": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\AlteVersion\\blog.html",
               "RelativeDocumentMoniker": "AlteVersion\\blog.html",
@@ -66,11 +254,12 @@
               "RelativeToolTip": "AlteVersion\\blog.html",
               "ViewState": "AQIAACAAAAAAAAAAAAAYwHkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2024-05-26T17:36:36.78Z"
+              "WhenOpened": "2024-05-26T17:36:36.78Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 16,
               "Title": "skills.html",
               "DocumentMoniker": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\AlteVersion\\skills.html",
               "RelativeDocumentMoniker": "AlteVersion\\skills.html",
@@ -78,11 +267,12 @@
               "RelativeToolTip": "AlteVersion\\skills.html",
               "ViewState": "AQIAABsAAAAAAAAAAAAYwHQAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2024-05-26T17:36:21.831Z"
+              "WhenOpened": "2024-05-26T17:36:21.831Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 17,
               "Title": "services.html",
               "DocumentMoniker": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\AlteVersion\\services.html",
               "RelativeDocumentMoniker": "AlteVersion\\services.html",
@@ -90,11 +280,12 @@
               "RelativeToolTip": "AlteVersion\\services.html",
               "ViewState": "AQIAADsAAAAAAAAAAAAYwJQAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2024-05-26T17:36:06.763Z"
+              "WhenOpened": "2024-05-26T17:36:06.763Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 18,
               "Title": "ueber.html",
               "DocumentMoniker": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\AlteVersion\\ueber.html",
               "RelativeDocumentMoniker": "AlteVersion\\ueber.html",
@@ -102,11 +293,12 @@
               "RelativeToolTip": "AlteVersion\\ueber.html",
               "ViewState": "AQIAAAUAAAAAAAAAAAAYwF4AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2024-05-26T17:35:45.669Z"
+              "WhenOpened": "2024-05-26T17:35:45.669Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 11,
               "Title": "script.js",
               "DocumentMoniker": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\AlteVersion\\script.js",
               "RelativeDocumentMoniker": "AlteVersion\\script.js",
@@ -119,7 +311,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 12,
               "Title": "style.css",
               "DocumentMoniker": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\AlteVersion\\style.css",
               "RelativeDocumentMoniker": "AlteVersion\\style.css",
@@ -127,11 +319,12 @@
               "RelativeToolTip": "AlteVersion\\style.css",
               "ViewState": "AQIAAC4AAAAAAAAAAAAowFwAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-05-20T17:23:50.81Z"
+              "WhenOpened": "2024-05-20T17:23:50.81Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 13,
               "Title": "index.html",
               "DocumentMoniker": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\AlteVersion\\index.html",
               "RelativeDocumentMoniker": "AlteVersion\\index.html",
@@ -139,7 +332,8 @@
               "RelativeToolTip": "AlteVersion\\index.html",
               "ViewState": "AQIAADwBAAAAAAAAAAAuwFQBAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2024-05-20T07:48:15.858Z"
+              "WhenOpened": "2024-05-20T07:48:15.858Z",
+              "EditorCaption": ""
             }
           ]
         }
