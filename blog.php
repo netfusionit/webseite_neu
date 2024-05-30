@@ -1,28 +1,28 @@
-<?php include 'includes/header.php'; ?>
-
-<section class="my-5">
-    <div class="container">
-        <h2>Blog</h2>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - NetFusionIT</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <?php include 'header.php'; ?>
+    <div class="container mt-5">
+        <h1>Blog</h1>
         <?php
-        include 'includes/db.php';
-        $sql = "SELECT * FROM blog_posts ORDER BY created_at DESC";
-        $result = $conn->query($sql);
-
-        if ($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
-                echo "<div class='blog-post'>";
-                echo "<h3>" . $row['title'] . "</h3>";
-                echo "<p>" . substr($row['content'], 0, 200) . "...</p>";
-                echo "<a href='post.php?id=" . $row['id'] . "'>Weiterlesen</a>";
-                echo "</div>";
-            }
-        } else {
-            echo "<p>Noch keine Blogeinträge vorhanden.</p>";
+        include 'db.php';
+        $result = $conn->query("SELECT * FROM blog_posts ORDER BY created_at DESC");
+        while ($row = $result->fetch_assoc()) {
+            echo "<div class='blog-post'>";
+            echo "<h2>" . $row['title'] . "</h2>";
+            echo "<p>" . $row['content'] . "</p>";
+            echo "<small>Erstellt am: " . $row['created_at'] . "</small>";
+            echo "</div>";
         }
-
-        $conn->close();
         ?>
     </div>
-</section>
-
-<?php include 'includes/footer.php'; ?>
+    <?php include 'footer.php'; ?>
+</body>
+</html>
