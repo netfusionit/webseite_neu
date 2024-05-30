@@ -12,7 +12,7 @@
             <div class="carousel-caption d-none d-md-block">
                 <h5>Netzwerktechnik</h5>
                 <p>Optimale Lösungen für Ihr Netzwerk</p>
-                <button class="btn btn-primary animated-button">Mehr erfahren</button>
+                <button class="btn btn-primary animated-button" onclick="showPopup('netzwerkPopup')">Mehr erfahren</button>
             </div>
         </div>
         <div class="carousel-item">
@@ -20,7 +20,7 @@
             <div class="carousel-caption d-none d-md-block">
                 <h5>Webdesign</h5>
                 <p>Kreative Webseiten mit WordPress</p>
-                <button class="btn btn-primary animated-button">Mehr erfahren</button>
+                <button class="btn btn-primary animated-button" onclick="showPopup('webdesignPopup')">Mehr erfahren</button>
             </div>
         </div>
         <div class="carousel-item">
@@ -28,100 +28,51 @@
             <div class="carousel-caption d-none d-md-block">
                 <h5>Service & Support</h5>
                 <p>Professionelle Unterstützung für Ihre IT</p>
-                <button class="btn btn-primary animated-button">Mehr erfahren</button>
+                <button class="btn btn-primary animated-button" onclick="showPopup('supportPopup')">Mehr erfahren</button>
             </div>
         </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
+        <span class="visually-hidden">Vorherige</span>
     </a>
     <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
+        <span class="visually-hidden">Nächste</span>
     </a>
 </div>
 
-<section class="my-5">
+<section class="my-5 bg-light">
     <div class="container">
         <h2>Unsere Dienstleistungen</h2>
         <p>Wir bieten eine Vielzahl von IT-Dienstleistungen, darunter Netzwerktechnik, Webdesign und IT-Support.</p>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="service-card">
                     <h3>Netzwerktechnik</h3>
                     <p>Professionelle Netzwerklösungen für Unternehmen jeder Größe.</p>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">90%</div>
-                    </div>
+                    <a href="netzwerktechnik.php" class="btn btn-primary">Mehr erfahren</a>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="service-card">
                     <h3>Webdesign</h3>
                     <p>Kreative und funktionale Websites, die beeindrucken.</p>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">85%</div>
-                    </div>
+                    <a href="webdesign.php" class="btn btn-primary">Mehr erfahren</a>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="service-card">
                     <h3>Service & Support</h3>
                     <p>Umfassende Unterstützung und Wartung Ihrer IT-Infrastruktur.</p>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 95%;" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">95%</div>
-                    </div>
+                    <a href="support.php" class="btn btn-primary">Mehr erfahren</a>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
-
-<section class="my-5 bg-light">
-    <div class="container">
-        <h2>Unsere Online-Services</h2>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="service-card">
-                    <h3>Cloud-Services</h3>
-                    <p>Skalierbare und sichere Cloud-Lösungen.</p>
-                    <a href="cloud-services.php" class="btn btn-primary">Mehr erfahren</a>
-                </div>
-            </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="service-card">
                     <h3>IT-Sicherheit</h3>
                     <p>Schützen Sie Ihr Unternehmen vor Cyber-Bedrohungen.</p>
                     <a href="it-security.php" class="btn btn-primary">Mehr erfahren</a>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="service-card">
-                    <h3>Software-Entwicklung</h3>
-                    <p>Maßgeschneiderte Softwarelösungen für Ihre Bedürfnisse.</p>
-                    <a href="software-development.php" class="btn btn-primary">Mehr erfahren</a>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="service-card">
-                    <h3>Datenanalyse</h3>
-                    <p>Nutzen Sie Ihre Daten für fundierte Entscheidungen.</p>
-                    <a href="data-analysis.php" class="btn btn-primary">Mehr erfahren</a>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="service-card">
-                    <h3>Backup-Lösungen</h3>
-                    <p>Datensicherheit durch zuverlässige Backup-Systeme.</p>
-                    <a href="backup-solutions.php" class="btn btn-primary">Mehr erfahren</a>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="service-card">
-                    <h3>Consulting</h3>
-                    <p>Beratung und Unterstützung bei IT-Projekten.</p>
-                    <a href="consulting.php" class="btn btn-primary">Mehr erfahren</a>
                 </div>
             </div>
         </div>
@@ -195,11 +146,11 @@
             </div>
             <a class="carousel-control-prev" href="#testimonials" role="button" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
+                <span class="visually-hidden">Vorherige</span>
             </a>
             <a class="carousel-control-next" href="#testimonials" role="button" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
+                <span class="visually-hidden">Nächste</span>
             </a>
         </div>
     </div>
@@ -236,3 +187,27 @@
 </section>
 
 <?php include 'includes/footer.php'; ?>
+
+<div id="netzwerkPopup" class="popup">
+    <div class="popup-content">
+        <span class="close" onclick="closePopup('netzwerkPopup')">&times;</span>
+        <h2>Netzwerktechnik</h2>
+        <p>Details über Netzwerktechnik...</p>
+    </div>
+</div>
+
+<div id="webdesignPopup" class="popup">
+    <div class="popup-content">
+        <span class="close" onclick="closePopup('webdesignPopup')">&times;</span>
+        <h2>Webdesign</h2>
+        <p>Details über Webdesign...</p>
+    </div>
+</div>
+
+<div id="supportPopup" class="popup">
+    <div class="popup-content">
+        <span class="close" onclick="closePopup('supportPopup')">&times;</span>
+        <h2>Service & Support</h2>
+        <p>Details über Service & Support...</p>
+    </div>
+</div>
