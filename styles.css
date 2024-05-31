@@ -716,3 +716,28 @@ body {
         .php-email-form .text-center button[type="submit"]:hover {
             background: #007bff;
         }
+
+.info-item {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+}
+
+    .info-item i {
+        font-size: 2rem;
+        color: #007bff;
+        margin-right: 15px;
+    }
+
+.card.blog-item {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+    .card.blog-item .card-img-top {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
