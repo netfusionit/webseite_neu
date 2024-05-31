@@ -49,7 +49,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
         </button>
     </div>
 
-    <!-- Modals -->
+      <!-- Modals -->
     <!-- Neuer Beitrag Modal -->
     <div class="modal fade" id="newPostModal" tabindex="-1" aria-labelledby="newPostModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
