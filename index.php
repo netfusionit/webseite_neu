@@ -303,6 +303,97 @@
         </div>
     </section><!-- /Services Section -->
 
+        <!-- Blog Section -->
+    <section id="blog" class="blog section">
+        <div class="container section-title" data-aos="fade-up">
+            <h2>Blog</h2>
+            <p>Read our latest news and updates</p>
+        </div>
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="blog-item">
+                        <img src="assets/img/blog-1.jpg" class="img-fluid" alt="">
+                        <h3><a href="blog-details.html">Blog Post Title 1</a></h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget dictum lorem.</p>
+                        <a href="blog-details.html" class="read-more">Read More <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div><!-- End Blog Item -->
+
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="blog-item">
+                        <img src="assets/img/blog-2.jpg" class="img-fluid" alt="">
+                        <h3><a href="blog-details.html">Blog Post Title 2</a></h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget dictum lorem.</p>
+                        <a href="blog-details.html" class="read-more">Read More <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div><!-- End Blog Item -->
+
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="blog-item">
+                        <img src="assets/img/blog-3.jpg" class="img-fluid" alt="">
+                        <h3><a href="blog-details.html">Blog Post Title 3</a></h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget dictum lorem.</p>
+                        <a href="blog-details.html" class="read-more">Read More <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div><!-- End Blog Item -->
+            </div>
+        </div>
+    </section><!-- /Blog Section -->
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+        <div class="container section-title" data-aos="fade-up">
+            <h2>Contact</h2>
+            <p>Get in touch with us</p>
+        </div>
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="info-item">
+                        <i class="bi bi-geo-alt"></i>
+                        <h3>Our Address</h3>
+                        <p>A108 Adam Street, New York, NY 535022</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="bi bi-envelope"></i>
+                        <h3>Email Us</h3>
+                        <p>info@example.com</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="bi bi-phone"></i>
+                        <h3>Call Us</h3>
+                        <p>+1 5589 55488 55</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                    <form action="send_email.php" method="post" class="php-email-form">
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                            </div>
+                            <div class="col-md-6 form-group mt-3 mt-md-0">
+                                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                            </div>
+                        </div>
+                        <div class="form-group mt-3">
+                            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+                        </div>
+                        <div class="form-group mt-3">
+                            <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+                        </div>
+                        <div class="my-3">
+                            <div class="loading">Loading</div>
+                            <div class="error-message"></div>
+                            <div class="sent-message">Your message has been sent. Thank you!</div>
+                        </div>
+                        <div class="text-center"><button type="submit">Send Message</button></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section><!-- /Contact Section -->
 
     <?php include 'footer.php'; ?>
 
