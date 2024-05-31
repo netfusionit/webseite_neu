@@ -740,3 +740,21 @@ body {
 #tickerMessage {
     display: none;
 }
+
+.badge-tag {
+    background-color: #007bff;
+    color: white;
+    padding: 0.2em 0.6em;
+    margin-right: 0.2em;
+    border-radius: 0.2em;
+    font-size: 0.8em;
+}
+
+.badge-category {
+    background-color: #28a745;
+    color: white;
+    padding: 0.2em 0.6em;
+    margin-right: 0.2em;
+    border-radius: 0.2em;
+    font-size: 0.8em;
+}
