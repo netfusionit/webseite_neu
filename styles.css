@@ -593,11 +593,6 @@ body {
         color: #aaa;
     }
 
-.reaction {
-    position: absolute;
-    right: 15px;
-    top: 15px;
-}
 
     .reaction .emoji {
         font-size: 1.5rem;
