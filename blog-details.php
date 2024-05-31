@@ -88,16 +88,7 @@
                 echo "<small class='text-muted'>Erstellt am: " . date('d.m.Y H:i', strtotime($row['created_at'])) . " | Autor: " . $row['author'] . "</small>";
                 echo "<div class='blog-content mt-4'>" . $row['content'] . "</div>";
 
-                // Reaktionen anzeigen
-                echo "<div class='reaction'>";
-                $reactions = ['like' => 'bi-hand-thumbs-up', 'love' => 'bi-heart', 'wow' => 'bi-emoji-sunglasses', 'sad' => 'bi-emoji-frown'];
-                foreach ($reactions as $reaction => $icon) {
-                    $count_result = $conn->query("SELECT COUNT(*) as count FROM reactions WHERE blog_id = $id AND reaction_type = '$reaction'");
-                    $count = $count_result->fetch_assoc()['count'];
-                    echo "<span class='bi $icon' data-reaction='$reaction' data-blog-id='$id'><span class='count'>$count</span></span>";
-                }
-                echo "</div>";
-
+                
                
 
                 // Kommentarformular
@@ -128,16 +119,19 @@
         }
         ?>
     </div>
-                // Kommentare anzeigen
-                echo "<h3 class='mt-5'>Kommentare</h3>";
-                $comment_result = $conn->query("SELECT * FROM comments WHERE blog_id = $id ORDER BY created_at DESC");
-                while ($comment = $comment_result->fetch_assoc()) {
-                    echo "<div class='comment-box'>";
-                    echo "<h5>" . $comment['author'] . "</h5>";
-                    echo "<small>Kommentiert am: " . date('d.m.Y H:i', strtotime($comment['created_at'])) . "</small>";
-                    echo "<p>" . $comment['comment'] . "</p>";
-                    echo "</div>";
+
+    <?php
+    // Reaktionen anzeigen
+                echo "<div class='reaction'>";
+                $reactions = ['like' => 'bi-hand-thumbs-up', 'love' => 'bi-heart', 'wow' => 'bi-emoji-sunglasses', 'sad' => 'bi-emoji-frown'];
+                foreach ($reactions as $reaction => $icon) {
+                    $count_result = $conn->query("SELECT COUNT(*) as count FROM reactions WHERE blog_id = $id AND reaction_type = '$reaction'");
+                    $count = $count_result->fetch_assoc()['count'];
+                    echo "<span class='bi $icon' data-reaction='$reaction' data-blog-id='$id'><span class='count'>$count</span></span>";
                 }
+                echo "</div>";
+?>
+
     <!-- Blog Section -->
 <section id="blog" class="blog section bg-light py-5">
     <div class="container section-title text-center" data-aos="fade-up">
