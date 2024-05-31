@@ -98,16 +98,7 @@
                 }
                 echo "</div>";
 
-                // Kommentare anzeigen
-                echo "<h3 class='mt-5'>Kommentare</h3>";
-                $comment_result = $conn->query("SELECT * FROM comments WHERE blog_id = $id ORDER BY created_at DESC");
-                while ($comment = $comment_result->fetch_assoc()) {
-                    echo "<div class='comment-box'>";
-                    echo "<h5>" . $comment['author'] . "</h5>";
-                    echo "<small>Kommentiert am: " . date('d.m.Y H:i', strtotime($comment['created_at'])) . "</small>";
-                    echo "<p>" . $comment['comment'] . "</p>";
-                    echo "</div>";
-                }
+               
 
                 // Kommentarformular
                 echo "<div class='comment-form'>";
@@ -137,6 +128,43 @@
         }
         ?>
     </div>
+                // Kommentare anzeigen
+                echo "<h3 class='mt-5'>Kommentare</h3>";
+                $comment_result = $conn->query("SELECT * FROM comments WHERE blog_id = $id ORDER BY created_at DESC");
+                while ($comment = $comment_result->fetch_assoc()) {
+                    echo "<div class='comment-box'>";
+                    echo "<h5>" . $comment['author'] . "</h5>";
+                    echo "<small>Kommentiert am: " . date('d.m.Y H:i', strtotime($comment['created_at'])) . "</small>";
+                    echo "<p>" . $comment['comment'] . "</p>";
+                    echo "</div>";
+                }
+    <!-- Blog Section -->
+<section id="blog" class="blog section bg-light py-5">
+    <div class="container section-title text-center" data-aos="fade-up">
+        <h2>Weitere Meldungen</h2>
+        <p>Lesen Sie weitere Nachrichten und Updates</p>
+    </div>
+    <div class="container">
+        <div class="row gy-4">
+            <?php
+            include 'db.php';
+            $result = $conn->query("SELECT * FROM blog_posts ORDER BY created_at DESC LIMIT 3");
+            while ($row = $result->fetch_assoc()) {
+                echo "<div class='col-lg-4 col-md-6' data-aos='fade-up' data-aos-delay='100'>";
+                echo "<div class='card blog-item'>";
+                echo "<img src='assets/img/" . $row['image'] . "' class='card-img-top' alt=''>";
+                echo "<div class='card-body'>";
+                echo "<h5 class='card-title'><a href='blog-details.php?id=" . $row['id'] . "'>" . $row['title'] . "</a></h5>";
+                echo "<p class='card-text'>" . substr($row['content'], 0, 100) . "...</p>";
+                echo "<a href='blog-details.php?id=" . $row['id'] . "' class='btn btn-primary'>Weiterlesen</a>";
+                echo "</div>";
+                echo "</div>";
+                echo "</div>";
+            }
+            ?>
+        </div>
+    </div>
+</section><!-- /Blog Section -->
     <?php include 'footer.php'; ?>
     <script>
         document.querySelectorAll('.bi').forEach(function(icon) {
@@ -164,30 +192,4 @@
 </body>
 </html>
 
-<!-- Blog Section -->
-<section id="blog" class="blog section bg-light py-5">
-    <div class="container section-title text-center" data-aos="fade-up">
-        <h2>Aktuelle Meldungen</h2>
-        <p>Lesen Sie unsere neuesten Nachrichten und Updates</p>
-    </div>
-    <div class="container">
-        <div class="row gy-4">
-            <?php
-            include 'db.php';
-            $result = $conn->query("SELECT * FROM blog_posts ORDER BY created_at DESC LIMIT 3");
-            while ($row = $result->fetch_assoc()) {
-                echo "<div class='col-lg-4 col-md-6' data-aos='fade-up' data-aos-delay='100'>";
-                echo "<div class='card blog-item'>";
-                echo "<img src='assets/img/" . $row['image'] . "' class='card-img-top' alt=''>";
-                echo "<div class='card-body'>";
-                echo "<h5 class='card-title'><a href='blog-details.php?id=" . $row['id'] . "'>" . $row['title'] . "</a></h5>";
-                echo "<p class='card-text'>" . substr($row['content'], 0, 100) . "...</p>";
-                echo "<a href='blog-details.php?id=" . $row['id'] . "' class='btn btn-primary'>Weiterlesen</a>";
-                echo "</div>";
-                echo "</div>";
-                echo "</div>";
-            }
-            ?>
-        </div>
-    </div>
-</section><!-- /Blog Section -->
+
