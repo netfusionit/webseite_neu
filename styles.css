@@ -500,6 +500,55 @@ body {
             transform: translateY(-5px);
         }
 
+/* Blog Details */
+.blog-details img {
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+
+.blog-details p {
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.blog-details .comment {
+    margin-bottom: 20px;
+    padding: 10px;
+    background: #f7f7f7;
+    border-radius: 5px;
+}
+
+    .blog-details .comment p {
+        margin-bottom: 5px;
+    }
+
+    .blog-details .comment small {
+        color: #666666;
+    }
+
+/* Comment Form */
+.blog-details form {
+    margin-top: 20px;
+}
+
+    .blog-details form .form-group {
+        margin-bottom: 20px;
+    }
+
+    .blog-details form button {
+        background: var(--accent-color);
+        border: 0;
+        padding: 10px 24px;
+        color: #fff;
+        transition: 0.4s;
+        border-radius: 4px;
+    }
+
+        .blog-details form button:hover {
+            background: #007bff;
+        }
+
+
 /* Contact Section */
 .contact {
     padding: 60px 0;
