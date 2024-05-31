@@ -81,8 +81,8 @@
                     <div class="service-item d-flex">
                         <div class="icon flex-shrink-0"><i class="bi bi-bar-chart"></i></div>
                         <div>
-                            <h4 class="title"><a href="#" class="stretched-link">Sed ut perspiciatis</a></h4>
-                            <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum</p>
+                            <h4 class="title"><a href="https://status.netfusionit.de" class="stretched-link">Systemstatus</a></h4>
+                            <p class="description">Sehen Sie hier den aktuellen Status der NetFusionIT-Onlinesysteme!</p>
                         </div>
                     </div>
                 </div>
