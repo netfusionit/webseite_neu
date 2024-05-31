@@ -14,20 +14,18 @@ include 'db.php';
     <title>Admin - NetFusionIT</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js" rel="stylesheet">
     <style>
         .modal .form-group {
             margin-bottom: 15px;
         }
         .image-selection img {
-            width: 100px;
-            height: auto;
-            cursor: pointer;
+            max-width: 100px;
             margin: 5px;
+            cursor: pointer;
             border: 2px solid transparent;
         }
         .image-selection img.selected {
-            border: 2px solid blue;
+            border-color: #007bff;
         }
     </style>
 </head>
@@ -45,14 +43,12 @@ include 'db.php';
         <button type="button" class="btn btn-secondary mb-3" data-toggle="modal" data-target="#manageCommentsModal">
             <i class="fas fa-comments"></i> Kommentarverwaltung
         </button>
-        <h2>Bildverwaltung</h2>
-        <button type="button" class="btn btn-secondary mb-3" data-toggle="modal" data-target="#manageImagesModal">
-            <i class="fas fa-images"></i> Bildverwaltung
-        </button>
+        
         <h2>Benutzerverwaltung</h2>
         <button type="button" class="btn btn-secondary mb-3" data-toggle="modal" data-target="#userManagementModal">
             <i class="fas fa-users"></i> Benutzerübersicht
         </button>
+        
         <h2>Meldungen</h2>
         <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newPopupMessageModal">
             <i class="fas fa-exclamation-circle"></i> PopUp-Meldung anlegen
@@ -82,9 +78,6 @@ include 'db.php';
                         <div class="form-group">
                             <label for="content">Inhalt</label>
                             <textarea class="form-control" id="content" name="content" rows="5" required></textarea>
-                            <script>
-                                CKEDITOR.replace('content');
-                            </script>
                         </div>
                         <div class="form-group">
                             <label for="author">Ersteller</label>
@@ -114,7 +107,8 @@ include 'db.php';
                         </div>
                         <div class="form-group">
                             <label for="existingImage">Bild aus vorhandenen auswählen</label>
-                            <div class="image-selection" id="existingImage">
+                            <button type="button" class="btn btn-secondary" data-toggle="collapse" data-target="#imageSelection">Bilder anzeigen</button>
+                            <div id="imageSelection" class="collapse mt-3 image-selection">
                                 <?php
                                 $images = glob("uploads/*.{jpg,jpeg,png,gif}", GLOB_BRACE);
                                 foreach ($images as $image) {
@@ -126,41 +120,6 @@ include 'db.php';
                         </div>
                         <button type="submit" class="btn btn-primary">Beitrag hinzufügen</button>
                     </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Bildverwaltung Modal -->
-    <div class="modal fade" id="manageImagesModal" tabindex="-1" aria-labelledby="manageImagesModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="manageImagesModalLabel">Bildverwaltung</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="upload_image.php" method="post" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <label for="uploadImage">Neues Bild hochladen</label>
-                            <input type="file" class="form-control-file" id="uploadImage" name="image">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Bild hochladen</button>
-                    </form>
-                    <hr>
-                    <h5>Vorhandene Bilder</h5>
-                    <div class="image-selection" id="existingImages">
-                        <?php
-                        foreach ($images as $image) {
-                            echo "<div class='image-wrapper'>";
-                            echo "<img src='$image' data-image='$image' class='selectable-image'>";
-                            echo "<button class='btn btn-danger btn-sm' onclick='deleteImage(\"$image\")'><i class='fas fa-trash'></i></button>";
-                            echo "</div>";
-                        }
-                        ?>
-                    </div>
                 </div>
             </div>
         </div>
@@ -222,9 +181,6 @@ include 'db.php';
                                                     <div class="form-group">
                                                         <label for="content<?php echo $post['id']; ?>">Inhalt</label>
                                                         <textarea class="form-control" id="content<?php echo $post['id']; ?>" name="content" rows="5" required><?php echo $post['content']; ?></textarea>
-                                                        <script>
-                                                            CKEDITOR.replace('content<?php echo $post['id']; ?>');
-                                                        </script>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="author<?php echo $post['id']; ?>">Ersteller</label>
@@ -254,7 +210,8 @@ include 'db.php';
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="existingImage<?php echo $post['id']; ?>">Bild aus vorhandenen auswählen</label>
-                                                        <div class="image-selection" id="existingImage<?php echo $post['id']; ?>">
+                                                        <button type="button" class="btn btn-secondary" data-toggle="collapse" data-target="#existingImageSelection<?php echo $post['id']; ?>">Bilder anzeigen</button>
+                                                        <div id="existingImageSelection<?php echo $post['id']; ?>" class="collapse mt-3 image-selection">
                                                             <?php
                                                             foreach ($images as $image) {
                                                                 echo "<img src='$image' data-image='$image' class='selectable-image'>";
@@ -278,7 +235,6 @@ include 'db.php';
             </div>
         </div>
     </div>
-
     <!-- Kommentarverwaltung Modal -->
     <div class="modal fade" id="manageCommentsModal" tabindex="-1" aria-labelledby="manageCommentsModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
@@ -436,10 +392,9 @@ include 'db.php';
     <a href="logout.php" class="btn btn-danger">Logout</a>
     <?php include 'footer.php'; ?>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
     <script>
         function deletePost(id) {
             if (confirm("Möchten Sie diesen Beitrag wirklich löschen?")) {
@@ -453,26 +408,15 @@ include 'db.php';
             }
         }
 
-        function deleteImage(image) {
-            if (confirm("Möchten Sie dieses Bild wirklich löschen?")) {
-                window.location.href = 'delete_image.php?image=' + image;
-            }
-        }
-
-        document.querySelectorAll('.selectable-image').forEach(img => {
-            img.addEventListener('click', function() {
-                document.querySelectorAll('.selectable-image').forEach(i => i.classList.remove('selected'));
-                this.classList.add('selected');
-                document.getElementById('selectedImage').value = this.dataset.image;
+        $(document).ready(function() {
+            $('.selectable-image').on('click', function() {
+                $('.selectable-image').removeClass('selected');
+                $(this).addClass('selected');
+                $('#selectedImage').val($(this).data('image'));
             });
-        });
 
-        document.querySelectorAll('.image-selection img').forEach(img => {
-            img.addEventListener('click', function() {
-                document.querySelectorAll('.image-selection img').forEach(i => i.classList.remove('selected'));
-                this.classList.add('selected');
-                let inputId = this.closest('.image-selection').getAttribute('id').replace('existingImage', 'selectedImage');
-                document.getElementById(inputId).value = this.dataset.image;
+            $('form').on('submit', function() {
+                $(this).find('input[name="selected_image"]').val($('.selectable-image.selected').data('image'));
             });
         });
 
