@@ -324,33 +324,59 @@
         </div>
     </section><!-- /Services Section -->
 
-  <!-- Blog Section -->
-<section id="blog" class="blog section bg-light py-5">
-    <div class="container section-title text-center" data-aos="fade-up">
-        <h2>Aktuelle Meldungen</h2>
-        <p>Lesen Sie unsere neuesten Nachrichten und Updates</p>
-    </div>
-    <div class="container">
-        <div class="row gy-4">
-            <?php
-            include 'db.php';
-            $result = $conn->query("SELECT * FROM blog_posts ORDER BY created_at DESC LIMIT 3");
-            while ($row = $result->fetch_assoc()) {
-                echo "<div class='col-lg-4 col-md-6' data-aos='fade-up' data-aos-delay='100'>";
-                echo "<div class='card blog-item'>";
-                echo "<img src='assets/img/" . $row['image'] . "' class='card-img-top' alt=''>";
-                echo "<div class='card-body'>";
-                echo "<h5 class='card-title'><a href='blog-details.php?id=" . $row['id'] . "'>" . $row['title'] . "</a></h5>";
-                echo "<p class='card-text'>" . substr($row['content'], 0, 100) . "...</p>";
-                echo "<a href='blog-details.php?id=" . $row['id'] . "' class='btn btn-primary'>Weiterlesen</a>";
-                echo "</div>";
-                echo "</div>";
-                echo "</div>";
-            }
-            ?>
+    <!-- Blog Section -->
+    <section id="blog" class="blog section bg-light py-5">
+        <div class="container section-title text-center" data-aos="fade-up">
+            <h2>Aktuelle Meldungen</h2>
+            <p>Lesen Sie unsere neuesten Nachrichten und Updates</p>
         </div>
-    </div>
-</section><!-- /Blog Section -->
+        <div class="container">
+            <div class="row gy-4">
+                <?php
+                include 'db.php';
+
+                // Pagination
+                $limit = 3; // Anzahl der Beiträge pro Seite
+                $page = isset($_GET['page']) ? $_GET['page'] : 1;
+                $start = ($page - 1) * $limit;
+
+                // Beiträge abrufen
+                $result = $conn->query("SELECT * FROM blog_posts ORDER BY created_at DESC LIMIT $start, $limit");
+                while ($row = $result->fetch_assoc()) {
+                    echo "<div class='col-lg-4 col-md-6' data-aos='fade-up' data-aos-delay='100'>";
+                    echo "<div class='card blog-item'>";
+                    echo "<img src='assets/img/" . $row['image'] . "' class='card-img-top' alt=''>";
+                    echo "<div class='card-body'>";
+                    echo "<h5 class='card-title'><a href='blog-details.php?id=" . $row['id'] . "'>" . $row['title'] . "</a></h5>";
+                    echo "<p class='card-text'>" . substr($row['content'], 0, 100) . "...</p>";
+                    echo "<p class='card-text'><small class='text-muted'>Erstellt am: " . date('d.m.Y', strtotime($row['created_at'])) . "</small></p>";
+                    echo "<p class='card-text'><small class='text-muted'>Kategorie: " . $row['category'] . "</small></p>";
+                    echo "<p class='card-text'><small class='text-muted'>Tags: " . $row['tags'] . "</small></p>";
+                    echo "<a href='blog-details.php?id=" . $row['id'] . "' class='btn btn-primary'>Weiterlesen</a>";
+                    echo "</div>";
+                    echo "</div>";
+                    echo "</div>";
+                }
+
+                // Gesamtanzahl der Beiträge für Pagination
+                $result1 = $conn->query("SELECT COUNT(id) AS id FROM blog_posts");
+                $total = $result1->fetch_assoc()['id'];
+                $pages = ceil($total / $limit);
+
+                $conn->close();
+                ?>
+            </div>
+        </div>
+        <div class="container">
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                    <?php for ($i = 1; $i <= $pages; $i++): ?>
+                        <li class="page-item <?php if ($i == $page) echo 'active'; ?>"><a class="page-link" href="index.php?page=<?= $i; ?>"><?= $i; ?></a></li>
+                    <?php endfor; ?>
+                </ul>
+            </nav>
+        </div>
+    </section><!-- /Blog Section -->
 
 <!-- Contact Section -->
 <section id="contact" class="contact section bg-light py-5">
