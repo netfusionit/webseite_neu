@@ -23,7 +23,7 @@
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img src="/img/slide1.jpg" class="d-block w-100" alt="Slide 1">
-                <div class="carousel-caption d-none d-md-block">
+                <div class="carousel-caption d-md-block">
                     <h5>Internetdienstleistungen</h5>
                     <p>Wir bieten maßgeschneiderte Internetlösungen für Ihr Unternehmen.</p>
                     <a href="#section1" class="btn btn-primary">Mehr erfahren</a>
@@ -31,7 +31,7 @@
             </div>
             <div class="carousel-item">
                 <img src="/img/slide2.jpg" class="d-block w-100" alt="Slide 2">
-                <div class="carousel-caption d-none d-md-block">
+                <div class="carousel-caption d-md-block">
                     <h5>Netzwerktechnik</h5>
                     <p>Professionelle Netzwerklösungen für eine nahtlose Kommunikation.</p>
                     <a href="#section2" class="btn btn-primary">Mehr erfahren</a>
@@ -39,7 +39,7 @@
             </div>
             <div class="carousel-item">
                 <img src="/img/slide3.jpg" class="d-block w-100" alt="Slide 3">
-                <div class="carousel-caption d-none d-md-block">
+                <div class="carousel-caption d-md-block">
                     <h5>Webdesign</h5>
                     <p>Kreative Webdesigns, die beeindrucken und konvertieren.</p>
                     <a href="#section3" class="btn btn-primary">Mehr erfahren</a>
@@ -55,7 +55,7 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-    
+
     <!-- Featured Services Section -->
     <section id="featured-services" class="featured-services section">
         <div class="container">
@@ -92,7 +92,7 @@
     </section><!-- /Featured Services Section -->
 
     <!-- About Section -->
-    <section id="about" class="about section mt-5">
+    <section id="about" class="about section">
         <div class="container">
             <div class="row gy-4">
                 <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
@@ -170,7 +170,6 @@
                         </li>
                     </ul><!-- End Tab Nav -->
                 </div>
-                <br>
                 <div class="col-lg-6">
                     <div class="tab-content" data-aos="fade-up" data-aos-delay="200">
                         <div class="tab-pane fade active show" id="features-tab-1">
@@ -187,9 +186,7 @@
             </div>
         </div>
     </section><!-- /Features Section -->
-    <br>
-    <br>
-    <br>
+
     <!-- Features Details Section -->
     <section id="features-details" class="features-details section">
         <div class="container">
@@ -205,7 +202,6 @@
                     </div>
                 </div>
             </div><!-- Features Item -->
-            <br>
             <div class="row gy-4 justify-content-between features-item">
                 <div class="col-lg-5 d-flex align-items-center order-2 order-lg-1" data-aos="fade-up" data-aos-delay="100">
                     <div class="content">
@@ -305,7 +301,7 @@
         </div>
     </section><!-- /Services Section -->
 
-       <!-- Blog Section -->
+    <!-- Blog Section -->
     <section id="blog" class="blog section">
         <div class="container section-title" data-aos="fade-up">
             <h2>Blog</h2>
@@ -388,25 +384,23 @@
     <?php include 'footer.php'; ?>
 
     <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  <!-- Preloader -->
-  <div id="preloader"></div>
+    <!-- Preloader -->
+    <div id="preloader"></div>
 
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
 
-  <!-- Main JS File -->
-  <script src="assets/js/main.js"></script>
-
+    <!-- Main JS File -->
+    <script src="assets/js/main.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="assets/js/main.js"></script>
 </body>
 </html>

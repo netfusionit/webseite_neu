@@ -31,6 +31,43 @@ body {
             background-color: #0056b3;
         }
 
+.carousel-caption {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    bottom: initial;
+}
+
+.section {
+    padding: 60px 0;
+}
+
+.section-title {
+    margin-bottom: 40px;
+}
+
+.service-item {
+    margin-bottom: 30px;
+}
+
+.features-item {
+    margin-bottom: 30px;
+}
+
+.blog-item {
+    margin-bottom: 30px;
+}
+
+@media (max-width: 767px) {
+    .carousel-caption {
+        display: block;
+    }
+
+    .section-title {
+        text-align: center;
+    }
+}
+
 /*--------------------------------------------------------------
 # Featured Services Section
 --------------------------------------------------------------*/
