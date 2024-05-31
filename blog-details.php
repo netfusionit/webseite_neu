@@ -10,13 +10,50 @@
     <style>
         .blog-image {
             width: 100%;
-            max-height: 400px;
+            max-height: 300px;
             object-fit: cover;
             margin-bottom: 20px;
             border-radius: 10px;
         }
 
         .blog-content {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .reaction {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .reaction .bi {
+            font-size: 1.5rem;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .reaction .bi:hover {
+            transform: scale(1.2);
+        }
+
+        .reaction .count {
+            font-size: 1rem;
+            margin-left: 5px;
+        }
+
+        .comment-form {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #f1f1f1;
+            margin-top: 20px;
+        }
+
+        .comment-form h3 {
             margin-bottom: 20px;
         }
 
@@ -38,39 +75,38 @@
             color: #aaa;
         }
 
-        .reaction {
+        .toggle-comment {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            margin-top: 10px;
+            cursor: pointer;
+            padding: 10px;
+            background-color: #f1f1f1;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin-top: 20px;
         }
 
-        .reaction .bi {
-            font-size: 1.5rem;
-            cursor: pointer;
-            margin-right: 10px;
+        .toggle-comment h3 {
+            margin: 0;
+        }
+
+        .toggle-comment .toggle-icon {
             transition: transform 0.3s ease;
         }
 
-        .reaction .bi:hover {
-            transform: scale(1.2);
+        .toggle-comment.collapsed .toggle-icon {
+            transform: rotate(180deg);
         }
 
-        .reaction .count {
-            font-size: 1rem;
-            margin-left: 5px;
-        }
-
-        .comment-form {
-            border: 1px solid #ddd;
-            padding: 20px;
-            border-radius: 10px;
-            background-color: #f1f1f1;
+        .pagination {
+            display: flex;
+            justify-content: center;
             margin-top: 20px;
-            display: none;
         }
 
-        .comment-form h3 {
-            margin-bottom: 20px;
+        .pagination .page-item {
+            margin: 0 5px;
         }
     </style>
 </head>
@@ -85,11 +121,6 @@
             if ($row = $result->fetch_assoc()) {
                 echo "<h1 class='mb-4'>" . $row['title'] . "</h1>";
                 echo "<img src='assets/img/" . $row['image'] . "' class='img-fluid blog-image' alt=''>";
-                echo "<h2 class='mt-4'>" . $row['title'] . "</h2>";
-                echo "<small class='text-muted'>Erstellt am: " . date('d.m.Y H:i', strtotime($row['created_at'])) . " | Autor: " . $row['author'] . "</small>";
-                echo "<div class='blog-content mt-4'>" . $row['content'] . "</div>";
-
-                // Reaktionen anzeigen
                 echo "<div class='reaction'>";
                 $reactions = ['like' => 'bi-hand-thumbs-up', 'love' => 'bi-heart', 'wow' => 'bi-emoji-sunglasses', 'sad' => 'bi-emoji-frown'];
                 foreach ($reactions as $reaction => $icon) {
@@ -98,22 +129,15 @@
                     echo "<span class='bi $icon' data-reaction='$reaction' data-blog-id='$id'><span class='count'>$count</span></span>";
                 }
                 echo "</div>";
-
-                // Kommentare anzeigen
-                echo "<h3 class='mt-5'>Kommentare</h3>";
-                $comment_result = $conn->query("SELECT * FROM comments WHERE blog_id = $id ORDER BY created_at DESC");
-                while ($comment = $comment_result->fetch_assoc()) {
-                    echo "<div class='comment-box'>";
-                    echo "<h5>" . $comment['author'] . "</h5>";
-                    echo "<small>Kommentiert am: " . date('d.m.Y H:i', strtotime($comment['created_at'])) . "</small>";
-                    echo "<p>" . $comment['comment'] . "</p>";
-                    echo "</div>";
-                }
+                echo "<h2 class='mt-4'>" . $row['title'] . "</h2>";
+                echo "<small class='text-muted'>Erstellt am: " . date('d.m.Y H:i', strtotime($row['created_at'])) . " | Autor: " . $row['author'] . "</small>";
+                echo "<div class='blog-content mt-4'>" . $row['content'] . "</div>";
 
                 // Kommentarformular
-                echo "<button id='toggleCommentForm' class='btn btn-secondary mt-3'>Neuen Kommentar schreiben</button>";
+                echo "<div class='toggle-comment'>";
+                echo "<h3>Neuer Kommentar</h3><i class='fas fa-chevron-up toggle-icon'></i>";
+                echo "</div>";
                 echo "<div class='comment-form'>";
-                echo "<h3>Neuer Kommentar</h3>";
                 echo "<form action='add_comment.php' method='post'>";
                 echo "<input type='hidden' name='blog_id' value='$id'>";
                 echo "<div class='form-group'>";
@@ -131,6 +155,17 @@
                 echo "<button type='submit' class='btn btn-primary'>Kommentar hinzufügen</button>";
                 echo "</form>";
                 echo "</div>";
+
+                // Kommentare anzeigen
+                echo "<h3 class='mt-5'>Kommentare</h3>";
+                $comment_result = $conn->query("SELECT * FROM comments WHERE blog_id = $id ORDER BY created_at DESC");
+                while ($comment = $comment_result->fetch_assoc()) {
+                    echo "<div class='comment-box'>";
+                    echo "<h5>" . $comment['author'] . "</h5>";
+                    echo "<small>Kommentiert am: " . date('d.m.Y H:i', strtotime($comment['created_at'])) . "</small>";
+                    echo "<p>" . $comment['comment'] . "</p>";
+                    echo "</div>";
+                }
             } else {
                 echo "<p>Blogeintrag nicht gefunden.</p>";
             }
@@ -141,33 +176,50 @@
     </div>
 
     <!-- Blog Section -->
-<section id="blog" class="blog section bg-light py-5">
+<section id="blog" class="blog section py-5">
     <div class="container section-title text-center" data-aos="fade-up">
         <h2>Weitere Meldungen</h2>
         <p>Lesen Sie weitere Nachrichten und Updates</p>
     </div>
     <div class="container">
-        <div class="row gy-4">
-            <?php
-            include 'db.php';
-            $result = $conn->query("SELECT * FROM blog_posts ORDER BY created_at DESC LIMIT 3");
-            while ($row = $result->fetch_assoc()) {
-                echo "<div class='col-lg-4 col-md-6' data-aos='fade-up' data-aos-delay='100'>";
-                echo "<div class='card blog-item'>";
-                echo "<img src='assets/img/" . $row['image'] . "' class='card-img-top' alt=''>";
-                echo "<div class='card-body'>";
-                echo "<h5 class='card-title'><a href='blog-details.php?id=" . $row['id'] . "'>" . $row['title'] . "</a></h5>";
-                echo "<p class='card-text'>" . substr($row['content'], 0, 100) . "...</p>";
-                echo "<a href='blog-details.php?id=" . $row['id'] . "' class='btn btn-primary'>Weiterlesen</a>";
-                echo "</div>";
-                echo "</div>";
-                echo "</div>";
-            }
-            ?>
+        <div id="blogCarousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <?php
+                $result = $conn->query("SELECT * FROM blog_posts ORDER BY created_at DESC");
+                $active = "active";
+                while ($row = $result->fetch_assoc()) {
+                    echo "<div class='carousel-item $active'>";
+                    echo "<div class='row'>";
+                    echo "<div class='col-lg-4 col-md-6'>";
+                    echo "<div class='card blog-item'>";
+                    echo "<img src='assets/img/" . $row['image'] . "' class='card-img-top' alt=''>";
+                    echo "<div class='card-body'>";
+                    echo "<h5 class='card-title'><a href='blog-details.php?id=" . $row['id'] . "'>" . $row['title'] . "</a></h5>";
+                    echo "<p class='card-text'>" . substr($row['content'], 0, 100) . "...</p>";
+                    echo "<a href='blog-details.php?id=" . $row['id'] . "' class='btn btn-primary'>Weiterlesen</a>";
+                    echo "</div>";
+                    echo "</div>";
+                    echo "</div>";
+                    echo "</div>";
+                    echo "</div>";
+                    $active = "";
+                }
+                ?>
+            </div>
+            <a class="carousel-control-prev" href="#blogCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#blogCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
     </div>
 </section><!-- /Blog Section -->
+
     <?php include 'footer.php'; ?>
+
     <script>
         document.querySelectorAll('.bi').forEach(function(icon) {
             icon.addEventListener('click', function() {
@@ -191,15 +243,14 @@
             });
         });
 
-        document.getElementById('toggleCommentForm').addEventListener('click', function() {
+        document.querySelector('.toggle-comment').addEventListener('click', function() {
             var form = document.querySelector('.comment-form');
-            if (form.style.display === 'none' || form.style.display === '') {
-                form.style.display = 'block';
-                this.textContent = 'Kommentarformular ausblenden';
-            } else {
-                form.style.display = 'none';
-                this.textContent = 'Neuen Kommentar schreiben';
-            }
+            form.style.display = form.style.display === 'block' ? 'none' : 'block';
+            this.classList.toggle('collapsed');
+        });
+
+        $('.carousel').carousel({
+            interval: 5000
         });
     </script>
 </body>
