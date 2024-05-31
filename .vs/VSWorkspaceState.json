@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\assets\\img"
   ],
-  "SelectedNode": "\\admin.php",
+  "SelectedNode": "\\delete_image.php",
   "PreviewInSolutionExplorer": false
 }

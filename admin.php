@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
@@ -14,6 +13,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     <title>Admin - NetFusionIT</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
     <style>
         .modal .form-group {
             margin-bottom: 15px;
@@ -34,6 +34,9 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
         <button type="button" class="btn btn-secondary mb-3" data-toggle="modal" data-target="#manageCommentsModal">
             <i class="fas fa-comments"></i> Kommentarverwaltung
         </button>
+        <button type="button" class="btn btn-secondary mb-3" data-toggle="modal" data-target="#manageImagesModal">
+            <i class="fas fa-images"></i> Bildverwaltung
+        </button>
         
         <h2>Benutzerverwaltung</h2>
         <button type="button" class="btn btn-secondary mb-3" data-toggle="modal" data-target="#userManagementModal">
@@ -49,7 +52,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
         </button>
     </div>
 
-      <!-- Modals -->
+    <!-- Modals -->
     <!-- Neuer Beitrag Modal -->
     <div class="modal fade" id="newPostModal" tabindex="-1" aria-labelledby="newPostModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -99,6 +102,20 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                             <label for="image">Bild</label>
                             <input type="file" class="form-control-file" id="image" name="image">
                         </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#imageSuggestions">Bildvorschläge anzeigen</button>
+                            <div id="imageSuggestions" class="collapse mt-3">
+                                <?php
+                                $images = scandir('uploads/');
+                                foreach ($images as $image) {
+                                    if ($image != '.' && $image != '..') {
+                                        echo "<img src='uploads/$image' class='img-thumbnail m-1' width='100' onclick=\"selectImage('$image')\">";
+                                    }
+                                }
+                                ?>
+                            </div>
+                        </div>
+                        <input type="hidden" id="selectedImage" name="selectedImage">
                         <button type="submit" class="btn btn-primary">Beitrag hinzufügen</button>
                     </form>
                 </div>
@@ -193,6 +210,20 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                                                         <label for="image<?php echo $post['id']; ?>">Bild</label>
                                                         <input type="file" class="form-control-file" id="image<?php echo $post['id']; ?>" name="image">
                                                     </div>
+                                                    <div class="form-group">
+                                                        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#imageSuggestionsEdit<?php echo $post['id']; ?>">Bildvorschläge anzeigen</button>
+                                                        <div id="imageSuggestionsEdit<?php echo $post['id']; ?>" class="collapse mt-3">
+                                                            <?php
+                                                            $images = scandir('uploads/');
+                                                            foreach ($images as $image) {
+                                                                if ($image != '.' && $image != '..') {
+                                                                    echo "<img src='uploads/$image' class='img-thumbnail m-1' width='100' onclick=\"selectImageEdit('$image', {$post['id']})\">";
+                                                                }
+                                                            }
+                                                            ?>
+                                                        </div>
+                                                    </div>
+                                                    <input type="hidden" id="selectedImageEdit<?php echo $post['id']; ?>" name="selectedImage">
                                                     <button type="submit" class="btn btn-primary">Änderungen speichern</button>
                                                 </form>
                                             </div>
@@ -208,6 +239,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
             </div>
         </div>
     </div>
+
     <!-- Kommentarverwaltung Modal -->
     <div class="modal fade" id="manageCommentsModal" tabindex="-1" aria-labelledby="manageCommentsModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
@@ -362,6 +394,46 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
             </div>
         </div>
     </div>
+
+    <!-- Bildverwaltung Modal -->
+    <div class="modal fade" id="manageImagesModal" tabindex="-1" aria-labelledby="manageImagesModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="manageImagesModalLabel">Bildverwaltung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="upload_image.php" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="newImage">Neues Bild hochladen</label>
+                            <input type="file" class="form-control-file" id="newImage" name="image" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Bild hochladen</button>
+                    </form>
+                    <hr>
+                    <h5>Hochgeladene Bilder</h5>
+                    <div class="row">
+                        <?php
+                        $images = scandir('uploads/');
+                        foreach ($images as $image) {
+                            if ($image != '.' && $image != '..') {
+                                echo "<div class='col-md-3'>";
+                                echo "<div class='thumbnail'>";
+                                echo "<img src='uploads/$image' class='img-thumbnail'>";
+                                echo "<button class='btn btn-danger btn-sm btn-block mt-2' onclick=\"deleteImage('$image')\"><i class='fas fa-trash'></i> Löschen</button>";
+                                echo "</div>";
+                                echo "</div>";
+                            }
+                        }
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
      <a href="logout.php" class="btn btn-danger">Logout</a>
     <?php include 'footer.php'; ?>
 
@@ -379,6 +451,20 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
             if (confirm("Möchten Sie diesen Kommentar wirklich löschen?")) {
                 window.location.href = 'delete_comment.php?id=' + id;
             }
+        }
+
+        function deleteImage(image) {
+            if (confirm("Möchten Sie dieses Bild wirklich löschen?")) {
+                window.location.href = 'delete_image.php?image=' + image;
+            }
+        }
+
+        function selectImage(image) {
+            document.getElementById('selectedImage').value = image;
+        }
+
+        function selectImageEdit(image, postId) {
+            document.getElementById('selectedImageEdit' + postId).value = image;
         }
 
         document.getElementById('searchComment').addEventListener('input', function() {
