@@ -10,6 +10,29 @@
 </head>
 <body>
     <?php include 'header.php'; ?>
+     <!-- Popup-Meldung (Nur wenn in DB vorhanden!) -->
+    <div id="popupMessage" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Wichtige Meldung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Schließen">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="popupContent"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Schließen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+        <!-- Ticker-Meldung (Nur wenn in DB vorhanden!) -->
+    <div id="tickerMessage" class="bg-warning text-dark text-center py-2">
+        <p class="mb-0" id="tickerContent"></p>
+    </div>
     <div class="alert alert-primary" role="alert">
         Willkommen bei NetFusionIT! <br>
         Unsere Webseite befindet sich derzeit im Aufbau!
@@ -408,5 +431,26 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+     <script>
+        $(document).ready(function() {
+            // Popup-Meldung
+            $.get('fetch_popup.php', function(data) {
+                if (data) {
+                    $('#popupContent').html(data);
+                    $('#popupMessage').modal('show');
+                }
+            });
+
+            // Ticker-Meldung
+            $.get('fetch_ticker.php', function(data) {
+                if (data) {
+                    $('#tickerContent').html(data);
+                    $('#tickerMessage').show();
+                } else {
+                    $('#tickerMessage').hide();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
