@@ -780,3 +780,18 @@ body {
         padding: 0.3rem 0.5rem;
         font-size: 0.9rem;
     }
+.modal .form-group {
+    margin-bottom: 15px;
+}
+
+.image-selection img {
+    width: 100px;
+    height: auto;
+    cursor: pointer;
+    margin: 5px;
+    border: 2px solid transparent;
+}
+
+    .image-selection img.selected {
+        border: 2px solid blue;
+    }

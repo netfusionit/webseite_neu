@@ -9,7 +9,7 @@ $category = $_POST['category'];
 $image = '';
 
 if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
-    $target_dir = "assets/img/";
+    $target_dir = "uploads/";
     $target_file = $target_dir . basename($_FILES["image"]["name"]);
     if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
         $image = basename($_FILES["image"]["name"]);
