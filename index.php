@@ -188,6 +188,8 @@
         </div>
     </section><!-- /Features Section -->
     <br>
+    <br>
+    <br>
     <!-- Features Details Section -->
     <section id="features-details" class="features-details section">
         <div class="container">
@@ -303,7 +305,7 @@
         </div>
     </section><!-- /Services Section -->
 
-        <!-- Blog Section -->
+       <!-- Blog Section -->
     <section id="blog" class="blog section">
         <div class="container section-title" data-aos="fade-up">
             <h2>Blog</h2>
@@ -311,32 +313,20 @@
         </div>
         <div class="container">
             <div class="row gy-4">
-                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="blog-item">
-                        <img src="assets/img/blog-1.jpg" class="img-fluid" alt="">
-                        <h3><a href="blog-details.html">Blog Post Title 1</a></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget dictum lorem.</p>
-                        <a href="blog-details.html" class="read-more">Read More <i class="bi bi-arrow-right"></i></a>
-                    </div>
-                </div><!-- End Blog Item -->
-
-                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="blog-item">
-                        <img src="assets/img/blog-2.jpg" class="img-fluid" alt="">
-                        <h3><a href="blog-details.html">Blog Post Title 2</a></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget dictum lorem.</p>
-                        <a href="blog-details.html" class="read-more">Read More <i class="bi bi-arrow-right"></i></a>
-                    </div>
-                </div><!-- End Blog Item -->
-
-                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="blog-item">
-                        <img src="assets/img/blog-3.jpg" class="img-fluid" alt="">
-                        <h3><a href="blog-details.html">Blog Post Title 3</a></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget dictum lorem.</p>
-                        <a href="blog-details.html" class="read-more">Read More <i class="bi bi-arrow-right"></i></a>
-                    </div>
-                </div><!-- End Blog Item -->
+                <?php
+                include 'db.php';
+                $result = $conn->query("SELECT * FROM blog_posts ORDER BY created_at DESC LIMIT 3");
+                while ($row = $result->fetch_assoc()) {
+                    echo "<div class='col-lg-4' data-aos='fade-up' data-aos-delay='100'>";
+                    echo "<div class='blog-item'>";
+                    echo "<img src='assets/img/" . $row['image'] . "' class='img-fluid' alt=''>";
+                    echo "<h3><a href='blog-details.php?id=" . $row['id'] . "'>" . $row['title'] . "</a></h3>";
+                    echo "<p>" . substr($row['content'], 0, 100) . "...</p>";
+                    echo "<a href='blog-details.php?id=" . $row['id'] . "' class='read-more'>Read More <i class='bi bi-arrow-right'></i></a>";
+                    echo "</div>";
+                    echo "</div>";
+                }
+                ?>
             </div>
         </div>
     </section><!-- /Blog Section -->
