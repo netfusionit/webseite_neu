@@ -6,7 +6,15 @@
     <title>Blog Details - NetFusionIT</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
+        .blog-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
         .comment-box {
             border: 1px solid #ddd;
             padding: 15px;
@@ -26,9 +34,9 @@
         }
 
         .reaction {
-            position: absolute;
-            right: 15px;
-            top: 15px;
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
         }
 
         .reaction .emoji {
@@ -40,6 +48,11 @@
 
         .reaction .emoji:hover {
             transform: scale(1.2);
+        }
+
+        .reaction .count {
+            font-size: 1rem;
+            margin-left: 5px;
         }
     </style>
 </head>
@@ -53,12 +66,14 @@
             $result = $conn->query("SELECT * FROM blog_posts WHERE id = $id");
             if ($row = $result->fetch_assoc()) {
                 echo "<h1>" . $row['title'] . "</h1>";
-                echo "<img src='uploads/" . $row['image'] . "' class='img-fluid' alt=''>";
+                echo "<img src='uploads/" . $row['image'] . "' class='img-fluid blog-image' alt=''>";
                 echo "<div class='reaction'>";
-                echo "<span class='emoji' data-reaction='like'>👍</span>";
-                echo "<span class='emoji' data-reaction='love'>❤️</span>";
-                echo "<span class='emoji' data-reaction='wow'>😮</span>";
-                echo "<span class='emoji' data-reaction='sad'>😢</span>";
+                $reactions = ['like' => '👍', 'love' => '❤️', 'wow' => '😮', 'sad' => '😢'];
+                foreach ($reactions as $reaction => $emoji) {
+                    $count_result = $conn->query("SELECT COUNT(*) as count FROM reactions WHERE blog_id = $id AND reaction_type = '$reaction'");
+                    $count = $count_result->fetch_assoc()['count'];
+                    echo "<span class='emoji' data-reaction='$reaction' data-blog-id='$id'>$emoji <span class='count'>$count</span></span>";
+                }
                 echo "</div>";
                 echo "<p>" . $row['content'] . "</p>";
                 echo "<small>Erstellt am: " . date('d.m.Y H:i', strtotime($row['created_at'])) . " | Autor: " . $row['author'] . "</small>";
@@ -101,8 +116,22 @@
         document.querySelectorAll('.emoji').forEach(function(emoji) {
             emoji.addEventListener('click', function() {
                 let reaction = this.getAttribute('data-reaction');
-                // Hier können Sie die Logik zum Speichern der Reaktion in der Datenbank hinzufügen
-                alert('Reaktion: ' + reaction);
+                let blogId = this.getAttribute('data-blog-id');
+                
+                fetch('add_reaction.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: 'blog_id=' + blogId + '&reaction_type=' + reaction
+                })
+                .then(response => response.text())
+                .then(data => {
+                    if (data === 'Reaktion gespeichert') {
+                        let countSpan = this.querySelector('.count');
+                        countSpan.textContent = parseInt(countSpan.textContent) + 1;
+                    }
+                });
             });
         });
     </script>
