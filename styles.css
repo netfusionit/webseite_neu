@@ -308,7 +308,11 @@ body {
         transition: 0.3s;
         border-radius: 10px;
         display: flex;
-        align-items: center;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        text-align: left;
+        box-shadow: 0px 0px 18px rgba(0, 0, 0, 0.05);
     }
 
         .services .service-item .icon {
@@ -319,18 +323,31 @@ body {
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 20px;
+            margin-bottom: 20px;
         }
 
         .services .service-item h3 {
             font-size: 22px;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
 
         .services .service-item p {
-            margin-bottom: 0;
+            margin-bottom: 15px;
             color: #666666;
+            flex-grow: 1;
         }
+
+        .services .service-item .read-more {
+            display: inline-flex;
+            align-items: center;
+            margin-top: auto;
+            font-size: 14px;
+            color: var(--accent-color);
+        }
+
+            .services .service-item .read-more i {
+                margin-left: 10px;
+            }
 
         .services .service-item:hover {
             box-shadow: 0px 0 18px rgba(0, 0, 0, 0.1);
@@ -366,6 +383,7 @@ body {
             background-color: rgba(233, 30, 99, 0.1);
             color: #e91e63;
         }
+
 /*--------------------------------------------------------------
 # Scroll Top Button
 --------------------------------------------------------------*/

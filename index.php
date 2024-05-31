@@ -225,7 +225,7 @@
         </div>
     </section><!-- /Features Details Section -->
 
-      <!-- Services Section -->
+ <!-- Services Section -->
     <section id="services" class="services section">
         <div class="container section-title" data-aos="fade-up">
             <h2>Services</h2>
