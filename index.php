@@ -301,85 +301,91 @@
         </div>
     </section><!-- /Services Section -->
 
-    <!-- Blog Section -->
-    <section id="blog" class="blog section">
-        <div class="container section-title" data-aos="fade-up">
-            <h2>Blog</h2>
-            <p>Read our latest news and updates</p>
+  <!-- Blog Section -->
+<section id="blog" class="blog section bg-light py-5">
+    <div class="container section-title text-center" data-aos="fade-up">
+        <h2>Aktuelle Meldungen</h2>
+        <p>Lesen Sie unsere neuesten Nachrichten und Updates</p>
+    </div>
+    <div class="container">
+        <div class="row gy-4">
+            <?php
+            include 'db.php';
+            $result = $conn->query("SELECT * FROM blog_posts ORDER BY created_at DESC LIMIT 3");
+            while ($row = $result->fetch_assoc()) {
+                echo "<div class='col-lg-4 col-md-6' data-aos='fade-up' data-aos-delay='100'>";
+                echo "<div class='card blog-item'>";
+                echo "<img src='assets/img/" . $row['image'] . "' class='card-img-top' alt=''>";
+                echo "<div class='card-body'>";
+                echo "<h5 class='card-title'><a href='blog-details.php?id=" . $row['id'] . "'>" . $row['title'] . "</a></h5>";
+                echo "<p class='card-text'>" . substr($row['content'], 0, 100) . "...</p>";
+                echo "<a href='blog-details.php?id=" . $row['id'] . "' class='btn btn-primary'>Weiterlesen</a>";
+                echo "</div>";
+                echo "</div>";
+                echo "</div>";
+            }
+            ?>
         </div>
-        <div class="container">
-            <div class="row gy-4">
-                <?php
-                include 'db.php';
-                $result = $conn->query("SELECT * FROM blog_posts ORDER BY created_at DESC LIMIT 3");
-                while ($row = $result->fetch_assoc()) {
-                    echo "<div class='col-lg-4' data-aos='fade-up' data-aos-delay='100'>";
-                    echo "<div class='blog-item'>";
-                    echo "<img src='assets/img/" . $row['image'] . "' class='img-fluid' alt=''>";
-                    echo "<h3><a href='blog-details.php?id=" . $row['id'] . "'>" . $row['title'] . "</a></h3>";
-                    echo "<p>" . substr($row['content'], 0, 100) . "...</p>";
-                    echo "<a href='blog-details.php?id=" . $row['id'] . "' class='read-more'>Read More <i class='bi bi-arrow-right'></i></a>";
-                    echo "</div>";
-                    echo "</div>";
-                }
-                ?>
-            </div>
-        </div>
-    </section><!-- /Blog Section -->
+    </div>
+</section><!-- /Blog Section -->
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact section">
-        <div class="container section-title" data-aos="fade-up">
-            <h2>Contact</h2>
-            <p>Get in touch with us</p>
-        </div>
-        <div class="container">
-            <div class="row gy-4">
-                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                    <div class="info-item">
-                        <i class="bi bi-geo-alt"></i>
-                        <h3>Our Address</h3>
+<!-- Contact Section -->
+<section id="contact" class="contact section bg-light py-5">
+    <div class="container section-title text-center" data-aos="fade-up">
+        <h2>Kontakt</h2>
+        <p>Kontaktieren Sie uns für weitere Informationen</p>
+    </div>
+    <div class="container">
+        <div class="row gy-4">
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="info-item d-flex align-items-start">
+                    <i class="bi bi-geo-alt flex-shrink-0"></i>
+                    <div>
+                        <h3>Unsere Adresse</h3>
                         <p>A108 Adam Street, New York, NY 535022</p>
                     </div>
-                    <div class="info-item">
-                        <i class="bi bi-envelope"></i>
-                        <h3>Email Us</h3>
+                </div>
+                <div class="info-item d-flex align-items-start">
+                    <i class="bi bi-envelope flex-shrink-0"></i>
+                    <div>
+                        <h3>Email</h3>
                         <p>info@example.com</p>
                     </div>
-                    <div class="info-item">
-                        <i class="bi bi-phone"></i>
-                        <h3>Call Us</h3>
+                </div>
+                <div class="info-item d-flex align-items-start">
+                    <i class="bi bi-phone flex-shrink-0"></i>
+                    <div>
+                        <h3>Telefon</h3>
                         <p>+1 5589 55488 55</p>
                     </div>
                 </div>
-
-                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-                    <form action="send_email.php" method="post" class="php-email-form">
-                        <div class="row">
-                            <div class="col-md-6 form-group">
-                                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-                            </div>
-                            <div class="col-md-6 form-group mt-3 mt-md-0">
-                                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-                            </div>
-                        </div>
-                        <div class="form-group mt-3">
-                            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-                        </div>
-                        <div class="form-group mt-3">
-                            <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-                        </div>
-                        <div class="my-3">
-                            <div class="loading">Loading</div>
-                            <div class="error-message"></div>
-                            <div class="sent-message">Your message has been sent. Thank you!</div>
-                        </div>
-                        <div class="text-center"><button type="submit">Send Message</button></div>
-                    </form>
-                </div>
+            </div>
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                <form action="send_email.php" method="post" class="php-email-form">
+                    <div class="form-group">
+                        <input type="text" name="name" class="form-control" id="name" placeholder="Ihr Name" required>
+                    </div>
+                    <div class="form-group mt-3">
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Ihre Email" required>
+                    </div>
+                    <div class="form-group mt-3">
+                        <input type="text" class="form-control" name="subject" id="subject" placeholder="Betreff" required>
+                    </div>
+                    <div class="form-group mt-3">
+                        <textarea class="form-control" name="message" rows="5" placeholder="Nachricht" required></textarea>
+                    </div>
+                    <div class="my-3">
+                        <div class="loading">Wird geladen...</div>
+                        <div class="error-message"></div>
+                        <div class="sent-message">Ihre Nachricht wurde gesendet. Vielen Dank!</div>
+                    </div>
+                    <div class="text-center"><button type="submit">Nachricht senden</button></div>
+                </form>
             </div>
         </div>
-    </section><!-- /Contact Section -->
+    </div>
+</section><!-- /Contact Section -->
+
 
     <?php include 'footer.php'; ?>
 
