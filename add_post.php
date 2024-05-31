@@ -1,19 +1,24 @@
 <?php
 include 'db.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $title = $_POST['title'];
-    $content = $_POST['content'];
+$title = $_POST['title'];
+$content = $_POST['content'];
+$author = $_POST['author'];
+$tags = $_POST['tags'];
+$category = $_POST['category'];
+$image = '';
 
-    $stmt = $conn->prepare("INSERT INTO blog_posts (title, content) VALUES (?, ?)");
-    $stmt->bind_param("ss", $title, $content);
-
-    if ($stmt->execute()) {
-        echo "Beitrag erfolgreich hinzugefügt.";
-    } else {
-        echo "Fehler beim Hinzufügen des Beitrags: " . $stmt->error;
+if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
+    $target_dir = "assets/img/";
+    $target_file = $target_dir . basename($_FILES["image"]["name"]);
+    if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+        $image = basename($_FILES["image"]["name"]);
     }
-    $stmt->close();
 }
-$conn->close();
+
+$stmt = $conn->prepare("INSERT INTO blog_posts (title, content, author, tags, category, image) VALUES (?, ?, ?, ?, ?, ?)");
+$stmt->bind_param("ssssss", $title, $content, $author, $tags, $category, $image);
+$stmt->execute();
+
+header('Location: admin.php');
 ?>
