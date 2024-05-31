@@ -1,3 +1,11 @@
+
+<?php
+session_start();
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    header("Location: login.php");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -329,7 +337,7 @@
             </div>
         </div>
     </div>
-
+     <a href="logout.php" class="btn btn-danger">Logout</a>
     <?php include 'footer.php'; ?>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
