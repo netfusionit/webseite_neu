@@ -173,13 +173,13 @@
                 <div class="col-lg-6">
                     <div class="tab-content" data-aos="fade-up" data-aos-delay="200">
                         <div class="tab-pane fade active show" id="features-tab-1">
-                            <img src="assets/img/tabs-1.jpg" alt="" class="img-fluid">
+                            <img src="/img/placeholder2.jpg" alt="" class="img-fluid">
                         </div><!-- End Tab Content Item -->
                         <div class="tab-pane fade" id="features-tab-2">
-                            <img src="assets/img/tabs-2.jpg" alt="" class="img-fluid">
+                            <img src="/img/placeholder2.jpg" alt="" class="img-fluid">
                         </div><!-- End Tab Content Item -->
                         <div class="tab-pane fade" id="features-tab-3">
-                            <img src="assets/img/tabs-3.jpg" alt="" class="img-fluid">
+                            <img src="/img/placeholder2.jpg" alt="" class="img-fluid">
                         </div><!-- End Tab Content Item -->
                     </div>
                 </div>
@@ -192,7 +192,7 @@
         <div class="container">
             <div class="row gy-4 justify-content-between features-item">
                 <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                    <img src="assets/img/features-1.jpg" class="img-fluid" alt="">
+                    <img src="/img/placeholder.jpg" class="img-fluid" alt="">
                 </div>
                 <div class="col-lg-5 d-flex align-items-center" data-aos="fade-up" data-aos-delay="200">
                     <div class="content">
@@ -218,7 +218,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-up" data-aos-delay="200">
-                    <img src="assets/img/features-2.jpg" class="img-fluid" alt="">
+                    <img src="/img/placeholder.jpg" class="img-fluid" alt="">
                 </div>
             </div><!-- Features Item -->
         </div>
