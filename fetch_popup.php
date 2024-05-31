@@ -15,21 +15,3 @@ if ($result->num_rows > 0) {
 
 $conn->close();
 
-session_start();
-if ($show_popup) {
-    // Prüfen, ob das Popup bereits in dieser Sitzung angezeigt wurde
-    if (isset($_SESSION['last_popup_time'])) {
-        $last_popup_time = $_SESSION['last_popup_time'];
-        $current_time = time();
-        $time_diff = ($current_time - $last_popup_time) / 3600; // Unterschied in Stunden
-
-        if ($time_diff >= 4) {
-            $_SESSION['last_popup_time'] = $current_time;
-            echo $popup_message;
-        }
-    } else {
-        $_SESSION['last_popup_time'] = time();
-        echo $popup_message;
-    }
-}
-?>
