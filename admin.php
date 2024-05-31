@@ -4,7 +4,6 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     header("Location: login.php");
     exit;
 }
-include 'db.php';
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -14,18 +13,10 @@ include 'db.php';
     <title>Admin - NetFusionIT</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
     <style>
         .modal .form-group {
             margin-bottom: 15px;
-        }
-        .image-selection img {
-            max-width: 100px;
-            margin: 5px;
-            cursor: pointer;
-            border: 2px solid transparent;
-        }
-        .image-selection img.selected {
-            border-color: #007bff;
         }
     </style>
 </head>
@@ -42,6 +33,9 @@ include 'db.php';
         </button>
         <button type="button" class="btn btn-secondary mb-3" data-toggle="modal" data-target="#manageCommentsModal">
             <i class="fas fa-comments"></i> Kommentarverwaltung
+        </button>
+        <button type="button" class="btn btn-secondary mb-3" data-toggle="modal" data-target="#manageImagesModal">
+            <i class="fas fa-images"></i> Bildverwaltung
         </button>
         
         <h2>Benutzerverwaltung</h2>
@@ -78,6 +72,9 @@ include 'db.php';
                         <div class="form-group">
                             <label for="content">Inhalt</label>
                             <textarea class="form-control" id="content" name="content" rows="5" required></textarea>
+                            <script>
+                                CKEDITOR.replace('content');
+                            </script>
                         </div>
                         <div class="form-group">
                             <label for="author">Ersteller</label>
@@ -102,22 +99,23 @@ include 'db.php';
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="image">Bild hochladen</label>
+                            <label for="image">Bild</label>
                             <input type="file" class="form-control-file" id="image" name="image">
                         </div>
                         <div class="form-group">
-                            <label for="existingImage">Bild aus vorhandenen auswählen</label>
-                            <button type="button" class="btn btn-secondary" data-toggle="collapse" data-target="#imageSelection">Bilder anzeigen</button>
-                            <div id="imageSelection" class="collapse mt-3 image-selection">
+                            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#imageSuggestions">Bildvorschläge anzeigen</button>
+                            <div id="imageSuggestions" class="collapse mt-3">
                                 <?php
-                                $images = glob("uploads/*.{jpg,jpeg,png,gif}", GLOB_BRACE);
+                                $images = scandir('uploads/');
                                 foreach ($images as $image) {
-                                    echo "<img src='$image' data-image='$image' class='selectable-image'>";
+                                    if ($image != '.' && $image != '..') {
+                                        echo "<img src='uploads/$image' class='img-thumbnail m-1' width='100' onclick=\"selectImage('$image')\">";
+                                    }
                                 }
                                 ?>
                             </div>
-                            <input type="hidden" name="selected_image" id="selectedImage">
                         </div>
+                        <input type="hidden" id="selectedImage" name="selectedImage">
                         <button type="submit" class="btn btn-primary">Beitrag hinzufügen</button>
                     </form>
                 </div>
@@ -148,6 +146,7 @@ include 'db.php';
                         </thead>
                         <tbody>
                             <?php
+                            include 'db.php';
                             $posts = $conn->query("SELECT * FROM blog_posts");
                             while ($post = $posts->fetch_assoc()) {
                                 echo "<tr>";
@@ -181,6 +180,9 @@ include 'db.php';
                                                     <div class="form-group">
                                                         <label for="content<?php echo $post['id']; ?>">Inhalt</label>
                                                         <textarea class="form-control" id="content<?php echo $post['id']; ?>" name="content" rows="5" required><?php echo $post['content']; ?></textarea>
+                                                        <script>
+                                                            CKEDITOR.replace('content<?php echo $post['id']; ?>');
+                                                        </script>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="author<?php echo $post['id']; ?>">Ersteller</label>
@@ -205,21 +207,23 @@ include 'db.php';
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="image<?php echo $post['id']; ?>">Bild hochladen</label>
+                                                        <label for="image<?php echo $post['id']; ?>">Bild</label>
                                                         <input type="file" class="form-control-file" id="image<?php echo $post['id']; ?>" name="image">
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="existingImage<?php echo $post['id']; ?>">Bild aus vorhandenen auswählen</label>
-                                                        <button type="button" class="btn btn-secondary" data-toggle="collapse" data-target="#existingImageSelection<?php echo $post['id']; ?>">Bilder anzeigen</button>
-                                                        <div id="existingImageSelection<?php echo $post['id']; ?>" class="collapse mt-3 image-selection">
+                                                        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#imageSuggestionsEdit<?php echo $post['id']; ?>">Bildvorschläge anzeigen</button>
+                                                        <div id="imageSuggestionsEdit<?php echo $post['id']; ?>" class="collapse mt-3">
                                                             <?php
+                                                            $images = scandir('uploads/');
                                                             foreach ($images as $image) {
-                                                                echo "<img src='$image' data-image='$image' class='selectable-image'>";
+                                                                if ($image != '.' && $image != '..') {
+                                                                    echo "<img src='uploads/$image' class='img-thumbnail m-1' width='100' onclick=\"selectImageEdit('$image', {$post['id']})\">";
+                                                                }
                                                             }
                                                             ?>
                                                         </div>
-                                                        <input type="hidden" name="selected_image" id="selectedImage<?php echo $post['id']; ?>">
                                                     </div>
+                                                    <input type="hidden" id="selectedImageEdit<?php echo $post['id']; ?>" name="selectedImage">
                                                     <button type="submit" class="btn btn-primary">Änderungen speichern</button>
                                                 </form>
                                             </div>
@@ -235,6 +239,7 @@ include 'db.php';
             </div>
         </div>
     </div>
+
     <!-- Kommentarverwaltung Modal -->
     <div class="modal fade" id="manageCommentsModal" tabindex="-1" aria-labelledby="manageCommentsModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
@@ -389,10 +394,50 @@ include 'db.php';
             </div>
         </div>
     </div>
-    <a href="logout.php" class="btn btn-danger">Logout</a>
+
+    <!-- Bildverwaltung Modal -->
+    <div class="modal fade" id="manageImagesModal" tabindex="-1" aria-labelledby="manageImagesModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="manageImagesModalLabel">Bildverwaltung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="upload_image.php" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="newImage">Neues Bild hochladen</label>
+                            <input type="file" class="form-control-file" id="newImage" name="image" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Bild hochladen</button>
+                    </form>
+                    <hr>
+                    <h5>Hochgeladene Bilder</h5>
+                    <div class="row">
+                        <?php
+                        $images = scandir('uploads/');
+                        foreach ($images as $image) {
+                            if ($image != '.' && $image != '..') {
+                                echo "<div class='col-md-3'>";
+                                echo "<div class='thumbnail'>";
+                                echo "<img src='uploads/$image' class='img-thumbnail'>";
+                                echo "<button class='btn btn-danger btn-sm btn-block mt-2' onclick=\"deleteImage('$image')\"><i class='fas fa-trash'></i> Löschen</button>";
+                                echo "</div>";
+                                echo "</div>";
+                            }
+                        }
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     <a href="logout.php" class="btn btn-danger">Logout</a>
     <?php include 'footer.php'; ?>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
@@ -408,17 +453,19 @@ include 'db.php';
             }
         }
 
-        $(document).ready(function() {
-            $('.selectable-image').on('click', function() {
-                $('.selectable-image').removeClass('selected');
-                $(this).addClass('selected');
-                $('#selectedImage').val($(this).data('image'));
-            });
+        function deleteImage(image) {
+            if (confirm("Möchten Sie dieses Bild wirklich löschen?")) {
+                window.location.href = 'delete_image.php?image=' + image;
+            }
+        }
 
-            $('form').on('submit', function() {
-                $(this).find('input[name="selected_image"]').val($('.selectable-image.selected').data('image'));
-            });
-        });
+        function selectImage(image) {
+            document.getElementById('selectedImage').value = image;
+        }
+
+        function selectImageEdit(image, postId) {
+            document.getElementById('selectedImageEdit' + postId).value = image;
+        }
 
         document.getElementById('searchComment').addEventListener('input', function() {
             var searchQuery = this.value.toLowerCase();
