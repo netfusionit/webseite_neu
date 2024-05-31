@@ -83,7 +83,7 @@
             $result = $conn->query("SELECT * FROM blog_posts WHERE id = $id");
             if ($row = $result->fetch_assoc()) {
                 echo "<h1 class='mb-4'>" . $row['title'] . "</h1>";
-                echo "<img src='uploads/" . $row['image'] . "' class='img-fluid blog-image' alt=''>";
+                echo "<img src='assets/img/" . $row['image'] . "' class='img-fluid blog-image' alt=''>";
                 echo "<h2 class='mt-4'>" . $row['title'] . "</h2>";
                 echo "<small class='text-muted'>Erstellt am: " . date('d.m.Y H:i', strtotime($row['created_at'])) . " | Autor: " . $row['author'] . "</small>";
                 echo "<div class='blog-content mt-4'>" . $row['content'] . "</div>";
@@ -163,3 +163,31 @@
     </script>
 </body>
 </html>
+
+<!-- Blog Section -->
+<section id="blog" class="blog section bg-light py-5">
+    <div class="container section-title text-center" data-aos="fade-up">
+        <h2>Aktuelle Meldungen</h2>
+        <p>Lesen Sie unsere neuesten Nachrichten und Updates</p>
+    </div>
+    <div class="container">
+        <div class="row gy-4">
+            <?php
+            include 'db.php';
+            $result = $conn->query("SELECT * FROM blog_posts ORDER BY created_at DESC LIMIT 3");
+            while ($row = $result->fetch_assoc()) {
+                echo "<div class='col-lg-4 col-md-6' data-aos='fade-up' data-aos-delay='100'>";
+                echo "<div class='card blog-item'>";
+                echo "<img src='assets/img/" . $row['image'] . "' class='card-img-top' alt=''>";
+                echo "<div class='card-body'>";
+                echo "<h5 class='card-title'><a href='blog-details.php?id=" . $row['id'] . "'>" . $row['title'] . "</a></h5>";
+                echo "<p class='card-text'>" . substr($row['content'], 0, 100) . "...</p>";
+                echo "<a href='blog-details.php?id=" . $row['id'] . "' class='btn btn-primary'>Weiterlesen</a>";
+                echo "</div>";
+                echo "</div>";
+                echo "</div>";
+            }
+            ?>
+        </div>
+    </div>
+</section><!-- /Blog Section -->
