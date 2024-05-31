@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['image'])) {
     }
 
     // Check file size
-    if ($_FILES["image"]["size"] > 500000) {
+    if ($_FILES["image"]["size"] > 20000000) { // 20 MB in bytes
         echo "Sorry, your file is too large.";
         $uploadOk = 0;
     }
