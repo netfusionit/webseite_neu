@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
@@ -25,7 +25,7 @@
                 <img src="/img/slide1.jpg" class="d-block w-100" alt="Slide 1">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Internetdienstleistungen</h5>
-                    <p>Wir bieten ma�geschneiderte Internetl�sungen f�r Ihr Unternehmen.</p>
+                    <p>Wir bieten maßgeschneiderte Internetlösungen für Ihr Unternehmen.</p>
                     <a href="#section1" class="btn btn-primary">Mehr erfahren</a>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                 <img src="/img/slide2.jpg" class="d-block w-100" alt="Slide 2">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Netzwerktechnik</h5>
-                    <p>Professionelle Netzwerkl�sungen f�r eine nahtlose Kommunikation.</p>
+                    <p>Professionelle Netzwerklösungen für eine nahtlose Kommunikation.</p>
                     <a href="#section2" class="btn btn-primary">Mehr erfahren</a>
                 </div>
             </div>
@@ -307,28 +307,31 @@
 
        <!-- Blog Section -->
     <section id="blog" class="blog section">
-        <div class="container section-title" data-aos="fade-up">
-            <h2>Blog</h2>
-            <p>Read our latest news and updates</p>
+  <div class="container mt-5">
+        <h1>Blog</h1>
+        <div class="row gy-4">
+            <?php
+            include 'db.php';
+            $result = $conn->query("SELECT * FROM blog_posts ORDER BY created_at DESC");
+            while ($row = $result->fetch_assoc()) {
+                echo "<div class='col-lg-4' data-aos='fade-up' data-aos-delay='100'>";
+                echo "<div class='blog-item position-relative'>";
+                echo "<img src='uploads/" . $row['image'] . "' class='img-fluid' alt=''>";
+                echo "<h3><a href='blog-details.php?id=" . $row['id'] . "'>" . $row['title'] . "</a></h3>";
+                echo "<p>" . substr($row['content'], 0, 100) . "...</p>";
+                echo "<a href='blog-details.php?id=" . $row['id'] . "' class='read-more'>Read More <i class='bi bi-arrow-right'></i></a>";
+                echo "<div class='reaction'>";
+                echo "<span class='emoji' data-reaction='like'>👍</span>";
+                echo "<span class='emoji' data-reaction='love'>❤️</span>";
+                echo "<span class='emoji' data-reaction='wow'>😮</span>";
+                echo "<span class='emoji' data-reaction='sad'>😢</span>";
+                echo "</div>";
+                echo "</div>";
+                echo "</div>";
+            }
+            ?>
         </div>
-        <div class="container">
-            <div class="row gy-4">
-                <?php
-                include 'db.php';
-                $result = $conn->query("SELECT * FROM blog_posts ORDER BY created_at DESC LIMIT 3");
-                while ($row = $result->fetch_assoc()) {
-                    echo "<div class='col-lg-4' data-aos='fade-up' data-aos-delay='100'>";
-                    echo "<div class='blog-item'>";
-                    echo "<img src='assets/img/" . $row['image'] . "' class='img-fluid' alt=''>";
-                    echo "<h3><a href='blog-details.php?id=" . $row['id'] . "'>" . $row['title'] . "</a></h3>";
-                    echo "<p>" . substr($row['content'], 0, 100) . "...</p>";
-                    echo "<a href='blog-details.php?id=" . $row['id'] . "' class='read-more'>Read More <i class='bi bi-arrow-right'></i></a>";
-                    echo "</div>";
-                    echo "</div>";
-                }
-                ?>
-            </div>
-        </div>
+    </div>
     </section><!-- /Blog Section -->
 
     <!-- Contact Section -->
