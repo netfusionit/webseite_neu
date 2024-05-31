@@ -307,31 +307,28 @@
 
        <!-- Blog Section -->
     <section id="blog" class="blog section">
-  <div class="container mt-5">
-        <h1>Blog</h1>
-        <div class="row gy-4">
-            <?php
-            include 'db.php';
-            $result = $conn->query("SELECT * FROM blog_posts ORDER BY created_at DESC");
-            while ($row = $result->fetch_assoc()) {
-                echo "<div class='col-lg-4' data-aos='fade-up' data-aos-delay='100'>";
-                echo "<div class='blog-item position-relative'>";
-                echo "<img src='uploads/" . $row['image'] . "' class='img-fluid' alt=''>";
-                echo "<h3><a href='blog-details.php?id=" . $row['id'] . "'>" . $row['title'] . "</a></h3>";
-                echo "<p>" . substr($row['content'], 0, 100) . "...</p>";
-                echo "<a href='blog-details.php?id=" . $row['id'] . "' class='read-more'>Read More <i class='bi bi-arrow-right'></i></a>";
-                echo "<div class='reaction'>";
-                echo "<span class='emoji' data-reaction='like'>👍</span>";
-                echo "<span class='emoji' data-reaction='love'>❤️</span>";
-                echo "<span class='emoji' data-reaction='wow'>😮</span>";
-                echo "<span class='emoji' data-reaction='sad'>😢</span>";
-                echo "</div>";
-                echo "</div>";
-                echo "</div>";
-            }
-            ?>
+        <div class="container section-title" data-aos="fade-up">
+            <h2>Blog</h2>
+            <p>Read our latest news and updates</p>
         </div>
-    </div>
+        <div class="container">
+            <div class="row gy-4">
+                <?php
+                include 'db.php';
+                $result = $conn->query("SELECT * FROM blog_posts ORDER BY created_at DESC LIMIT 3");
+                while ($row = $result->fetch_assoc()) {
+                    echo "<div class='col-lg-4' data-aos='fade-up' data-aos-delay='100'>";
+                    echo "<div class='blog-item'>";
+                    echo "<img src='assets/img/" . $row['image'] . "' class='img-fluid' alt=''>";
+                    echo "<h3><a href='blog-details.php?id=" . $row['id'] . "'>" . $row['title'] . "</a></h3>";
+                    echo "<p>" . substr($row['content'], 0, 100) . "...</p>";
+                    echo "<a href='blog-details.php?id=" . $row['id'] . "' class='read-more'>Read More <i class='bi bi-arrow-right'></i></a>";
+                    echo "</div>";
+                    echo "</div>";
+                }
+                ?>
+            </div>
+        </div>
     </section><!-- /Blog Section -->
 
     <!-- Contact Section -->

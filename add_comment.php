@@ -1,13 +1,16 @@
 <?php
 include 'db.php';
 
-$blog_id = $_POST['blog_id'];
-$author = $_POST['author'];
-$comment = $_POST['comment'];
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $blog_id = intval($_POST['blog_id']);
+    $author = $conn->real_escape_string($_POST['author']);
+    $comment = $conn->real_escape_string($_POST['comment']);
 
-$stmt = $conn->prepare("INSERT INTO comments (blog_id, author, comment) VALUES (?, ?, ?)");
-$stmt->bind_param("iss", $blog_id, $author, $comment);
-$stmt->execute();
-
-header("Location: blog-details.php?id=$blog_id");
+    $sql = "INSERT INTO comments (blog_id, author, comment) VALUES ($blog_id, '$author', '$comment')";
+    if ($conn->query($sql) === TRUE) {
+        header("Location: blog-details.php?id=$blog_id");
+    } else {
+        echo "Fehler: " . $sql . "<br>" . $conn->error;
+    }
+}
 ?>
