@@ -170,6 +170,7 @@ body {
 --------------------------------------------------------------*/
 .features .nav-tabs {
     border: 0;
+    flex-direction: column;
 }
 
 .features .nav-item {
@@ -188,7 +189,10 @@ body {
     transition: 0.3s;
     border-radius: 10px;
     display: flex;
+    align-items: center;
     cursor: pointer;
+    background: #f8f9fa;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
     .features .nav-link i {
@@ -219,7 +223,7 @@ body {
     }
 
     .features .nav-link:hover {
-        background: #f0f8ff;
+        background: #e9ecef;
     }
 
     .features .nav-link.active {

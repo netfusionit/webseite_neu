@@ -6,6 +6,7 @@
     <title>NetFusionIT</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
 <body>
     <?php include 'header.php'; ?>
@@ -90,7 +91,7 @@
         </div>
     </section><!-- /Featured Services Section -->
 
-   <!-- About Section -->
+    <!-- About Section -->
     <section id="about" class="about section mt-5">
         <div class="container">
             <div class="row gy-4">
@@ -132,19 +133,19 @@
     <!-- Features Section -->
     <section id="features" class="features section">
         <div class="container section-title" data-aos="fade-up">
-            <h2>Features</h2>
-            <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+            <h2 class="text-center">Features</h2>
+            <p class="text-center">Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
         </div><!-- End Section Title -->
 
         <div class="container">
             <div class="row justify-content-between">
                 <div class="col-lg-5 d-flex align-items-center">
-                    <ul class="nav nav-tabs" data-aos="fade-up" data-aos-delay="100">
+                    <ul class="nav nav-tabs flex-column" data-aos="fade-up" data-aos-delay="100">
                         <li class="nav-item">
                             <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#features-tab-1">
                                 <i class="bi bi-binoculars"></i>
                                 <div>
-                                    <h4 class="d-none d-lg-block">Modi sit est dela pireda nest</h4>
+                                    <h4>Modi sit est dela pireda nest</h4>
                                     <p>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
                                 </div>
                             </a>
@@ -153,7 +154,7 @@
                             <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-2">
                                 <i class="bi bi-box-seam"></i>
                                 <div>
-                                    <h4 class="d-none d-lg-block">Unde praesenti mara setra le</h4>
+                                    <h4>Unde praesenti mara setra le</h4>
                                     <p>Recusandae atque nihil. Delectus vitae non similique magnam molestiae sapiente similique tenetur aut voluptates sed voluptas ipsum voluptas</p>
                                 </div>
                             </a>
@@ -162,7 +163,7 @@
                             <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-3">
                                 <i class="bi bi-brightness-high"></i>
                                 <div>
-                                    <h4 class="d-none d-lg-block">Pariatur explica nitro dela</h4>
+                                    <h4>Pariatur explica nitro dela</h4>
                                     <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum Debitis nulla est maxime voluptas dolor aut</p>
                                 </div>
                             </a>
@@ -173,13 +174,13 @@
                 <div class="col-lg-6">
                     <div class="tab-content" data-aos="fade-up" data-aos-delay="200">
                         <div class="tab-pane fade active show" id="features-tab-1">
-                            <img src="/img/placeholder2.jpg" alt="" class="img-fluid">
+                            <img src="assets/img/tabs-1.jpg" alt="" class="img-fluid">
                         </div><!-- End Tab Content Item -->
                         <div class="tab-pane fade" id="features-tab-2">
-                            <img src="/img/placeholder2.jpg" alt="" class="img-fluid">
+                            <img src="assets/img/tabs-2.jpg" alt="" class="img-fluid">
                         </div><!-- End Tab Content Item -->
                         <div class="tab-pane fade" id="features-tab-3">
-                            <img src="/img/placeholder2.jpg" alt="" class="img-fluid">
+                            <img src="assets/img/tabs-3.jpg" alt="" class="img-fluid">
                         </div><!-- End Tab Content Item -->
                     </div>
                 </div>
@@ -192,7 +193,7 @@
         <div class="container">
             <div class="row gy-4 justify-content-between features-item">
                 <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                    <img src="/img/placeholder.jpg" class="img-fluid" alt="">
+                    <img src="assets/img/features-1.jpg" class="img-fluid" alt="">
                 </div>
                 <div class="col-lg-5 d-flex align-items-center" data-aos="fade-up" data-aos-delay="200">
                     <div class="content">
@@ -218,7 +219,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-up" data-aos-delay="200">
-                    <img src="/img/placeholder.jpg" class="img-fluid" alt="">
+                    <img src="assets/img/features-2.jpg" class="img-fluid" alt="">
                 </div>
             </div><!-- Features Item -->
         </div>
@@ -228,6 +229,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="script.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
