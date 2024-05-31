@@ -12,6 +12,10 @@
         }
         .blog-post {
             margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #f9f9f9;
         }
         .blog-post h2 {
             font-size: 1.5rem;
@@ -24,6 +28,12 @@
         }
         .blog-post .badge {
             margin-right: 5px;
+        }
+        .blog-post img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 5px;
         }
     </style>
 </head>
@@ -44,6 +54,7 @@
                         <option value="">Alle Kategorien</option>
                         <?php
                         include 'db.php';
+                        $conn->set_charset("utf8");
                         $categories = $conn->query("SELECT DISTINCT category FROM blog_posts ORDER BY category");
                         while ($cat = $categories->fetch_assoc()) {
                             $selected = (isset($_GET['category']) && $_GET['category'] == $cat['category']) ? 'selected' : '';
@@ -110,6 +121,7 @@
             while ($row = $result->fetch_assoc()) {
                 echo "<div class='col-md-4'>";
                 echo "<div class='blog-post'>";
+                echo "<img src='assets/img/" . $row['image'] . "' class='img-fluid' alt=''>";
                 echo "<h2><a href='blog-details.php?id=" . $row['id'] . "'>" . $row['title'] . "</a></h2>";
                 echo "<p>" . substr($row['content'], 0, 100) . "...</p>";
                 echo "<small>Erstellt am: " . date('d.m.Y', strtotime($row['created_at'])) . "</small>";
