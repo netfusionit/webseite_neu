@@ -15,4 +15,12 @@ if ($result->num_rows > 0) {
 
 $conn->close();
 
+#session_start();
+#if ($show_popup) {
+#    if (!isset($_SESSION['last_popup_time']) || (time() - $_SESSION['last_popup_time']) >= 14400) {
+#        $_SESSION['last_popup_time'] = time();
+#        echo $popup_message;
+#    }
+#}
+
 ?>
