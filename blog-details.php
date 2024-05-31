@@ -24,7 +24,7 @@
 
         .reaction {
             display: flex;
-            justify-content: flex-end;
+            justify-content: flex-start;
             align-items: center;
             margin-top: 10px;
         }
@@ -32,7 +32,7 @@
         .reaction .bi {
             font-size: 1.5rem;
             cursor: pointer;
-            margin-left: 10px;
+            margin-right: 10px;
             transition: transform 0.3s ease;
         }
 
@@ -51,6 +51,7 @@
             border-radius: 10px;
             background-color: #f1f1f1;
             margin-top: 20px;
+            display: none;
         }
 
         .comment-form h3 {
@@ -108,6 +109,28 @@
         .pagination .page-item {
             margin: 0 5px;
         }
+
+        .tags, .categories {
+            margin-top: 20px;
+        }
+
+        .tags span, .categories span {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 20px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        .carousel-item {
+            display: none;
+        }
+
+        .carousel-item.active {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -132,6 +155,21 @@
                 echo "<h2 class='mt-4'>" . $row['title'] . "</h2>";
                 echo "<small class='text-muted'>Erstellt am: " . date('d.m.Y H:i', strtotime($row['created_at'])) . " | Autor: " . $row['author'] . "</small>";
                 echo "<div class='blog-content mt-4'>" . $row['content'] . "</div>";
+
+                // Kategorien und Tags anzeigen
+                echo "<div class='categories'><strong>Kategorien:</strong> ";
+                $categories = explode(',', $row['categories']);
+                foreach ($categories as $category) {
+                    echo "<span>$category</span>";
+                }
+                echo "</div>";
+
+                echo "<div class='tags'><strong>Tags:</strong> ";
+                $tags = explode(',', $row['tags']);
+                foreach ($tags as $tag) {
+                    echo "<span>$tag</span>";
+                }
+                echo "</div>";
 
                 // Kommentarformular
                 echo "<div class='toggle-comment'>";
@@ -186,10 +224,21 @@
             <div class="carousel-inner">
                 <?php
                 $result = $conn->query("SELECT * FROM blog_posts ORDER BY created_at DESC");
+                $totalPosts = $result->num_rows;
                 $active = "active";
+                $counter = 0;
+                $itemOpen = false;
+
                 while ($row = $result->fetch_assoc()) {
-                    echo "<div class='carousel-item $active'>";
-                    echo "<div class='row'>";
+                    if ($counter % 3 == 0) {
+                        if ($itemOpen) {
+                            echo "</div></div>";
+                        }
+                        echo "<div class='carousel-item $active'>";
+                        echo "<div class='row'>";
+                        $active = "";
+                        $itemOpen = true;
+                    }
                     echo "<div class='col-lg-4 col-md-6'>";
                     echo "<div class='card blog-item'>";
                     echo "<img src='assets/img/" . $row['image'] . "' class='card-img-top' alt=''>";
@@ -200,9 +249,11 @@
                     echo "</div>";
                     echo "</div>";
                     echo "</div>";
-                    echo "</div>";
-                    echo "</div>";
-                    $active = "";
+                    $counter++;
+                }
+
+                if ($itemOpen) {
+                    echo "</div></div>";
                 }
                 ?>
             </div>
@@ -253,5 +304,6 @@
             interval: 5000
         });
     </script>
+
 </body>
 </html>
