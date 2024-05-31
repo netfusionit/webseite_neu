@@ -79,7 +79,7 @@
                 </div>
                 <div class="col-xl-4 col-lg-6" data-aos="fade-up" data-aos-delay="300">
                     <div class="service-item d-flex">
-                        <div class="icon flex-shrink-0"><i class="bi bi-bar-chart"></i></div>
+                        <div class="icon flex-shrink-0"><i class="bi bi-graph-up"></i></div>
                         <div>
                             <h4 class="title"><a href="https://status.netfusionit.de" class="stretched-link">Systemstatus</a></h4>
                             <p class="description">Sehen Sie hier den aktuellen Status der NetFusionIT-Onlinesysteme!</p>
