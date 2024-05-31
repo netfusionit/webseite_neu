@@ -451,5 +451,6 @@
                     $('#tickerMessage').show();
                 } else {
                     $('#tickerMessage').hide
+       </script>
 </body>
 </html>
