@@ -118,7 +118,7 @@
             echo "<p>Ungültige Anfrage.</p>";
         }
         ?>
-    </div>
+ 
 
     <?php
     // Reaktionen anzeigen
@@ -131,7 +131,7 @@
                 }
                 echo "</div>";
 ?>
-
+   </div>
     <!-- Blog Section -->
 <section id="blog" class="blog section bg-light py-5">
     <div class="container section-title text-center" data-aos="fade-up">
