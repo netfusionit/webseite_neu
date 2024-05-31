@@ -69,6 +69,9 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                         <div class="form-group">
                             <label for="content">Inhalt</label>
                             <textarea class="form-control" id="content" name="content" rows="5" required></textarea>
+                            <script>
+                                CKEDITOR.replace('content');
+                            </script>
                         </div>
                         <div class="form-group">
                             <label for="author">Ersteller</label>
@@ -80,7 +83,17 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                         </div>
                         <div class="form-group">
                             <label for="category">Kategorie</label>
-                            <input type="text" class="form-control" id="category" name="category" required>
+                            <select class="form-control" id="category" name="category" required>
+                                <option value="Wartungsarbeiten">Wartungsarbeiten</option>
+                                <option value="Neuigkeiten">Neuigkeiten</option>
+                                <option value="Notfall">Notfall</option>
+                                <option value="Server">Server</option>
+                                <option value="Werbung">Werbung</option>
+                                <option value="AUSFALL">AUSFALL</option>
+                                <option value="Kundenservice">Kundenservice</option>
+                                <option value="Support">Support</option>
+                                <option value="Sonstiges">Sonstiges</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="image">Bild</label>
@@ -150,6 +163,9 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                                                     <div class="form-group">
                                                         <label for="content<?php echo $post['id']; ?>">Inhalt</label>
                                                         <textarea class="form-control" id="content<?php echo $post['id']; ?>" name="content" rows="5" required><?php echo $post['content']; ?></textarea>
+                                                        <script>
+                                                            CKEDITOR.replace('content<?php echo $post['id']; ?>');
+                                                        </script>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="author<?php echo $post['id']; ?>">Ersteller</label>
@@ -161,7 +177,17 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="category<?php echo $post['id']; ?>">Kategorie</label>
-                                                        <input type="text" class="form-control" id="category<?php echo $post['id']; ?>" name="category" value="<?php echo $post['category']; ?>" required>
+                                                        <select class="form-control" id="category<?php echo $post['id']; ?>" name="category" required>
+                                                            <option value="Wartungsarbeiten" <?php echo $post['category'] == 'Wartungsarbeiten' ? 'selected' : ''; ?>>Wartungsarbeiten</option>
+                                                            <option value="Neuigkeiten" <?php echo $post['category'] == 'Neuigkeiten' ? 'selected' : ''; ?>>Neuigkeiten</option>
+                                                            <option value="Notfall" <?php echo $post['category'] == 'Notfall' ? 'selected' : ''; ?>>Notfall</option>
+                                                            <option value="Server" <?php echo $post['category'] == 'Server' ? 'selected' : ''; ?>>Server</option>
+                                                            <option value="Werbung" <?php echo $post['category'] == 'Werbung' ? 'selected' : ''; ?>>Werbung</option>
+                                                            <option value="AUSFALL" <?php echo $post['category'] == 'AUSFALL' ? 'selected' : ''; ?>>AUSFALL</option>
+                                                            <option value="Kundenservice" <?php echo $post['category'] == 'Kundenservice' ? 'selected' : ''; ?>>Kundenservice</option>
+                                                            <option value="Support" <?php echo $post['category'] == 'Support' ? 'selected' : ''; ?>>Support</option>
+                                                            <option value="Sonstiges" <?php echo $post['category'] == 'Sonstiges' ? 'selected' : ''; ?>>Sonstiges</option>
+                                                        </select>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="image<?php echo $post['id']; ?>">Bild</label>
@@ -182,7 +208,6 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
             </div>
         </div>
     </div>
-
     <!-- Kommentarverwaltung Modal -->
     <div class="modal fade" id="manageCommentsModal" tabindex="-1" aria-labelledby="manageCommentsModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
