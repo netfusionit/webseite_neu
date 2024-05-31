@@ -280,6 +280,55 @@
         </div>
     </div>
 
+    <!-- PopUp-Meldung anlegen Modal -->
+    <div class="modal fade" id="newPopupMessageModal" tabindex="-1" aria-labelledby="newPopupMessageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="newPopupMessageModalLabel">PopUp-Meldung anlegen</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="add_popup_message.php" method="post">
+                        <div class="form-group">
+                            <label for="popupMessageTitle">Titel</label>
+                            <input type="text" class="form-control" id="popupMessageTitle" name="title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="popupMessageContent">Inhalt</label>
+                            <textarea class="form-control" id="popupMessageContent" name="content" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Meldung hinzufügen</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ticker-Meldung anlegen Modal -->
+    <div class="modal fade" id="newTickerMessageModal" tabindex="-1" aria-labelledby="newTickerMessageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="newTickerMessageModalLabel">Ticker-Meldung anlegen</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="add_ticker_message.php" method="post">
+                        <div class="form-group">
+                            <label for="tickerMessageContent">Inhalt</label>
+                            <textarea class="form-control" id="tickerMessageContent" name="content" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Meldung hinzufügen</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <?php include 'footer.php'; ?>
 
