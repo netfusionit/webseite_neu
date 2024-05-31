@@ -13,4 +13,7 @@ if ($result->num_rows > 0) {
 
 $conn->close();
 
+if (!empty($ticker_message)) {
+    echo $ticker_message;
+}
 ?>

@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\index.php||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:index.php||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\styles.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:styles.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\fetch_ticker.php||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:fetch_ticker.php||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\fetch_popup.php||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:fetch_popup.php||{3B902123-F8A7-4915-9F01-361F908088D0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\index.php||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:index.php||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\add_ticker_message.php||{3B902123-F8A7-4915-9F01-361F908088D0}",
@@ -37,10 +41,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\admin.php||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:admin.php||{3B902123-F8A7-4915-9F01-361F908088D0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\styles.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:styles.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\blog-details.php||{3B902123-F8A7-4915-9F01-361F908088D0}",
@@ -90,37 +90,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "fetch_ticker.php",
               "DocumentMoniker": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\fetch_ticker.php",
               "RelativeDocumentMoniker": "fetch_ticker.php",
               "ToolTip": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\fetch_ticker.php",
               "RelativeToolTip": "fetch_ticker.php",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002338|",
               "WhenOpened": "2024-05-31T17:39:15.919Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "fetch_popup.php",
-              "DocumentMoniker": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\fetch_popup.php",
-              "RelativeDocumentMoniker": "fetch_popup.php",
-              "ToolTip": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\fetch_popup.php",
-              "RelativeToolTip": "fetch_popup.php",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002338|",
-              "WhenOpened": "2024-05-31T17:39:02.498Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "add_ticker_message.php",
               "DocumentMoniker": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\add_ticker_message.php",
               "RelativeDocumentMoniker": "add_ticker_message.php",
@@ -132,7 +119,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "delete_post.php",
               "DocumentMoniker": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\delete_post.php",
               "RelativeDocumentMoniker": "delete_post.php",
@@ -144,7 +131,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "edit_post.php",
               "DocumentMoniker": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\edit_post.php",
               "RelativeDocumentMoniker": "edit_post.php",
@@ -204,7 +191,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "admin.php",
               "DocumentMoniker": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\admin.php",
               "RelativeDocumentMoniker": "admin.php",
@@ -216,20 +203,45 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "index.php",
               "DocumentMoniker": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\index.php",
               "RelativeDocumentMoniker": "index.php",
               "ToolTip": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\index.php",
               "RelativeToolTip": "index.php",
-              "ViewState": "AQIAAJ0BAAAAAAAAAAAqwMUBAAANAAAA",
+              "ViewState": "AQIAAKoBAAAAAAAAAAAAAMMBAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002338|",
               "WhenOpened": "2024-05-30T17:18:14.816Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
+              "Title": "styles.css",
+              "DocumentMoniker": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\styles.css",
+              "RelativeDocumentMoniker": "styles.css",
+              "ToolTip": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\styles.css",
+              "RelativeToolTip": "styles.css",
+              "ViewState": "AQIAANUCAAAAAAAAAAAAAOUCAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-05-30T17:13:16.145Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "fetch_popup.php",
+              "DocumentMoniker": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\fetch_popup.php",
+              "RelativeDocumentMoniker": "fetch_popup.php",
+              "ToolTip": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\fetch_popup.php",
+              "RelativeToolTip": "fetch_popup.php",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002338|",
+              "WhenOpened": "2024-05-31T17:39:02.498Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "delete_comment.php",
               "DocumentMoniker": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\delete_comment.php",
               "RelativeDocumentMoniker": "delete_comment.php",
@@ -241,7 +253,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "add_popup_message.php",
               "DocumentMoniker": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\add_popup_message.php",
               "RelativeDocumentMoniker": "add_popup_message.php",
@@ -322,18 +334,6 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAhAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002338|",
               "WhenOpened": "2024-05-31T11:04:45.426Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "styles.css",
-              "DocumentMoniker": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\styles.css",
-              "RelativeDocumentMoniker": "styles.css",
-              "ToolTip": "C:\\Users\\Florian-Fynn Scheibe\\source\\repos\\webseite_neu\\styles.css",
-              "RelativeToolTip": "styles.css",
-              "ViewState": "AQIAADYCAAAAAAAAAADgv1MCAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-05-30T17:13:16.145Z"
             }
           ]
         }
