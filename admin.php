@@ -4,6 +4,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     header("Location: login.php");
     exit;
 }
+include 'db.php';
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -13,10 +14,20 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     <title>Admin - NetFusionIT</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+    <link href="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js" rel="stylesheet">
     <style>
         .modal .form-group {
             margin-bottom: 15px;
+        }
+        .image-selection img {
+            width: 100px;
+            height: auto;
+            cursor: pointer;
+            margin: 5px;
+            border: 2px solid transparent;
+        }
+        .image-selection img.selected {
+            border: 2px solid blue;
         }
     </style>
 </head>
@@ -34,15 +45,14 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
         <button type="button" class="btn btn-secondary mb-3" data-toggle="modal" data-target="#manageCommentsModal">
             <i class="fas fa-comments"></i> Kommentarverwaltung
         </button>
+        <h2>Bildverwaltung</h2>
         <button type="button" class="btn btn-secondary mb-3" data-toggle="modal" data-target="#manageImagesModal">
             <i class="fas fa-images"></i> Bildverwaltung
         </button>
-        
         <h2>Benutzerverwaltung</h2>
         <button type="button" class="btn btn-secondary mb-3" data-toggle="modal" data-target="#userManagementModal">
             <i class="fas fa-users"></i> Benutzerübersicht
         </button>
-        
         <h2>Meldungen</h2>
         <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newPopupMessageModal">
             <i class="fas fa-exclamation-circle"></i> PopUp-Meldung anlegen
@@ -99,25 +109,58 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="image">Bild</label>
+                            <label for="image">Bild hochladen</label>
                             <input type="file" class="form-control-file" id="image" name="image">
                         </div>
                         <div class="form-group">
-                            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#imageSuggestions">Bildvorschläge anzeigen</button>
-                            <div id="imageSuggestions" class="collapse mt-3">
+                            <label for="existingImage">Bild aus vorhandenen auswählen</label>
+                            <div class="image-selection" id="existingImage">
                                 <?php
-                                $images = scandir('uploads/');
+                                $images = glob("uploads/*.{jpg,jpeg,png,gif}", GLOB_BRACE);
                                 foreach ($images as $image) {
-                                    if ($image != '.' && $image != '..') {
-                                        echo "<img src='uploads/$image' class='img-thumbnail m-1' width='100' onclick=\"selectImage('$image')\">";
-                                    }
+                                    echo "<img src='$image' data-image='$image' class='selectable-image'>";
                                 }
                                 ?>
                             </div>
+                            <input type="hidden" name="selected_image" id="selectedImage">
                         </div>
-                        <input type="hidden" id="selectedImage" name="selectedImage">
                         <button type="submit" class="btn btn-primary">Beitrag hinzufügen</button>
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bildverwaltung Modal -->
+    <div class="modal fade" id="manageImagesModal" tabindex="-1" aria-labelledby="manageImagesModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="manageImagesModalLabel">Bildverwaltung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="upload_image.php" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="uploadImage">Neues Bild hochladen</label>
+                            <input type="file" class="form-control-file" id="uploadImage" name="image">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Bild hochladen</button>
+                    </form>
+                    <hr>
+                    <h5>Vorhandene Bilder</h5>
+                    <div class="image-selection" id="existingImages">
+                        <?php
+                        foreach ($images as $image) {
+                            echo "<div class='image-wrapper'>";
+                            echo "<img src='$image' data-image='$image' class='selectable-image'>";
+                            echo "<button class='btn btn-danger btn-sm' onclick='deleteImage(\"$image\")'><i class='fas fa-trash'></i></button>";
+                            echo "</div>";
+                        }
+                        ?>
+                    </div>
                 </div>
             </div>
         </div>
@@ -146,7 +189,6 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                         </thead>
                         <tbody>
                             <?php
-                            include 'db.php';
                             $posts = $conn->query("SELECT * FROM blog_posts");
                             while ($post = $posts->fetch_assoc()) {
                                 echo "<tr>";
@@ -207,23 +249,20 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="image<?php echo $post['id']; ?>">Bild</label>
+                                                        <label for="image<?php echo $post['id']; ?>">Bild hochladen</label>
                                                         <input type="file" class="form-control-file" id="image<?php echo $post['id']; ?>" name="image">
                                                     </div>
                                                     <div class="form-group">
-                                                        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#imageSuggestionsEdit<?php echo $post['id']; ?>">Bildvorschläge anzeigen</button>
-                                                        <div id="imageSuggestionsEdit<?php echo $post['id']; ?>" class="collapse mt-3">
+                                                        <label for="existingImage<?php echo $post['id']; ?>">Bild aus vorhandenen auswählen</label>
+                                                        <div class="image-selection" id="existingImage<?php echo $post['id']; ?>">
                                                             <?php
-                                                            $images = scandir('uploads/');
                                                             foreach ($images as $image) {
-                                                                if ($image != '.' && $image != '..') {
-                                                                    echo "<img src='uploads/$image' class='img-thumbnail m-1' width='100' onclick=\"selectImageEdit('$image', {$post['id']})\">";
-                                                                }
+                                                                echo "<img src='$image' data-image='$image' class='selectable-image'>";
                                                             }
                                                             ?>
                                                         </div>
+                                                        <input type="hidden" name="selected_image" id="selectedImage<?php echo $post['id']; ?>">
                                                     </div>
-                                                    <input type="hidden" id="selectedImageEdit<?php echo $post['id']; ?>" name="selectedImage">
                                                     <button type="submit" class="btn btn-primary">Änderungen speichern</button>
                                                 </form>
                                             </div>
@@ -394,52 +433,13 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
             </div>
         </div>
     </div>
-
-    <!-- Bildverwaltung Modal -->
-    <div class="modal fade" id="manageImagesModal" tabindex="-1" aria-labelledby="manageImagesModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="manageImagesModalLabel">Bildverwaltung</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="upload_image.php" method="post" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <label for="newImage">Neues Bild hochladen</label>
-                            <input type="file" class="form-control-file" id="newImage" name="image" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Bild hochladen</button>
-                    </form>
-                    <hr>
-                    <h5>Hochgeladene Bilder</h5>
-                    <div class="row">
-                        <?php
-                        $images = scandir('uploads/');
-                        foreach ($images as $image) {
-                            if ($image != '.' && $image != '..') {
-                                echo "<div class='col-md-3'>";
-                                echo "<div class='thumbnail'>";
-                                echo "<img src='uploads/$image' class='img-thumbnail'>";
-                                echo "<button class='btn btn-danger btn-sm btn-block mt-2' onclick=\"deleteImage('$image')\"><i class='fas fa-trash'></i> Löschen</button>";
-                                echo "</div>";
-                                echo "</div>";
-                            }
-                        }
-                        ?>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-     <a href="logout.php" class="btn btn-danger">Logout</a>
+    <a href="logout.php" class="btn btn-danger">Logout</a>
     <?php include 'footer.php'; ?>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
     <script>
         function deletePost(id) {
             if (confirm("Möchten Sie diesen Beitrag wirklich löschen?")) {
@@ -459,13 +459,22 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
             }
         }
 
-        function selectImage(image) {
-            document.getElementById('selectedImage').value = image;
-        }
+        document.querySelectorAll('.selectable-image').forEach(img => {
+            img.addEventListener('click', function() {
+                document.querySelectorAll('.selectable-image').forEach(i => i.classList.remove('selected'));
+                this.classList.add('selected');
+                document.getElementById('selectedImage').value = this.dataset.image;
+            });
+        });
 
-        function selectImageEdit(image, postId) {
-            document.getElementById('selectedImageEdit' + postId).value = image;
-        }
+        document.querySelectorAll('.image-selection img').forEach(img => {
+            img.addEventListener('click', function() {
+                document.querySelectorAll('.image-selection img').forEach(i => i.classList.remove('selected'));
+                this.classList.add('selected');
+                let inputId = this.closest('.image-selection').getAttribute('id').replace('existingImage', 'selectedImage');
+                document.getElementById(inputId).value = this.dataset.image;
+            });
+        });
 
         document.getElementById('searchComment').addEventListener('input', function() {
             var searchQuery = this.value.toLowerCase();
