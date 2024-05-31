@@ -13,5 +13,5 @@ if ($result->num_rows > 0) {
 
 $conn->close();
 
-echo $popup_message;
+echo json_encode(['message' => $popup_message]);
 ?>

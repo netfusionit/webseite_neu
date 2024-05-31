@@ -11,7 +11,7 @@
 <body>
     <?php include 'header.php'; ?>
      <!-- Popup-Meldung (Nur wenn in DB vorhanden!) -->
-    <div id="popupMessage" class="modal fade" tabindex="-1" role="dialog">
+     <div id="popupMessage" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -431,23 +431,22 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
+     <script>
         $(document).ready(function() {
             // Popup-Meldung
             $.get('fetch_popup.php', function(data) {
-                if (data.trim() !== '') {
-                    console.log("Popup data received: ", data);  // Debugging-Ausgabe
-                    $('#popupContent').html(data);
+                var result = JSON.parse(data);
+                if (result.message.trim() !== '') {
+                    $('#popupContent').html(result.message);
                     $('#popupMessage').modal('show');
-                } else {
-                    console.log("No popup data received.");  // Debugging-Ausgabe
                 }
             });
 
             // Ticker-Meldung
             $.get('fetch_ticker.php', function(data) {
-                if (data.trim() !== '') {
-                    $('#tickerContent').html(data);
+                var result = JSON.parse(data);
+                if (result.message.trim() !== '') {
+                    $('#tickerContent').html(result.message);
                     $('#tickerMessage').show();
                 } else {
                     $('#tickerMessage').hide();
