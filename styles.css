@@ -758,3 +758,25 @@ body {
     border-radius: 0.2em;
     font-size: 0.8em;
 }
+.blog-item {
+    margin-bottom: 1rem;
+}
+
+    .blog-item .card-body {
+        padding: 1rem;
+    }
+
+    .blog-item img {
+        margin-bottom: 0.5rem;
+    }
+
+    .blog-item .badge {
+        margin-right: 0.3rem;
+        font-size: 0.8rem;
+        padding: 0.3rem 0.5rem;
+    }
+
+    .blog-item .btn {
+        padding: 0.3rem 0.5rem;
+        font-size: 0.9rem;
+    }

@@ -324,14 +324,14 @@
         </div>
     </section><!-- /Services Section -->
 
-    <!-- Blog Section -->
+ <!-- Blog Section -->
     <section id="blog" class="blog section bg-light py-5">
         <div class="container section-title text-center" data-aos="fade-up">
             <h2>Aktuelle Meldungen</h2>
             <p>Lesen Sie unsere neuesten Nachrichten und Updates</p>
         </div>
         <div class="container">
-            <div class="row gy-4">
+            <div class="row gy-3">
                 <?php
                 include 'db.php';
 
