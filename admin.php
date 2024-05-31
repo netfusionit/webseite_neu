@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - NetFusionIT</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="styles.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
         .modal .form-group {
             margin-bottom: 15px;
@@ -17,16 +17,28 @@
     <div class="container mt-5">
         <h1>Admin-Bereich</h1>
         <h2>Blog-Verwaltung</h2>
-        <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newPostModal">Neuer Beitrag</button>
-        <button type="button" class="btn btn-secondary mb-3" data-toggle="modal" data-target="#managePostsModal">Beiträge verwalten</button>
-        <button type="button" class="btn btn-secondary mb-3" data-toggle="modal" data-target="#manageCommentsModal">Kommentarverwaltung</button>
+        <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newPostModal">
+            <i class="fas fa-plus-circle"></i> Neuer Beitrag
+        </button>
+        <button type="button" class="btn btn-secondary mb-3" data-toggle="modal" data-target="#managePostsModal">
+            <i class="fas fa-tasks"></i> Beiträge verwalten
+        </button>
+        <button type="button" class="btn btn-secondary mb-3" data-toggle="modal" data-target="#manageCommentsModal">
+            <i class="fas fa-comments"></i> Kommentarverwaltung
+        </button>
         
         <h2>Benutzerverwaltung</h2>
-        <button type="button" class="btn btn-secondary mb-3" data-toggle="modal" data-target="#userManagementModal">Benutzerübersicht</button>
+        <button type="button" class="btn btn-secondary mb-3" data-toggle="modal" data-target="#userManagementModal">
+            <i class="fas fa-users"></i> Benutzerübersicht
+        </button>
         
         <h2>Meldungen</h2>
-        <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newPopupMessageModal">PopUp-Meldung anlegen</button>
-        <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newTickerMessageModal">Ticker-Meldung anlegen</button>
+        <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newPopupMessageModal">
+            <i class="fas fa-exclamation-circle"></i> PopUp-Meldung anlegen
+        </button>
+        <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newTickerMessageModal">
+            <i class="fas fa-ticker"></i> Ticker-Meldung anlegen
+        </button>
     </div>
 
     <!-- Modals -->
@@ -96,6 +108,7 @@
                         </thead>
                         <tbody>
                             <?php
+                            include 'db.php';
                             $posts = $conn->query("SELECT * FROM blog_posts");
                             while ($post = $posts->fetch_assoc()) {
                                 echo "<tr>";
@@ -104,8 +117,8 @@
                                 echo "<td>" . $post['author'] . "</td>";
                                 echo "<td>" . $post['category'] . "</td>";
                                 echo "<td>";
-                                echo "<button class='btn btn-warning btn-sm' data-toggle='modal' data-target='#editPostModal" . $post['id'] . "'>Bearbeiten</button> ";
-                                echo "<button class='btn btn-danger btn-sm' onclick='deletePost(" . $post['id'] . ")'>Löschen</button>";
+                                echo "<button class='btn btn-warning btn-sm' data-toggle='modal' data-target='#editPostModal" . $post['id'] . "'><i class='fas fa-edit'></i></button> ";
+                                echo "<button class='btn btn-danger btn-sm' onclick='deletePost(" . $post['id'] . ")'><i class='fas fa-trash'></i></button>";
                                 echo "</td>";
                                 echo "</tr>";
                                 ?>
@@ -194,8 +207,8 @@
                                 echo "<td>" . $comment['author'] . "</td>";
                                 echo "<td>" . $comment['comment'] . "</td>";
                                 echo "<td>";
-                                echo "<button class='btn btn-danger btn-sm' onclick='deleteComment(" . $comment['id'] . ")'>Löschen</button>";
-                                echo "<button class='btn btn-info btn-sm' data-toggle='modal' data-target='#commentDetailsModal" . $comment['id'] . "'>Details</button>";
+                                echo "<button class='btn btn-danger btn-sm' onclick='deleteComment(" . $comment['id'] . ")'><i class='fas fa-trash'></i></button>";
+                                echo "<button class='btn btn-info btn-sm' data-toggle='modal' data-target='#commentDetailsModal" . $comment['id'] . "'><i class='fas fa-info-circle'></i></button>";
                                 echo "</td>";
                                 echo "</tr>";
                                 ?>
@@ -267,55 +280,6 @@
         </div>
     </div>
 
-    <!-- PopUp-Meldung anlegen Modal -->
-    <div class="modal fade" id="newPopupMessageModal" tabindex="-1" aria-labelledby="newPopupMessageModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="newPopupMessageModalLabel">PopUp-Meldung anlegen</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="add_popup_message.php" method="post">
-                        <div class="form-group">
-                            <label for="popupMessageTitle">Titel</label>
-                            <input type="text" class="form-control" id="popupMessageTitle" name="title" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="popupMessageContent">Inhalt</label>
-                            <textarea class="form-control" id="popupMessageContent" name="content" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Meldung hinzufügen</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Ticker-Meldung anlegen Modal -->
-    <div class="modal fade" id="newTickerMessageModal" tabindex="-1" aria-labelledby="newTickerMessageModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="newTickerMessageModalLabel">Ticker-Meldung anlegen</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="add_ticker_message.php" method="post">
-                        <div class="form-group">
-                            <label for="tickerMessageContent">Inhalt</label>
-                            <textarea class="form-control" id="tickerMessageContent" name="content" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Meldung hinzufügen</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <?php include 'footer.php'; ?>
 
