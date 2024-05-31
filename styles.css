@@ -166,8 +166,17 @@ body {
     }
 .about-images img {
     transition: transform 0.3s ease;
+    cursor: pointer;
 }
 
     .about-images img:hover {
         transform: scale(1.05);
     }
+
+.mt-5 {
+    margin-top: 3rem;
+}
+
+.mb-2 {
+    margin-bottom: 1rem;
+}
