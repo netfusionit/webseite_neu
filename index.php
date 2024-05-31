@@ -170,7 +170,7 @@
                         </li>
                     </ul><!-- End Tab Nav -->
                 </div>
-
+                <br>
                 <div class="col-lg-6">
                     <div class="tab-content" data-aos="fade-up" data-aos-delay="200">
                         <div class="tab-pane fade active show" id="features-tab-1">
@@ -187,7 +187,7 @@
             </div>
         </div>
     </section><!-- /Features Section -->
-
+    <br>
     <!-- Features Details Section -->
     <section id="features-details" class="features-details section">
         <div class="container">
@@ -203,7 +203,7 @@
                     </div>
                 </div>
             </div><!-- Features Item -->
-
+            <br>
             <div class="row gy-4 justify-content-between features-item">
                 <div class="col-lg-5 d-flex align-items-center order-2 order-lg-1" data-aos="fade-up" data-aos-delay="100">
                     <div class="content">
