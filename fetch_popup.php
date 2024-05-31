@@ -1,7 +1,7 @@
 <?php
 include 'db.php';
 
-$show_popup = false;
+$show_popup = true;
 $popup_message = '';
 
 // Überprüfen, ob ein Popup angezeigt werden soll
