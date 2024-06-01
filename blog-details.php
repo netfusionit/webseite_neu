@@ -281,7 +281,20 @@
                 echo "</div>";
                 echo "</div>";
                 echo "<div class='blog-content'>" . $row['content'] . "</div>";
-
+                echo "<div class='blog-footer bg-dark-footer'>";
+                echo "<div class='tags'>";
+                $tags = explode(',', $row['tags']);
+                foreach ($tags as $tag) {
+                    echo "<span>$tag</span>";
+                }
+                echo "</div>";
+                echo "<div class='reaction' id='reactions-footer'>";
+                $reactions = ['like' => 'bi-hand-thumbs-up', 'love' => 'bi-heart', 'wow' => 'bi-emoji-sunglasses', 'sad' => 'bi-emoji-frown'];
+                foreach ($reactions as $reaction => $icon) {
+                    echo "<span class='bi $icon' data-reaction='$reaction' data-blog-id='$id'><span class='count'></span></span>";
+                }
+                echo "</div>";
+                echo "</div>";
                 echo "</div>";
 
                 // Kommentarformular
@@ -318,9 +331,9 @@
                     echo "<p>" . $comment['comment'] . "</p>";
                     echo "<div class='comment-reaction' id='comment-reaction-" . $comment['id'] . "'>";
                     echo "<span class='bi bi-hand-thumbs-up' data-reaction='like' data-comment-id='" . $comment['id'] . "'></span>";
-                    echo "<span class='count'></span>";
+                    echo "<span class='count'>" . $comment['like_count'] . "</span>";
                     echo "<span class='bi bi-hand-thumbs-down' data-reaction='dislike' data-comment-id='" . $comment['id'] . "'></span>";
-                    echo "<span class='count'></span>";
+                    echo "<span class='count'>" . $comment['dislike_count'] . "</span>";
                     echo "</div>";
                     echo "</div>";
                 }
@@ -397,24 +410,6 @@
                 </ul>
             </nav>
         </div>
-        <div class="bg-dark-footer">
-            <div class="tags">
-                <?php
-                $tags = explode(',', $row['tags']);
-                foreach ($tags as $tag) {
-                    echo "<span>$tag</span>";
-                }
-                ?>
-            </div>
-            <div class="reaction" id="reactions-footer">
-                <?php
-                $reactions = ['like' => 'bi-hand-thumbs-up', 'love' => 'bi-heart', 'wow' => 'bi-emoji-sunglasses', 'sad' => 'bi-emoji-frown'];
-                foreach ($reactions as $reaction => $icon) {
-                    echo "<span class='bi $icon' data-reaction='$reaction' data-blog-id='$id'><span class='count'></span></span>";
-                }
-                ?>
-            </div>
-        </div>
     </section><!-- /Blog Section -->
 
     <?php include 'footer.php'; ?>
@@ -447,13 +442,13 @@
                     document.querySelectorAll('.reaction span[data-reaction]').forEach(function(icon) {
                         let reaction = icon.getAttribute('data-reaction');
                         if (data[reaction] !== undefined) {
-                            icon.nextElementSibling.textContent = data[reaction];
+                            icon.querySelector('.count').textContent = data[reaction];
                         }
                     });
                     document.querySelectorAll('#reactions-footer span[data-reaction]').forEach(function(icon) {
                         let reaction = icon.getAttribute('data-reaction');
                         if (data[reaction] !== undefined) {
-                            icon.nextElementSibling.textContent = data[reaction];
+                            icon.querySelector('.count').textContent = data[reaction];
                         }
                     });
                 });
