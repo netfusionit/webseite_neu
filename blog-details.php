@@ -84,6 +84,25 @@
             color: #aaa;
         }
 
+        .comment-reaction {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            margin-top: 10px;
+        }
+
+        .comment-reaction .bi {
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin-left: 5px;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .comment-reaction .count {
+            font-size: 1rem;
+            margin-right: 5px;
+        }
+
         .toggle-comment {
             display: flex;
             justify-content: space-between;
@@ -234,7 +253,7 @@
                     echo "<h5>" . $comment['author'] . "</h5>";
                     echo "<small>Kommentiert am: " . date('d.m.Y H:i', strtotime($comment['created_at'])) . "</small>";
                     echo "<p>" . $comment['comment'] . "</p>";
-                    echo "<div class='reaction' id='comment-reaction-" . $comment['id'] . "'>";
+                    echo "<div class='comment-reaction' id='comment-reaction-" . $comment['id'] . "'>";
                     echo "<span class='count'>" . $comment['likes'] . "</span><span class='bi bi-hand-thumbs-up' data-reaction='like' data-comment-id='" . $comment['id'] . "'></span>";
                     echo "<span class='count'>" . $comment['dislikes'] . "</span><span class='bi bi-hand-thumbs-down' data-reaction='dislike' data-comment-id='" . $comment['id'] . "'></span>";
                     echo "</div>";
@@ -323,8 +342,8 @@
                 });
 
             // Reaktionen für Kommentare laden
-            document.querySelectorAll('.reaction[data-comment-id]').forEach(function(reactionBox) {
-                let commentId = reactionBox.getAttribute('data-comment-id');
+            document.querySelectorAll('.comment-reaction').forEach(function(reactionBox) {
+                let commentId = reactionBox.id.split('-')[2];
                 fetch('load_comment_reactions.php?comment_id=' + commentId)
                     .then(response => response.json())
                     .then(data => {

@@ -1,9 +1,9 @@
 <?php
 include 'db.php';
 
-$blog_id = $_POST['blog_id'];
+$blog_id = isset($_POST['blog_id']) ? intval($_POST['blog_id']) : null;
 $reaction_type = $_POST['reaction_type'];
-$comment_id = isset($_POST['comment_id']) ? $_POST['comment_id'] : null;
+$comment_id = isset($_POST['comment_id']) ? intval($_POST['comment_id']) : null;
 
 if ($comment_id) {
     // Reaktionen für Kommentare
@@ -13,7 +13,7 @@ if ($comment_id) {
     } else {
         echo "Fehler: " . $sql . "<br>" . $conn->error;
     }
-} else {
+} else if ($blog_id) {
     // Reaktionen für Blog-Posts
     $sql = "INSERT INTO reactions (blog_id, reaction_type) VALUES ('$blog_id', '$reaction_type')";
     if ($conn->query($sql) === TRUE) {
