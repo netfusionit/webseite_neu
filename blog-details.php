@@ -44,10 +44,6 @@
             border-radius: 50%;
         }
 
-        .reaction .bi:hover {
-            transform: scale(1.2);
-        }
-
         .reaction .bi.clicked {
             background-color: black;
             color: white;
@@ -189,16 +185,18 @@
                 echo "</div>";
                 echo "<h2 class='mt-4'>" . $row['title'] . "</h2>";
                 echo "<small class='text-muted'>Erstellt am: " . date('d.m.Y H:i', strtotime($row['created_at'])) . " | Autor: " . $row['author'] . "</small>";
-                echo "<div class='blog-content mt-4'>" . $row['content'] . "</div>";
-
-                // Kategorien und Tags anzeigen
-                echo "<div class='categories'>";
+                
+                // Kategorien anzeigen
+                echo "<div class='categories mt-2'>";
                 $categories = explode(',', $row['category']);
                 foreach ($categories as $category) {
                     echo "<span>$category</span>";
                 }
                 echo "</div>";
 
+                echo "<div class='blog-content mt-4'>" . $row['content'] . "</div>";
+
+                // Tags anzeigen
                 echo "<div class='tags'>";
                 $tags = explode(',', $row['tags']);
                 foreach ($tags as $tag) {
