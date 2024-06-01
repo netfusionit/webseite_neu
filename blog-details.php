@@ -204,6 +204,31 @@
         .blog-title, .blog-meta, .blog-tags {
             margin-bottom: 20px;
         }
+
+        .blog-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+            margin-top: 20px;
+        }
+
+        .bg-dark-footer {
+            background-color: #343a40;
+            color: #ffffff;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .bg-dark-footer .tags span {
+            background-color: #ffeb3b;
+            color: #000;
+        }
+
+        .bg-dark-footer .reaction {
+            justify-content: flex-end;
+        }
     </style>
 </head>
 <body>
@@ -244,6 +269,21 @@
                 $tags = explode(',', $row['tags']);
                 foreach ($tags as $tag) {
                     echo "<span>$tag</span>";
+                }
+                echo "</div>";
+                echo "</div>";
+
+                // Footer mit Trennlinie und Reaktionen
+                echo "<div class='blog-footer bg-dark-footer'>";
+                echo "<div class='tags'>";
+                $tags = explode(',', $row['tags']);
+                foreach ($tags as $tag) {
+                    echo "<span>$tag</span>";
+                }
+                echo "</div>";
+                echo "<div class='reaction'>";
+                foreach ($reactions as $reaction => $icon) {
+                    echo "<span class='bi $icon' data-reaction='$reaction' data-blog-id='$id'><span class='count'></span></span>";
                 }
                 echo "</div>";
                 echo "</div>";
@@ -298,10 +338,10 @@
     </div>
 
     <!-- Blog Section -->
-    <section id="blog" class="blog section bg-light py-5">
+    <section id="blog" class="blog section bg-dark py-5">
         <div class="container section-title text-center" data-aos="fade-up">
-            <h2>Aktuelle Meldungen</h2>
-            <p>Lesen Sie unsere neuesten Nachrichten und Updates</p>
+            <h2 class="text-white">Aktuelle Meldungen</h2>
+            <p class="text-light">Lesen Sie unsere neuesten Nachrichten und Updates</p>
         </div>
         <div class="container">
             <div class="row gy-3">
@@ -413,9 +453,9 @@
                         },
                         body: 'blog_id=' + blogId + '&reaction_type=' + reaction + '&comment_id=' + commentId
                     })
-                    .then(response => response.text())
+                    .then(response => response.json())
                     .then(data => {
-                        if (data === 'Reaktion gespeichert') {
+                        if (data.success) {
                             let countSpan = this.nextElementSibling;
                             countSpan.textContent = parseInt(countSpan.textContent) + 1;
                         }
