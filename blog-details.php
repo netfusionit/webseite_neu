@@ -206,6 +206,7 @@
                 echo "</div>";
 
                 // Kommentarformular
+                echo "<h3 class='mt-5'>Kommentare</h3>";
                 echo "<div class='toggle-comment'>";
                 echo "<h3>Neuer Kommentar</h3><i class='fas fa-chevron-up toggle-icon'></i>";
                 echo "</div>";
@@ -229,7 +230,7 @@
                 echo "</div>";
 
                 // Kommentare anzeigen
-                echo "<h3 class='mt-5'>Kommentare</h3>";
+               
                 $comment_result = $conn->query("SELECT * FROM comments WHERE blog_id = $id ORDER BY created_at DESC");
                 while ($comment = $comment_result->fetch_assoc()) {
                     echo "<div class='comment-box'>";
