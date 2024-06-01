@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog Details - NetFusionIT</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="styles.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
         .blog-image {
@@ -110,13 +109,17 @@
             margin: 0 5px;
         }
 
-        .tags, .categories {
-            margin-top: 20px;
+        .tags span {
+            background-color: #ffeb3b;
+            color: #000;
+            padding: 5px 10px;
+            border-radius: 20px;
+            margin-right: 5px;
+            margin-bottom: 5px;
         }
 
-        .tags span, .categories span {
-            display: inline-block;
-            background-color: #007bff;
+        .categories span {
+            background-color: #4caf50;
             color: #fff;
             padding: 5px 10px;
             border-radius: 20px;
@@ -130,6 +133,14 @@
 
         .carousel-item.active {
             display: block;
+        }
+
+        section:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        section:nth-child(odd) {
+            background-color: #ffffff;
         }
     </style>
 </head>
@@ -158,7 +169,7 @@
 
                 // Kategorien und Tags anzeigen
                 echo "<div class='categories'><strong>Kategorien:</strong> ";
-                $categories = explode(',', $row['categories']);
+                $categories = explode(',', $row['category']);
                 foreach ($categories as $category) {
                     echo "<span>$category</span>";
                 }
@@ -202,6 +213,10 @@
                     echo "<h5>" . $comment['author'] . "</h5>";
                     echo "<small>Kommentiert am: " . date('d.m.Y H:i', strtotime($comment['created_at'])) . "</small>";
                     echo "<p>" . $comment['comment'] . "</p>";
+                    echo "<div class='reaction'>";
+                    echo "<span class='bi bi-hand-thumbs-up' data-reaction='like' data-comment-id='" . $comment['id'] . "'><span class='count'>" . $comment['likes'] . "</span></span>";
+                    echo "<span class='bi bi-hand-thumbs-down' data-reaction='dislike' data-comment-id='" . $comment['id'] . "'><span class='count'>" . $comment['dislikes'] . "</span></span>";
+                    echo "</div>";
                     echo "</div>";
                 }
             } else {
@@ -276,13 +291,14 @@
             icon.addEventListener('click', function() {
                 let reaction = this.getAttribute('data-reaction');
                 let blogId = this.getAttribute('data-blog-id');
+                let commentId = this.getAttribute('data-comment-id');
                 
                 fetch('add_reaction.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     },
-                    body: 'blog_id=' + blogId + '&reaction_type=' + reaction
+                    body: 'blog_id=' + blogId + '&reaction_type=' + reaction + '&comment_id=' + commentId
                 })
                 .then(response => response.text())
                 .then(data => {
