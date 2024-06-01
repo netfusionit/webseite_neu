@@ -14,9 +14,9 @@ while ($comment = $comment_result->fetch_assoc()) {
     echo "<p>" . $comment['comment'] . "</p>";
     echo "<div class='comment-reaction' id='comment-reaction-" . $comment['id'] . "'>";
     echo "<span class='bi bi-hand-thumbs-up' data-reaction='like' data-comment-id='" . $comment['id'] . "'></span>";
-    echo "<span class='count'></span>";
+    echo "<span class='count'>" . $comment['like_count'] . "</span>";
     echo "<span class='bi bi-hand-thumbs-down' data-reaction='dislike' data-comment-id='" . $comment['id'] . "'></span>";
-    echo "<span class='count'></span>";
+    echo "<span class='count'>" . $comment['dislike_count'] . "</span>";
     echo "</div>";
     echo "</div>";
 }

@@ -41,7 +41,7 @@
         .reaction .bi {
             font-size: 1.5rem;
             cursor: pointer;
-            margin-right: 10px;
+            margin-right: 5px;
             transition: transform 0.3s ease;
         }
 
@@ -56,7 +56,8 @@
 
         .reaction .count {
             font-size: 1rem;
-            margin-left: 5px;
+            margin-left: 0;
+            margin-right: 15px;
         }
 
         .comment-form {
@@ -111,8 +112,8 @@
 
         .comment-reaction .count {
             font-size: 1rem;
-            margin-left: 5px;
-            margin-right: 5px;
+            margin-left: 0;
+            margin-right: 15px;
         }
 
         .toggle-comment {
@@ -280,39 +281,6 @@
                 echo "</div>";
                 echo "</div>";
                 echo "<div class='blog-content'>" . $row['content'] . "</div>";
-
-                // Reaktionen anzeigen
-                echo "<div class='reaction' id='reactions'>";
-                $reactions = ['like' => 'bi-hand-thumbs-up', 'love' => 'bi-heart', 'wow' => 'bi-emoji-sunglasses', 'sad' => 'bi-emoji-frown'];
-                foreach ($reactions as $reaction => $icon) {
-                    echo "<span class='bi $icon' data-reaction='$reaction' data-blog-id='$id'><span class='count'></span></span>";
-                }
-                echo "</div>";
-
-                // Tags anzeigen
-                echo "<div class='blog-tags'>";
-                echo "<div class='tags'>";
-                $tags = explode(',', $row['tags']);
-                foreach ($tags as $tag) {
-                    echo "<span>$tag</span>";
-                }
-                echo "</div>";
-                echo "</div>";
-
-                // Footer mit Trennlinie und Reaktionen
-                echo "<div class='blog-footer bg-dark-footer'>";
-                echo "<div class='tags'>";
-                $tags = explode(',', $row['tags']);
-                foreach ($tags as $tag) {
-                    echo "<span>$tag</span>";
-                }
-                echo "</div>";
-                echo "<div class='reaction'>";
-                foreach ($reactions as $reaction => $icon) {
-                    echo "<span class='bi $icon' data-reaction='$reaction' data-blog-id='$id'><span class='count'></span></span>";
-                }
-                echo "</div>";
-                echo "</div>";
                 echo "</div>";
 
                 // Kommentarformular
@@ -364,7 +332,6 @@
             echo "<p>Ungültige Anfrage.</p>";
         }
         ?>
-        <button onclick="history.back()" class="btn btn-secondary mt-4">Zurück zur vorherigen Seite</button>
     </div>
 
     <!-- Blog Section -->
@@ -429,6 +396,24 @@
                 </ul>
             </nav>
         </div>
+        <div class="bg-dark-footer">
+            <div class="tags">
+                <?php
+                $tags = explode(',', $row['tags']);
+                foreach ($tags as $tag) {
+                    echo "<span>$tag</span>";
+                }
+                ?>
+            </div>
+            <div class="reaction" id="reactions-footer">
+                <?php
+                $reactions = ['like' => 'bi-hand-thumbs-up', 'love' => 'bi-heart', 'wow' => 'bi-emoji-sunglasses', 'sad' => 'bi-emoji-frown'];
+                foreach ($reactions as $reaction => $icon) {
+                    echo "<span class='bi $icon' data-reaction='$reaction' data-blog-id='$id'><span class='count'></span></span>";
+                }
+                ?>
+            </div>
+        </div>
     </section><!-- /Blog Section -->
 
     <?php include 'footer.php'; ?>
@@ -461,7 +446,13 @@
                     document.querySelectorAll('.reaction span[data-reaction]').forEach(function(icon) {
                         let reaction = icon.getAttribute('data-reaction');
                         if (data[reaction] !== undefined) {
-                            icon.querySelector('.count').textContent = data[reaction];
+                            icon.nextElementSibling.textContent = data[reaction];
+                        }
+                    });
+                    document.querySelectorAll('#reactions-footer span[data-reaction]').forEach(function(icon) {
+                        let reaction = icon.getAttribute('data-reaction');
+                        if (data[reaction] !== undefined) {
+                            icon.nextElementSibling.textContent = data[reaction];
                         }
                     });
                 });
@@ -504,7 +495,7 @@
                     .then(response => response.json())
                     .then(data => {
                         if (data.success) {
-                            let countSpan = this.nextElementSibling;
+                            let countSpan = this.querySelector('.count');
                             countSpan.textContent = parseInt(countSpan.textContent) + 1;
                         }
                     });
