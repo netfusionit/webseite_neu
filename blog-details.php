@@ -174,12 +174,10 @@
             if ($row = $result->fetch_assoc()) {
                 echo "<h1 class='mb-4'>" . $row['title'] . "</h1>";
                 echo "<img src='assets/img/" . $row['image'] . "' class='img-fluid blog-image' alt=''>";
-                echo "<div class='reaction'>";
+                echo "<div class='reaction' id='reactions'>";
                 $reactions = ['like' => 'bi-hand-thumbs-up', 'love' => 'bi-heart', 'wow' => 'bi-emoji-sunglasses', 'sad' => 'bi-emoji-frown'];
                 foreach ($reactions as $reaction => $icon) {
-                    $count_result = $conn->query("SELECT COUNT(*) as count FROM reactions WHERE blog_id = $id AND reaction_type = '$reaction'");
-                    $count = $count_result->fetch_assoc()['count'];
-                    echo "<span class='bi $icon' data-reaction='$reaction' data-blog-id='$id'><span class='count'>$count</span></span>";
+                    echo "<span class='bi $icon' data-reaction='$reaction' data-blog-id='$id'><span class='count'></span></span>";
                 }
                 echo "</div>";
                 echo "<h2 class='mt-4'>" . $row['title'] . "</h2>";
@@ -206,7 +204,6 @@
                 echo "</div>";
 
                 // Kommentarformular
-                echo "<h3 class='mt-5'>Kommentare</h3>";
                 echo "<div class='toggle-comment'>";
                 echo "<h3>Neuer Kommentar</h3><i class='fas fa-chevron-up toggle-icon'></i>";
                 echo "</div>";
@@ -230,14 +227,14 @@
                 echo "</div>";
 
                 // Kommentare anzeigen
-               
+                echo "<h3 class='mt-5'>Kommentare</h3>";
                 $comment_result = $conn->query("SELECT * FROM comments WHERE blog_id = $id ORDER BY created_at DESC");
                 while ($comment = $comment_result->fetch_assoc()) {
                     echo "<div class='comment-box'>";
                     echo "<h5>" . $comment['author'] . "</h5>";
                     echo "<small>Kommentiert am: " . date('d.m.Y H:i', strtotime($comment['created_at'])) . "</small>";
                     echo "<p>" . $comment['comment'] . "</p>";
-                    echo "<div class='reaction'>";
+                    echo "<div class='reaction' id='comment-reaction-" . $comment['id'] . "'>";
                     echo "<span class='count'>" . $comment['likes'] . "</span><span class='bi bi-hand-thumbs-up' data-reaction='like' data-comment-id='" . $comment['id'] . "'></span>";
                     echo "<span class='count'>" . $comment['dislikes'] . "</span><span class='bi bi-hand-thumbs-down' data-reaction='dislike' data-comment-id='" . $comment['id'] . "'></span>";
                     echo "</div>";
@@ -311,43 +308,74 @@
     <?php include 'footer.php'; ?>
 
     <script>
-        document.querySelectorAll('.bi').forEach(function(icon) {
-            icon.addEventListener('click', function() {
-                let reaction = this.getAttribute('data-reaction');
-                let blogId = this.getAttribute('data-blog-id');
-                let commentId = this.getAttribute('data-comment-id');
-                
-                // Invertieren für 10 Sekunden
-                this.classList.add('clicked');
-                setTimeout(() => {
-                    this.classList.remove('clicked');
-                }, 10000);
-                
-                fetch('add_reaction.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    body: 'blog_id=' + blogId + '&reaction_type=' + reaction + '&comment_id=' + commentId
-                })
-                .then(response => response.text())
+        document.addEventListener('DOMContentLoaded', function() {
+            // Reaktionen für den Blog-Post laden
+            let blogId = <?php echo $id; ?>;
+            fetch('load_reactions.php?blog_id=' + blogId)
+                .then(response => response.json())
                 .then(data => {
-                    if (data === 'Reaktion gespeichert') {
-                        let countSpan = this.querySelector('.count');
-                        countSpan.textContent = parseInt(countSpan.textContent) + 1;
-                    }
+                    document.querySelectorAll('.reaction span[data-reaction]').forEach(function(icon) {
+                        let reaction = icon.getAttribute('data-reaction');
+                        if (data[reaction] !== undefined) {
+                            icon.querySelector('.count').textContent = data[reaction];
+                        }
+                    });
+                });
+
+            // Reaktionen für Kommentare laden
+            document.querySelectorAll('.reaction[data-comment-id]').forEach(function(reactionBox) {
+                let commentId = reactionBox.getAttribute('data-comment-id');
+                fetch('load_comment_reactions.php?comment_id=' + commentId)
+                    .then(response => response.json())
+                    .then(data => {
+                        reactionBox.querySelectorAll('span[data-reaction]').forEach(function(icon) {
+                            let reaction = icon.getAttribute('data-reaction');
+                            if (data[reaction] !== undefined) {
+                                icon.previousElementSibling.textContent = data[reaction];
+                            }
+                        });
+                    });
+            });
+
+            // Reaktions-Event-Listener hinzufügen
+            document.querySelectorAll('.bi').forEach(function(icon) {
+                icon.addEventListener('click', function() {
+                    let reaction = this.getAttribute('data-reaction');
+                    let blogId = this.getAttribute('data-blog-id');
+                    let commentId = this.getAttribute('data-comment-id');
+                    
+                    // Invertieren für 10 Sekunden
+                    this.classList.add('clicked');
+                    setTimeout(() => {
+                        this.classList.remove('clicked');
+                    }, 10000);
+                    
+                    fetch('add_reaction.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        body: 'blog_id=' + blogId + '&reaction_type=' + reaction + '&comment_id=' + commentId
+                    })
+                    .then(response => response.text())
+                    .then(data => {
+                        if (data === 'Reaktion gespeichert') {
+                            let countSpan = this.querySelector('.count');
+                            countSpan.textContent = parseInt(countSpan.textContent) + 1;
+                        }
+                    });
                 });
             });
-        });
 
-        document.querySelector('.toggle-comment').addEventListener('click', function() {
-            var form = document.querySelector('.comment-form');
-            form.style.display = form.style.display === 'block' ? 'none' : 'block';
-            this.classList.toggle('collapsed');
-        });
+            document.querySelector('.toggle-comment').addEventListener('click', function() {
+                var form = document.querySelector('.comment-form');
+                form.style.display = form.style.display === 'block' ? 'none' : 'block';
+                this.classList.toggle('collapsed');
+            });
 
-        $('.carousel').carousel({
-            interval: 5000
+            $('.carousel').carousel({
+                interval: 5000
+            });
         });
     </script>
 
