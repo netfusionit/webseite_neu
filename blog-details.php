@@ -336,7 +336,7 @@
         }
         ?>
     </div>
-
+    <br>
     <!-- Blog Section -->
     <section id="blog" class="blog section bg-dark py-5">
         <div class="container section-title text-center" data-aos="fade-up">
