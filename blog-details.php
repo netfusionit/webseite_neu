@@ -22,9 +22,11 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .blog-content {
-            font-size: 1.1rem;
-            line-height: 1.6;
+        .blog-content-box {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #ffffff;
             margin-bottom: 20px;
         }
 
@@ -39,14 +41,11 @@
             font-size: 1.5rem;
             cursor: pointer;
             margin-right: 10px;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-            padding: 5px;
-            border-radius: 50%;
+            transition: transform 0.3s ease, filter 0.3s ease;
         }
 
         .reaction .bi.clicked {
-            background-color: black;
-            color: white;
+            filter: invert(1);
         }
 
         .reaction .count {
@@ -194,7 +193,9 @@
                 }
                 echo "</div>";
 
-                echo "<div class='blog-content mt-4'>" . $row['content'] . "</div>";
+                echo "<div class='blog-content-box mt-4'>";
+                echo "<div class='blog-content'>" . $row['content'] . "</div>";
+                echo "</div>";
 
                 // Tags anzeigen
                 echo "<div class='tags'>";
@@ -236,8 +237,8 @@
                     echo "<small>Kommentiert am: " . date('d.m.Y H:i', strtotime($comment['created_at'])) . "</small>";
                     echo "<p>" . $comment['comment'] . "</p>";
                     echo "<div class='reaction'>";
-                    echo "<span class='bi bi-hand-thumbs-up' data-reaction='like' data-comment-id='" . $comment['id'] . "'><span class='count'>" . $comment['likes'] . "</span></span>";
-                    echo "<span class='bi bi-hand-thumbs-down' data-reaction='dislike' data-comment-id='" . $comment['id'] . "'><span class='count'>" . $comment['dislikes'] . "</span></span>";
+                    echo "<span class='count'>" . $comment['likes'] . "</span><span class='bi bi-hand-thumbs-up' data-reaction='like' data-comment-id='" . $comment['id'] . "'></span>";
+                    echo "<span class='count'>" . $comment['dislikes'] . "</span><span class='bi bi-hand-thumbs-down' data-reaction='dislike' data-comment-id='" . $comment['id'] . "'></span>";
                     echo "</div>";
                     echo "</div>";
                 }
@@ -315,7 +316,7 @@
                 let blogId = this.getAttribute('data-blog-id');
                 let commentId = this.getAttribute('data-comment-id');
                 
-                // Schwarz hinterlegen für 10 Sekunden
+                // Invertieren für 10 Sekunden
                 this.classList.add('clicked');
                 setTimeout(() => {
                     this.classList.remove('clicked');
