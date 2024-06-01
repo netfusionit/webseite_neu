@@ -111,6 +111,7 @@
 
         .comment-reaction .count {
             font-size: 1rem;
+            margin-left: 5px;
             margin-right: 5px;
         }
 
@@ -199,6 +200,10 @@
             padding-bottom: 10px;
             margin-bottom: 20px;
         }
+
+        .blog-title, .blog-meta, .blog-tags {
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
@@ -213,8 +218,9 @@
                 echo "<h1 class='mb-4'>" . $row['title'] . "</h1>";
                 echo "<img src='assets/img/" . $row['image'] . "' class='img-fluid blog-image' alt=''>";
                 echo "<div class='blog-content-box mt-4'>";
+                echo "<h2 class='blog-title'>" . $row['title'] . "</h2>";
                 echo "<div class='blog-content-meta'>";
-                echo "<small class='text-muted'>Erstellt am: " . date('d.m.Y H:i', strtotime($row['created_at'])) . " | Autor: " . $row['author'] . "</small>";
+                echo "<small class='text-muted'>Erstellt am: " . date('d.m.Y H:i', strtotime($row['created_at'])) . " | Letzte Aktualisierung: " . date('d.m.Y H:i', strtotime($row['updated_at'])) . " | Autor: " . $row['author'] . "</small>";
                 echo "<div class='categories'>";
                 $categories = explode(',', $row['category']);
                 foreach ($categories as $category) {
@@ -223,7 +229,6 @@
                 echo "</div>";
                 echo "</div>";
                 echo "<div class='blog-content'>" . $row['content'] . "</div>";
-                echo "</div>";
 
                 // Reaktionen anzeigen
                 echo "<div class='reaction' id='reactions'>";
@@ -234,11 +239,14 @@
                 echo "</div>";
 
                 // Tags anzeigen
+                echo "<div class='blog-tags'>";
                 echo "<div class='tags'>";
                 $tags = explode(',', $row['tags']);
                 foreach ($tags as $tag) {
                     echo "<span>$tag</span>";
                 }
+                echo "</div>";
+                echo "</div>";
                 echo "</div>";
 
                 // Kommentarformular
@@ -290,60 +298,68 @@
     </div>
 
     <!-- Blog Section -->
-<section id="blog" class="blog-section">
-    <div class="container section-title text-center" data-aos="fade-up">
-        <h2>Weitere Meldungen</h2>
-        <p>Lesen Sie weitere Nachrichten und Updates</p>
-    </div>
-    <div class="container">
-        <div id="blogCarousel" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
+    <section id="blog" class="blog section bg-light py-5">
+        <div class="container section-title text-center" data-aos="fade-up">
+            <h2>Aktuelle Meldungen</h2>
+            <p>Lesen Sie unsere neuesten Nachrichten und Updates</p>
+        </div>
+        <div class="container">
+            <div class="row gy-3">
                 <?php
-                $result = $conn->query("SELECT * FROM blog_posts ORDER BY created_at DESC");
-                $totalPosts = $result->num_rows;
-                $active = "active";
-                $counter = 0;
-                $itemOpen = false;
+                include 'db.php';
 
+                // Pagination
+                $limit = 3; // Anzahl der Beiträge pro Seite
+                $page = isset($_GET['page']) ? $_GET['page'] : 1;
+                $start = ($page - 1) * $limit;
+
+                // Beiträge abrufen
+                $result = $conn->query("SELECT * FROM blog_posts ORDER BY created_at DESC LIMIT $start, $limit");
                 while ($row = $result->fetch_assoc()) {
-                    if ($counter % 3 == 0) {
-                        if ($itemOpen) {
-                            echo "</div></div>";
-                        }
-                        echo "<div class='carousel-item $active'>";
-                        echo "<div class='row'>";
-                        $active = "";
-                        $itemOpen = true;
-                    }
-                    echo "<div class='col-lg-4 col-md-6'>";
+                    echo "<div class='col-lg-4 col-md-6' data-aos='fade-up' data-aos-delay='100'>";
                     echo "<div class='card blog-item'>";
                     echo "<img src='assets/img/" . $row['image'] . "' class='card-img-top' alt=''>";
                     echo "<div class='card-body'>";
                     echo "<h5 class='card-title'><a href='blog-details.php?id=" . $row['id'] . "'>" . $row['title'] . "</a></h5>";
                     echo "<p class='card-text'>" . substr($row['content'], 0, 100) . "...</p>";
+                    echo "<p class='card-text'><small class='text-muted'>Erstellt am: " . date('d.m.Y', strtotime($row['created_at'])) . " | Letzte Aktualisierung: " . date('d.m.Y', strtotime($row['updated_at'])) . "</small></p>";
+
+                    // Kategorie anzeigen
+                    echo "<p class='card-text'><span class='badge badge-category'>" . $row['category'] . "</span></p>";
+
+                    // Tags anzeigen
+                    $tags = explode(',', $row['tags']);
+                    echo "<p class='card-text'>";
+                    foreach ($tags as $tag) {
+                        echo "<span class='badge badge-tag'>" . trim($tag) . "</span>";
+                    }
+                    echo "</p>";
+
                     echo "<a href='blog-details.php?id=" . $row['id'] . "' class='btn btn-primary'>Weiterlesen</a>";
                     echo "</div>";
                     echo "</div>";
                     echo "</div>";
-                    $counter++;
                 }
 
-                if ($itemOpen) {
-                    echo "</div></div>";
-                }
+                // Gesamtanzahl der Beiträge für Pagination
+                $result1 = $conn->query("SELECT COUNT(id) AS id FROM blog_posts");
+                $total = $result1->fetch_assoc()['id'];
+                $pages = ceil($total / $limit);
+
+                $conn->close();
                 ?>
             </div>
-            <a class="carousel-control-prev" href="#blogCarousel" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#blogCarousel" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
         </div>
-    </div>
-</section><!-- /Blog Section -->
+        <div class="container">
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                    <?php for ($i = 1; $i <= $pages; $i++): ?>
+                        <li class="page-item <?php if ($i == $page) echo 'active'; ?>"><a class="page-link" href="index.php?page=<?= $i; ?>"><?= $i; ?></a></li>
+                    <?php endfor; ?>
+                </ul>
+            </nav>
+        </div>
+    </section><!-- /Blog Section -->
 
     <?php include 'footer.php'; ?>
 
