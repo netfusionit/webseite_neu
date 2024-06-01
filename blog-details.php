@@ -281,6 +281,24 @@
                 echo "</div>";
                 echo "</div>";
                 echo "<div class='blog-content'>" . $row['content'] . "</div>";
+            <div class="bg-dark-footer">
+            <div class="tags">
+                <?php
+                $tags = explode(',', $row['tags']);
+                foreach ($tags as $tag) {
+                    echo "<span>$tag</span>";
+                }
+                ?>
+            </div>
+            <div class="reaction" id="reactions-footer">
+                <?php
+                $reactions = ['like' => 'bi-hand-thumbs-up', 'love' => 'bi-heart', 'wow' => 'bi-emoji-sunglasses', 'sad' => 'bi-emoji-frown'];
+                foreach ($reactions as $reaction => $icon) {
+                    echo "<span class='bi $icon' data-reaction='$reaction' data-blog-id='$id'><span class='count'></span></span>";
+                }
+                ?>
+            </div>
+        </div>
                 echo "</div>";
 
                 // Kommentarformular
