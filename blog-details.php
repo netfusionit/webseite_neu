@@ -214,21 +214,8 @@
             margin-top: 20px;
         }
 
-        .bg-dark-footer {
-            background-color: #343a40;
-            color: #ffffff;
-            padding: 10px;
-            border-radius: 10px;
-        }
 
-        .bg-dark-footer .tags span {
-            background-color: #ffeb3b;
-            color: #000;
-        }
-
-        .bg-dark-footer .reaction {
-            justify-content: flex-end;
-        }
+      
     </style>
 </head>
 <body>
