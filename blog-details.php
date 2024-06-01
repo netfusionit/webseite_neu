@@ -7,12 +7,19 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
         .blog-image {
             width: 100%;
             max-height: 300px;
             object-fit: cover;
             margin-bottom: 20px;
             border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .blog-content {
@@ -32,11 +39,18 @@
             font-size: 1.5rem;
             cursor: pointer;
             margin-right: 10px;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            padding: 5px;
+            border-radius: 50%;
         }
 
         .reaction .bi:hover {
             transform: scale(1.2);
+        }
+
+        .reaction .bi.clicked {
+            background-color: black;
+            color: white;
         }
 
         .reaction .count {
@@ -142,6 +156,16 @@
         section:nth-child(odd) {
             background-color: #ffffff;
         }
+
+        .blog-section {
+            border-top: 2px solid #ddd;
+            padding-top: 20px;
+            margin-top: 20px;
+        }
+
+        .blog-section .section-title {
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
@@ -168,14 +192,14 @@
                 echo "<div class='blog-content mt-4'>" . $row['content'] . "</div>";
 
                 // Kategorien und Tags anzeigen
-                echo "<div class='categories'><strong>Kategorien:</strong> ";
+                echo "<div class='categories'>";
                 $categories = explode(',', $row['category']);
                 foreach ($categories as $category) {
                     echo "<span>$category</span>";
                 }
                 echo "</div>";
 
-                echo "<div class='tags'><strong>Tags:</strong> ";
+                echo "<div class='tags'>";
                 $tags = explode(',', $row['tags']);
                 foreach ($tags as $tag) {
                     echo "<span>$tag</span>";
@@ -229,7 +253,7 @@
     </div>
 
     <!-- Blog Section -->
-<section id="blog" class="blog section py-5">
+<section id="blog" class="blog-section py-5">
     <div class="container section-title text-center" data-aos="fade-up">
         <h2>Weitere Meldungen</h2>
         <p>Lesen Sie weitere Nachrichten und Updates</p>
@@ -292,6 +316,12 @@
                 let reaction = this.getAttribute('data-reaction');
                 let blogId = this.getAttribute('data-blog-id');
                 let commentId = this.getAttribute('data-comment-id');
+                
+                // Schwarz hinterlegen für 10 Sekunden
+                this.classList.add('clicked');
+                setTimeout(() => {
+                    this.classList.remove('clicked');
+                }, 10000);
                 
                 fetch('add_reaction.php', {
                     method: 'POST',
