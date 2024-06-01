@@ -255,23 +255,6 @@
                 echo "</div>";
                 echo "<div class='blog-content'>" . $row['content'] . "</div>";
 
-                // Reaktionen anzeigen
-                echo "<div class='reaction' id='reactions'>";
-                $reactions = ['like' => 'bi-hand-thumbs-up', 'love' => 'bi-heart', 'wow' => 'bi-emoji-sunglasses', 'sad' => 'bi-emoji-frown'];
-                foreach ($reactions as $reaction => $icon) {
-                    echo "<span class='bi $icon' data-reaction='$reaction' data-blog-id='$id'><span class='count'></span></span>";
-                }
-                echo "</div>";
-
-                // Tags anzeigen
-                echo "<div class='blog-tags'>";
-                echo "<div class='tags'>";
-                $tags = explode(',', $row['tags']);
-                foreach ($tags as $tag) {
-                    echo "<span>$tag</span>";
-                }
-                echo "</div>";
-                echo "</div>";
 
                 // Footer mit Trennlinie und Reaktionen
                 echo "<div class='blog-footer bg-dark-footer'>";
@@ -290,6 +273,7 @@
                 echo "</div>";
 
                 // Kommentarformular
+                echo "<h3 class='mt-5'>Kommentare</h3>";
                 echo "<div class='toggle-comment'>";
                 echo "<h3>Neuer Kommentar</h3><i class='fas fa-chevron-up toggle-icon'></i>";
                 echo "</div>";
@@ -313,7 +297,6 @@
                 echo "</div>";
 
                 // Kommentare anzeigen
-                echo "<h3 class='mt-5'>Kommentare</h3>";
                 $comment_result = $conn->query("SELECT * FROM comments WHERE blog_id = $id ORDER BY created_at DESC");
                 while ($comment = $comment_result->fetch_assoc()) {
                     echo "<div class='comment-box'>";
