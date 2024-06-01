@@ -229,11 +229,37 @@
         .bg-dark-footer .reaction {
             justify-content: flex-end;
         }
+
+        @media (max-width: 767px) {
+            .blog-content-meta {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .reaction {
+                flex-wrap: wrap;
+            }
+
+            .toggle-comment {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .blog-footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .comment-reaction {
+                justify-content: flex-start;
+            }
+        }
     </style>
 </head>
 <body>
     <?php include 'header.php'; ?>
     <div class="container mt-5">
+        <button onclick="history.back()" class="btn btn-secondary mb-4">Zurück zur vorherigen Seite</button>
         <?php
         include 'db.php';
         if (isset($_GET['id'])) {
@@ -314,7 +340,8 @@
                 echo "</div>";
 
                 // Kommentare anzeigen
-                $comment_result = $conn->query("SELECT * FROM comments WHERE blog_id = $id ORDER BY created_at DESC");
+                echo "<div id='comments-container'>";
+                $comment_result = $conn->query("SELECT * FROM comments WHERE blog_id = $id ORDER BY created_at DESC LIMIT 3");
                 while ($comment = $comment_result->fetch_assoc()) {
                     echo "<div class='comment-box'>";
                     echo "<h5>" . $comment['author'] . "</h5>";
@@ -328,6 +355,8 @@
                     echo "</div>";
                     echo "</div>";
                 }
+                echo "</div>";
+                echo "<button id='load-more-comments' class='btn btn-secondary mt-3'>Weitere Kommentare laden</button>";
             } else {
                 echo "<p>Blogeintrag nicht gefunden.</p>";
             }
@@ -335,8 +364,9 @@
             echo "<p>Ungültige Anfrage.</p>";
         }
         ?>
+        <button onclick="history.back()" class="btn btn-secondary mt-4">Zurück zur vorherigen Seite</button>
     </div>
-    <br>
+
     <!-- Blog Section -->
     <section id="blog" class="blog section bg-dark py-5">
         <div class="container section-title text-center" data-aos="fade-up">
@@ -405,6 +435,24 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            let commentPage = 1;
+            const commentsContainer = document.getElementById('comments-container');
+            const loadMoreButton = document.getElementById('load-more-comments');
+
+            function loadComments() {
+                commentPage++;
+                fetch('load_comments.php?blog_id=<?php echo $id; ?>&page=' + commentPage)
+                    .then(response => response.text())
+                    .then(data => {
+                        commentsContainer.innerHTML += data;
+                        if (data.trim() === '') {
+                            loadMoreButton.style.display = 'none';
+                        }
+                    });
+            }
+
+            loadMoreButton.addEventListener('click', loadComments);
+
             // Reaktionen für den Blog-Post laden
             let blogId = <?php echo $id; ?>;
             fetch('load_reactions.php?blog_id=' + blogId)
