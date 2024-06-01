@@ -28,6 +28,7 @@
             border-radius: 10px;
             background-color: #ffffff;
             margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .reaction {
@@ -41,11 +42,16 @@
             font-size: 1.5rem;
             cursor: pointer;
             margin-right: 10px;
-            transition: transform 0.3s ease, filter 0.3s ease;
+            transition: transform 0.3s ease;
         }
 
-        .reaction .bi.clicked {
-            filter: invert(1);
+        .reaction .bi.animate {
+            animation: pop 0.6s ease-in-out 3;
+        }
+
+        @keyframes pop {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
         }
 
         .reaction .count {
@@ -72,6 +78,7 @@
             margin-top: 20px;
             border-radius: 10px;
             background-color: #f9f9f9;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .comment-box h5 {
@@ -95,7 +102,11 @@
             font-size: 1.2rem;
             cursor: pointer;
             margin-left: 5px;
-            transition: transform 0.3s ease, filter 0.3s ease;
+            transition: transform 0.3s ease;
+        }
+
+        .comment-reaction .bi.animate {
+            animation: pop 0.6s ease-in-out 3;
         }
 
         .comment-reaction .count {
@@ -172,12 +183,20 @@
         }
 
         .blog-section {
-            border-top: 2px solid #ddd;
-            padding-top: 20px;
-            margin-top: 20px;
+            background-color: #e9ecef;
+            padding: 40px 0;
         }
 
         .blog-section .section-title {
+            margin-bottom: 20px;
+        }
+
+        .blog-content-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
             margin-bottom: 20px;
         }
     </style>
@@ -193,25 +212,25 @@
             if ($row = $result->fetch_assoc()) {
                 echo "<h1 class='mb-4'>" . $row['title'] . "</h1>";
                 echo "<img src='assets/img/" . $row['image'] . "' class='img-fluid blog-image' alt=''>";
-                echo "<div class='reaction' id='reactions'>";
-                $reactions = ['like' => 'bi-hand-thumbs-up', 'love' => 'bi-heart', 'wow' => 'bi-emoji-sunglasses', 'sad' => 'bi-emoji-frown'];
-                foreach ($reactions as $reaction => $icon) {
-                    echo "<span class='bi $icon' data-reaction='$reaction' data-blog-id='$id'><span class='count'></span></span>";
-                }
-                echo "</div>";
-                echo "<h2 class='mt-4'>" . $row['title'] . "</h2>";
+                echo "<div class='blog-content-box mt-4'>";
+                echo "<div class='blog-content-meta'>";
                 echo "<small class='text-muted'>Erstellt am: " . date('d.m.Y H:i', strtotime($row['created_at'])) . " | Autor: " . $row['author'] . "</small>";
-                
-                // Kategorien anzeigen
-                echo "<div class='categories mt-2'>";
+                echo "<div class='categories'>";
                 $categories = explode(',', $row['category']);
                 foreach ($categories as $category) {
                     echo "<span>$category</span>";
                 }
                 echo "</div>";
-
-                echo "<div class='blog-content-box mt-4'>";
+                echo "</div>";
                 echo "<div class='blog-content'>" . $row['content'] . "</div>";
+                echo "</div>";
+
+                // Reaktionen anzeigen
+                echo "<div class='reaction' id='reactions'>";
+                $reactions = ['like' => 'bi-hand-thumbs-up', 'love' => 'bi-heart', 'wow' => 'bi-emoji-sunglasses', 'sad' => 'bi-emoji-frown'];
+                foreach ($reactions as $reaction => $icon) {
+                    echo "<span class='bi $icon' data-reaction='$reaction' data-blog-id='$id'><span class='count'></span></span>";
+                }
                 echo "</div>";
 
                 // Tags anzeigen
@@ -254,8 +273,10 @@
                     echo "<small>Kommentiert am: " . date('d.m.Y H:i', strtotime($comment['created_at'])) . "</small>";
                     echo "<p>" . $comment['comment'] . "</p>";
                     echo "<div class='comment-reaction' id='comment-reaction-" . $comment['id'] . "'>";
-                    echo "<span class='count'>" . $comment['likes'] . "</span><span class='bi bi-hand-thumbs-up' data-reaction='like' data-comment-id='" . $comment['id'] . "'></span>";
-                    echo "<span class='count'>" . $comment['dislikes'] . "</span><span class='bi bi-hand-thumbs-down' data-reaction='dislike' data-comment-id='" . $comment['id'] . "'></span>";
+                    echo "<span class='bi bi-hand-thumbs-up' data-reaction='like' data-comment-id='" . $comment['id'] . "'></span>";
+                    echo "<span class='count'></span>";
+                    echo "<span class='bi bi-hand-thumbs-down' data-reaction='dislike' data-comment-id='" . $comment['id'] . "'></span>";
+                    echo "<span class='count'></span>";
                     echo "</div>";
                     echo "</div>";
                 }
@@ -269,7 +290,7 @@
     </div>
 
     <!-- Blog Section -->
-<section id="blog" class="blog-section py-5">
+<section id="blog" class="blog-section">
     <div class="container section-title text-center" data-aos="fade-up">
         <h2>Weitere Meldungen</h2>
         <p>Lesen Sie weitere Nachrichten und Updates</p>
@@ -350,7 +371,7 @@
                         reactionBox.querySelectorAll('span[data-reaction]').forEach(function(icon) {
                             let reaction = icon.getAttribute('data-reaction');
                             if (data[reaction] !== undefined) {
-                                icon.previousElementSibling.textContent = data[reaction];
+                                icon.nextElementSibling.textContent = data[reaction];
                             }
                         });
                     });
@@ -363,11 +384,11 @@
                     let blogId = this.getAttribute('data-blog-id');
                     let commentId = this.getAttribute('data-comment-id');
                     
-                    // Invertieren für 10 Sekunden
-                    this.classList.add('clicked');
+                    // Aufpochen lassen
+                    this.classList.add('animate');
                     setTimeout(() => {
-                        this.classList.remove('clicked');
-                    }, 10000);
+                        this.classList.remove('animate');
+                    }, 1800);
                     
                     fetch('add_reaction.php', {
                         method: 'POST',
@@ -379,7 +400,7 @@
                     .then(response => response.text())
                     .then(data => {
                         if (data === 'Reaktion gespeichert') {
-                            let countSpan = this.querySelector('.count');
+                            let countSpan = this.nextElementSibling;
                             countSpan.textContent = parseInt(countSpan.textContent) + 1;
                         }
                     });
