@@ -50,6 +50,11 @@
             background-color: #0056b3;
         }
 
+        mark {
+            background-color: yellow;
+            color: black;
+        }
+
         @media (max-width: 767px) {
             .search-results .result-item {
                 padding: 15px;
@@ -80,9 +85,11 @@
 
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
+                    $cleanContent = strip_tags($row['content']);
+                    $highlightedContent = str_ireplace($query, "<mark>$query</mark>", substr($cleanContent, 0, 150));
                     echo "<div class='result-item'>";
                     echo "<h3>" . $row['title'] . "</h3>";
-                    echo "<p>" . substr($row['content'], 0, 150) . "...</p>";
+                    echo "<p>" . $highlightedContent . "...</p>";
                     echo "<small>Erstellt am: " . date('d.m.Y', strtotime($row['created_at'])) . "</small>";
                     echo "<br><a href='blog-details.php?id=" . $row['id'] . "' class='btn btn-primary mt-2'>Weiterlesen</a>";
                     echo "</div>";
@@ -101,8 +108,8 @@
                 foreach ($indexResults as $result) {
                     echo "<div class='result-item'>";
                     echo "<h3>Gefunden auf der Startseite</h3>";
-                    echo "<p>" . htmlspecialchars($result['line']) . "...</p>";
-                    echo "<br><a href='/index.php' class='btn btn-primary mt-2'>Zum Seiteninhalt springen</a>";
+                    echo "<p>" . $result['line'] . "...</p>";
+                    echo "<br><a href='/index.php#line-" . $result['line_number'] . "' class='btn btn-primary mt-2'>Zum Seiteninhalt springen</a>";
                     echo "</div>";
                 }
             } else {
