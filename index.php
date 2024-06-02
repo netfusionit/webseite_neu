@@ -547,34 +547,24 @@ document.addEventListener("DOMContentLoaded", function() {
 
             // Scroll to the specific line
             const range = document.createRange();
-            const textNodes = [...document.body.childNodes].filter(node => node.nodeType === Node.TEXT_NODE);
-            let startNode, endNode, startOffset, endOffset, accumulatedLength = 0;
-            
-            textNodes.some(node => {
-                const nodeLength = node.textContent.length;
-                if (accumulatedLength + nodeLength >= lineNumber) {
-                    startNode = node;
-                    startOffset = lineNumber - accumulatedLength;
-                    endNode = node;
-                    endOffset = startOffset + query.length;
-                    return true;
-                }
-                accumulatedLength += nodeLength;
-            });
+            const selection = window.getSelection();
+            const textNode = [...document.body.childNodes].find(node => node.textContent.includes(targetLine));
+            const startOffset = textNode.textContent.indexOf(targetLine);
+            range.setStart(textNode, startOffset);
+            range.setEnd(textNode, startOffset + targetLine.length);
+            selection.removeAllRanges();
+            selection.addRange(range);
 
-            if (startNode && endNode) {
-                range.setStart(startNode, startOffset);
-                range.setEnd(endNode, endOffset);
-                const rect = range.getBoundingClientRect();
-                window.scrollTo({
-                    top: window.scrollY + rect.top - window.innerHeight / 2,
-                    behavior: "smooth"
-                });
-            }
+            const rect = range.getBoundingClientRect();
+            window.scrollTo({
+                top: window.scrollY + rect.top - window.innerHeight / 2,
+                behavior: "smooth"
+            });
         }
     }
 });
 </script>
+
 
 </body>
 </html>

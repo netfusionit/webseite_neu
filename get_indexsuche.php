@@ -28,9 +28,14 @@ if ($indexPath !== false && file_exists($indexPath)) {
                 }
 
                 $highlightedSnippet = str_ireplace($query, "<mark>$query</mark>", $resultSnippet);
+                $sectionHeading = '';
+                if (preg_match('/<section[^>]*>(.*?)<\/section>/is', $indexContent, $matches)) {
+                    $sectionHeading = strip_tags($matches[1]);
+                }
                 $results[] = [
                     'line' => $highlightedSnippet,
-                    'line_number' => $lineNumber + 1
+                    'line_number' => $lineNumber + 1,
+                    'section_heading' => $sectionHeading
                 ];
             }
         }
