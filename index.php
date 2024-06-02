@@ -495,6 +495,16 @@
                 }
             });
         });
-    </script>
+   
+   
+    // AOS Initialization
+    AOS.init();
+
+    // Placeholder for form submission handling
+    document.querySelector('.php-email-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Add your AJAX form submission logic here
+    });
+</script>
 </body>
 </html>
