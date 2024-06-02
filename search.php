@@ -114,8 +114,8 @@
             $stmt->close();
 
             // Suche in index.php für allgemeine Seiteninhalte
-            $content = file_get_contents('https://netfusionit.de/index.php');
-            if (stripos($content, $query) !== false) {
+            $indexContent = file_get_contents('https://netfusionit.de/index.php');
+            if (stripos($indexContent, $query) !== false) {
                 echo "<div class='result-item'>";
                 echo "<h3>Startseite</h3>";
                 echo "<p>Der Suchbegriff wurde auf der Startseite gefunden.</p>";
