@@ -26,10 +26,10 @@
                 <a class="nav-link" href="kontakt.php">Kontakt</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="blog.php">Aktuelles</a>
+                <a class="nav-link" href="blog.php">Blog</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="admin.php">Administration(Nur mit Login)</a>
+                <a class="nav-link" href="admin.php">Admin</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -44,7 +44,7 @@
         </ul>
         <form class="form-inline my-2 my-lg-0" action="search.php" method="get">
             <input class="form-control mr-sm-2" type="search" placeholder="Suche" aria-label="Suche" name="query">
-            <button class="btn btn-primary my-2 my-sm-0" type="submit">Suche</button>
+            <button class="btn btn-primary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
         </form>
     </div>
 </nav>

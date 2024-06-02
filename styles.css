@@ -862,8 +862,8 @@ footer {
     }
 /* Header Styles */
 .navbar {
-    background: linear-gradient(90deg, rgba(0, 123, 255, 1) 0%, rgba(0, 90, 255, 1) 100%);
-    border-bottom: 2px solid #007bff;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-brand img {
@@ -875,28 +875,29 @@ footer {
     }
 
 .navbar-nav .nav-link {
-    color: #fff;
+    color: #333;
     font-weight: bold;
     transition: color 0.3s ease;
 }
 
     .navbar-nav .nav-link:hover {
-        color: #ffeb3b;
+        color: #007bff;
     }
 
 .navbar-nav .dropdown-menu {
-    background-color: #007bff;
-    border: none;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
     .navbar-nav .dropdown-menu .dropdown-item {
-        color: #fff;
+        color: #333;
         transition: background-color 0.3s ease, color 0.3s ease;
     }
 
         .navbar-nav .dropdown-menu .dropdown-item:hover {
-            background-color: #0056b3;
-            color: #ffeb3b;
+            background-color: #f8f9fa;
+            color: #007bff;
         }
 
 .form-inline .form-control {
