@@ -30,6 +30,11 @@
             background-color: #ffffff;
             margin-bottom: 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .search-results .result-item:hover {
+            transform: translateY(-5px);
         }
 
         .search-results .result-item h3 {
@@ -51,7 +56,7 @@
         }
 
         mark {
-            background-color: yellow;
+            background-color: #ffff99;
             color: black;
         }
 
@@ -78,19 +83,17 @@
 
             // Suche in Blog-Beiträgen
             echo "<h2>Beiträge und Meldungen</h2>";
-            $stmt = $conn->prepare("SELECT title FROM blog_posts WHERE title LIKE ? OR content LIKE ?");
+            $stmt = $conn->prepare("SELECT id, title FROM blog_posts WHERE title LIKE ? OR content LIKE ?");
             $stmt->bind_param("ss", $search, $search);
             $stmt->execute();
             $result = $stmt->get_result();
 
-            $blogIndex = 1;
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     echo "<div class='result-item'>";
-                    echo "<h3>Ergebnis $blogIndex: " . $row['title'] . "</h3>";
+                    echo "<h3>" . $row['title'] . "</h3>";
                     echo "<a href='blog-details.php?id=" . $row['id'] . "' class='btn btn-primary mt-2'>Weiterlesen</a>";
                     echo "</div>";
-                    $blogIndex++;
                 }
             } else {
                 echo "<p>Keine Beiträge oder Meldungen gefunden.</p>";
@@ -103,14 +106,12 @@
 
             if (!empty($indexResults)) {
                 echo "<h2>Hauptseite</h2>";
-                $pageIndex = 1;
                 foreach ($indexResults as $result) {
                     echo "<div class='result-item'>";
-                    echo "<h3>Ergebnis $pageIndex: Gefunden auf der Hauptseite</h3>";
+                    echo "<h3>Gefunden auf der Hauptseite</h3>";
                     echo "<p>" . $result['line'] . "...</p>";
                     echo "<br><a href='/index.php?query=" . urlencode($query) . "#line-" . $result['line_number'] . "' class='btn btn-primary mt-2'>Zum Seiteninhalt springen</a>";
                     echo "</div>";
-                    $pageIndex++;
                 }
             } else {
                 echo "<p>Keine relevanten Inhalte auf der Hauptseite gefunden.</p>";
