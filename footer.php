@@ -30,12 +30,6 @@
 
             <!-- Social Media and Additional Links -->
             <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
-                <h5 class="text-uppercase">Folgen Sie uns:</h5>
-                <a href="#" class="me-3"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="me-3"><i class="fab fa-youtube"></i></a>
-                <a href="#" class="me-3"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-tiktok"></i></a>
                 <h5 class="text-uppercase mt-3">Nützliche Links:</h5>
                 <ul class="list-unstyled">
                     <li><a href="#!">Home</a></li>
