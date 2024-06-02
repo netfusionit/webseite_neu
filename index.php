@@ -350,7 +350,7 @@
                     echo "<div class='card blog-item'>";
                     echo "<img src='assets/img/" . $row['image'] . "' class='card-img-top' alt=''>";
                     echo "<div class='card-body'>";
-                    echo "<h5 class='card-title'><a href='blog-details.php?id=" . $row['id'] . "'>" . $row['title'] . "</a></h5>";
+                    echo "<h5 class='card-title'><a href='aktuelles-details.php?id=" . $row['id'] . "'>" . $row['title'] . "</a></h5>";
                     echo "<p class='card-text'>" . substr($row['content'], 0, 100) . "...</p>";
                     echo "<p class='card-text'><small class='text-muted'>Erstellt am: " . date('d.m.Y', strtotime($row['created_at'])) . "</small></p>";
 

@@ -188,7 +188,7 @@
                     echo "<div class='col-md-4'>";
                     echo "<div class='blog-post'>";
                     echo "<img src='assets/img/" . htmlspecialchars($row['image'], ENT_QUOTES, 'UTF-8') . "' class='img-fluid' alt=''>";
-                    echo "<h2><a href='aktuelles.php?id=" . $row['id'] . "'>" . htmlspecialchars($row['title'], ENT_QUOTES, 'UTF-8') . "</a></h2>";
+                    echo "<h2><a href='aktuelles-details.php?id=" . $row['id'] . "'>" . htmlspecialchars($row['title'], ENT_QUOTES, 'UTF-8') . "</a></h2>";
                     echo "<p>" . nl2br(substr($row['content'], 0, 100)) . "...</p>";
                     echo "<small>Erstellt am: " . date('d.m.Y', strtotime($row['created_at'])) . "</small>";
                     echo "<small>Autor: " . htmlspecialchars($row['author'], ENT_QUOTES, 'UTF-8') . "</small>";
