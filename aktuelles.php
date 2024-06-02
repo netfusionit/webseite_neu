@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aktuelles - NetFusionIT</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Alle Aktuellen Meldungen im Überblick - NetFusionIT</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-</head>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -81,6 +81,19 @@
             font-size: 1.2rem;
             color: #6c757d;
         }
+        .reset-button {
+            background-color: #6c757d;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+        .reset-button:hover {
+            background-color: #5a6268;
+        }
     </style>
 </head>
 <body>
@@ -92,7 +105,6 @@
         <!-- Filter Button -->
         <div class="filter-button">
             <button id="filter-toggle"><i class="fas fa-filter"></i> Filter</button>
-            <button id="filter-reset" class="btn btn-danger">Filter zurücksetzen</button>
         </div>
         
         <!-- Filterformular -->
@@ -132,6 +144,7 @@
                 </div>
                 <div class="col-md-3">
                     <button type="submit" class="btn btn-primary btn-block">Filtern</button>
+                    <button type="button" id="filter-reset" class="reset-button btn btn-block">Filter zurücksetzen</button>
                 </div>
             </div>
         </form>
@@ -175,8 +188,8 @@
                     echo "<div class='col-md-4'>";
                     echo "<div class='blog-post'>";
                     echo "<img src='assets/img/" . htmlspecialchars($row['image'], ENT_QUOTES, 'UTF-8') . "' class='img-fluid' alt=''>";
-                    echo "<h2><a href='blog-details.php?id=" . $row['id'] . "'>" . htmlspecialchars($row['title'], ENT_QUOTES, 'UTF-8') . "</a></h2>";
-                    echo "<p>" . nl2br(htmlspecialchars(substr($row['content'], 0, 100), ENT_QUOTES, 'UTF-8')) . "...</p>";
+                    echo "<h2><a href='aktuelles.php?id=" . $row['id'] . "'>" . htmlspecialchars($row['title'], ENT_QUOTES, 'UTF-8') . "</a></h2>";
+                    echo "<p>" . nl2br(substr($row['content'], 0, 100)) . "...</p>";
                     echo "<small>Erstellt am: " . date('d.m.Y', strtotime($row['created_at'])) . "</small>";
                     echo "<small>Autor: " . htmlspecialchars($row['author'], ENT_QUOTES, 'UTF-8') . "</small>";
                     echo "<p><span class='badge badge-category'>" . htmlspecialchars($row['category'], ENT_QUOTES, 'UTF-8') . "</span></p>";
@@ -207,7 +220,7 @@
             <nav aria-label="Page navigation">
                 <ul class="pagination justify-content-center">
                     <?php for ($i = 1; $i <= $pages; $i++): ?>
-                        <li class="page-item <?php if ($i == $page) echo 'active'; ?>"><a class="page-link" href="blog.php?page=<?= $i; ?>"><?= $i; ?></a></li>
+                        <li class="page-item <?php if ($i == $page) echo 'active'; ?>"><a class="page-link" href="aktuelles.php?page=<?= $i; ?>"><?= $i; ?></a></li>
                     <?php endfor; ?>
                 </ul>
             </nav>
@@ -228,7 +241,7 @@
             });
 
             filterReset.click(function(){
-                window.location.href = 'blog.php';
+                window.location.href = 'aktuelles.php';
             });
 
             // Show filter form if there are active filters
