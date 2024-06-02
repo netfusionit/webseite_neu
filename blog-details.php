@@ -255,95 +255,97 @@
     </style>
 </head>
 <body>
-    <?php include 'header.php'; ?>
-    <div class="container mt-5">
-        <button onclick="history.back()" class="btn btn-secondary mb-4">Zurück zur vorherigen Seite</button>
-        <?php
-        include 'db.php';
-        if (isset($_GET['id'])) {
-            $id = intval($_GET['id']);
-            $result = $conn->query("SELECT * FROM blog_posts WHERE id = $id");
-            if ($row = $result->fetch_assoc()) {
-                echo "<h1 class='mb-4'>" . $row['title'] . "</h1>";
-                echo "<img src='assets/img/" . $row['image'] . "' class='img-fluid blog-image' alt=''>";
-                echo "<div class='blog-content-box mt-4'>";
-                echo "<h2 class='blog-title'>" . $row['title'] . "</h2>";
-                echo "<div class='blog-content-meta'>";
-                echo "<small class='text-muted'>Erstellt am: " . date('d.m.Y H:i', strtotime($row['created_at'])) . " | Letzte Aktualisierung: " . date('d.m.Y H:i', strtotime($row['updated_at'])) . " | Autor: " . $row['author'] . "</small>";
-                echo "<div class='categories'>";
-                $categories = explode(',', $row['category']);
-                foreach ($categories as $category) {
-                    echo "<span>$category</span>";
-                }
-                echo "</div>";
-                echo "</div>";
-                echo "<div class='blog-content'>" . $row['content'] . "</div>";
-                echo "<div class='blog-footer bg-dark-footer'>";
-                echo "<div class='tags'>";
-                $tags = explode(',', $row['tags']);
-                foreach ($tags as $tag) {
-                    echo "<span>$tag</span>";
-                }
-                echo "</div>";
-                echo "<div class='reaction' id='reactions-footer'>";
-                $reactions = ['like' => 'bi-hand-thumbs-up', 'love' => 'bi-heart', 'wow' => 'bi-emoji-sunglasses', 'sad' => 'bi-emoji-frown'];
-                foreach ($reactions as $reaction => $icon) {
-                    echo "<span class='bi $icon' data-reaction='$reaction' data-blog-id='$id'><span class='count'></span></span>";
-                }
-                echo "</div>";
-                echo "</div>";
-                echo "</div>";
-
-                // Kommentarformular
-                echo "<h3 class='mt-5'>Kommentare</h3>";
-                echo "<div class='toggle-comment'>";
-                echo "<h3>Neuer Kommentar</h3><i class='fas fa-chevron-up toggle-icon'></i>";
-                echo "</div>";
-                echo "<div class='comment-form'>";
-                echo "<form action='add_comment.php' method='post'>";
-                echo "<input type='hidden' name='blog_id' value='$id'>";
-                echo "<div class='form-group'>";
-                echo "<label for='author'>Name</label>";
-                echo "<input type='text' class='form-control' id='author' name='author' required>";
-                echo "</div>";
-                echo "<div class='form-group'>";
-                echo "<label for='email'>Email</label>";
-                echo "<input type='email' class='form-control' id='email' name='email' required>";
-                echo "</div>";
-                echo "<div class='form-group'>";
-                echo "<label for='comment'>Kommentar</label>";
-                echo "<textarea class='form-control' id='comment' name='comment' rows='3' required></textarea>";
-                echo "</div>";
-                echo "<button type='submit' class='btn btn-primary'>Kommentar hinzufügen</button>";
-                echo "</form>";
-                echo "</div>";
-
-                // Kommentare anzeigen
-                echo "<div id='comments-container'>";
-                $comment_result = $conn->query("SELECT * FROM comments WHERE blog_id = $id ORDER BY created_at DESC LIMIT 3");
-                while ($comment = $comment_result->fetch_assoc()) {
-                    echo "<div class='comment-box'>";
-                    echo "<h5>" . $comment['author'] . "</h5>";
-                    echo "<small>Kommentiert am: " . date('d.m.Y H:i', strtotime($comment['created_at'])) . "</small>";
-                    echo "<p>" . $comment['comment'] . "</p>";
-                    echo "<div class='comment-reaction' id='comment-reaction-" . $comment['id'] . "'>";
-                    echo "<span class='bi bi-hand-thumbs-up' data-reaction='like' data-comment-id='" . $comment['id'] . "'></span>";
-                    echo "<span class='count'>" . $comment['like_count'] . "</span>";
-                    echo "<span class='bi bi-hand-thumbs-down' data-reaction='dislike' data-comment-id='" . $comment['id'] . "'></span>";
-                    echo "<span class='count'>" . $comment['dislike_count'] . "</span>";
-                    echo "</div>";
-                    echo "</div>";
-                }
-                echo "</div>";
-                echo "<button id='load-more-comments' class='btn btn-secondary mt-3'>Weitere Kommentare laden</button>";
-            } else {
-                echo "<p>Blogeintrag nicht gefunden.</p>";
+<?php include 'header.php'; ?>
+<div class="container mt-5">
+    <button onclick="history.back()" class="btn btn-secondary mb-4">Zurück zur vorherigen Seite</button>
+    <?php
+    include 'db.php';
+    if (isset($_GET['id'])) {
+        $id = intval($_GET['id']);
+        $result = $conn->query("SELECT * FROM blog_posts WHERE id = $id");
+        if ($row = $result->fetch_assoc()) {
+            echo "<h1 class='mb-4'>" . $row['title'] . "</h1>";
+            echo "<img src='assets/img/" . $row['image'] . "' class='img-fluid blog-image' alt=''>";
+            echo "<div class='blog-content-box mt-4'>";
+            echo "<h2 class='blog-title'>" . $row['title'] . "</h2>";
+            echo "<div class='blog-content-meta'>";
+            echo "<small class='text-muted'>Erstellt am: " . date('d.m.Y H:i', strtotime($row['created_at'])) . " | Letzte Aktualisierung: " . date('d.m.Y H:i', strtotime($row['updated_at'])) . " | Autor: " . $row['author'] . "</small>";
+            echo "<div class='categories'>";
+            $categories = explode(',', $row['category']);
+            foreach ($categories as $category) {
+                echo "<span>$category</span>";
             }
+            echo "</div>";
+            echo "</div>";
+            echo "<div class='blog-content'>" . $row['content'] . "</div>";
+            echo "<div class='blog-footer bg-dark-footer'>";
+            echo "<div class='tags'>";
+            $tags = explode(',', $row['tags']);
+            foreach ($tags as $tag) {
+                echo "<span>$tag</span>";
+            }
+            echo "</div>";
+            echo "<div class='reaction' id='reactions-footer'>";
+            $reactions = ['like' => 'bi-hand-thumbs-up', 'love' => 'bi-heart', 'wow' => 'bi-emoji-sunglasses', 'sad' => 'bi-emoji-frown'];
+            foreach ($reactions as $reaction => $icon) {
+                echo "<span class='bi $icon' data-reaction='$reaction' data-blog-id='$id'></span>";
+                echo "<span class='count'></span>";
+            }
+            echo "</div>";
+            echo "</div>";
+            echo "</div>";
+
+            // Kommentarformular
+            echo "<h3 class='mt-5'>Kommentare</h3>";
+            echo "<div class='toggle-comment'>";
+            echo "<h3>Neuer Kommentar</h3><i class='fas fa-chevron-up toggle-icon'></i>";
+            echo "</div>";
+            echo "<div class='comment-form'>";
+            echo "<form action='add_comment.php' method='post'>";
+            echo "<input type='hidden' name='blog_id' value='$id'>";
+            echo "<div class='form-group'>";
+            echo "<label for='author'>Name</label>";
+            echo "<input type='text' class='form-control' id='author' name='author' required>";
+            echo "</div>";
+            echo "<div class='form-group'>";
+            echo "<label for='email'>Email</label>";
+            echo "<input type='email' class='form-control' id='email' name='email' required>";
+            echo "</div>";
+            echo "<div class='form-group'>";
+            echo "<label for='comment'>Kommentar</label>";
+            echo "<textarea class='form-control' id='comment' name='comment' rows='3' required></textarea>";
+            echo "</div>";
+            echo "<button type='submit' class='btn btn-primary'>Kommentar hinzufügen</button>";
+            echo "</form>";
+            echo "</div>";
+
+            // Kommentare anzeigen
+            echo "<div id='comments-container'>";
+            $comment_result = $conn->query("SELECT * FROM comments WHERE blog_id = $id ORDER BY created_at DESC LIMIT 3");
+            while ($comment = $comment_result->fetch_assoc()) {
+                echo "<div class='comment-box'>";
+                echo "<h5>" . $comment['author'] . "</h5>";
+                echo "<small>Kommentiert am: " . date('d.m.Y H:i', strtotime($comment['created_at'])) . "</small>";
+                echo "<p>" . $comment['comment'] . "</p>";
+                echo "<div class='comment-reaction' id='comment-reaction-" . $comment['id'] . "'>";
+                echo "<span class='bi bi-hand-thumbs-up' data-reaction='like' data-comment-id='" . $comment['id'] . "'></span>";
+                echo "<span class='count'>" . $comment['like_count'] . "</span>";
+                echo "<span class='bi bi-hand-thumbs-down' data-reaction='dislike' data-comment-id='" . $comment['id'] . "'></span>";
+                echo "<span class='count'>" . $comment['dislike_count'] . "</span>";
+                echo "</div>";
+                echo "</div>";
+            }
+            echo "</div>";
+            echo "<button id='load-more-comments' class='btn btn-secondary mt-3'>Weitere Kommentare laden</button>";
         } else {
-            echo "<p>Ungültige Anfrage.</p>";
+            echo "<p>Blogeintrag nicht gefunden.</p>";
         }
-        ?>
-    </div>
+    } else {
+        echo "<p>Ungültige Anfrage.</p>";
+    }
+    ?>
+</div>
+
     <br>
     <!-- Blog Section -->
     <section id="blog" class="blog section py-5">
