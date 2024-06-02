@@ -392,7 +392,7 @@
     </section><!-- /Blog Section -->
 
 <!-- Contact Section -->
-<section id="contact" class="contact section bg-dark text-light py-5">
+<section id="contact" class="contact section py-5" style="background: #f4f4f9;">
     <div class="container">
         <div class="section-title text-center" data-aos="fade-up">
             <h2>Kontakt</h2>
@@ -444,7 +444,8 @@
                         <textarea class="form-control" name="message" rows="5" placeholder="Nachricht" required></textarea>
                     </div>
                     <div class="form-group mt-3">
-                        <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY" data-callback="recaptchaCallback"></div>
+                        <label for="security-question">Sicherheitsfrage: Was ist 3 + 5?</label>
+                        <input type="text" class="form-control" name="security-answer" id="security-answer" placeholder="Antwort" required>
                     </div>
                     <div class="my-3">
                         <div class="loading">Wird geladen...</div>
@@ -511,18 +512,13 @@
     // AOS Initialization
     AOS.init();
 
-    // Enable submit button when reCAPTCHA is verified and form is valid
-    function recaptchaCallback() {
-        checkFormValidity();
-    }
-
-    // Check form validity
+    // Enable submit button when security question is answered correctly and form is valid
     function checkFormValidity() {
         const form = document.getElementById('contact-form');
         const submitButton = document.getElementById('submit-button');
-        const recaptchaResponse = grecaptcha.getResponse();
+        const securityAnswer = document.getElementById('security-answer').value;
 
-        if (form.checkValidity() && recaptchaResponse) {
+        if (form.checkValidity() && securityAnswer.trim() === '8') {
             submitButton.disabled = false;
         } else {
             submitButton.disabled = true;

@@ -4,30 +4,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = htmlspecialchars($_POST['email']);
     $subject = htmlspecialchars($_POST['subject']);
     $message = htmlspecialchars($_POST['message']);
-    $recaptcha_response = $_POST['g-recaptcha-response'];
+    $security_answer = htmlspecialchars($_POST['security-answer']);
 
-    // Verify the reCAPTCHA response
-    $recaptcha_secret = 'YOUR_SECRET_KEY';
-    $recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
-    $recaptcha_data = array(
-        'secret' => $recaptcha_secret,
-        'response' => $recaptcha_response
-    );
-
-    $options = array(
-        'http' => array(
-            'header'  => "Content-Type: application/x-www-form-urlencoded\r\n",
-            'method'  => 'POST',
-            'content' => http_build_query($recaptcha_data),
-        ),
-    );
-
-    $context  = stream_context_create($options);
-    $result = file_get_contents($recaptcha_url, false, $context);
-    $response = json_decode($result, true);
-
-    if ($response['success'] === true) {
-        // reCAPTCHA was successfully validated
+    // Validate the security question
+    if ($security_answer === '8') {
+        // Send the email
         $to = "kontakt@netfusionit.de";
         $headers = "From: $email" . "\r\n" .
                    "Reply-To: $email" . "\r\n" .
@@ -37,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (mail($to, $subject, $email_message, $headers)) {
             // Send confirmation email to the sender
             $confirmation_subject = "Bestätigung Ihrer Kontaktanfrage";
-            $confirmation_message = "Vielen Dank für Ihre E-Mail. Wir melden uns schnellstmöglich zurück.";
+            $confirmation_message = "Vielen Dank, $name, dass Sie uns kontaktiert haben. Wir haben Ihre Nachricht erhalten und melden uns schnellstmöglich zurück.\n\nMit freundlichen Grüßen,\nIhr Team von NetFusion IT";
             $confirmation_headers = "From: kontakt@netfusionit.de" . "\r\n" .
                                     "Reply-To: kontakt@netfusionit.de" . "\r\n" .
                                     "X-Mailer: PHP/" . phpversion();
@@ -49,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "Fehler beim Senden der Nachricht.";
         }
     } else {
-        echo "Ungültige reCAPTCHA-Bestätigung.";
+        echo "Ungültige Sicherheitsantwort.";
     }
 }
 ?>

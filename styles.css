@@ -621,26 +621,29 @@ body {
 
 /* Contact Section */
 .contact {
-    background: #2c3e50;
-    color: #ecf0f1;
+    background: #f4f4f9;
+    color: #333;
 }
 .section-title h2 {
     font-size: 36px;
     margin-bottom: 10px;
     position: relative;
     padding-bottom: 15px;
+    color: #333;
 }
 .section-title p {
     margin-bottom: 0;
+    color: #666;
 }
 .info-item {
-    background: #34495e;
+    background: #fff;
     padding: 20px;
     border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: background 0.3s ease;
 }
 .info-item:hover {
-    background: #3b5998;
+    background: #e9ecef;
 }
 .icon-animated {
     font-size: 24px;
