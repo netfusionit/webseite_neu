@@ -391,62 +391,66 @@
         </div>
     </section><!-- /Blog Section -->
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact section bg-alt-2 py-5">
-        <div class="container section-title text-center" data-aos="fade-up">
-            <h2>Kontakt</h2>
-            <p>Kontaktieren Sie uns für weitere Informationen</p>
-        </div>
-        <div class="container">
-            <div class="row gy-4">
-                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                    <div class="info-item d-flex align-items-start">
-                        <i class="bi bi-geo-alt flex-shrink-0"></i>
-                        <div>
-                            <h3>Unsere Adresse</h3>
-                            <p>A108 Adam Street, New York, NY 535022</p>
-                        </div>
-                    </div>
-                    <div class="info-item d-flex align-items-start">
-                        <i class="bi bi-envelope flex-shrink-0"></i>
-                        <div>
-                            <h3>Email</h3>
-                            <p>info@example.com</p>
-                        </div>
-                    </div>
-                    <div class="info-item d-flex align-items-start">
-                        <i class="bi bi-phone flex-shrink-0"></i>
-                        <div>
-                            <h3>Telefon</h3>
-                            <p>+1 5589 55488 55</p>
-                        </div>
+<!-- Contact Section -->
+<section id="contact" class="contact section bg-alt-2 py-5">
+    <div class="container section-title text-center" data-aos="fade-up">
+        <h2>Kontakt</h2>
+        <p>Kontaktieren Sie uns für weitere Informationen</p>
+    </div>
+    <div class="container">
+        <div class="row gy-4">
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="info-item d-flex align-items-start mb-4">
+                    <i class="bi bi-geo-alt flex-shrink-0 icon-animated"></i>
+                    <div class="ms-3">
+                        <h3>Unsere Adresse</h3>
+                        <p>A108 Adam Street, New York, NY 535022</p>
                     </div>
                 </div>
-                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-                    <form action="send_email.php" method="post" class="php-email-form">
-                        <div class="form-group">
-                            <input type="text" name="name" class="form-control" id="name" placeholder="Ihr Name" required>
-                        </div>
-                        <div class="form-group mt-3">
-                            <input type="email" class="form-control" name="email" id="email" placeholder="Ihre Email" required>
-                        </div>
-                        <div class="form-group mt-3">
-                            <input type="text" class="form-control" name="subject" id="subject" placeholder="Betreff" required>
-                        </div>
-                        <div class="form-group mt-3">
-                            <textarea class="form-control" name="message" rows="5" placeholder="Nachricht" required></textarea>
-                        </div>
-                        <div class="my-3">
-                            <div class="loading">Wird geladen...</div>
-                            <div class="error-message"></div>
-                            <div class="sent-message">Ihre Nachricht wurde gesendet. Vielen Dank!</div>
-                        </div>
-                        <div class="text-center"><button type="submit">Nachricht senden</button></div>
-                    </form>
+                <div class="info-item d-flex align-items-start mb-4">
+                    <i class="bi bi-envelope flex-shrink-0 icon-animated"></i>
+                    <div class="ms-3">
+                        <h3>Email</h3>
+                        <p>info@example.com</p>
+                    </div>
+                </div>
+                <div class="info-item d-flex align-items-start mb-4">
+                    <i class="bi bi-phone flex-shrink-0 icon-animated"></i>
+                    <div class="ms-3">
+                        <h3>Telefon</h3>
+                        <p>+1 5589 55488 55</p>
+                    </div>
                 </div>
             </div>
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                <form action="send_email.php" method="post" class="php-email-form">
+                    <div class="form-group">
+                        <input type="text" name="name" class="form-control" id="name" placeholder="Ihr Name" required>
+                    </div>
+                    <div class="form-group mt-3">
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Ihre Email" required>
+                    </div>
+                    <div class="form-group mt-3">
+                        <input type="text" class="form-control" name="subject" id="subject" placeholder="Betreff" required>
+                    </div>
+                    <div class="form-group mt-3">
+                        <textarea class="form-control" name="message" rows="5" placeholder="Nachricht" required></textarea>
+                    </div>
+                    <div class="form-group mt-3">
+                        <div class="g-recaptcha" data-sitekey="6LfSEO8pAAAAABhkzxzN2q_m3R1xcecaOtH5vxbm"></div>
+                    </div>
+                    <div class="my-3">
+                        <div class="loading">Wird geladen...</div>
+                        <div class="error-message"></div>
+                        <div class="sent-message">Ihre Nachricht wurde gesendet. Vielen Dank!</div>
+                    </div>
+                    <div class="text-center"><button type="submit">Nachricht senden</button></div>
+                </form>
+            </div>
         </div>
-    </section><!-- /Contact Section -->
+    </div>
+</section>
+<!-- /Contact Section -->
 
     <?php include 'footer.php'; ?>
 

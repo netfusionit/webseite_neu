@@ -68,7 +68,7 @@ body {
     }
 }
 
-/* Wechselnde Hintergründe für Abschnitte */
+/* Wechselnde Hintergrï¿½nde fï¿½r Abschnitte */
 .bg-alt-1 {
     background-color: #f8f9fa;
 }
@@ -620,35 +620,30 @@ body {
         }
 
 /* Contact Section */
-.contact {
-    padding: 60px 0;
+.icon-animated {
+    transition: transform 0.3s ease;
 }
-
-    .contact .info-item {
-        background: #f7f7f7;
-        padding: 20px;
-        margin-bottom: 20px;
-        border-radius: 5px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        text-align: center;
-    }
-
-        .contact .info-item i {
-            font-size: 36px;
-            color: var(--accent-color);
-            margin-bottom: 10px;
-        }
-
-        .contact .info-item h3 {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .contact .info-item p {
-            margin-bottom: 0;
-            font-size: 14px;
-        }
+.icon-animated:hover {
+    transform: scale(1.1);
+}
+.php-email-form .loading {
+    display: none;
+    background: url('loading.gif') no-repeat center;
+    background-size: contain;
+}
+.php-email-form .error-message, .php-email-form .sent-message {
+    display: none;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.php-email-form .error-message {
+    background: #ed3c0d;
+}
+.php-email-form .sent-message {
+    background: #18d26e;
+}
 
 .php-email-form {
     width: 100%;
