@@ -35,10 +35,7 @@
     <div id="tickerMessage" class="bg-warning text-dark text-center py-2">
         <p class="mb-0" id="tickerContent"></p>
     </div>
-    <div class="alert alert-primary" role="alert">
-        Willkommen bei NetFusionIT! <br>
-        Unsere Webseite befindet sich derzeit im Aufbau!
-    </div>
+
     
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
