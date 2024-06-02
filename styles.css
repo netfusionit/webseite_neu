@@ -621,8 +621,8 @@ body {
 
 /* Contact Section */
 .contact {
-    background: #f4f4f9;
-    color: #333;
+    background: #e0f7fa;
+    color: #666;
 }
 .section-title h2 {
     font-size: 36px;
@@ -653,6 +653,12 @@ body {
 .icon-animated:hover {
     transform: scale(1.1);
     color: #2980b9;
+}
+.contact-form-box {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 .php-email-form .form-group {
     margin-bottom: 15px;

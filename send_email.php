@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate the security question
     if ($security_answer === '8') {
         // Send the email
-        $to = "kontakt@netfusionit.de";
+        $to = "info@netfusionit.de";
         $headers = "From: $email" . "\r\n" .
                    "Reply-To: $email" . "\r\n" .
                    "X-Mailer: PHP/" . phpversion();

@@ -430,37 +430,40 @@
                 </div>
             </div>
             <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-                <form action="send_email.php" method="post" class="php-email-form" id="contact-form">
-                    <div class="form-group">
-                        <input type="text" name="name" class="form-control" id="name" placeholder="Ihr Name" required>
-                    </div>
-                    <div class="form-group mt-3">
-                        <input type="email" class="form-control" name="email" id="email" placeholder="Ihre Email" required>
-                    </div>
-                    <div class="form-group mt-3">
-                        <input type="text" class="form-control" name="subject" id="subject" placeholder="Betreff" required>
-                    </div>
-                    <div class="form-group mt-3">
-                        <textarea class="form-control" name="message" rows="5" placeholder="Nachricht" required></textarea>
-                    </div>
-                    <div class="form-group mt-3">
-                        <label for="security-question">Sicherheitsfrage: Was ist 3 + 5?</label>
-                        <input type="text" class="form-control" name="security-answer" id="security-answer" placeholder="Antwort" required>
-                    </div>
-                    <div class="my-3">
-                        <div class="loading">Wird geladen...</div>
-                        <div class="error-message"></div>
-                        <div class="sent-message">Ihre Nachricht wurde gesendet. Vielen Dank!</div>
-                    </div>
-                    <div class="text-center">
-                        <button type="submit" id="submit-button" class="btn btn-primary" disabled>Nachricht senden</button>
-                    </div>
-                </form>
+                <div class="contact-form-box p-4">
+                    <form action="send_email.php" method="post" class="php-email-form" id="contact-form">
+                        <div class="form-group">
+                            <input type="text" name="name" class="form-control" id="name" placeholder="Ihr Name" required>
+                        </div>
+                        <div class="form-group mt-3">
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Ihre Email" required>
+                        </div>
+                        <div class="form-group mt-3">
+                            <input type="text" class="form-control" name="subject" id="subject" placeholder="Betreff" required>
+                        </div>
+                        <div class="form-group mt-3">
+                            <textarea class="form-control" name="message" rows="5" placeholder="Nachricht" required></textarea>
+                        </div>
+                        <div class="form-group mt-3">
+                            <label for="security-question">Sicherheitsfrage: Was ist 3 + 5?</label>
+                            <input type="text" class="form-control" name="security-answer" id="security-answer" placeholder="Antwort" required>
+                        </div>
+                        <div class="my-3">
+                            <div class="loading">Wird geladen...</div>
+                            <div class="error-message"></div>
+                            <div class="sent-message">Ihre Nachricht wurde gesendet. Vielen Dank!</div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" id="submit-button" class="btn btn-primary" disabled>Nachricht senden</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 </section>
 <!-- /Contact Section -->
+
     <?php include 'footer.php'; ?>
 
     <!-- Scroll Top -->
