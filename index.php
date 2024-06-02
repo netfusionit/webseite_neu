@@ -392,21 +392,14 @@
     </section><!-- /Blog Section -->
 
 <!-- Contact Section -->
-<section id="contact" class="contact section bg-alt-2 py-5">
-    <div class="container section-title text-center" data-aos="fade-up">
-        <h2>Kontakt</h2>
-        <p>Kontaktieren Sie uns für weitere Informationen</p>
-    </div>
+<section id="contact" class="contact section bg-dark text-light py-5">
     <div class="container">
+        <div class="section-title text-center" data-aos="fade-up">
+            <h2>Kontakt</h2>
+            <p>Wir freuen uns von Ihnen zu hören</p>
+        </div>
         <div class="row gy-4">
             <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                <div class="info-item d-flex align-items-start mb-4">
-                    <i class="bi bi-geo-alt flex-shrink-0 icon-animated"></i>
-                    <div class="ms-3">
-                        <h3>Unsere Adresse</h3>
-                        <p>A108 Adam Street, New York, NY 535022</p>
-                    </div>
-                </div>
                 <div class="info-item d-flex align-items-start mb-4">
                     <i class="bi bi-envelope flex-shrink-0 icon-animated"></i>
                     <div class="ms-3">
@@ -419,6 +412,20 @@
                     <div class="ms-3">
                         <h3>Telefon</h3>
                         <p>+1 5589 55488 55</p>
+                    </div>
+                </div>
+                <div class="info-item d-flex align-items-start mb-4">
+                    <i class="bi bi-clock flex-shrink-0 icon-animated"></i>
+                    <div class="ms-3">
+                        <h3>Öffnungszeiten</h3>
+                        <p>Mo - Fr: 9:00 - 18:00</p>
+                    </div>
+                </div>
+                <div class="info-item d-flex align-items-start mb-4">
+                    <i class="bi bi-chat flex-shrink-0 icon-animated"></i>
+                    <div class="ms-3">
+                        <h3>Live Chat</h3>
+                        <p>Starten Sie einen Chat mit unserem Support</p>
                     </div>
                 </div>
             </div>
@@ -437,7 +444,7 @@
                         <textarea class="form-control" name="message" rows="5" placeholder="Nachricht" required></textarea>
                     </div>
                     <div class="form-group mt-3">
-                        <div class="g-recaptcha" data-sitekey="6LfSEO8pAAAAABhkzxzN2q_m3R1xcecaOtH5vxbm" data-callback="recaptchaCallback"></div>
+                        <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY" data-callback="recaptchaCallback"></div>
                     </div>
                     <div class="my-3">
                         <div class="loading">Wird geladen...</div>
@@ -452,7 +459,7 @@
         </div>
     </div>
 </section>
-
+<!-- /Contact Section -->
     <?php include 'footer.php'; ?>
 
     <!-- Scroll Top -->
