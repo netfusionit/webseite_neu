@@ -112,7 +112,7 @@
                     echo "<div class='result-item'>";
                     echo "<h3>Ergebnis $pageIndex: Gefunden auf der Hauptseite</h3>";
                     echo "<p>" . $result['line'] . "...</p>";
-                    echo "<br><a href='/index.php#line-" . $result['line_number'] . "' class='btn btn-primary mt-2'>Zum Seiteninhalt springen</a>";
+                    echo "<br><a href='/index.php?query=" . urlencode($query) . "#line-" . $result['line_number'] . "' class='btn btn-primary mt-2'>Zum Seiteninhalt springen</a>";
                     echo "</div>";
                     $pageIndex++;
                 }

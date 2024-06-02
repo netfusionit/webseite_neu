@@ -534,14 +534,47 @@
 </script>
 
 <script>
+document.addEventListener("DOMContentLoaded", function() {
+    const params = new URLSearchParams(window.location.search);
+    const query = params.get('query');
+    if (window.location.hash.startsWith("#line-")) {
+        const lineNumber = window.location.hash.split("-")[1];
+        const lines = document.body.innerText.split('\n');
+        const targetLine = lines[lineNumber - 1];
+        if (targetLine) {
+            // Highlight the query in the entire document
+            document.body.innerHTML = document.body.innerHTML.replace(new RegExp(query, 'gi'), match => `<mark>${match}</mark>`);
 
-<?php
-$lines = explode("\n", file_get_contents(__FILE__));
-foreach ($lines as $lineNumber => $line) {
-    echo "<div data-line-number='" . ($lineNumber + 1) . "'>" . htmlspecialchars($line) . "</div>";
-}
-?>
+            // Scroll to the specific line
+            const range = document.createRange();
+            const textNodes = [...document.body.childNodes].filter(node => node.nodeType === Node.TEXT_NODE);
+            let startNode, endNode, startOffset, endOffset, accumulatedLength = 0;
+            
+            textNodes.some(node => {
+                const nodeLength = node.textContent.length;
+                if (accumulatedLength + nodeLength >= lineNumber) {
+                    startNode = node;
+                    startOffset = lineNumber - accumulatedLength;
+                    endNode = node;
+                    endOffset = startOffset + query.length;
+                    return true;
+                }
+                accumulatedLength += nodeLength;
+            });
 
+            if (startNode && endNode) {
+                range.setStart(startNode, startOffset);
+                range.setEnd(endNode, endOffset);
+                const rect = range.getBoundingClientRect();
+                window.scrollTo({
+                    top: window.scrollY + rect.top - window.innerHeight / 2,
+                    behavior: "smooth"
+                });
+            }
+        }
+    }
+});
+</script>
 
 </body>
 </html>
