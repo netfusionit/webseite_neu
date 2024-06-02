@@ -185,7 +185,6 @@
         }
 
         .blog-section {
-            background-color: #e9ecef;
             padding: 40px 0;
         }
 
@@ -216,8 +215,6 @@
         }
 
         .bg-dark-footer {
-            background-color: #343a40;
-            color: #ffffff;
             padding: 10px;
             border-radius: 10px;
         }
@@ -349,10 +346,10 @@
     </div>
     <br>
     <!-- Blog Section -->
-    <section id="blog" class="blog section bg-dark py-5">
+    <section id="blog" class="blog section py-5">
         <div class="container section-title text-center" data-aos="fade-up">
-            <h2 class="text-white">Aktuelle Meldungen</h2>
-            <p class="text-light">Lesen Sie unsere neuesten Nachrichten und Updates</p>
+            <h2>Aktuelle Meldungen</h2>
+            <p>Lesen Sie unsere neuesten Nachrichten und Updates</p>
         </div>
         <div class="container">
             <div class="row gy-3">
