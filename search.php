@@ -5,35 +5,115 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suche - NetFusionIT</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .search-results {
+            margin-top: 20px;
+        }
+
+        .search-results h2 {
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+
+        .search-results .result-item {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #ffffff;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-results .result-item h3 {
+            margin-bottom: 10px;
+        }
+
+        .search-results .result-item p {
+            margin-bottom: 10px;
+        }
+
+        .search-results .result-item a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .search-results .result-item a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 767px) {
+            .search-results .result-item {
+                padding: 15px;
+            }
+
+            .search-results h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <?php include 'header.php'; ?>
     <div class="container mt-5">
         <h1>Suchergebnisse</h1>
-        <?php
-        include 'db.php';
-        $query = $_GET['query'];
-        $stmt = $conn->prepare("SELECT * FROM blog_posts WHERE title LIKE ? OR content LIKE ?");
-        $search = "%$query%";
-        $stmt->bind_param("ss", $search, $search);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                echo "<div class='blog-post'>";
-                echo "<h2>" . $row['title'] . "</h2>";
-                echo "<p>" . $row['content'] . "</p>";
-                echo "<small>Erstellt am: " . $row['created_at'] . "</small>";
-                echo "</div>";
+        <div class="search-results">
+            <?php
+            include 'db.php';
+            $query = $_GET['query'];
+            $search = "%$query%";
+
+            // Suche in Blog-Beiträgen
+            echo "<h2>Beiträge und Meldungen</h2>";
+            $stmt = $conn->prepare("SELECT * FROM blog_posts WHERE title LIKE ? OR content LIKE ?");
+            $stmt->bind_param("ss", $search, $search);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo "<div class='result-item'>";
+                    echo "<h3>" . $row['title'] . "</h3>";
+                    echo "<p>" . substr($row['content'], 0, 150) . "...</p>";
+                    echo "<small>Erstellt am: " . date('d.m.Y', strtotime($row['created_at'])) . "</small>";
+                    echo "<br><a href='blog-details.php?id=" . $row['id'] . "'>Weiterlesen</a>";
+                    echo "</div>";
+                }
+            } else {
+                echo "<p>Keine Beiträge oder Meldungen gefunden.</p>";
             }
-        } else {
-            echo "Keine Ergebnisse gefunden.";
-        }
-        $stmt->close();
-        $conn->close();
-        ?>
+            $stmt->close();
+
+            // Suche in Seiteninhalten
+            echo "<h2>Seiteninhalte</h2>";
+            $stmt = $conn->prepare("SELECT * FROM pages WHERE title LIKE ? OR content LIKE ?");
+            $stmt->bind_param("ss", $search, $search);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo "<div class='result-item'>";
+                    echo "<h3>" . $row['title'] . "</h3>";
+                    echo "<p>" . substr($row['content'], 0, 150) . "...</p>";
+                    echo "<small>Erstellt am: " . date('d.m.Y', strtotime($row['created_at'])) . "</small>";
+                    echo "<br><a href='page.php?id=" . $row['id'] . "'>Weiterlesen</a>";
+                    echo "</div>";
+                }
+            } else {
+                echo "<p>Keine Seiteninhalte gefunden.</p>";
+            }
+            $stmt->close();
+            $conn->close();
+            ?>
+        </div>
     </div>
     <?php include 'footer.php'; ?>
 </body>
