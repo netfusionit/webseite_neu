@@ -423,7 +423,7 @@
                 </div>
             </div>
             <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-                <form action="send_email.php" method="post" class="php-email-form">
+                <form action="send_email.php" method="post" class="php-email-form" id="contact-form">
                     <div class="form-group">
                         <input type="text" name="name" class="form-control" id="name" placeholder="Ihr Name" required>
                     </div>
@@ -437,20 +437,21 @@
                         <textarea class="form-control" name="message" rows="5" placeholder="Nachricht" required></textarea>
                     </div>
                     <div class="form-group mt-3">
-                        <div class="g-recaptcha" data-sitekey="6LfSEO8pAAAAABhkzxzN2q_m3R1xcecaOtH5vxbm"></div>
+                        <div class="g-recaptcha" data-sitekey="6LfSEO8pAAAAABhkzxzN2q_m3R1xcecaOtH5vxbm" data-callback="recaptchaCallback"></div>
                     </div>
                     <div class="my-3">
                         <div class="loading">Wird geladen...</div>
                         <div class="error-message"></div>
                         <div class="sent-message">Ihre Nachricht wurde gesendet. Vielen Dank!</div>
                     </div>
-                    <div class="text-center"><button type="submit">Nachricht senden</button></div>
+                    <div class="text-center">
+                        <button type="submit" id="submit-button" class="btn btn-primary" disabled>Nachricht senden</button>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 </section>
-<!-- /Contact Section -->
 
     <?php include 'footer.php'; ?>
 
@@ -496,15 +497,34 @@
             });
         });
    
-   
+</script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+<script>
     // AOS Initialization
     AOS.init();
 
-    // Placeholder for form submission handling
-    document.querySelector('.php-email-form').addEventListener('submit', function(e) {
-        e.preventDefault();
-        // Add your AJAX form submission logic here
-    });
+    // Enable submit button when reCAPTCHA is verified and form is valid
+    function recaptchaCallback() {
+        checkFormValidity();
+    }
+
+    // Check form validity
+    function checkFormValidity() {
+        const form = document.getElementById('contact-form');
+        const submitButton = document.getElementById('submit-button');
+        const recaptchaResponse = grecaptcha.getResponse();
+
+        if (form.checkValidity() && recaptchaResponse) {
+            submitButton.disabled = false;
+        } else {
+            submitButton.disabled = true;
+        }
+    }
+
+    // Listen for form inputs
+    document.getElementById('contact-form').addEventListener('input', checkFormValidity);
 </script>
+
 </body>
 </html>

@@ -644,60 +644,10 @@ body {
 .php-email-form .sent-message {
     background: #18d26e;
 }
-
-.php-email-form {
-    width: 100%;
-    background: #fff;
-    padding: 30px;
-    box-shadow: 0px 0 30px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+#submit-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
 }
-
-    .php-email-form .form-group {
-        margin-bottom: 20px;
-    }
-
-    .php-email-form .loading {
-        display: none;
-        background: #fff;
-        text-align: center;
-        padding: 15px;
-        border-radius: 4px;
-    }
-
-    .php-email-form .error-message {
-        display: none;
-        background: #f44336;
-        color: #fff;
-        text-align: center;
-        padding: 15px;
-        border-radius: 4px;
-        margin-bottom: 10px;
-    }
-
-    .php-email-form .sent-message {
-        display: none;
-        background: #4caf50;
-        color: #fff;
-        text-align: center;
-        padding: 15px;
-        border-radius: 4px;
-        margin-bottom: 10px;
-    }
-
-    .php-email-form .text-center button[type="submit"] {
-        background: var(--accent-color);
-        border: 0;
-        padding: 10px 24px;
-        color: #fff;
-        transition: 0.4s;
-        border-radius: 4px;
-    }
-
-        .php-email-form .text-center button[type="submit"]:hover {
-            background: #007bff;
-        }
-
 .info-item {
     background: #fff;
     padding: 20px;
