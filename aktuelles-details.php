@@ -265,7 +265,7 @@
         $result = $conn->query("SELECT * FROM blog_posts WHERE id = $id");
         if ($row = $result->fetch_assoc()) {
             echo "<h1 class='mb-4'>" . $row['title'] . "</h1>";
-            echo "<img src='assets/img/" . $row['image'] . "' class='img-fluid blog-image' alt=''>";
+            echo "<img src='/uploads/" . $row['image'] . "' class='img-fluid blog-image' alt=''>";
             echo "<div class='blog-content-box mt-4'>";
             echo "<h2 class='blog-title'>" . $row['title'] . "</h2>";
             echo "<div class='blog-content-meta'>";
@@ -368,7 +368,7 @@
             while ($row = $result->fetch_assoc()) {
                 echo "<div class='col-lg-4 col-md-6' data-aos='fade-up' data-aos-delay='100'>";
                 echo "<div class='card blog-item'>";
-                echo "<img src='assets/img/" . $row['image'] . "' class='card-img-top' alt=''>";
+                echo "<img src='/uploads/" . $row['image'] . "' class='card-img-top' alt=''>";
                 echo "<div class='card-body'>";
                 echo "<h5 class='card-title'><a href='blog-details.php?id=" . $row['id'] . "'>" . $row['title'] . "</a></h5>";
                 echo "<p class='card-text'>" . substr($row['content'], 0, 100) . "...</p>";
