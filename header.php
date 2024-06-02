@@ -44,8 +44,39 @@
             <input class="form-control mr-sm-2" type="search" placeholder="Suche" aria-label="Suche" name="query">
             <button class="btn btn-primary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
         </form>
+        <button class="btn btn-info ml-2" data-toggle="modal" data-target="#changelogModal">
+            <i class="fas fa-info-circle"></i>
+        </button>
     </div>
 </nav>
+
+<!-- Changelog Modal -->
+<div class="modal fade" id="changelogModal" tabindex="-1" aria-labelledby="changelogModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="changelogModalLabel">Letzte Änderungen</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Schließen">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <?php
+                include 'db.php';
+                $changes = $conn->query("SELECT * FROM changelog ORDER BY date DESC");
+                while ($change = $changes->fetch_assoc()) {
+                    echo "<h5>" . $change['title'] . "</h5>";
+                    echo "<p><strong>Aktiv seit:</strong> " . $change['active_since'] . "</p>";
+                    echo "<p><strong>Kategorie:</strong> " . $change['category'] . "</p>";
+                    echo "<p>" . $change['description'] . "</p>";
+                    echo "<hr>";
+                }
+                ?>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
