@@ -532,6 +532,28 @@
     document.getElementById('contact-form').addEventListener('input', checkFormValidity);
 </script>
 
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    if (window.location.hash.startsWith("#line-")) {
+        const lineNumber = window.location.hash.split("-")[1];
+        const targetElement = document.querySelector(`[data-line-number="${lineNumber}"]`);
+        if (targetElement) {
+            targetElement.scrollIntoView({ behavior: "smooth", block: "center" });
+            const query = new URLSearchParams(window.location.search).get('query');
+            if (query) {
+                const regex = new RegExp(query, 'gi');
+                targetElement.innerHTML = targetElement.innerHTML.replace(regex, match => `<mark>${match}</mark>`);
+            }
+        }
+    }
+});
+</script>
+<?php
+$lines = explode("\n", file_get_contents(__FILE__));
+foreach ($lines as $lineNumber => $line) {
+    echo "<div data-line-number='" . ($lineNumber + 1) . "'>" . htmlspecialchars($line) . "</div>";
+}
+?>
 
 
 </body>
