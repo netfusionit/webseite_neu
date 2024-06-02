@@ -11,9 +11,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="index.php">
-        <img src="logo.png" alt="NetFusionIT" style="width: 150px;">
-    </a>
+    <a class="navbar-brand" href="index.php">NetFusionIT</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -26,14 +24,14 @@
                 <a class="nav-link" href="kontakt.php">Kontakt</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="blog.php">Blog</a>
+                <a class="nav-link" href="aktuelles.php">Aktuelles</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="admin.php">Admin</a>
+                <a class="nav-link" href="administration.php">Administration</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Services
+                    Online-Services
                 </a>
                 <div class="dropdown-menu" aria-labelledby="servicesDropdown">
                     <a class="dropdown-item" href="webdesign.php">Webdesign</a>

@@ -866,13 +866,10 @@ footer {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.navbar-brand img {
-    transition: transform 0.3s ease;
+.navbar-brand {
+    font-weight: bold;
+    color: #333;
 }
-
-    .navbar-brand img:hover {
-        transform: scale(1.1);
-    }
 
 .navbar-nav .nav-link {
     color: #333;
