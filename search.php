@@ -78,7 +78,7 @@
 
             // Suche in Blog-Beiträgen
             echo "<h2>Beiträge und Meldungen</h2>";
-            $stmt = $conn->prepare("SELECT * FROM blog_posts WHERE title LIKE ? OR content LIKE ?");
+            $stmt = $conn->prepare("SELECT title FROM blog_posts WHERE title LIKE ? OR content LIKE ?");
             $stmt->bind_param("ss", $search, $search);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -86,13 +86,9 @@
             $blogIndex = 1;
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    $cleanContent = strip_tags($row['content']);
-                    $highlightedContent = str_ireplace($query, "<mark>$query</mark>", substr($cleanContent, 0, 150));
                     echo "<div class='result-item'>";
                     echo "<h3>Ergebnis $blogIndex: " . $row['title'] . "</h3>";
-                    echo "<p>" . $highlightedContent . "...</p>";
-                    echo "<small>Erstellt am: " . date('d.m.Y', strtotime($row['created_at'])) . "</small>";
-                    echo "<br><a href='blog-details.php?id=" . $row['id'] . "' class='btn btn-primary mt-2'>Weiterlesen</a>";
+                    echo "<a href='blog-details.php?id=" . $row['id'] . "' class='btn btn-primary mt-2'>Weiterlesen</a>";
                     echo "</div>";
                     $blogIndex++;
                 }
