@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NetFusionIT</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -99,7 +98,7 @@
     <?php include 'header.php'; ?>
 
     <div class="container mt-5">
-        <h1>Alle aktuellen Meldungen im Überblick</h1>
+        <h1>Alle Aktuellen Meldungen im Überblick</h1>
         
         <!-- Filter Button -->
         <div class="filter-button">
@@ -188,7 +187,7 @@
                     echo "<div class='blog-post'>";
                     echo "<img src='/uploads/" . htmlspecialchars($row['image'], ENT_QUOTES, 'UTF-8') . "' class='img-fluid' alt=''>";
                     echo "<h2><a href='aktuelles-details.php?id=" . $row['id'] . "'>" . htmlspecialchars($row['title'], ENT_QUOTES, 'UTF-8') . "</a></h2>";
-                    echo "<p>" . nl2br(htmlspecialchars(substr($row['content'], 0, 100), ENT_QUOTES, 'UTF-8')) . "...</p>";
+                    echo "<p>" . nl2br(substr($row['content'], 0, 100)) . "...</p>";
                     echo "<small>Erstellt am: " . date('d.m.Y', strtotime($row['created_at'])) . "</small>";
                     echo "<small>Autor: " . htmlspecialchars($row['author'], ENT_QUOTES, 'UTF-8') . "</small>";
                     echo "<p><span class='badge badge-category'>" . htmlspecialchars($row['category'], ENT_QUOTES, 'UTF-8') . "</span></p>";
@@ -240,6 +239,10 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script>
         $(document).ready(function(){
             var filterForm = $("#filter-form");
@@ -260,5 +263,7 @@
             <?php } ?>
         });
     </script>
+    
+    
 </body>
 </html>
