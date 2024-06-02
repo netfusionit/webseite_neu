@@ -94,24 +94,6 @@
 
             // Suche in Seiteninhalten
             echo "<h2>Seiteninhalte</h2>";
-            $stmt = $conn->prepare("SELECT * FROM pages WHERE title LIKE ? OR content LIKE ?");
-            $stmt->bind_param("ss", $search, $search);
-            $stmt->execute();
-            $result = $stmt->get_result();
-
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    echo "<div class='result-item'>";
-                    echo "<h3>" . $row['title'] . "</h3>";
-                    echo "<p>" . substr($row['content'], 0, 150) . "...</p>";
-                    echo "<small>Erstellt am: " . date('d.m.Y', strtotime($row['created_at'])) . "</small>";
-                    echo "<br><a href='page.php?id=" . $row['id'] . "' class='btn btn-primary mt-2'>Zum Seiteninhalt springen</a>";
-                    echo "</div>";
-                }
-            } else {
-                echo "<p>Keine Seiteninhalte gefunden.</p>";
-            }
-            $stmt->close();
 
             // Suche in index.php für allgemeine Seiteninhalte
             $indexPath = realpath(dirname(__FILE__) . '/../index.php');
