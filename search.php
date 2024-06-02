@@ -39,10 +39,13 @@
 
         .search-results .result-item h3 {
             margin-bottom: 10px;
+            color: #0056b3;
         }
 
         .search-results .result-item p {
             margin-bottom: 10px;
+            font-size: 1.1rem;
+            line-height: 1.5;
         }
 
         .search-results .result-item a.btn {
@@ -53,6 +56,12 @@
 
         .search-results .result-item a.btn:hover {
             background-color: #0056b3;
+        }
+
+        .too-many-results {
+            color: red;
+            font-weight: bold;
+            margin-top: 20px;
         }
 
         mark {
@@ -83,20 +92,28 @@
 
             // Suche in Blog-Beiträgen
             echo "<h2>Beiträge und Meldungen</h2>";
-            $stmt = $conn->prepare("SELECT id, title FROM blog_posts WHERE title LIKE ? OR content LIKE ?");
+            $stmt = $conn->prepare("SELECT id, title, content FROM blog_posts WHERE title LIKE ? OR content LIKE ?");
             $stmt->bind_param("ss", $search, $search);
             $stmt->execute();
             $result = $stmt->get_result();
 
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    echo "<div class='result-item'>";
-                    echo "<h3>" . $row['title'] . "</h3>";
-                    echo "<a href='blog-details.php?id=" . $row['id'] . "' class='btn btn-primary mt-2'>Weiterlesen</a>";
-                    echo "</div>";
-                }
+            $numResults = $result->num_rows;
+            if ($numResults > 5) {
+                echo "<p class='too-many-results'>Zu viele Ergebnisse, bitte präzisieren Sie Ihre Anfrage.</p>";
             } else {
-                echo "<p>Keine Beiträge oder Meldungen gefunden.</p>";
+                if ($numResults > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<div class='result-item'>";
+                        echo "<h3>" . $row['title'] . "</h3>";
+                        $cleanContent = strip_tags($row['content']);
+                        $highlightedContent = str_ireplace($query, "<mark>$query</mark>", substr($cleanContent, 0, 300));
+                        echo "<p>" . $highlightedContent . "...</p>";
+                        echo "<a href='blog-details.php?id=" . $row['id'] . "' class='btn btn-primary mt-2'>Weiterlesen</a>";
+                        echo "</div>";
+                    }
+                } else {
+                    echo "<p>Keine Beiträge oder Meldungen gefunden.</p>";
+                }
             }
             $stmt->close();
 

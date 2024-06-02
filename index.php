@@ -546,7 +546,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
         document.body.innerHTML = document.body.innerHTML.replace(new RegExp(query, 'gi'), match => `<mark>${match}</mark>`);
 
-        const textNodes = [...document.body.childNodes].filter(node => node.nodeType === Node.TEXT_NODE);
+        const textNodes = [];
+        const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+        while (walker.nextNode()) {
+            textNodes.push(walker.currentNode);
+        }
+
         textNodes.some(node => {
             accumulatedLength += node.textContent.length;
             if (accumulatedLength >= lineNumber) {
@@ -570,6 +575,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 </script>
+
 
 
 </body>
