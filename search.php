@@ -40,13 +40,14 @@
             margin-bottom: 10px;
         }
 
-        .search-results .result-item a {
-            color: #007bff;
+        .search-results .result-item a.btn {
+            color: #fff;
+            background-color: #007bff;
             text-decoration: none;
         }
 
-        .search-results .result-item a:hover {
-            text-decoration: underline;
+        .search-results .result-item a.btn:hover {
+            background-color: #0056b3;
         }
 
         @media (max-width: 767px) {
@@ -83,7 +84,7 @@
                     echo "<h3>" . $row['title'] . "</h3>";
                     echo "<p>" . substr($row['content'], 0, 150) . "...</p>";
                     echo "<small>Erstellt am: " . date('d.m.Y', strtotime($row['created_at'])) . "</small>";
-                    echo "<br><a href='blog-details.php?id=" . $row['id'] . "'>Weiterlesen</a>";
+                    echo "<br><a href='blog-details.php?id=" . $row['id'] . "' class='btn btn-primary mt-2'>Weiterlesen</a>";
                     echo "</div>";
                 }
             } else {
@@ -104,13 +105,24 @@
                     echo "<h3>" . $row['title'] . "</h3>";
                     echo "<p>" . substr($row['content'], 0, 150) . "...</p>";
                     echo "<small>Erstellt am: " . date('d.m.Y', strtotime($row['created_at'])) . "</small>";
-                    echo "<br><a href='page.php?id=" . $row['id'] . "'>Weiterlesen</a>";
+                    echo "<br><a href='page.php?id=" . $row['id'] . "' class='btn btn-primary mt-2'>Zum Seiteninhalt springen</a>";
                     echo "</div>";
                 }
             } else {
                 echo "<p>Keine Seiteninhalte gefunden.</p>";
             }
             $stmt->close();
+
+            // Suche in index.php für allgemeine Seiteninhalte
+            $content = file_get_contents('index.php');
+            if (stripos($content, $query) !== false) {
+                echo "<div class='result-item'>";
+                echo "<h3>Startseite</h3>";
+                echo "<p>Der Suchbegriff wurde auf der Startseite gefunden.</p>";
+                echo "<br><a href='index.php' class='btn btn-primary mt-2'>Zum Seiteninhalt springen</a>";
+                echo "</div>";
+            }
+
             $conn->close();
             ?>
         </div>
