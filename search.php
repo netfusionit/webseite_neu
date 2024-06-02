@@ -83,16 +83,18 @@
             $stmt->execute();
             $result = $stmt->get_result();
 
+            $blogIndex = 1;
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     $cleanContent = strip_tags($row['content']);
                     $highlightedContent = str_ireplace($query, "<mark>$query</mark>", substr($cleanContent, 0, 150));
                     echo "<div class='result-item'>";
-                    echo "<h3>" . $row['title'] . "</h3>";
+                    echo "<h3>Ergebnis $blogIndex: " . $row['title'] . "</h3>";
                     echo "<p>" . $highlightedContent . "...</p>";
                     echo "<small>Erstellt am: " . date('d.m.Y', strtotime($row['created_at'])) . "</small>";
                     echo "<br><a href='blog-details.php?id=" . $row['id'] . "' class='btn btn-primary mt-2'>Weiterlesen</a>";
                     echo "</div>";
+                    $blogIndex++;
                 }
             } else {
                 echo "<p>Keine Beiträge oder Meldungen gefunden.</p>";
@@ -104,16 +106,18 @@
             $indexResults = json_decode($indexResults, true);
 
             if (!empty($indexResults)) {
-                echo "<h2>Startseite</h2>";
+                echo "<h2>Hauptseite</h2>";
+                $pageIndex = 1;
                 foreach ($indexResults as $result) {
                     echo "<div class='result-item'>";
-                    echo "<h3>Gefunden auf der Startseite</h3>";
+                    echo "<h3>Ergebnis $pageIndex: Gefunden auf der Hauptseite</h3>";
                     echo "<p>" . $result['line'] . "...</p>";
                     echo "<br><a href='/index.php#line-" . $result['line_number'] . "' class='btn btn-primary mt-2'>Zum Seiteninhalt springen</a>";
                     echo "</div>";
+                    $pageIndex++;
                 }
             } else {
-                echo "<p>Keine relevanten Inhalte auf der Startseite gefunden.</p>";
+                echo "<p>Keine relevanten Inhalte auf der Hauptseite gefunden.</p>";
             }
 
             $conn->close();

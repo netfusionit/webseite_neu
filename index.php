@@ -531,6 +531,26 @@
     // Listen for form inputs
     document.getElementById('contact-form').addEventListener('input', checkFormValidity);
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    if (window.location.hash.startsWith("#line-")) {
+        const lineNumber = window.location.hash.split("-")[1];
+        const targetElement = document.querySelector(`[data-line-number="${lineNumber}"]`);
+        if (targetElement) {
+            targetElement.scrollIntoView({ behavior: "smooth", block: "center" });
+            targetElement.innerHTML = targetElement.innerHTML.replace(new RegExp(window.location.search.split("=")[1], 'gi'), match => `<mark>${match}</mark>`);
+        }
+    }
+});
+</script>
+
+<?php
+$lines = explode("\n", file_get_contents(__FILE__));
+foreach ($lines as $lineNumber => $line) {
+    echo "<div data-line-number='" . ($lineNumber + 1) . "'>" . htmlspecialchars($line) . "</div>";
+}
+?>
+
 
 </body>
 </html>

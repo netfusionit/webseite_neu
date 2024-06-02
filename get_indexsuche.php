@@ -21,7 +21,7 @@ if ($indexPath !== false && file_exists($indexPath)) {
 
                 foreach ($sentences as $i => $sentence) {
                     if (stripos($sentence, $search) !== false) {
-                        $resultSnippet .= (isset($sentences[$i-1]) ? $sentences[$i-1] : '') . (isset($sentences[$i-2]) ? $sentences[$i-2] : '') . $sentence . (isset($sentences[$i+1]) ? $sentences[$i+1] : '') . (isset($sentences[$i+2]) ? $sentences[$i+2] : '');
+                        $resultSnippet .= (isset($sentences[$i-2]) ? $sentences[$i-2] : '') . (isset($sentences[$i-1]) ? $sentences[$i-1] : '') . $sentence . (isset($sentences[$i+1]) ? $sentences[$i+1] : '') . (isset($sentences[$i+2]) ? $sentences[$i+2] : '');
                         $found = true;
                         break;
                     }
