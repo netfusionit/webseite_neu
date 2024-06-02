@@ -35,6 +35,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email_message = "Name: $name\nEmail: $email\nSubject: $subject\nMessage:\n$message";
         
         if (mail($to, $subject, $email_message, $headers)) {
+            // Send confirmation email to the sender
+            $confirmation_subject = "Bestätigung Ihrer Kontaktanfrage";
+            $confirmation_message = "Vielen Dank für Ihre E-Mail. Wir melden uns schnellstmöglich zurück.";
+            $confirmation_headers = "From: kontakt@netfusionit.de" . "\r\n" .
+                                    "Reply-To: kontakt@netfusionit.de" . "\r\n" .
+                                    "X-Mailer: PHP/" . phpversion();
+
+            mail($email, $confirmation_subject, $confirmation_message, $confirmation_headers);
+
             echo "Ihre Nachricht wurde gesendet. Vielen Dank!";
         } else {
             echo "Fehler beim Senden der Nachricht.";
