@@ -114,12 +114,12 @@
             $stmt->close();
 
             // Suche in index.php für allgemeine Seiteninhalte
-            $content = file_get_contents('index.php');
+            $content = file_get_contents('https://netfusionit.de/index.php');
             if (stripos($content, $query) !== false) {
                 echo "<div class='result-item'>";
                 echo "<h3>Startseite</h3>";
                 echo "<p>Der Suchbegriff wurde auf der Startseite gefunden.</p>";
-                echo "<br><a href='index.php' class='btn btn-primary mt-2'>Zum Seiteninhalt springen</a>";
+                echo "<br><a href='https://netfusionit.de/index.php' class='btn btn-primary mt-2'>Zum Seiteninhalt springen</a>";
                 echo "</div>";
             }
 
