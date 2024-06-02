@@ -172,3 +172,18 @@
   document.addEventListener('scroll', navmenuScrollspy);
 
 })();
+
+// Add smooth scroll animation
+$(document).ready(function () {
+    $(".nav-link, .dropdown-item").on('click', function (event) {
+        if (this.hash !== "") {
+            event.preventDefault();
+            var hash = this.hash;
+            $('html, body').animate({
+                scrollTop: $(hash).offset().top
+            }, 800, function () {
+                window.location.hash = hash;
+            });
+        }
+    });
+});
