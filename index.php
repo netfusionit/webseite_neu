@@ -10,8 +10,9 @@
 </head>
 <body>
     <?php include 'header.php'; ?>
-     <!-- Popup-Meldung (Nur wenn in DB vorhanden!) -->
-     <div id="popupMessage" class="modal fade" tabindex="-1" role="dialog">
+
+    <!-- Popup-Meldung (Nur wenn in DB vorhanden!) -->
+    <div id="popupMessage" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -29,7 +30,8 @@
             </div>
         </div>
     </div>
-        <!-- Ticker-Meldung (Nur wenn in DB vorhanden!) -->
+
+    <!-- Ticker-Meldung (Nur wenn in DB vorhanden!) -->
     <div id="tickerMessage" class="bg-warning text-dark text-center py-2">
         <p class="mb-0" id="tickerContent"></p>
     </div>
@@ -37,6 +39,7 @@
         Willkommen bei NetFusionIT! <br>
         Unsere Webseite befindet sich derzeit im Aufbau!
     </div>
+    
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -80,7 +83,7 @@
     </div>
 
     <!-- Featured Services Section -->
-    <section id="featured-services" class="featured-services section">
+    <section id="featured-services" class="featured-services section bg-alt-1">
         <div class="container">
             <div class="row gy-4">
                 <div class="col-xl-4 col-lg-6" data-aos="fade-up" data-aos-delay="100">
@@ -154,7 +157,7 @@
     </section><!-- /About Section -->
 
     <!-- Features Section -->
-    <section id="features" class="features section">
+    <section id="features" class="features section bg-alt-2">
         <div class="container section-title" data-aos="fade-up">
             <h2 class="text-center">Features</h2>
             <p class="text-center">Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
@@ -211,7 +214,7 @@
     </section><!-- /Features Section -->
 
     <!-- Features Details Section -->
-    <section id="features-details" class="features-details section">
+    <section id="features-details" class="features-details section bg-alt-1">
         <div class="container">
             <div class="row gy-4 justify-content-between features-item">
                 <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
@@ -246,8 +249,8 @@
         </div>
     </section><!-- /Features Details Section -->
 
- <!-- Services Section -->
-    <section id="services" class="services section">
+    <!-- Services Section -->
+    <section id="services" class="services section bg-alt-2">
         <div class="container section-title" data-aos="fade-up">
             <h2>Services</h2>
             <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
@@ -324,8 +327,8 @@
         </div>
     </section><!-- /Services Section -->
 
- <!-- Blog Section -->
-    <section id="blog" class="blog section bg-light py-5">
+    <!-- Blog Section -->
+    <section id="blog" class="blog section bg-alt-1 py-5">
         <div class="container section-title text-center" data-aos="fade-up">
             <h2>Aktuelle Meldungen</h2>
             <p>Lesen Sie unsere neuesten Nachrichten und Updates</p>
@@ -388,63 +391,62 @@
         </div>
     </section><!-- /Blog Section -->
 
-<!-- Contact Section -->
-<section id="contact" class="contact section bg-light py-5">
-    <div class="container section-title text-center" data-aos="fade-up">
-        <h2>Kontakt</h2>
-        <p>Kontaktieren Sie uns für weitere Informationen</p>
-    </div>
-    <div class="container">
-        <div class="row gy-4">
-            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                <div class="info-item d-flex align-items-start">
-                    <i class="bi bi-geo-alt flex-shrink-0"></i>
-                    <div>
-                        <h3>Unsere Adresse</h3>
-                        <p>A108 Adam Street, New York, NY 535022</p>
+    <!-- Contact Section -->
+    <section id="contact" class="contact section bg-alt-2 py-5">
+        <div class="container section-title text-center" data-aos="fade-up">
+            <h2>Kontakt</h2>
+            <p>Kontaktieren Sie uns für weitere Informationen</p>
+        </div>
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="info-item d-flex align-items-start">
+                        <i class="bi bi-geo-alt flex-shrink-0"></i>
+                        <div>
+                            <h3>Unsere Adresse</h3>
+                            <p>A108 Adam Street, New York, NY 535022</p>
+                        </div>
+                    </div>
+                    <div class="info-item d-flex align-items-start">
+                        <i class="bi bi-envelope flex-shrink-0"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <p>info@example.com</p>
+                        </div>
+                    </div>
+                    <div class="info-item d-flex align-items-start">
+                        <i class="bi bi-phone flex-shrink-0"></i>
+                        <div>
+                            <h3>Telefon</h3>
+                            <p>+1 5589 55488 55</p>
+                        </div>
                     </div>
                 </div>
-                <div class="info-item d-flex align-items-start">
-                    <i class="bi bi-envelope flex-shrink-0"></i>
-                    <div>
-                        <h3>Email</h3>
-                        <p>info@example.com</p>
-                    </div>
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                    <form action="send_email.php" method="post" class="php-email-form">
+                        <div class="form-group">
+                            <input type="text" name="name" class="form-control" id="name" placeholder="Ihr Name" required>
+                        </div>
+                        <div class="form-group mt-3">
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Ihre Email" required>
+                        </div>
+                        <div class="form-group mt-3">
+                            <input type="text" class="form-control" name="subject" id="subject" placeholder="Betreff" required>
+                        </div>
+                        <div class="form-group mt-3">
+                            <textarea class="form-control" name="message" rows="5" placeholder="Nachricht" required></textarea>
+                        </div>
+                        <div class="my-3">
+                            <div class="loading">Wird geladen...</div>
+                            <div class="error-message"></div>
+                            <div class="sent-message">Ihre Nachricht wurde gesendet. Vielen Dank!</div>
+                        </div>
+                        <div class="text-center"><button type="submit">Nachricht senden</button></div>
+                    </form>
                 </div>
-                <div class="info-item d-flex align-items-start">
-                    <i class="bi bi-phone flex-shrink-0"></i>
-                    <div>
-                        <h3>Telefon</h3>
-                        <p>+1 5589 55488 55</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-                <form action="send_email.php" method="post" class="php-email-form">
-                    <div class="form-group">
-                        <input type="text" name="name" class="form-control" id="name" placeholder="Ihr Name" required>
-                    </div>
-                    <div class="form-group mt-3">
-                        <input type="email" class="form-control" name="email" id="email" placeholder="Ihre Email" required>
-                    </div>
-                    <div class="form-group mt-3">
-                        <input type="text" class="form-control" name="subject" id="subject" placeholder="Betreff" required>
-                    </div>
-                    <div class="form-group mt-3">
-                        <textarea class="form-control" name="message" rows="5" placeholder="Nachricht" required></textarea>
-                    </div>
-                    <div class="my-3">
-                        <div class="loading">Wird geladen...</div>
-                        <div class="error-message"></div>
-                        <div class="sent-message">Ihre Nachricht wurde gesendet. Vielen Dank!</div>
-                    </div>
-                    <div class="text-center"><button type="submit">Nachricht senden</button></div>
-                </form>
             </div>
         </div>
-    </div>
-</section><!-- /Contact Section -->
-
+    </section><!-- /Contact Section -->
 
     <?php include 'footer.php'; ?>
 
@@ -467,7 +469,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-     <script>
+    <script>
         $(document).ready(function() {
             // Popup-Meldung
             $.get('fetch_popup.php', function(data) {

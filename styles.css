@@ -68,17 +68,23 @@ body {
     }
 }
 
-/*--------------------------------------------------------------
-# Featured Services Section
---------------------------------------------------------------*/
+/* Wechselnde Hintergründe für Abschnitte */
+.bg-alt-1 {
+    background-color: #f8f9fa;
+}
+
+.bg-alt-2 {
+    background-color: #e9ecef;
+}
+
+/* Featured Services Section */
 .featured-services {
-    background-color: #f0f8ff;
     padding: 40px 0;
     border-radius: 10px;
 }
 
     .featured-services .service-item {
-        background-color: #e0f7fa;
+        background-color: #ffffff;
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -125,9 +131,7 @@ body {
             color: #666;
         }
 
-/*--------------------------------------------------------------
-# About Section
---------------------------------------------------------------*/
+/* About Section */
 .about {
     padding-bottom: 20px;
 }
@@ -202,9 +206,7 @@ body {
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
-/*--------------------------------------------------------------
-# Features Section
---------------------------------------------------------------*/
+/* Features Section */
 .features .nav-tabs {
     border: 0;
     flex-direction: column;
@@ -271,9 +273,7 @@ body {
     border-radius: 15px;
 }
 
-/*--------------------------------------------------------------
-# Features Details Section
---------------------------------------------------------------*/
+/* Features Details Section */
 .features-details .features-item + .features-item {
     margin-top: 60px;
 }
@@ -328,9 +328,7 @@ body {
 .features-details .features-item img {
     border-radius: 15px;
 }
-/*--------------------------------------------------------------
-# Services Section
---------------------------------------------------------------*/
+
 /* Services Section */
 .services {
     padding: 60px 20px;
@@ -420,9 +418,7 @@ body {
             color: #e91e63;
         }
 
-/*--------------------------------------------------------------
-# Scroll Top Button
---------------------------------------------------------------*/
+/* Scroll Top Button */
 .scroll-top {
     position: fixed;
     visibility: hidden;
@@ -454,9 +450,7 @@ body {
         bottom: 15px;
     }
 
-/*--------------------------------------------------------------
-# Global Section Titles
---------------------------------------------------------------*/
+/* Global Section Titles */
 .section-title {
     text-align: center;
     padding-bottom: 60px;
@@ -487,7 +481,6 @@ body {
     .section-title p {
         margin-bottom: 0;
     }
-
 
 /* Blog Section */
 .blog {
@@ -593,17 +586,16 @@ body {
         color: #aaa;
     }
 
+.reaction .emoji {
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+}
 
-    .reaction .emoji {
-        font-size: 1.5rem;
-        cursor: pointer;
-        margin-right: 10px;
-        transition: transform 0.3s ease;
+    .reaction .emoji:hover {
+        transform: scale(1.2);
     }
-
-        .reaction .emoji:hover {
-            transform: scale(1.2);
-        }
 
 /* Comment Form */
 .blog-details form {
@@ -626,7 +618,6 @@ body {
         .blog-details form button:hover {
             background: #007bff;
         }
-
 
 /* Contact Section */
 .contact {
@@ -758,6 +749,7 @@ body {
     border-radius: 0.2em;
     font-size: 0.8em;
 }
+
 .blog-item {
     margin-bottom: 1rem;
 }
@@ -780,6 +772,7 @@ body {
         padding: 0.3rem 0.5rem;
         font-size: 0.9rem;
     }
+
 .modal .form-group {
     margin-bottom: 15px;
 }
