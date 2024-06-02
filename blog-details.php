@@ -8,7 +8,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f8f9fa;
             color: #333;
         }
@@ -346,74 +346,74 @@
     ?>
 </div>
 
-    <br>
-    <!-- Blog Section -->
-    <section id="blog" class="blog section py-5">
-        <div class="container section-title text-center" data-aos="fade-up">
-            <h2>Aktuelle Meldungen</h2>
-            <p>Lesen Sie unsere neuesten Nachrichten und Updates</p>
-        </div>
-        <div class="container">
-            <div class="row gy-3">
-                <?php
-                include 'db.php';
+<br>
+<!-- Blog Section -->
+<section id="blog" class="blog section py-5">
+    <div class="container section-title text-center" data-aos="fade-up">
+        <h2>Aktuelle Meldungen</h2>
+        <p>Lesen Sie unsere neuesten Nachrichten und Updates</p>
+    </div>
+    <div class="container">
+        <div class="row gy-3">
+            <?php
+            include 'db.php';
 
-                // Pagination
-                $limit = 3; // Anzahl der Beiträge pro Seite
-                $page = isset($_GET['page']) ? $_GET['page'] : 1;
-                $start = ($page - 1) * $limit;
+            // Pagination
+            $limit = 3; // Anzahl der Beiträge pro Seite
+            $page = isset($_GET['page']) ? $_GET['page'] : 1;
+            $start = ($page - 1) * $limit;
 
-                // Beiträge abrufen
-                $result = $conn->query("SELECT * FROM blog_posts ORDER BY created_at DESC LIMIT $start, $limit");
-                while ($row = $result->fetch_assoc()) {
-                    echo "<div class='col-lg-4 col-md-6' data-aos='fade-up' data-aos-delay='100'>";
-                    echo "<div class='card blog-item'>";
-                    echo "<img src='assets/img/" . $row['image'] . "' class='card-img-top' alt=''>";
-                    echo "<div class='card-body'>";
-                    echo "<h5 class='card-title'><a href='blog-details.php?id=" . $row['id'] . "'>" . $row['title'] . "</a></h5>";
-                    echo "<p class='card-text'>" . substr($row['content'], 0, 100) . "...</p>";
-                    echo "<p class='card-text'><small class='text-muted'>Erstellt am: " . date('d.m.Y', strtotime($row['created_at'])) . " | Letzte Aktualisierung: " . date('d.m.Y', strtotime($row['updated_at'])) . "</small></p>";
+            // Beiträge abrufen
+            $result = $conn->query("SELECT * FROM blog_posts ORDER BY created_at DESC LIMIT $start, $limit");
+            while ($row = $result->fetch_assoc()) {
+                echo "<div class='col-lg-4 col-md-6' data-aos='fade-up' data-aos-delay='100'>";
+                echo "<div class='card blog-item'>";
+                echo "<img src='assets/img/" . $row['image'] . "' class='card-img-top' alt=''>";
+                echo "<div class='card-body'>";
+                echo "<h5 class='card-title'><a href='blog-details.php?id=" . $row['id'] . "'>" . $row['title'] . "</a></h5>";
+                echo "<p class='card-text'>" . substr($row['content'], 0, 100) . "...</p>";
+                echo "<p class='card-text'><small class='text-muted'>Erstellt am: " . date('d.m.Y', strtotime($row['created_at'])) . " | Letzte Aktualisierung: " . date('d.m.Y', strtotime($row['updated_at'])) . "</small></p>";
 
-                    // Kategorie anzeigen
-                    echo "<p class='card-text'><span class='badge badge-category'>" . $row['category'] . "</span></p>";
+                // Kategorie anzeigen
+                echo "<p class='card-text'><span class='badge badge-category'>" . $row['category'] . "</span></p>";
 
-                    // Tags anzeigen
-                    $tags = explode(',', $row['tags']);
-                    echo "<p class='card-text'>";
-                    foreach ($tags as $tag) {
-                        echo "<span class='badge badge-tag'>" . trim($tag) . "</span>";
-                    }
-                    echo "</p>";
-
-                    echo "<a href='blog-details.php?id=" . $row['id'] . "' class='btn btn-primary'>Weiterlesen</a>";
-                    echo "</div>";
-                    echo "</div>";
-                    echo "</div>";
+                // Tags anzeigen
+                $tags = explode(',', $row['tags']);
+                echo "<p class='card-text'>";
+                foreach ($tags as $tag) {
+                    echo "<span class='badge badge-tag'>" . trim($tag) . "</span>";
                 }
+                echo "</p>";
 
-                // Gesamtanzahl der Beiträge für Pagination
-                $result1 = $conn->query("SELECT COUNT(id) AS id FROM blog_posts");
-                $total = $result1->fetch_assoc()['id'];
-                $pages = ceil($total / $limit);
+                echo "<a href='blog-details.php?id=" . $row['id'] . "' class='btn btn-primary'>Weiterlesen</a>";
+                echo "</div>";
+                echo "</div>";
+                echo "</div>";
+            }
 
-                $conn->close();
-                ?>
-            </div>
+            // Gesamtanzahl der Beiträge für Pagination
+            $result1 = $conn->query("SELECT COUNT(id) AS id FROM blog_posts");
+            $total = $result1->fetch_assoc()['id'];
+            $pages = ceil($total / $limit);
+
+            $conn->close();
+            ?>
         </div>
-        <div class="container">
-            <nav aria-label="Page navigation">
-                <ul class="pagination justify-content-center">
-                    <?php for ($i = 1; $i <= $pages; $i++): ?>
-                        <li class="page-item <?php if ($i == $page) echo 'active'; ?>"><a class="page-link" href="index.php?page=<?= $i; ?>"><?= $i; ?></a></li>
-                    <?php endfor; ?>
-                </ul>
-            </nav>
-        </div>
-    </section><!-- /Blog Section -->
+    </div>
+    <div class="container">
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                <?php for ($i = 1; $i <= $pages; $i++): ?>
+                    <li class="page-item <?php if ($i == $page) echo 'active'; ?>"><a class="page-link" href="index.php?page=<?= $i; ?>"><?= $i; ?></a></li>
+                <?php endfor; ?>
+            </ul>
+        </nav>
+    </div>
+</section><!-- /Blog Section -->
 
-    <?php include 'footer.php'; ?>
+<?php include 'footer.php'; ?>
 
-    <script>
+<script>
 document.addEventListener('DOMContentLoaded', function() {
     let commentPage = 1;
     const commentsContainer = document.getElementById('comments-container');
@@ -442,13 +442,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.querySelectorAll('.reaction span[data-reaction]').forEach(function(icon) {
                     let reaction = icon.getAttribute('data-reaction');
                     if (data[reaction] !== undefined) {
-                        icon.querySelector('.count').textContent = data[reaction];
+                        icon.nextElementSibling.textContent = data[reaction];
                     }
                 });
                 document.querySelectorAll('#reactions-footer span[data-reaction]').forEach(function(icon) {
                     let reaction = icon.getAttribute('data-reaction');
                     if (data[reaction] !== undefined) {
-                        icon.querySelector('.count').textContent = data[reaction];
+                        icon.nextElementSibling.textContent = data[reaction];
                     }
                 });
             });
@@ -518,9 +518,7 @@ document.addEventListener('DOMContentLoaded', function() {
         interval: 5000
     });
 });
-
-
-    </script>
+</script>
 
 </body>
 </html>
