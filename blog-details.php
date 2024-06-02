@@ -454,11 +454,11 @@ document.addEventListener('DOMContentLoaded', function() {
     loadReactions();
 
     // Reaktionen für Kommentare laden
-    document.querySelectorAll('.comment-reaction').forEach(function(reactionBox) {
-        let commentId = reactionBox.id.split('-')[2];
+    function loadCommentReactions(commentId) {
         fetch('load_comment_reactions.php?comment_id=' + commentId)
             .then(response => response.json())
             .then(data => {
+                const reactionBox = document.querySelector(`#comment-reaction-${commentId}`);
                 reactionBox.querySelectorAll('span[data-reaction]').forEach(function(icon) {
                     let reaction = icon.getAttribute('data-reaction');
                     if (data[reaction] !== undefined) {
@@ -466,6 +466,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 });
             });
+    }
+
+    document.querySelectorAll('.comment-reaction').forEach(function(reactionBox) {
+        let commentId = reactionBox.id.split('-')[2];
+        loadCommentReactions(commentId);
     });
 
     // Reaktions-Event-Listener hinzufügen
@@ -491,7 +496,11 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    loadReactions(); // Aktualisiert die Reaktionen nach der Änderung
+                    if (commentId) {
+                        loadCommentReactions(commentId); // Aktualisiert die Kommentar-Reaktionen nach der Änderung
+                    } else {
+                        loadReactions(); // Aktualisiert die Reaktionen nach der Änderung
+                    }
                 }
             });
         });
