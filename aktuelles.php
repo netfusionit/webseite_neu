@@ -98,7 +98,7 @@
     <?php include 'header.php'; ?>
 
     <div class="container mt-5">
-        <h1>Alle Aktuellen Meldungen im Überblick</h1>
+        <h1>Alle aktuellen Meldungen im Überblick</h1>
         
         <!-- Filter Button -->
         <div class="filter-button">
