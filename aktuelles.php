@@ -19,7 +19,7 @@
         }
         .filter-button {
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between;
             margin-bottom: 20px;
         }
         .filter-button button {
@@ -75,6 +75,11 @@
         .pagination {
             justify-content: center;
         }
+        .no-results {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #6c757d;
+        }
     </style>
 </head>
 <body>
@@ -86,6 +91,7 @@
         <!-- Filter Button -->
         <div class="filter-button">
             <button id="filter-toggle"><i class="fas fa-filter"></i> Filter</button>
+            <button id="filter-reset" class="btn btn-danger">Filter zurücksetzen</button>
         </div>
         
         <!-- Filterformular -->
@@ -163,21 +169,29 @@
 
             $result = $conn->query($query);
 
-            while ($row = $result->fetch_assoc()) {
-                echo "<div class='col-md-4'>";
-                echo "<div class='blog-post'>";
-                echo "<img src='assets/img/" . htmlspecialchars($row['image'], ENT_QUOTES, 'UTF-8') . "' class='img-fluid' alt=''>";
-                echo "<h2><a href='blog-details.php?id=" . $row['id'] . "'>" . htmlspecialchars($row['title'], ENT_QUOTES, 'UTF-8') . "</a></h2>";
-                echo "<p>" . htmlspecialchars_decode(substr($row['content'], 0, 100), ENT_QUOTES) . "...</p>";
-                echo "<small>Erstellt am: " . date('d.m.Y', strtotime($row['created_at'])) . "</small>";
-                echo "<small>Autor: " . htmlspecialchars($row['author'], ENT_QUOTES, 'UTF-8') . "</small>";
-                echo "<p><span class='badge badge-category'>" . htmlspecialchars($row['category'], ENT_QUOTES, 'UTF-8') . "</span></p>";
-                $tags = explode(',', $row['tags']);
-                foreach ($tags as $tag) {
-                    echo "<span class='badge badge-tag'>" . htmlspecialchars(trim($tag), ENT_QUOTES, 'UTF-8') . "</span>";
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo "<div class='col-md-4'>";
+                    echo "<div class='blog-post'>";
+                    echo "<img src='assets/img/" . htmlspecialchars($row['image'], ENT_QUOTES, 'UTF-8') . "' class='img-fluid' alt=''>";
+                    echo "<h2><a href='blog-details.php?id=" . $row['id'] . "'>" . htmlspecialchars($row['title'], ENT_QUOTES, 'UTF-8') . "</a></h2>";
+                    echo "<p>" . nl2br(htmlspecialchars(substr($row['content'], 0, 100), ENT_QUOTES, 'UTF-8')) . "...</p>";
+                    echo "<small>Erstellt am: " . date('d.m.Y', strtotime($row['created_at'])) . "</small>";
+                    echo "<small>Autor: " . htmlspecialchars($row['author'], ENT_QUOTES, 'UTF-8') . "</small>";
+                    echo "<p><span class='badge badge-category'>" . htmlspecialchars($row['category'], ENT_QUOTES, 'UTF-8') . "</span></p>";
+                    $tags = explode(',', $row['tags']);
+                    foreach ($tags as $tag) {
+                        echo "<span class='badge badge-tag'>" . htmlspecialchars(trim($tag), ENT_QUOTES, 'UTF-8') . "</span>";
+                    }
+                    echo "</div>";
+                    echo "</div>";
                 }
-                echo "</div>";
-                echo "</div>";
+            } else {
+                if (!empty($search) || !empty($category) || !empty($date) || !empty($author)) {
+                    echo "<div class='col-12 no-results'>Zu diesen Filteroptionen konnte keine Meldung in der Datenbank gefunden werden</div>";
+                } else {
+                    echo "<div class='col-12 no-results'>Aktuell gibt es keine Meldungen</div>";
+                }
             }
 
             // Gesamtanzahl der Beiträge für Pagination
@@ -202,14 +216,27 @@
     <?php include 'footer.php'; ?>
     
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function(){
-            $("#filter-toggle").click(function(){
-                $("#filter-form").slideToggle();
+            var filterForm = $("#filter-form");
+            var filterToggle = $("#filter-toggle");
+            var filterReset = $("#filter-reset");
+
+            filterToggle.click(function(){
+                filterForm.slideToggle();
             });
+
+            filterReset.click(function(){
+                window.location.href = 'blog.php';
+            });
+
+            // Show filter form if there are active filters
+            <?php if (!empty($search) || !empty($category) || !empty($date) || !empty($author)) { ?>
+                filterForm.show();
+            <?php } ?>
         });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
