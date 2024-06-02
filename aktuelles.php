@@ -98,13 +98,13 @@
     <?php include 'header.php'; ?>
 
     <div class="container mt-5">
-        <h1>Alle Aktuellen Meldungen im Überblick</h1>
+        <h1>Alle Aktuellen Meldungen im ï¿½berblick</h1>
         
         <!-- Filter Button -->
         <div class="filter-button">
             <button id="filter-toggle"><i class="fas fa-filter"></i> Filter</button>
         </div>
-        
+        0
         <!-- Filterformular -->
         <form method="GET" class="filter-form" id="filter-form">
             <div class="row">
@@ -142,7 +142,7 @@
                 </div>
                 <div class="col-md-3">
                     <button type="submit" class="btn btn-primary btn-block">Filtern</button>
-                    <button type="button" id="filter-reset" class="reset-button btn btn-block">Filter zurücksetzen</button>
+                    <button type="button" id="filter-reset" class="reset-button btn btn-block">Filter zurï¿½cksetzen</button>
                 </div>
             </div>
         </form>
@@ -174,7 +174,7 @@
             }
 
             // Pagination
-            $limit = 15; // Anzahl der Beiträge pro Seite
+            $limit = 15; // Anzahl der Beitrï¿½ge pro Seite
             $page = isset($_GET['page']) ? $_GET['page'] : 1;
             $start = ($page - 1) * $limit;
             $query .= " ORDER BY created_at DESC LIMIT $start, $limit";
@@ -206,7 +206,7 @@
                 }
             }
 
-            // Gesamtanzahl der Beiträge für Pagination
+            // Gesamtanzahl der Beitrï¿½ge fï¿½r Pagination
             $result1 = $conn->query("SELECT COUNT(id) AS id FROM blog_posts");
             $total = $result1->fetch_assoc()['id'];
             $pages = ceil($total / $limit);
