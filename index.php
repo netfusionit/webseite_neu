@@ -38,7 +38,7 @@
         <div class="alert alert-primary" role="alert">
         Willkommen bei NetFusionIT! <br>
         Unsere Webseite befindet sich derzeit im Aufbau!
-    </div>'
+    </div>
     
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">

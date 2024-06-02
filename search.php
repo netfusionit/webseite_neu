@@ -115,12 +115,28 @@
 
             // Suche in index.php für allgemeine Seiteninhalte
             $indexContent = file_get_contents('https://netfusionit.de/index.php');
-            if (stripos($indexContent, $query) !== false) {
-                echo "<div class='result-item'>";
-                echo "<h3>Startseite</h3>";
-                echo "<p>Der Suchbegriff wurde auf der Startseite gefunden.</p>";
-                echo "<br><a href='https://netfusionit.de/index.php' class='btn btn-primary mt-2'>Zum Seiteninhalt springen</a>";
-                echo "</div>";
+
+            if ($indexContent !== false) {
+                $dom = new DOMDocument();
+                libxml_use_internal_errors(true);
+                $dom->loadHTML($indexContent);
+                libxml_clear_errors();
+
+                $xpath = new DOMXPath($dom);
+                $body = $dom->getElementsByTagName('body')->item(0);
+                $texts = $xpath->query('//text()[contains(., "' . $query . '")]');
+
+                if ($texts->length > 0) {
+                    echo "<div class='result-item'>";
+                    echo "<h3>Startseite</h3>";
+                    echo "<p>Der Suchbegriff wurde auf der Startseite gefunden.</p>";
+                    echo "<br><a href='https://netfusionit.de/index.php' class='btn btn-primary mt-2'>Zum Seiteninhalt springen</a>";
+                    echo "</div>";
+                } else {
+                    echo "<p>Keine relevanten Inhalte auf der Startseite gefunden.</p>";
+                }
+            } else {
+                echo "<p>Fehler beim Laden der Startseite.</p>";
             }
 
             $conn->close();
