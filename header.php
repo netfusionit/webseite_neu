@@ -27,7 +27,7 @@
                 <a class="nav-link" href="aktuelles.php">Aktuelles</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="administration.php">Administration</a>
+                <a class="nav-link" href="admin.php">Administration</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
