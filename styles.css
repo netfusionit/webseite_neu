@@ -621,8 +621,8 @@ body {
 
 /* Contact Section */
 .contact {
-    background: #e0f7fa;
-    color: #666;
+    background: #e9ecef;
+    color: #333;
 }
 .section-title h2 {
     font-size: 36px;
@@ -683,14 +683,6 @@ body {
 #submit-button:disabled {
     background-color: #cccccc;
     cursor: not-allowed;
-}
-.btn-primary {
-    background-color: #3498db;
-    border: none;
-    transition: background-color 0.3s ease;
-}
-.btn-primary:hover {
-    background-color: #2980b9;
 }
 
 .info-item {

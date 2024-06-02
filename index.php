@@ -392,7 +392,7 @@
     </section><!-- /Blog Section -->
 
 <!-- Contact Section -->
-<section id="contact" class="contact section py-5" style="background: #f4f4f9;">
+<section id="contact" class="contact section bg-alt-2 py-5">
     <div class="container">
         <div class="section-title text-center" data-aos="fade-up">
             <h2>Kontakt</h2>
