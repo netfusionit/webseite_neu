@@ -104,7 +104,6 @@
         <div class="filter-button">
             <button id="filter-toggle"><i class="fas fa-filter"></i> Filter</button>
         </div>
-        0
         <!-- Filterformular -->
         <form method="GET" class="filter-form" id="filter-form">
             <div class="row">
