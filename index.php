@@ -36,8 +36,9 @@
         <p class="mb-0" id="tickerContent"></p>
     </div>
         <div class="alert alert-primary" role="alert">
-        Willkommen bei NetFusionIT! <br>
-        Unsere Webseite befindet sich derzeit im Aufbau!
+        <h5>Willkommen bei NetFusionIT!</h5> <br>
+        Unsere Webseite befindet sich derzeit im Aufbau! <br>
+        Voraussichtliche Fertigsstellung: 10.06.2024
     </div>
     
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
