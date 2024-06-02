@@ -37,6 +37,16 @@ if ($comment_id) {
     }
 }
 
+// Die aktuelle Anzahl der Reaktionen für den Blog-Post oder Kommentar abrufen
+if ($comment_id) {
+    $result = $conn->query("SELECT like_count, dislike_count FROM comment_reactions WHERE comment_id = $comment_id");
+} else if ($blog_id) {
+    $result = $conn->query("SELECT like_count, love_count, wow_count, sad_count FROM article_reactions WHERE blog_id = $blog_id");
+}
+
+$data = $result->fetch_assoc();
+$response['reactions'] = $data;
+
 echo json_encode($response);
 $conn->close();
 ?>

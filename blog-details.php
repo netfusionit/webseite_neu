@@ -412,99 +412,103 @@
     <?php include 'footer.php'; ?>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            let commentPage = 1;
-            const commentsContainer = document.getElementById('comments-container');
-            const loadMoreButton = document.getElementById('load-more-comments');
+document.addEventListener('DOMContentLoaded', function() {
+    let commentPage = 1;
+    const commentsContainer = document.getElementById('comments-container');
+    const loadMoreButton = document.getElementById('load-more-comments');
 
-            function loadComments() {
-                commentPage++;
-                fetch('load_comments.php?blog_id=<?php echo $id; ?>&page=' + commentPage)
-                    .then(response => response.text())
-                    .then(data => {
-                        commentsContainer.innerHTML += data;
-                        if (data.trim() === '') {
-                            loadMoreButton.style.display = 'none';
-                        }
-                    });
-            }
-
-            loadMoreButton.addEventListener('click', loadComments);
-
-            // Reaktionen für den Blog-Post laden
-            let blogId = <?php echo $id; ?>;
-            fetch('load_reactions.php?blog_id=' + blogId)
-                .then(response => response.json())
-                .then(data => {
-                    document.querySelectorAll('.reaction span[data-reaction]').forEach(function(icon) {
-                        let reaction = icon.getAttribute('data-reaction');
-                        if (data[reaction] !== undefined) {
-                            icon.querySelector('.count').textContent = data[reaction];
-                        }
-                    });
-                    document.querySelectorAll('#reactions-footer span[data-reaction]').forEach(function(icon) {
-                        let reaction = icon.getAttribute('data-reaction');
-                        if (data[reaction] !== undefined) {
-                            icon.querySelector('.count').textContent = data[reaction];
-                        }
-                    });
-                });
-
-            // Reaktionen für Kommentare laden
-            document.querySelectorAll('.comment-reaction').forEach(function(reactionBox) {
-                let commentId = reactionBox.id.split('-')[2];
-                fetch('load_comment_reactions.php?comment_id=' + commentId)
-                    .then(response => response.json())
-                    .then(data => {
-                        reactionBox.querySelectorAll('span[data-reaction]').forEach(function(icon) {
-                            let reaction = icon.getAttribute('data-reaction');
-                            if (data[reaction] !== undefined) {
-                                icon.nextElementSibling.textContent = data[reaction];
-                            }
-                        });
-                    });
+    function loadComments() {
+        commentPage++;
+        fetch('load_comments.php?blog_id=<?php echo $id; ?>&page=' + commentPage)
+            .then(response => response.text())
+            .then(data => {
+                commentsContainer.innerHTML += data;
+                if (data.trim() === '') {
+                    loadMoreButton.style.display = 'none';
+                }
             });
+    }
 
-            // Reaktions-Event-Listener hinzufügen
-            document.querySelectorAll('.bi').forEach(function(icon) {
-                icon.addEventListener('click', function() {
-                    let reaction = this.getAttribute('data-reaction');
-                    let blogId = this.getAttribute('data-blog-id');
-                    let commentId = this.getAttribute('data-comment-id');
-                    
-                    // Aufpochen lassen
-                    this.classList.add('animate');
-                    setTimeout(() => {
-                        this.classList.remove('animate');
-                    }, 1800);
-                    
-                    fetch('add_reaction.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded'
-                        },
-                        body: 'blog_id=' + blogId + '&reaction_type=' + reaction + '&comment_id=' + commentId
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            let countSpan = this.querySelector('.count');
-                            countSpan.textContent = parseInt(countSpan.textContent) + 1;
-                        }
-                    });
+    loadMoreButton.addEventListener('click', loadComments);
+
+    // Reaktionen für den Blog-Post laden
+    let blogId = <?php echo $id; ?>;
+    function loadReactions() {
+        fetch('load_reactions.php?blog_id=' + blogId)
+            .then(response => response.json())
+            .then(data => {
+                document.querySelectorAll('.reaction span[data-reaction]').forEach(function(icon) {
+                    let reaction = icon.getAttribute('data-reaction');
+                    if (data[reaction] !== undefined) {
+                        icon.querySelector('.count').textContent = data[reaction];
+                    }
+                });
+                document.querySelectorAll('#reactions-footer span[data-reaction]').forEach(function(icon) {
+                    let reaction = icon.getAttribute('data-reaction');
+                    if (data[reaction] !== undefined) {
+                        icon.querySelector('.count').textContent = data[reaction];
+                    }
                 });
             });
+    }
+    loadReactions();
 
-            document.querySelector('.toggle-comment').addEventListener('click', function() {
-                var form = document.querySelector('.comment-form');
-                form.style.display = form.style.display === 'block' ? 'none' : 'block';
-                this.classList.toggle('collapsed');
+    // Reaktionen für Kommentare laden
+    document.querySelectorAll('.comment-reaction').forEach(function(reactionBox) {
+        let commentId = reactionBox.id.split('-')[2];
+        fetch('load_comment_reactions.php?comment_id=' + commentId)
+            .then(response => response.json())
+            .then(data => {
+                reactionBox.querySelectorAll('span[data-reaction]').forEach(function(icon) {
+                    let reaction = icon.getAttribute('data-reaction');
+                    if (data[reaction] !== undefined) {
+                        icon.nextElementSibling.textContent = data[reaction];
+                    }
+                });
             });
+    });
 
-            $('.carousel').carousel({
-                interval: 5000
+    // Reaktions-Event-Listener hinzufügen
+    document.querySelectorAll('.bi').forEach(function(icon) {
+        icon.addEventListener('click', function() {
+            let reaction = this.getAttribute('data-reaction');
+            let blogId = this.getAttribute('data-blog-id');
+            let commentId = this.getAttribute('data-comment-id');
+            
+            // Aufpochen lassen
+            this.classList.add('animate');
+            setTimeout(() => {
+                this.classList.remove('animate');
+            }, 1800);
+            
+            fetch('add_reaction.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: 'blog_id=' + blogId + '&reaction_type=' + reaction + '&comment_id=' + commentId
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    loadReactions(); // Aktualisiert die Reaktionen nach der Änderung
+                }
             });
         });
+    });
+
+    document.querySelector('.toggle-comment').addEventListener('click', function() {
+        var form = document.querySelector('.comment-form');
+        form.style.display = form.style.display === 'block' ? 'none' : 'block';
+        this.classList.toggle('collapsed');
+    });
+
+    $('.carousel').carousel({
+        interval: 5000
+    });
+});
+
+
     </script>
 
 </body>
