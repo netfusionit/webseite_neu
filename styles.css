@@ -1023,8 +1023,11 @@ footer {
     }
 
     @keyframes blinker {
+        0%, 100% {
+            background-color: red;
+        }
         50% {
-            opacity: 0;
+            background-color: blue;
         }
     }
 

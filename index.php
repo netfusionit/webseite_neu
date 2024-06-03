@@ -616,6 +616,7 @@ function showSearchAssistant(query, lineNumber) {
     unlockScrollButton.addEventListener('click', () => {
         document.body.style.overflow = 'auto';
         unlockScrollButton.style.display = 'none';
+        unlockScrollButton.classList.remove('blinking');
     });
 
     function updatePositionBar() {
@@ -670,13 +671,14 @@ function showSearchAssistantResults() {
                 document.getElementById('remainingPercentage').innerText = 0;
                 document.body.style.overflow = 'hidden';
                 document.getElementById('unlockScrollButton').style.display = 'block';
+                document.getElementById('unlockScrollButton').classList.add('blinking');
             } else {
                 document.getElementById('remainingPercentage').innerText = remainingPercentage;
             }
 
             if (remaining > 0) {
                 highlightElement.style.top = `${Math.min(scrollPosition, 100)}%`;
-                highlightElement.style.height = `${remainingPercentage}%`;
+                highlightElement.style.height = `${Math.min(remainingPercentage, 100 - scrollPosition)}%`;
                 highlightElement.classList.add('green');
                 remainingIndicator.innerText = '';
                 remainingIndicator.classList.remove('blinking');
