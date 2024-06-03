@@ -477,7 +477,6 @@
         <div><span class="position"></span>Rot: Aktuelle Position</div>
     </div>
     <div id="remainingIndicator" class="remaining-indicator"></div>
-<button id="unlockScrollButton" style="display:none;">Scrolling Freigeben</button>
     <button onclick="endSearch()">Suche Beenden</button>
 </div>
 <button id="searchAssistantModalToggle" onclick="toggleSearchAssistant()" class="hidden"><i class="fas fa-search"></i></button>
