@@ -549,6 +549,19 @@
 
 
 
+<div id="searchAssistantModal">
+    <h3>Search Assistant</h3>
+    <p>Position: <span id="currentPosition">0</span>/100</p>
+    <div class="mini-map" id="miniMapContainer"></div>
+    <div class="legend">
+        <div><span class="current"></span>Grün: Gewähltes Ergebnis</div>
+        <div><span class="other"></span>Gelb: Andere Ergebnisse</div>
+        <div><span class="position"></span>Rot: Aktuelle Position</div>
+    </div>
+    <button onclick="endSearch()">Suche Beenden</button>
+</div>
+<button id="searchAssistantModalToggle" onclick="toggleSearchAssistant()"><i class="fas fa-search"></i></button>
+
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     const params = new URLSearchParams(window.location.search);
@@ -567,68 +580,43 @@ function showSearchAssistant(query, lineNumber) {
     searchAssistantModal.style.display = 'block';
     const positionIndicator = document.getElementById('currentPosition');
 
-    const miniMap = document.getElementById('miniMap');
-    miniMap.innerHTML = '';
+    const miniMapContainer = document.getElementById('miniMapContainer');
+    miniMapContainer.innerHTML = '';
 
-    const textNodes = [];
-    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
-    while (walker.nextNode()) {
-        textNodes.push(walker.currentNode);
-    }
+    // Clone the body element to create the mini map
+    const miniMap = document.body.cloneNode(true);
+    miniMap.style.transform = 'scale(0.2)';
+    miniMap.style.transformOrigin = 'top left';
+    miniMap.style.width = '500%'; // Adjust the width to match the scaled content
+    miniMapContainer.appendChild(miniMap);
 
-    let accumulatedLength = 0;
-    let targetNode = null;
-    let offset = 0;
-
-    textNodes.some(node => {
-        accumulatedLength += node.textContent.length;
-        if (accumulatedLength >= lineNumber) {
-            targetNode = node;
-            offset = node.textContent.length - (accumulatedLength - lineNumber);
-            return true;
+    // Highlight search results in the mini map
+    const highlights = miniMap.querySelectorAll('mark');
+    highlights.forEach((highlight, index) => {
+        const bar = document.createElement('div');
+        bar.classList.add('bar');
+        const position = Math.round((highlight.offsetTop / document.body.scrollHeight) * 100);
+        bar.style.top = `${position}%`;
+        if (index === Number(lineNumber) - 1) {
+            bar.classList.add('current-bar');
+        } else {
+            bar.classList.add('other-bar');
         }
-        return false;
+        miniMapContainer.appendChild(bar);
     });
 
-    if (targetNode) {
-        const range = document.createRange();
-        range.setStart(targetNode, offset);
-        range.setEnd(targetNode, offset + query.length);
-        const rect = range.getBoundingClientRect();
-        window.scrollTo({
-            top: window.scrollY + rect.top - window.innerHeight / 2,
-            behavior: "smooth"
-        });
+    const positionBar = document.createElement('div');
+    positionBar.classList.add('bar', 'position-bar');
+    miniMapContainer.appendChild(positionBar);
 
-        document.body.innerHTML = document.body.innerHTML.replace(new RegExp(query, 'gi'), match => `<mark>${match}</mark>`);
-
-        const highlights = document.querySelectorAll('mark');
-        highlights.forEach((highlight, index) => {
-            const bar = document.createElement('div');
-            bar.classList.add('bar');
-            const position = Math.round((highlight.offsetTop / document.body.scrollHeight) * 100);
-            bar.style.top = `${position}%`;
-            if (index === Number(lineNumber) - 1) {
-                bar.classList.add('current-bar');
-            } else {
-                bar.classList.add('other-bar');
-            }
-            miniMap.appendChild(bar);
-        });
-
-        const positionBar = document.createElement('div');
-        positionBar.classList.add('bar', 'position-bar');
-        miniMap.appendChild(positionBar);
-
-        function updatePositionBar() {
-            const scrollPosition = (window.scrollY / document.body.scrollHeight) * 100;
-            positionBar.style.top = `${scrollPosition}%`;
-            positionIndicator.innerText = Math.round(scrollPosition);
-        }
-
-        document.addEventListener('scroll', updatePositionBar);
-        updatePositionBar();
+    function updatePositionBar() {
+        const scrollPosition = (window.scrollY / document.body.scrollHeight) * 100;
+        positionBar.style.top = `${scrollPosition}%`;
+        positionIndicator.innerText = Math.round(scrollPosition);
     }
+
+    document.addEventListener('scroll', updatePositionBar);
+    updatePositionBar();
 }
 
 function endSearch() {
