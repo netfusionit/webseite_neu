@@ -598,7 +598,6 @@ function showSearchAssistant(query, lineNumber) {
     const remainingIndicator = document.getElementById('remainingIndicator');
     const miniMapContainer = document.getElementById('miniMapContainer');
     const toggleButton = document.getElementById('toggleButton');
-    const unlockScrollButton = document.getElementById('unlockScrollButton');
 
     miniMapContainer.innerHTML = '';
 
@@ -610,11 +609,6 @@ function showSearchAssistant(query, lineNumber) {
 
     toggleButton.addEventListener('click', () => {
         miniMapContainer.classList.toggle('show-more');
-    });
-
-    unlockScrollButton.addEventListener('click', () => {
-        document.body.style.overflow = 'auto';
-        unlockScrollButton.style.display = 'none';
     });
 
     function updatePositionBar() {
@@ -665,13 +659,7 @@ function showSearchAssistantResults() {
             const greenBarPosition = parseFloat(window.searchResults[0].top / (document.body.scrollHeight - window.innerHeight)) * 100;
             const remaining = greenBarPosition - scrollPosition;
             const remainingPercentage = Math.round(remaining);
-            if (remaining <= 3 && remaining >= -3) {
-                document.getElementById('remainingPercentage').innerText = 0;
-                document.body.style.overflow = 'hidden';
-                document.getElementById('unlockScrollButton').style.display = 'block';
-            } else {
-                document.getElementById('remainingPercentage').innerText = remainingPercentage;
-            }
+            document.getElementById('remainingPercentage').innerText = remainingPercentage;
 
             if (remaining > 0) {
                 highlightElement.style.top = `${Math.min(scrollPosition, 100)}%`;
@@ -761,7 +749,6 @@ function toggleSearchAssistant() {
         searchAssistantModalToggle.classList.add('open');
     }
 }
-
 
 </script>
 
