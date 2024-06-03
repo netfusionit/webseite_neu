@@ -591,7 +591,7 @@ function showSearchAssistant(query, lineNumber) {
     miniMapContainer.appendChild(positionBar);
 
     function updatePositionBar() {
-        const scrollPosition = (window.scrollY / document.body.scrollHeight) * 100;
+        const scrollPosition = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
         positionBar.style.top = `${scrollPosition}%`;
         positionIndicator.innerText = Math.round(scrollPosition);
     }
@@ -609,7 +609,7 @@ function showSearchAssistantResults() {
     window.searchResults.forEach((result, index) => {
         const bar = document.createElement('div');
         bar.classList.add('bar');
-        const position = Math.round((result.top / document.body.scrollHeight) * 100);
+        const position = Math.round((result.top / (document.body.scrollHeight - window.innerHeight)) * 100);
         bar.style.top = `${position}%`;
         if (index === 0) {
             bar.classList.add('current-bar');
@@ -625,14 +625,21 @@ function showSearchAssistantResults() {
     miniMapContainer.appendChild(positionBar);
 
     function updatePositionBar() {
-        const scrollPosition = (window.scrollY / document.body.scrollHeight) * 100;
+        const scrollPosition = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
         positionBar.style.top = `${scrollPosition}%`;
         document.getElementById('currentPosition').innerText = Math.round(scrollPosition);
 
         if (window.searchResults.length > 0) {
-            const greenBarPosition = parseFloat(window.searchResults[0].top / document.body.scrollHeight) * 100;
+            const greenBarPosition = parseFloat(window.searchResults[0].top / (document.body.scrollHeight - window.innerHeight)) * 100;
             const remaining = greenBarPosition - scrollPosition;
             document.getElementById('remainingPercentage').innerText = Math.max(0, Math.round(remaining));
+
+            // Animation when the green bar is reached
+            if (remaining <= 0) {
+                positionBar.classList.add('blinking');
+            } else {
+                positionBar.classList.remove('blinking');
+            }
         }
     }
 
@@ -688,6 +695,7 @@ function toggleSearchAssistant() {
         searchAssistantModalToggle.classList.add('open');
     }
 }
+
 </script>
 
 

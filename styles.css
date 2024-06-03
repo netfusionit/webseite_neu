@@ -1018,3 +1018,13 @@ footer {
             display: none;
         }
     }
+
+    .blinking {
+        animation: blinker 1s linear infinite;
+    }
+
+    @keyframes blinker {
+        50% {
+            opacity: 0;
+        }
+    }
