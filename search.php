@@ -67,7 +67,7 @@
         }
 
         mark {
-            background-color: #ffff99;
+            background-color: #ffff00; /* Neon gelb */
             color: black;
         }
 
@@ -108,8 +108,8 @@
                         echo "<div class='result-item'>";
                         echo "<h3>" . $row['title'] . "</h3>";
                         $cleanContent = strip_tags($row['content']);
-                        $highlightedContent = str_ireplace($query, "<mark>$query</mark>", substr($cleanContent, 0, 300));
-                        echo "<p>" . $highlightedContent . "...</p>";
+                        $highlightedContent = str_ireplace($query, "<mark>$query</mark>", $cleanContent);
+                        echo "<p>" . substr($highlightedContent, 0, 300) . "...</p>";
                         echo "<a href='blog-details.php?id=" . $row['id'] . "' class='btn btn-primary mt-2'>Weiterlesen</a>";
                         echo "</div>";
                     }

@@ -549,6 +549,7 @@
 
 
 
+
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     const params = new URLSearchParams(window.location.search);
@@ -569,9 +570,9 @@ function showSearchAssistant(query, lineNumber) {
 
     miniMapContainer.innerHTML = '';
 
-    // Highlight search results in the mini map
     const highlights = document.querySelectorAll('mark');
     const bodyHeight = document.body.scrollHeight;
+
     highlights.forEach((highlight, index) => {
         const bar = document.createElement('div');
         bar.classList.add('bar');
