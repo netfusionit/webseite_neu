@@ -581,6 +581,7 @@ function showSearchAssistant(query, lineNumber) {
     const searchAssistantModal = document.getElementById('searchAssistantModal');
     searchAssistantModal.style.display = 'block';
     const positionIndicator = document.getElementById('currentPosition');
+    const remainingIndicator = document.getElementById('remainingIndicator');
     const miniMapContainer = document.getElementById('miniMapContainer');
 
     miniMapContainer.innerHTML = '';
@@ -630,11 +631,6 @@ function showSearchAssistantResults() {
     highlightElement.classList.add('highlight');
     miniMapContainer.appendChild(highlightElement);
 
-    const remainingIndicator = document.createElement('div');
-    remainingIndicator.id = 'remainingIndicator';
-    remainingIndicator.classList.add('remaining-indicator');
-    miniMapContainer.appendChild(remainingIndicator);
-
     function updatePositionBar() {
         const scrollPosition = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
         positionBar.style.top = `${Math.min(scrollPosition, 100)}%`;
@@ -643,8 +639,8 @@ function showSearchAssistantResults() {
         if (window.searchResults.length > 0) {
             const greenBarPosition = parseFloat(window.searchResults[0].top / (document.body.scrollHeight - window.innerHeight)) * 100;
             const remaining = greenBarPosition - scrollPosition;
-            const remainingPercentage = Math.min(Math.round(remaining), 100);
-            document.getElementById('remainingPercentage').innerText = remaining;
+            const remainingPercentage = Math.round(remaining);
+            document.getElementById('remainingPercentage').innerText = remainingPercentage;
 
             if (remaining > 0) {
                 highlightElement.style.top = `${Math.min(scrollPosition, 100)}%`;
@@ -653,7 +649,7 @@ function showSearchAssistantResults() {
                 remainingIndicator.innerText = '';
                 remainingIndicator.classList.remove('blinking');
                 remainingIndicator.classList.remove('green-text');
-            } else if (remaining === 0) {
+            } else if (Math.abs(remaining) <= 3) {
                 const middleOffset = window.innerHeight / 2;
                 const elementTop = window.searchResults[0].top;
                 if (elementTop > middleOffset) {
@@ -665,12 +661,12 @@ function showSearchAssistantResults() {
                 remainingIndicator.innerText = 'Suchergebnis HIER';
                 remainingIndicator.classList.add('blinking');
                 remainingIndicator.classList.add('green-text');
-            } else if (remaining < 0) {
+            } else if (remaining < -3) {
                 highlightElement.style.top = `${Math.min(scrollPosition, 100)}%`;
-                highlightElement.style.height = `calc(0% - ${Math.abs(Math.min(scrollPosition, 100))}%)`;
+                highlightElement.style.height = `calc(0% - ${Math.min(scrollPosition, 100)}%)`;
                 highlightElement.classList.remove('green');
                 highlightElement.classList.add('yellow');
-                remainingIndicator.innerText = remaining;
+                remainingIndicator.innerText = remainingPercentage;
                 remainingIndicator.classList.remove('blinking');
                 remainingIndicator.classList.remove('green-text');
             } else {
@@ -734,7 +730,6 @@ function toggleSearchAssistant() {
         searchAssistantModalToggle.classList.add('open');
     }
 }
-
 </script>
 
 
