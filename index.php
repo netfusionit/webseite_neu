@@ -476,6 +476,7 @@
         <div><span class="other"></span>Gelb: Andere Ergebnisse</div>
         <div><span class="position"></span>Rot: Aktuelle Position</div>
     </div>
+    <div id="remainingIndicator" class="remaining-indicator"></div>
     <button id="toggleButton">Toggle Results</button>
     <button onclick="endSearch()">Suche Beenden</button>
 </div>
@@ -630,7 +631,7 @@ function showSearchAssistantResults() {
         const bar = document.createElement('div');
         bar.classList.add('bar');
         const position = Math.min(Math.round((result.top / (document.body.scrollHeight - window.innerHeight)) * 100), 100);
-        bar.style.top = `${position}%`;
+        bar.style.top = `${position - 5}%`; // Shift bars up slightly for better visibility
         if (index === 0) {
             bar.classList.add('current-bar');
         } else {
@@ -748,7 +749,6 @@ function toggleSearchAssistant() {
         searchAssistantModalToggle.classList.add('open');
     }
 }
-
 
 </script>
 
