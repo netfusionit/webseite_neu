@@ -468,7 +468,7 @@
 <div id="searchAssistantModal">
     <h3>Search Assistant</h3>
     <p>Position: <span id="currentPosition">0</span>/100</p>
-    <div class="mini-map" id="miniMap"></div>
+    <div class="mini-map" id="miniMapContainer"></div>
     <div class="legend">
         <div><span class="current"></span>Grün: Gewähltes Ergebnis</div>
         <div><span class="other"></span>Gelb: Andere Ergebnisse</div>
@@ -477,8 +477,6 @@
     <button onclick="endSearch()">Suche Beenden</button>
 </div>
 <button id="searchAssistantModalToggle" onclick="toggleSearchAssistant()"><i class="fas fa-search"></i></button>
-
-
     <?php include 'footer.php'; ?>
 
     <!-- Scroll Top -->
@@ -581,6 +579,14 @@ function showSearchAssistant(query, lineNumber) {
 
     const miniMapContainer = document.getElementById('miniMapContainer');
     miniMapContainer.innerHTML = '';
+
+    // Add markers for search results
+    const bodyText = document.body.innerText;
+    const textNodes = [];
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+    while (walker.nextNode()) {
+        textNodes.push(walker.currentNode);
+    }
 
     document.body.innerHTML = document.body.innerHTML.replace(new RegExp(query, 'gi'), match => `<mark>${match}</mark>`);
 
