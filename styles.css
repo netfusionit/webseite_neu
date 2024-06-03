@@ -1001,9 +1001,11 @@ footer {
             right: 0;
         }
         #searchAssistantModalToggle {
+            display: none;
             position: fixed;
-            top: 20px;
-            right: 20px;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
             z-index: 1100;
             background: #007bff;
             color: #fff;
