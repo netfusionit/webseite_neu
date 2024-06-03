@@ -903,8 +903,7 @@ footer {
     #searchAssistantModal {
         position: fixed;
         top: 20px;
-        left: 50%;
-        transform: translateX(-50%);
+        right: 20px;
         width: 300px;
         background: #fff;
         border: 2px solid #007bff;
@@ -914,6 +913,7 @@ footer {
         border-radius: 10px;
         resize: both;
         overflow: auto;
+        display: none; /* Hide by default */
     }
     #searchAssistantModal h3 {
         color: #007bff;

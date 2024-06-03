@@ -477,6 +477,7 @@
     <button onclick="endSearch()">Suche Beenden</button>
 </div>
 
+
     <?php include 'footer.php'; ?>
 
     <!-- Scroll Top -->
@@ -553,7 +554,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const query = params.get('query');
     const lineNumber = window.location.hash.split("-")[1];
 
-    if (lineNumber) {
+    if (query && lineNumber) {
         const lines = document.body.innerText.split('\n');
         let accumulatedLength = 0;
         let targetNode = null;
@@ -644,11 +645,7 @@ dragElement(document.getElementById("searchAssistantModal"));
 
 function dragElement(elmnt) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-    if (document.getElementById(elmnt.id + "header")) {
-        document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-    } else {
-        elmnt.onmousedown = dragMouseDown;
-    }
+    elmnt.onmousedown = dragMouseDown;
 
     function dragMouseDown(e) {
         e = e || window.event;
