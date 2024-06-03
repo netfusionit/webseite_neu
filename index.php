@@ -649,12 +649,19 @@ function showSearchAssistantResults() {
                 highlightElement.style.top = `${Math.min(scrollPosition, 100)}%`;
                 highlightElement.style.height = `${remainingPercentage}%`;
                 highlightElement.classList.add('green');
+                remainingIndicator.innerText = '';
+                remainingIndicator.classList.remove('blinking');
+                remainingIndicator.classList.remove('green-text');
+            } else if (remaining === 0) {
+                highlightElement.style.top = `${Math.min(scrollPosition, 100)}%`;
+                highlightElement.style.height = `100%`;
+                highlightElement.classList.add('green');
                 remainingIndicator.innerText = 'Suchergebnis HIER';
                 remainingIndicator.classList.add('blinking');
                 remainingIndicator.classList.add('green-text');
-            } else if (remaining <= 0 && remaining > -100) {
+            } else if (remaining < 0) {
                 highlightElement.style.top = `${Math.min(scrollPosition, 100)}%`;
-                highlightElement.style.height = `${Math.min(-remainingPercentage, 100)}%`;
+                highlightElement.style.height = `0%`;
                 highlightElement.classList.remove('green');
                 highlightElement.classList.add('yellow');
                 remainingIndicator.innerText = '';
