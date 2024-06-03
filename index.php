@@ -625,6 +625,26 @@ function showSearchAssistantResults() {
         }
         miniMapContainer.appendChild(bar);
     });
+
+    // Adding the red position bar to indicate the current scroll position
+    const positionBar = document.createElement('div');
+    positionBar.classList.add('bar', 'position-bar');
+    miniMapContainer.appendChild(positionBar);
+
+    function updatePositionBar() {
+        const scrollPosition = (window.scrollY / document.body.scrollHeight) * 100;
+        positionBar.style.top = `${scrollPosition}%`;
+        document.getElementById('currentPosition').innerText = Math.round(scrollPosition);
+
+        if (window.searchResults.length > 0) {
+            const greenBarPosition = parseFloat(window.searchResults[0].top / document.body.scrollHeight) * 100;
+            const remaining = greenBarPosition - scrollPosition;
+            document.getElementById('remainingPercentage').innerText = Math.max(0, Math.round(remaining));
+        }
+    }
+
+    document.addEventListener('scroll', updatePositionBar);
+    updatePositionBar();
 }
 
 function endSearch() {
