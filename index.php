@@ -533,11 +533,19 @@
     document.getElementById('contact-form').addEventListener('input', checkFormValidity);
 </script>
 
+<div id="searchAssistant">
+    <h3>Search Assistant</h3>
+    <p>Position: <span id="currentPosition">0</span>/100</p>
+    <div class="red-line"></div>
+    <button onclick="endSearch()">Suche Beenden</button>
+</div>
+
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     const params = new URLSearchParams(window.location.search);
     const query = params.get('query');
     const lineNumber = window.location.hash.split("-")[1];
+
     if (lineNumber) {
         const lines = document.body.innerText.split('\n');
         let accumulatedLength = 0;
@@ -571,9 +579,38 @@ document.addEventListener("DOMContentLoaded", function() {
                 top: window.scrollY + rect.top - window.innerHeight / 2,
                 behavior: "smooth"
             });
+
+            highlightResults(query, lineNumber);
         }
     }
 });
+
+function highlightResults(query, lineNumber) {
+    const bodyText = document.body.innerText;
+    const indexPosition = bodyText.indexOf(query);
+
+    const searchAssistant = document.getElementById('searchAssistant');
+    searchAssistant.style.display = 'block';
+    const positionIndicator = document.getElementById('currentPosition');
+
+    if (indexPosition !== -1) {
+        const percentagePosition = Math.round((indexPosition / bodyText.length) * 100);
+        positionIndicator.innerText = percentagePosition;
+    }
+
+    const highlights = document.querySelectorAll('mark');
+    highlights.forEach((highlight, index) => {
+        if (index === Number(lineNumber) - 1) {
+            highlight.classList.add('highlight-current');
+        } else {
+            highlight.classList.add('highlight-others');
+        }
+    });
+}
+
+function endSearch() {
+    window.location.href = window.location.pathname;
+}
 </script>
 
 

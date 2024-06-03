@@ -899,3 +899,50 @@ footer {
         background-color: #0056b3;
         transform: scale(1.1);
     }
+    #searchAssistant {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        width: 300px;
+        background: #fff;
+        border: 2px solid #007bff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        padding: 20px;
+        border-radius: 10px;
+        display: none;
+    }
+    #searchAssistant h3 {
+        color: #007bff;
+        margin-bottom: 15px;
+        font-size: 1.2rem;
+    }
+    #searchAssistant p {
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+    #searchAssistant .highlight-current {
+        background-color: #90ee90;
+    }
+    #searchAssistant .highlight-others {
+        background-color: #ffff99;
+    }
+    #searchAssistant .red-line {
+        background-color: red;
+        height: 2px;
+        margin: 10px 0;
+    }
+    #searchAssistant button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1rem;
+    }
+    #searchAssistant button:hover {
+        background: #0056b3;
+    }

@@ -24,22 +24,24 @@
         }
 
         .search-results .result-item {
-            border: 1px solid #ddd;
+            border: 2px solid #ddd;
             padding: 20px;
             border-radius: 10px;
             background-color: #ffffff;
             margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
         .search-results .result-item:hover {
             transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
 
         .search-results .result-item h3 {
             margin-bottom: 10px;
             color: #0056b3;
+            font-size: 1.25rem;
         }
 
         .search-results .result-item p {
@@ -83,7 +85,7 @@
 <body>
     <?php include 'header.php'; ?>
     <div class="container mt-5">
-        <h1>Suchergebnisse</h1>
+        <h1>Suchergebnisse für "<span style="color: #007bff;"><?php echo htmlspecialchars($_GET['query']); ?></span>"</h1>
         <div class="search-results">
             <?php
             include 'db.php';
@@ -135,7 +137,7 @@
             }
 
             $conn->close();
-            ?>
+        ?>
         </div>
     </div>
     <?php include 'footer.php'; ?>
