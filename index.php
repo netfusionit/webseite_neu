@@ -468,11 +468,9 @@
 <div id="searchAssistantModal">
     <h3>Search Assistant</h3>
     <p>Position: <span id="currentPosition">0</span>/100</p>
-    <div class="mini-map" id="miniMapContainer"></div>
-    <div class="legend">
-        <div><span class="current"></span>Grün: Gewähltes Ergebnis</div>
-        <div><span class="other"></span>Gelb: Andere Ergebnisse</div>
-        <div><span class="position"></span>Rot: Aktuelle Position</div>
+    <div class="mini-map" id="miniMapContainer">
+        <div class="background-text">Position</div>
+        <div class="position-bar"></div>
     </div>
     <button onclick="endSearch()">Suche Beenden</button>
 </div>
@@ -566,58 +564,25 @@ function showSearchAssistant(query, lineNumber) {
     searchAssistantModal.style.display = 'block';
     const positionIndicator = document.getElementById('currentPosition');
     const miniMapContainer = document.getElementById('miniMapContainer');
-
-    miniMapContainer.innerHTML = '';
-
-    const miniMap = document.createElement('div');
-    miniMap.style.width = '1000%';
-    miniMap.style.position = 'relative';
-    miniMap.style.transform = 'scale(0.1)';
-    miniMap.style.transformOrigin = 'top left';
-    miniMapContainer.appendChild(miniMap);
-
-    document.body.childNodes.forEach(node => {
-        const clone = node.cloneNode(true);
-        miniMap.appendChild(clone);
-    });
-
-    const highlights = miniMap.querySelectorAll('mark');
-    highlights.forEach((highlight, index) => {
-        const bar = document.createElement('div');
-        bar.classList.add('bar');
-        const position = Math.round((highlight.offsetTop / document.body.scrollHeight) * 100);
-        bar.style.top = `${position}%`;
-        if (index === Number(lineNumber) - 1) {
-            bar.classList.add('current-bar');
-        } else {
-            bar.classList.add('other-bar');
-        }
-        miniMapContainer.appendChild(bar);
-    });
-
-    const positionBar = document.createElement('div');
-    positionBar.classList.add('bar', 'position-bar');
-    miniMapContainer.appendChild(positionBar);
+    const positionBar = miniMapContainer.querySelector('.position-bar');
 
     function updatePositionBar() {
         const scrollPosition = (window.scrollY / document.body.scrollHeight) * 100;
         positionBar.style.top = `${scrollPosition}%`;
         positionIndicator.innerText = Math.round(scrollPosition);
-        
-        // Check if positionBar overlaps with any current-bar
-        const currentBars = document.querySelectorAll('.current-bar');
-        currentBars.forEach(bar => {
-            const barTop = parseFloat(bar.style.top);
-            if (Math.abs(scrollPosition - barTop) < 2) {
-                bar.classList.add('highlight');
-            } else {
-                bar.classList.remove('highlight');
-            }
-        });
     }
 
     document.addEventListener('scroll', updatePositionBar);
     updatePositionBar();
+
+    // Mark the search terms in the main content
+    markSearchTerms(query);
+}
+
+function markSearchTerms(query) {
+    const bodyText = document.body.innerHTML;
+    const highlightedText = bodyText.replace(new RegExp(query, 'gi'), (match) => `<mark>${match}</mark>`);
+    document.body.innerHTML = highlightedText;
 }
 
 function endSearch() {

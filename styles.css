@@ -930,33 +930,23 @@ footer {
         overflow: hidden;
         background: #f8f9fa;
     }
-    #searchAssistantModal .mini-map iframe {
+    #searchAssistantModal .mini-map .background-text {
+        position: absolute;
         width: 100%;
         height: 100%;
-        transform: scale(0.1);
-        transform-origin: top left;
-        pointer-events: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #ccc;
+        font-size: 2rem;
+        z-index: 1;
     }
-    #searchAssistantModal .mini-map .bar {
+    #searchAssistantModal .mini-map .position-bar {
         position: absolute;
         width: 100%;
         height: 5px;
-        z-index: 2000;
-    }
-    #searchAssistantModal .mini-map .current-bar {
-        background-color: green;
-    }
-    #searchAssistantModal .mini-map .current-bar.highlight {
         background-color: red;
-    }
-    #searchAssistantModal .mini-map .other-bar {
-        background-color: yellow;
-    }
-    #searchAssistantModal .mini-map .position-bar {
-        background-color: red;
-        height: 2px;
-        width: 100%;
-        z-index: 3000;
+        z-index: 2;
     }
     #searchAssistantModal button {
         display: block;
@@ -972,30 +962,6 @@ footer {
     }
     #searchAssistantModal button:hover {
         background: #0056b3;
-    }
-    #searchAssistantModal .legend {
-        margin-top: 10px;
-    }
-    #searchAssistantModal .legend div {
-        display: flex;
-        align-items: center;
-        margin-bottom: 5px;
-    }
-    #searchAssistantModal .legend div span {
-        display: inline-block;
-        width: 20px;
-        height: 10px;
-        margin-right: 10px;
-    }
-    #searchAssistantModal .legend .current {
-        background-color: green;
-    }
-    #searchAssistantModal .legend .other {
-        background-color: yellow;
-    }
-    #searchAssistantModal .legend .position {
-        background-color: red;
-        height: 2px;
     }
     
     /* Mobile styles */
@@ -1026,4 +992,9 @@ footer {
         #searchAssistantModalToggle.open {
             right: 320px;
         }
+    }
+    
+    mark {
+        background-color: neon-yellow;
+        color: black;
     }
