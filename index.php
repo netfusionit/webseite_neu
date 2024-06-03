@@ -575,7 +575,6 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function showSearchAssistant(query, lineNumber) {
-    const bodyText = document.body.innerText;
     const searchAssistantModal = document.getElementById('searchAssistantModal');
     searchAssistantModal.style.display = 'block';
     const positionIndicator = document.getElementById('currentPosition');
@@ -583,15 +582,9 @@ function showSearchAssistant(query, lineNumber) {
     const miniMapContainer = document.getElementById('miniMapContainer');
     miniMapContainer.innerHTML = '';
 
-    // Clone the body element to create the mini map
-    const miniMap = document.body.cloneNode(true);
-    miniMap.style.transform = 'scale(0.2)';
-    miniMap.style.transformOrigin = 'top left';
-    miniMap.style.width = '500%'; // Adjust the width to match the scaled content
-    miniMapContainer.appendChild(miniMap);
+    document.body.innerHTML = document.body.innerHTML.replace(new RegExp(query, 'gi'), match => `<mark>${match}</mark>`);
 
-    // Highlight search results in the mini map
-    const highlights = miniMap.querySelectorAll('mark');
+    const highlights = document.querySelectorAll('mark');
     highlights.forEach((highlight, index) => {
         const bar = document.createElement('div');
         bar.classList.add('bar');
@@ -668,7 +661,6 @@ function toggleSearchAssistant() {
     }
 }
 </script>
-
 
 </body>
 </html>
