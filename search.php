@@ -86,7 +86,7 @@
     <?php include 'header.php'; ?>
     <div class="container mt-5">
         <h1>Suchergebnisse für "<span style="color: #007bff;"><?php echo htmlspecialchars($_GET['query']); ?></span>"</h1>
-        <div class="search-results">
+        <div class="search-results" id="searchResults">
             <?php
             include 'db.php';
             $query = $_GET['query'];

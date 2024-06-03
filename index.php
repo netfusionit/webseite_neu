@@ -564,6 +564,16 @@ function markQuery(query) {
     const bodyText = document.body.innerHTML;
     const highlightedText = bodyText.replace(new RegExp(query, 'gi'), match => `<mark>${match}</mark>`);
     document.body.innerHTML = highlightedText;
+    communicateResultsToAssistant();
+}
+
+function communicateResultsToAssistant() {
+    const highlights = document.querySelectorAll('mark');
+    const searchResults = Array.from(highlights).map(highlight => ({
+        top: highlight.getBoundingClientRect().top + window.scrollY,
+    }));
+    window.searchResults = searchResults;
+    showSearchAssistantResults();
 }
 
 function showSearchAssistant(query, lineNumber) {
@@ -574,34 +584,40 @@ function showSearchAssistant(query, lineNumber) {
 
     miniMapContainer.innerHTML = '';
 
-    const highlights = document.querySelectorAll('mark');
-    const bodyHeight = document.body.scrollHeight;
-
-    highlights.forEach((highlight, index) => {
-        const bar = document.createElement('div');
-        bar.classList.add('bar');
-        const position = Math.round((highlight.getBoundingClientRect().top + window.scrollY) / bodyHeight * 100);
-        bar.style.top = `${position}%`;
-        if (index === Number(lineNumber) - 1) {
-            bar.classList.add('current-bar');
-        } else {
-            bar.classList.add('other-bar');
-        }
-        miniMapContainer.appendChild(bar);
-    });
+    showSearchAssistantResults();
 
     const positionBar = document.createElement('div');
     positionBar.classList.add('bar', 'position-bar');
     miniMapContainer.appendChild(positionBar);
 
     function updatePositionBar() {
-        const scrollPosition = (window.scrollY / bodyHeight) * 100;
+        const scrollPosition = (window.scrollY / document.body.scrollHeight) * 100;
         positionBar.style.top = `${scrollPosition}%`;
         positionIndicator.innerText = Math.round(scrollPosition);
     }
 
     document.addEventListener('scroll', updatePositionBar);
     updatePositionBar();
+}
+
+function showSearchAssistantResults() {
+    if (!window.searchResults) return;
+
+    const miniMapContainer = document.getElementById('miniMapContainer');
+    miniMapContainer.innerHTML = '';
+
+    window.searchResults.forEach((result, index) => {
+        const bar = document.createElement('div');
+        bar.classList.add('bar');
+        const position = Math.round((result.top / document.body.scrollHeight) * 100);
+        bar.style.top = `${position}%`;
+        if (index === 0) {
+            bar.classList.add('current-bar');
+        } else {
+            bar.classList.add('other-bar');
+        }
+        miniMapContainer.appendChild(bar);
+    });
 }
 
 function endSearch() {
