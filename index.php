@@ -592,7 +592,7 @@ function showSearchAssistant(query, lineNumber) {
 
     function updatePositionBar() {
         const scrollPosition = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-        positionBar.style.top = `${scrollPosition}%`;
+        positionBar.style.top = `${Math.min(scrollPosition, 100)}%`;
         positionIndicator.innerText = Math.round(scrollPosition);
     }
 
@@ -609,7 +609,7 @@ function showSearchAssistantResults() {
     window.searchResults.forEach((result, index) => {
         const bar = document.createElement('div');
         bar.classList.add('bar');
-        const position = Math.round((result.top / (document.body.scrollHeight - window.innerHeight)) * 100);
+        const position = Math.min(Math.round((result.top / (document.body.scrollHeight - window.innerHeight)) * 100), 100);
         bar.style.top = `${position}%`;
         if (index === 0) {
             bar.classList.add('current-bar');
@@ -636,25 +636,25 @@ function showSearchAssistantResults() {
 
     function updatePositionBar() {
         const scrollPosition = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-        positionBar.style.top = `${scrollPosition}%`;
+        positionBar.style.top = `${Math.min(scrollPosition, 100)}%`;
         document.getElementById('currentPosition').innerText = Math.round(scrollPosition);
 
         if (window.searchResults.length > 0) {
             const greenBarPosition = parseFloat(window.searchResults[0].top / (document.body.scrollHeight - window.innerHeight)) * 100;
             const remaining = greenBarPosition - scrollPosition;
-            const remainingPercentage = Math.max(0, Math.round(remaining));
+            const remainingPercentage = Math.max(0, Math.min(Math.round(remaining), 100));
             document.getElementById('remainingPercentage').innerText = remainingPercentage;
 
             if (remaining > 0) {
-                highlightElement.style.top = `${scrollPosition}%`;
+                highlightElement.style.top = `${Math.min(scrollPosition, 100)}%`;
                 highlightElement.style.height = `${remainingPercentage}%`;
                 highlightElement.classList.add('green');
                 remainingIndicator.innerText = 'Suchergebnis HIER';
                 remainingIndicator.classList.add('blinking');
                 remainingIndicator.classList.add('green-text');
             } else if (remaining <= 0 && remaining > -100) {
-                highlightElement.style.top = `${scrollPosition}%`;
-                highlightElement.style.height = `${-remainingPercentage}%`;
+                highlightElement.style.top = `${Math.min(scrollPosition, 100)}%`;
+                highlightElement.style.height = `${Math.min(-remainingPercentage, 100)}%`;
                 highlightElement.classList.remove('green');
                 highlightElement.classList.add('yellow');
                 remainingIndicator.innerText = '';
