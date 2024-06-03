@@ -547,8 +547,6 @@
     document.getElementById('contact-form').addEventListener('input', checkFormValidity);
 </script>
 
-
-
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     const params = new URLSearchParams(window.location.search);
@@ -582,7 +580,6 @@ function showSearchAssistant(query, lineNumber) {
     const searchAssistantModal = document.getElementById('searchAssistantModal');
     searchAssistantModal.style.display = 'block';
     const positionIndicator = document.getElementById('currentPosition');
-    const remainingIndicator = document.getElementById('remainingPercentage');
     const miniMapContainer = document.getElementById('miniMapContainer');
 
     miniMapContainer.innerHTML = '';
@@ -597,12 +594,6 @@ function showSearchAssistant(query, lineNumber) {
         const scrollPosition = (window.scrollY / document.body.scrollHeight) * 100;
         positionBar.style.top = `${scrollPosition}%`;
         positionIndicator.innerText = Math.round(scrollPosition);
-
-        if (window.searchResults.length > 0) {
-            const greenBarPosition = parseFloat(window.searchResults[0].top / document.body.scrollHeight) * 100;
-            const remaining = greenBarPosition - scrollPosition;
-            remainingIndicator.innerText = Math.max(0, Math.round(remaining));
-        }
     }
 
     document.addEventListener('scroll', updatePositionBar);
