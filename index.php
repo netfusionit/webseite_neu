@@ -743,6 +743,7 @@ function toggleSearchAssistant() {
     }
 }
 
+
 </script>
 
 
