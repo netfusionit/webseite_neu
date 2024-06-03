@@ -946,6 +946,9 @@ footer {
     #searchAssistantModal .mini-map .current-bar {
         background-color: green;
     }
+    #searchAssistantModal .mini-map .current-bar.highlight {
+        background-color: red;
+    }
     #searchAssistantModal .mini-map .other-bar {
         background-color: yellow;
     }
@@ -994,7 +997,7 @@ footer {
         background-color: red;
         height: 2px;
     }
-
+    
     /* Mobile styles */
     @media (max-width: 767px) {
         #searchAssistantModal {

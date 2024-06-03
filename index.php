@@ -477,6 +477,7 @@
     <button onclick="endSearch()">Suche Beenden</button>
 </div>
 <button id="searchAssistantModalToggle" onclick="toggleSearchAssistant()"><i class="fas fa-search"></i></button>
+
     <?php include 'footer.php'; ?>
 
     <!-- Scroll Top -->
@@ -548,7 +549,6 @@
 
 
 
-
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     const params = new URLSearchParams(window.location.search);
@@ -603,6 +603,17 @@ function showSearchAssistant(query, lineNumber) {
         const scrollPosition = (window.scrollY / document.body.scrollHeight) * 100;
         positionBar.style.top = `${scrollPosition}%`;
         positionIndicator.innerText = Math.round(scrollPosition);
+        
+        // Check if positionBar overlaps with any current-bar
+        const currentBars = document.querySelectorAll('.current-bar');
+        currentBars.forEach(bar => {
+            const barTop = parseFloat(bar.style.top);
+            if (Math.abs(scrollPosition - barTop) < 2) {
+                bar.classList.add('highlight');
+            } else {
+                bar.classList.remove('highlight');
+            }
+        });
     }
 
     document.addEventListener('scroll', updatePositionBar);
