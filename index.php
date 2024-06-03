@@ -677,6 +677,6 @@ function toggleSearchAssistant() {
 }
 </script>
 
-</script>
+
 </body>
 </html>
