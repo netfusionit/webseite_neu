@@ -1066,28 +1066,28 @@ footer {
     .green-text {
         color: green;
     }
-    
+
     #miniMapContainer {
         position: relative;
         height: calc(100% - 40px); /* Slightly shifted up and down */
         overflow: hidden;
         top: 20px; /* Move the whole container down to keep the elements inside visible */
     }
-    
+
     .bar {
         position: absolute;
         width: 5px;
         background-color: red;
     }
-    
+
     .position-bar {
         background-color: blue;
     }
-    
+
     .current-bar {
         background-color: green;
     }
-    
+
     .other-bar {
         background-color: yellow;
     }

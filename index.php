@@ -562,10 +562,22 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function markQuery(query) {
     const regex = new RegExp(`(${query})`, 'gi');
-    const bodyText = document.body.innerHTML;
-    const highlightedText = bodyText.replace(regex, '<mark class="highlight-mark">$1</mark>');
-    document.body.innerHTML = highlightedText;
+    traverseDOM(document.body, regex);
     communicateResultsToAssistant();
+}
+
+function traverseDOM(element, regex) {
+    if (element.nodeType === 3) { // Text node
+        const matches = element.nodeValue.match(regex);
+        if (matches) {
+            const markElement = document.createElement('mark');
+            markElement.classList.add('highlight-mark');
+            markElement.innerHTML = element.nodeValue.replace(regex, '<mark class="highlight-mark">$1</mark>');
+            element.replaceWith(markElement);
+        }
+    } else if (element.nodeType === 1 && element.nodeName !== 'SCRIPT' && element.nodeName !== 'STYLE') { // Element node
+        Array.from(element.childNodes).forEach(child => traverseDOM(child, regex));
+    }
 }
 
 function communicateResultsToAssistant() {
@@ -663,7 +675,7 @@ function showSearchAssistantResults() {
                 remainingIndicator.classList.add('green-text');
             } else if (remaining < -3) {
                 highlightElement.style.top = `${Math.min(scrollPosition, 100)}%`;
-                highlightElement.style.height = `calc(0% - ${Math.min(scrollPosition, 100)}%)`;
+                highlightElement.style.height = `calc(0% - ${Math.abs(Math.min(scrollPosition, 100))}%)`;
                 highlightElement.classList.remove('green');
                 highlightElement.classList.add('yellow');
                 remainingIndicator.innerText = remainingPercentage;
@@ -730,6 +742,7 @@ function toggleSearchAssistant() {
         searchAssistantModalToggle.classList.add('open');
     }
 }
+
 </script>
 
 
