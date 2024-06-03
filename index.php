@@ -569,11 +569,9 @@ function showSearchAssistant(query, lineNumber) {
 
     miniMapContainer.innerHTML = '';
 
-    // Add dummy bars to simulate the search results
-    const bodyHeight = document.body.scrollHeight;
-
     // Highlight search results in the mini map
     const highlights = document.querySelectorAll('mark');
+    const bodyHeight = document.body.scrollHeight;
     highlights.forEach((highlight, index) => {
         const bar = document.createElement('div');
         bar.classList.add('bar');
