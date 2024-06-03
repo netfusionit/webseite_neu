@@ -562,13 +562,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function markQuery(query) {
     const bodyText = document.body.innerHTML;
-    const highlightedText = bodyText.replace(new RegExp(query, 'gi'), match => `<mark>${match}</mark>`);
+    const highlightedText = bodyText.replace(new RegExp(query, 'gi'), match => `<mark class="highlight">${match}</mark>`);
     document.body.innerHTML = highlightedText;
     communicateResultsToAssistant();
 }
 
 function communicateResultsToAssistant() {
-    const highlights = document.querySelectorAll('mark');
+    const highlights = document.querySelectorAll('mark.highlight');
     const searchResults = Array.from(highlights).map(highlight => ({
         top: highlight.getBoundingClientRect().top + window.scrollY,
     }));
@@ -653,6 +653,11 @@ function showSearchAssistantResults() {
                 remainingIndicator.classList.remove('blinking');
                 remainingIndicator.classList.remove('green-text');
             } else if (remaining === 0) {
+                const middleOffset = window.innerHeight / 2;
+                const elementTop = window.searchResults[0].top;
+                if (elementTop > middleOffset) {
+                    window.scrollTo(0, elementTop - middleOffset);
+                }
                 highlightElement.style.top = `${Math.min(scrollPosition, 100)}%`;
                 highlightElement.style.height = `100%`;
                 highlightElement.classList.add('green');

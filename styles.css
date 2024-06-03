@@ -1038,6 +1038,12 @@ footer {
         z-index: 1;
     }
 
+    .highlight-mark {
+        background-color: yellow !important;
+        color: black !important;
+        font-weight: bold;
+    }
+
     .green {
         background-color: green;
     }
