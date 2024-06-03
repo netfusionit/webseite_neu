@@ -659,14 +659,14 @@ function showSearchAssistantResults() {
                     window.scrollTo(0, elementTop - middleOffset);
                 }
                 highlightElement.style.top = `${Math.min(scrollPosition, 100)}%`;
-                highlightElement.style.height = `100%`;
+                highlightElement.style.height = `calc(100% - ${Math.min(scrollPosition, 100)}%)`;
                 highlightElement.classList.add('green');
                 remainingIndicator.innerText = 'Suchergebnis HIER';
                 remainingIndicator.classList.add('blinking');
                 remainingIndicator.classList.add('green-text');
             } else if (remaining < 0) {
                 highlightElement.style.top = `${Math.min(scrollPosition, 100)}%`;
-                highlightElement.style.height = `0%`;
+                highlightElement.style.height = `calc(0% - ${Math.min(scrollPosition, 100)}%)`;
                 highlightElement.classList.remove('green');
                 highlightElement.classList.add('yellow');
                 remainingIndicator.innerText = '';
@@ -733,7 +733,6 @@ function toggleSearchAssistant() {
         searchAssistantModalToggle.classList.add('open');
     }
 }
-
 
 </script>
 

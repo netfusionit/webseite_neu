@@ -1030,7 +1030,7 @@ footer {
     }
 
     .highlight {
-        position: absolute;
+        
         background-color: green;
 
     }
@@ -1060,4 +1060,28 @@ footer {
 
     .green-text {
         color: green;
+    }
+    
+    #miniMapContainer {
+        position: relative;
+        height: 100%;
+        overflow: hidden;
+    }
+    
+    .bar {
+        position: absolute;
+        width: 5px;
+        background-color: red;
+    }
+    
+    .position-bar {
+        background-color: blue;
+    }
+    
+    .current-bar {
+        background-color: green;
+    }
+    
+    .other-bar {
+        background-color: yellow;
     }
