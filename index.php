@@ -643,8 +643,8 @@ function showSearchAssistantResults() {
         if (window.searchResults.length > 0) {
             const greenBarPosition = parseFloat(window.searchResults[0].top / (document.body.scrollHeight - window.innerHeight)) * 100;
             const remaining = greenBarPosition - scrollPosition;
-            const remainingPercentage = Math.max(0, Math.min(Math.round(remaining), 100));
-            document.getElementById('remainingPercentage').innerText = remainingPercentage;
+            const remainingPercentage = Math.min(Math.round(remaining), 100);
+            document.getElementById('remainingPercentage').innerText = remaining;
 
             if (remaining > 0) {
                 highlightElement.style.top = `${Math.min(scrollPosition, 100)}%`;
@@ -667,10 +667,10 @@ function showSearchAssistantResults() {
                 remainingIndicator.classList.add('green-text');
             } else if (remaining < 0) {
                 highlightElement.style.top = `${Math.min(scrollPosition, 100)}%`;
-                highlightElement.style.height = `calc(0% - ${Math.min(scrollPosition, 100)}%)`;
+                highlightElement.style.height = `calc(0% - ${Math.abs(Math.min(scrollPosition, 100))}%)`;
                 highlightElement.classList.remove('green');
                 highlightElement.classList.add('yellow');
-                remainingIndicator.innerText = '';
+                remainingIndicator.innerText = remaining;
                 remainingIndicator.classList.remove('blinking');
                 remainingIndicator.classList.remove('green-text');
             } else {
@@ -734,7 +734,6 @@ function toggleSearchAssistant() {
         searchAssistantModalToggle.classList.add('open');
     }
 }
-
 
 </script>
 

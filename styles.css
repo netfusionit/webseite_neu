@@ -1069,9 +1069,9 @@ footer {
     
     #miniMapContainer {
         position: relative;
-        height: calc(100% - 20px); /* Slightly shifted up */
+        height: calc(100% - 40px); /* Slightly shifted up and down */
         overflow: hidden;
-        top: 10px; /* Move the whole container down to keep the elements inside visible */
+        top: 20px; /* Move the whole container down to keep the elements inside visible */
     }
     
     .bar {
