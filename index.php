@@ -465,6 +465,13 @@
 </section>
 <!-- /Contact Section -->
 
+<div id="searchAssistantModal">
+    <h3>Search Assistant</h3>
+    <p>Position: <span id="currentPosition">0</span>/100</p>
+    <div class="mini-map" id="miniMap"></div>
+    <button onclick="endSearch()">Suche Beenden</button>
+</div>
+
     <?php include 'footer.php'; ?>
 
     <!-- Scroll Top -->
@@ -580,17 +587,17 @@ document.addEventListener("DOMContentLoaded", function() {
                 behavior: "smooth"
             });
 
-            highlightResults(query, lineNumber);
+            showSearchAssistant(query, lineNumber, textNodes);
         }
     }
 });
 
-function highlightResults(query, lineNumber) {
+function showSearchAssistant(query, lineNumber, textNodes) {
     const bodyText = document.body.innerText;
     const indexPosition = bodyText.indexOf(query);
 
-    const searchAssistant = document.getElementById('searchAssistant');
-    searchAssistant.style.display = 'block';
+    const searchAssistantModal = document.getElementById('searchAssistantModal');
+    searchAssistantModal.style.display = 'block';
     const positionIndicator = document.getElementById('currentPosition');
 
     if (indexPosition !== -1) {
@@ -598,13 +605,30 @@ function highlightResults(query, lineNumber) {
         positionIndicator.innerText = percentagePosition;
     }
 
+    const miniMap = document.getElementById('miniMap');
+    miniMap.innerHTML = '';
+
     const highlights = document.querySelectorAll('mark');
     highlights.forEach((highlight, index) => {
+        const bar = document.createElement('div');
+        bar.classList.add('bar');
+        const position = Math.round((highlight.offsetTop / document.body.scrollHeight) * 100);
+        bar.style.top = `${position}%`;
         if (index === Number(lineNumber) - 1) {
-            highlight.classList.add('highlight-current');
+            bar.classList.add('current-bar');
         } else {
-            highlight.classList.add('highlight-others');
+            bar.classList.add('other-bar');
         }
+        miniMap.appendChild(bar);
+    });
+
+    const positionBar = document.createElement('div');
+    positionBar.classList.add('bar', 'position-bar');
+    positionBar.style.top = `${window.scrollY / document.body.scrollHeight * 100}%`;
+    miniMap.appendChild(positionBar);
+
+    document.addEventListener('scroll', () => {
+        positionBar.style.top = `${window.scrollY / document.body.scrollHeight * 100}%`;
     });
 }
 
