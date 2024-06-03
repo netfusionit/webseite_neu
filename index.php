@@ -468,13 +468,16 @@
 <div id="searchAssistantModal">
     <h3>Search Assistant</h3>
     <p>Position: <span id="currentPosition">0</span>/100</p>
-    <div class="mini-map" id="miniMapContainer">
-        <div class="background-text">Position</div>
-        <div class="position-bar"></div>
+    <div class="mini-map" id="miniMapContainer"></div>
+    <div class="legend">
+        <div><span class="current"></span>Grün: Gewähltes Ergebnis</div>
+        <div><span class="other"></span>Gelb: Andere Ergebnisse</div>
+        <div><span class="position"></span>Rot: Aktuelle Position</div>
     </div>
     <button onclick="endSearch()">Suche Beenden</button>
 </div>
-<button id="searchAssistantModalToggle" onclick="toggleSearchAssistant()"><i class="fas fa-search"></i></button>
+<button id="searchAssistantModalToggle" onclick="toggleSearchAssistant()" class="hidden"><i class="fas fa-search"></i></button>
+
 
     <?php include 'footer.php'; ?>
 
@@ -546,7 +549,6 @@
 
 
 
-
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     const params = new URLSearchParams(window.location.search);
@@ -555,7 +557,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (query) {
         showSearchAssistant(query, lineNumber);
-        document.getElementById('searchAssistantModalToggle').style.display = 'block';
+        document.getElementById('searchAssistantModalToggle').classList.remove('hidden');
     }
 });
 
@@ -564,25 +566,39 @@ function showSearchAssistant(query, lineNumber) {
     searchAssistantModal.style.display = 'block';
     const positionIndicator = document.getElementById('currentPosition');
     const miniMapContainer = document.getElementById('miniMapContainer');
-    const positionBar = miniMapContainer.querySelector('.position-bar');
+
+    miniMapContainer.innerHTML = '';
+
+    // Add dummy bars to simulate the search results
+    const bodyHeight = document.body.scrollHeight;
+
+    // Highlight search results in the mini map
+    const highlights = document.querySelectorAll('mark');
+    highlights.forEach((highlight, index) => {
+        const bar = document.createElement('div');
+        bar.classList.add('bar');
+        const position = Math.round((highlight.offsetTop / bodyHeight) * 100);
+        bar.style.top = `${position}%`;
+        if (index === Number(lineNumber) - 1) {
+            bar.classList.add('current-bar');
+        } else {
+            bar.classList.add('other-bar');
+        }
+        miniMapContainer.appendChild(bar);
+    });
+
+    const positionBar = document.createElement('div');
+    positionBar.classList.add('bar', 'position-bar');
+    miniMapContainer.appendChild(positionBar);
 
     function updatePositionBar() {
-        const scrollPosition = (window.scrollY / document.body.scrollHeight) * 100;
+        const scrollPosition = (window.scrollY / bodyHeight) * 100;
         positionBar.style.top = `${scrollPosition}%`;
         positionIndicator.innerText = Math.round(scrollPosition);
     }
 
     document.addEventListener('scroll', updatePositionBar);
     updatePositionBar();
-
-    // Mark the search terms in the main content
-    markSearchTerms(query);
-}
-
-function markSearchTerms(query) {
-    const bodyText = document.body.innerHTML;
-    const highlightedText = bodyText.replace(new RegExp(query, 'gi'), (match) => `<mark>${match}</mark>`);
-    document.body.innerHTML = highlightedText;
 }
 
 function endSearch() {
