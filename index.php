@@ -551,9 +551,10 @@
 document.addEventListener("DOMContentLoaded", function() {
     const params = new URLSearchParams(window.location.search);
     const query = params.get('query');
+    const lineNumber = window.location.hash.split("-")[1];
 
     if (query) {
-        showSearchAssistant(query);
+        showSearchAssistant(query, lineNumber);
         document.getElementById('searchAssistantModalToggle').classList.remove('hidden');
         markQuery(query);
     }
@@ -575,11 +576,10 @@ function communicateResultsToAssistant() {
     showSearchAssistantResults();
 }
 
-function showSearchAssistant(query) {
+function showSearchAssistant(query, lineNumber) {
     const searchAssistantModal = document.getElementById('searchAssistantModal');
     searchAssistantModal.style.display = 'block';
     const positionIndicator = document.getElementById('currentPosition');
-    const remainingIndicator = document.getElementById('remainingPercentage');
     const miniMapContainer = document.getElementById('miniMapContainer');
 
     miniMapContainer.innerHTML = '';
@@ -594,53 +594,8 @@ function showSearchAssistant(query) {
         const scrollPosition = (window.scrollY / document.body.scrollHeight) * 100;
         positionBar.style.top = `${scrollPosition}%`;
         positionIndicator.innerText = Math.round(scrollPosition);
-
-        if (window.searchResults.length > 0) {
-            const greenBarPosition = parseFloat(window.searchResults[0].top / document.body.scrollHeight) * 100;
-            const remaining = greenBarPosition - scrollPosition;
-            remainingIndicator.innerText = Math.max(0, Math.round(remaining));
-        }
     }
 
-    document.addEventListener('scroll', updatePositionBar);
-    updatePositionBar();
-}
-
-function showSearchAssistantResults() {
-    if (!window.searchResults) return;
-
-    const miniMapContainer = document.getElementById('miniMapContainer');
-    miniMapContainer.innerHTML = '';
-
-    window.searchResults.forEach((result, index) => {
-        const bar = document.createElement('div');
-        bar.classList.add('bar');
-        const position = Math.round((result.top / document.body.scrollHeight) * 100);
-        bar.style.top = `${position}%`;
-        if (index === 0) {
-            bar.classList.add('current-bar');
-        } else {
-            bar.classList.add('other-bar');
-        }
-        miniMapContainer.appendChild(bar);
-    });
-
-    // Adding the red position bar to indicate the current scroll position
-    const positionBar = document.createElement('div');
-    positionBar.classList.add('bar', 'position-bar');
-    miniMapContainer.appendChild(positionBar);
-
-    function updatePositionBar() {
-        const scrollPosition = (window.scrollY / document.body.scrollHeight) * 100;
-        positionBar.style.top = `${scrollPosition}%`;
-        document.getElementById('currentPosition').innerText = Math.round(scrollPosition);
-
-        if (window.searchResults.length > 0) {
-            const greenBarPosition = parseFloat(window.searchResults[0].top / document.body.scrollHeight) * 100;
-            const remaining = greenBarPosition - scrollPosition;
-            document.getElementById('remainingPercentage').innerText = Math.max(0, Math.round(remaining));
-        }
-    }
 
     document.addEventListener('scroll', updatePositionBar);
     updatePositionBar();
