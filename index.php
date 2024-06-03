@@ -551,10 +551,9 @@
 document.addEventListener("DOMContentLoaded", function() {
     const params = new URLSearchParams(window.location.search);
     const query = params.get('query');
-    const lineNumber = window.location.hash.split("-")[1];
 
     if (query) {
-        showSearchAssistant(query, lineNumber);
+        showSearchAssistant(query);
         document.getElementById('searchAssistantModalToggle').classList.remove('hidden');
         markQuery(query);
     }
@@ -576,7 +575,7 @@ function communicateResultsToAssistant() {
     showSearchAssistantResults();
 }
 
-function showSearchAssistant(query, lineNumber) {
+function showSearchAssistant(query) {
     const searchAssistantModal = document.getElementById('searchAssistantModal');
     searchAssistantModal.style.display = 'block';
     const positionIndicator = document.getElementById('currentPosition');
@@ -696,6 +695,7 @@ function toggleSearchAssistant() {
     }
 }
 </script>
+
 
 
 </body>
