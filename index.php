@@ -468,9 +468,7 @@
 <div id="searchAssistantModal">
     <h3>Search Assistant</h3>
     <p>Position: <span id="currentPosition">0</span>/100</p>
-    <div class="mini-map" id="miniMapContainer">
-        <iframe src="about:blank" id="miniMapIframe"></iframe>
-    </div>
+    <div class="mini-map" id="miniMapContainer"></div>
     <div class="legend">
         <div><span class="current"></span>Grün: Gewähltes Ergebnis</div>
         <div><span class="other"></span>Gelb: Andere Ergebnisse</div>
@@ -571,15 +569,19 @@ function showSearchAssistant(query, lineNumber) {
 
     miniMapContainer.innerHTML = '';
 
-    // Clone the body element to create the mini map
-    const bodyClone = document.body.cloneNode(true);
-    bodyClone.style.transform = 'scale(0.1)';
-    bodyClone.style.transformOrigin = 'top left';
-    bodyClone.style.width = '1000%'; // Adjust the width to match the scaled content
-    miniMapContainer.appendChild(bodyClone);
+    const miniMap = document.createElement('div');
+    miniMap.style.width = '1000%';
+    miniMap.style.position = 'relative';
+    miniMap.style.transform = 'scale(0.1)';
+    miniMap.style.transformOrigin = 'top left';
+    miniMapContainer.appendChild(miniMap);
 
-    // Highlight search results in the mini map
-    const highlights = bodyClone.querySelectorAll('mark');
+    document.body.childNodes.forEach(node => {
+        const clone = node.cloneNode(true);
+        miniMap.appendChild(clone);
+    });
+
+    const highlights = miniMap.querySelectorAll('mark');
     highlights.forEach((highlight, index) => {
         const bar = document.createElement('div');
         bar.classList.add('bar');
