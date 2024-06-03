@@ -476,6 +476,7 @@
     </div>
     <button onclick="endSearch()">Suche Beenden</button>
 </div>
+<button id="searchAssistantModalToggle" onclick="toggleSearchAssistant()">&#9776;</button>
 
 
     <?php include 'footer.php'; ?>
@@ -638,6 +639,18 @@ function dragElement(elmnt) {
     function closeDragElement() {
         document.onmouseup = null;
         document.onmousemove = null;
+    }
+}
+
+function toggleSearchAssistant() {
+    const searchAssistantModal = document.getElementById('searchAssistantModal');
+    const searchAssistantModalToggle = document.getElementById('searchAssistantModalToggle');
+    if (searchAssistantModal.classList.contains('open')) {
+        searchAssistantModal.classList.remove('open');
+        searchAssistantModalToggle.classList.remove('open');
+    } else {
+        searchAssistantModal.classList.add('open');
+        searchAssistantModalToggle.classList.add('open');
     }
 }
 </script>
