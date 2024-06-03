@@ -549,7 +549,6 @@
 
 
 
-
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     const params = new URLSearchParams(window.location.search);
@@ -559,8 +558,15 @@ document.addEventListener("DOMContentLoaded", function() {
     if (query) {
         showSearchAssistant(query, lineNumber);
         document.getElementById('searchAssistantModalToggle').classList.remove('hidden');
+        markQuery(query);
     }
 });
+
+function markQuery(query) {
+    const bodyText = document.body.innerHTML;
+    const highlightedText = bodyText.replace(new RegExp(query, 'gi'), match => `<mark>${match}</mark>`);
+    document.body.innerHTML = highlightedText;
+}
 
 function showSearchAssistant(query, lineNumber) {
     const searchAssistantModal = document.getElementById('searchAssistantModal');
