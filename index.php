@@ -550,6 +550,7 @@
 
 
 
+
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     const params = new URLSearchParams(window.location.search);
@@ -566,48 +567,44 @@ function showSearchAssistant(query, lineNumber) {
     const searchAssistantModal = document.getElementById('searchAssistantModal');
     searchAssistantModal.style.display = 'block';
     const positionIndicator = document.getElementById('currentPosition');
-    const miniMapIframe = document.getElementById('miniMapIframe');
+    const miniMapContainer = document.getElementById('miniMapContainer');
 
-    miniMapIframe.srcdoc = document.documentElement.outerHTML;
+    miniMapContainer.innerHTML = '';
 
-    miniMapIframe.onload = function() {
-        const miniMapDoc = miniMapIframe.contentDocument || miniMapIframe.contentWindow.document;
+    // Clone the body element to create the mini map
+    const bodyClone = document.body.cloneNode(true);
+    bodyClone.style.transform = 'scale(0.1)';
+    bodyClone.style.transformOrigin = 'top left';
+    bodyClone.style.width = '1000%'; // Adjust the width to match the scaled content
+    miniMapContainer.appendChild(bodyClone);
 
-        // Highlight search results in the mini map
-        const highlights = miniMapDoc.querySelectorAll('mark');
-        highlights.forEach((highlight, index) => {
-            const bar = document.createElement('div');
-            bar.classList.add('bar');
-            const position = Math.round((highlight.offsetTop / miniMapDoc.body.scrollHeight) * 100);
-            bar.style.top = `${position}%`;
-            bar.style.height = '10px';
-            bar.style.width = '100%';
-            bar.style.position = 'absolute';
-            if (index === Number(lineNumber) - 1) {
-                bar.style.backgroundColor = 'green';
-            } else {
-                bar.style.backgroundColor = 'yellow';
-            }
-            miniMapIframe.parentElement.appendChild(bar);
-        });
-
-        const positionBar = document.createElement('div');
-        positionBar.classList.add('bar');
-        positionBar.style.backgroundColor = 'red';
-        positionBar.style.height = '2px';
-        positionBar.style.width = '100%';
-        positionBar.style.position = 'absolute';
-        miniMapIframe.parentElement.appendChild(positionBar);
-
-        function updatePositionBar() {
-            const scrollPosition = (window.scrollY / document.body.scrollHeight) * 100;
-            positionBar.style.top = `${scrollPosition}%`;
-            positionIndicator.innerText = Math.round(scrollPosition);
+    // Highlight search results in the mini map
+    const highlights = bodyClone.querySelectorAll('mark');
+    highlights.forEach((highlight, index) => {
+        const bar = document.createElement('div');
+        bar.classList.add('bar');
+        const position = Math.round((highlight.offsetTop / document.body.scrollHeight) * 100);
+        bar.style.top = `${position}%`;
+        if (index === Number(lineNumber) - 1) {
+            bar.classList.add('current-bar');
+        } else {
+            bar.classList.add('other-bar');
         }
+        miniMapContainer.appendChild(bar);
+    });
 
-        document.addEventListener('scroll', updatePositionBar);
-        updatePositionBar();
-    };
+    const positionBar = document.createElement('div');
+    positionBar.classList.add('bar', 'position-bar');
+    miniMapContainer.appendChild(positionBar);
+
+    function updatePositionBar() {
+        const scrollPosition = (window.scrollY / document.body.scrollHeight) * 100;
+        positionBar.style.top = `${scrollPosition}%`;
+        positionIndicator.innerText = Math.round(scrollPosition);
+    }
+
+    document.addEventListener('scroll', updatePositionBar);
+    updatePositionBar();
 }
 
 function endSearch() {
