@@ -561,14 +561,15 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function markQuery(query) {
+    const regex = new RegExp(`(${query})`, 'gi');
     const bodyText = document.body.innerHTML;
-    const highlightedText = bodyText.replace(new RegExp(query, 'gi'), match => `<mark class="highlight">${match}</mark>`);
+    const highlightedText = bodyText.replace(regex, '<mark class="highlight-mark">$1</mark>');
     document.body.innerHTML = highlightedText;
     communicateResultsToAssistant();
 }
 
 function communicateResultsToAssistant() {
-    const highlights = document.querySelectorAll('mark.highlight');
+    const highlights = document.querySelectorAll('mark.highlight-mark');
     const searchResults = Array.from(highlights).map(highlight => ({
         top: highlight.getBoundingClientRect().top + window.scrollY,
     }));
@@ -733,6 +734,7 @@ function toggleSearchAssistant() {
         searchAssistantModalToggle.classList.add('open');
     }
 }
+
 
 </script>
 

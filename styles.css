@@ -1030,15 +1030,20 @@ footer {
     }
 
     .highlight {
-        
+        position: absolute;
+        width: 100%;
+        left: 0;
         background-color: green;
-
+        opacity: 0.3;
+        z-index: 1;
     }
 
     .highlight-mark {
         background-color: yellow !important;
         color: black !important;
         font-weight: bold;
+        padding: 0 2px;
+        border-radius: 2px;
     }
 
     .green {
@@ -1064,8 +1069,9 @@ footer {
     
     #miniMapContainer {
         position: relative;
-        height: 100%;
+        height: calc(100% - 20px); /* Slightly shifted up */
         overflow: hidden;
+        top: 10px; /* Move the whole container down to keep the elements inside visible */
     }
     
     .bar {
