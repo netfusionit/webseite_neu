@@ -1019,7 +1019,7 @@ footer {
         }
     }
 
-    .blinking {
+    <style>    .blinking {
         animation: blinker 1s linear infinite;
     }
 
@@ -1056,7 +1056,7 @@ footer {
 
     .remaining-indicator {
         position: fixed;
-        bottom: 10px;
+        bottom: 50px; /* Move the indicator further down */
         left: 10px;
         z-index: 1000;
         padding: 5px;
@@ -1069,9 +1069,9 @@ footer {
 
     #miniMapContainer {
         position: relative;
-        height: calc(100% - 40px); /* Slightly shifted up and down */
+        height: calc(100% - 60px); /* Slightly shifted up and down */
         overflow: hidden;
-        top: 20px; /* Move the whole container down to keep the elements inside visible */
+        top: 30px; /* Move the whole container down to keep the elements inside visible */
     }
 
     .bar {
@@ -1091,3 +1091,8 @@ footer {
     .other-bar {
         background-color: yellow;
     }
+
+    #miniMapContainer.show-more {
+        height: auto; /* Adjust height to show more results */
+    }
+
