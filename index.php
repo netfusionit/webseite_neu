@@ -477,6 +477,7 @@
     <button onclick="endSearch()">Suche Beenden</button>
 </div>
 <button id="searchAssistantModalToggle" onclick="toggleSearchAssistant()"><i class="fas fa-search"></i></button>
+
     <?php include 'footer.php'; ?>
 
     <!-- Scroll Top -->
@@ -547,18 +548,6 @@
 
 
 
-<div id="searchAssistantModal">
-    <h3>Search Assistant</h3>
-    <p>Position: <span id="currentPosition">0</span>/100</p>
-    <div class="mini-map" id="miniMapContainer"></div>
-    <div class="legend">
-        <div><span class="current"></span>Grün: Gewähltes Ergebnis</div>
-        <div><span class="other"></span>Gelb: Andere Ergebnisse</div>
-        <div><span class="position"></span>Rot: Aktuelle Position</div>
-    </div>
-    <button onclick="endSearch()">Suche Beenden</button>
-</div>
-<button id="searchAssistantModalToggle" onclick="toggleSearchAssistant()"><i class="fas fa-search"></i></button>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
@@ -580,32 +569,41 @@ function showSearchAssistant(query, lineNumber) {
     const miniMapContainer = document.getElementById('miniMapContainer');
     miniMapContainer.innerHTML = '';
 
-    // Add markers for search results
-    const bodyText = document.body.innerText;
-    const textNodes = [];
-    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
-    while (walker.nextNode()) {
-        textNodes.push(walker.currentNode);
-    }
+    // Clone the body element to create the mini map
+    const miniMap = document.createElement('div');
+    miniMap.style.position = 'relative';
+    miniMap.style.transform = 'scale(0.1)';
+    miniMap.style.transformOrigin = 'top left';
+    miniMap.style.width = '1000%'; // Adjust the width to match the scaled content
+    miniMapContainer.appendChild(miniMap);
 
-    document.body.innerHTML = document.body.innerHTML.replace(new RegExp(query, 'gi'), match => `<mark>${match}</mark>`);
+    const bodyClone = document.body.cloneNode(true);
+    miniMap.appendChild(bodyClone);
 
-    const highlights = document.querySelectorAll('mark');
+    // Highlight search results in the mini map
+    const highlights = miniMap.querySelectorAll('mark');
     highlights.forEach((highlight, index) => {
         const bar = document.createElement('div');
         bar.classList.add('bar');
         const position = Math.round((highlight.offsetTop / document.body.scrollHeight) * 100);
         bar.style.top = `${position}%`;
+        bar.style.height = '10px';
+        bar.style.width = '100%';
+        bar.style.position = 'absolute';
         if (index === Number(lineNumber) - 1) {
-            bar.classList.add('current-bar');
+            bar.style.backgroundColor = 'green';
         } else {
-            bar.classList.add('other-bar');
+            bar.style.backgroundColor = 'yellow';
         }
         miniMapContainer.appendChild(bar);
     });
 
     const positionBar = document.createElement('div');
-    positionBar.classList.add('bar', 'position-bar');
+    positionBar.classList.add('bar');
+    positionBar.style.backgroundColor = 'red';
+    positionBar.style.height = '2px';
+    positionBar.style.width = '100%';
+    positionBar.style.position = 'absolute';
     miniMapContainer.appendChild(positionBar);
 
     function updatePositionBar() {
