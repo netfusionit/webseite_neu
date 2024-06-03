@@ -902,7 +902,7 @@ footer {
 
     #searchAssistantModal {
         position: fixed;
-        top: 0;
+        top: 20px;
         left: 50%;
         transform: translateX(-50%);
         width: 300px;
@@ -912,7 +912,6 @@ footer {
         z-index: 1000;
         padding: 20px;
         border-radius: 10px;
-        display: none;
         resize: both;
         overflow: auto;
     }
@@ -928,14 +927,14 @@ footer {
     #searchAssistantModal .mini-map {
         width: 100%;
         height: 150px;
-        background-color: #f8f9fa;
+        background-color: #333;
         position: relative;
         overflow: hidden;
     }
     #searchAssistantModal .mini-map .bar {
         position: absolute;
         width: 100%;
-        height: 2px;
+        height: 5px;
     }
     #searchAssistantModal .mini-map .current-bar {
         background-color: green;
@@ -945,6 +944,8 @@ footer {
     }
     #searchAssistantModal .mini-map .position-bar {
         background-color: red;
+        height: 2px;
+        width: 100%;
     }
     #searchAssistantModal button {
         display: block;
@@ -956,7 +957,32 @@ footer {
         border-radius: 5px;
         cursor: pointer;
         font-size: 1rem;
+        margin-top: 10px;
     }
     #searchAssistantModal button:hover {
         background: #0056b3;
+    }
+    #searchAssistantModal .legend {
+        margin-top: 10px;
+    }
+    #searchAssistantModal .legend div {
+        display: flex;
+        align-items: center;
+        margin-bottom: 5px;
+    }
+    #searchAssistantModal .legend div span {
+        display: inline-block;
+        width: 20px;
+        height: 10px;
+        margin-right: 10px;
+    }
+    #searchAssistantModal .legend .current {
+        background-color: green;
+    }
+    #searchAssistantModal .legend .other {
+        background-color: yellow;
+    }
+    #searchAssistantModal .legend .position {
+        background-color: red;
+        height: 2px;
     }

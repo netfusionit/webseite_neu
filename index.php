@@ -469,6 +469,11 @@
     <h3>Search Assistant</h3>
     <p>Position: <span id="currentPosition">0</span>/100</p>
     <div class="mini-map" id="miniMap"></div>
+    <div class="legend">
+        <div><span class="current"></span>Grün: Gewähltes Ergebnis</div>
+        <div><span class="other"></span>Gelb: Andere Ergebnisse</div>
+        <div><span class="position"></span>Rot: Aktuelle Position</div>
+    </div>
     <button onclick="endSearch()">Suche Beenden</button>
 </div>
 
@@ -540,12 +545,7 @@
     document.getElementById('contact-form').addEventListener('input', checkFormValidity);
 </script>
 
-<div id="searchAssistant">
-    <h3>Search Assistant</h3>
-    <p>Position: <span id="currentPosition">0</span>/100</p>
-    <div class="red-line"></div>
-    <button onclick="endSearch()">Suche Beenden</button>
-</div>
+
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
@@ -624,19 +624,58 @@ function showSearchAssistant(query, lineNumber, textNodes) {
 
     const positionBar = document.createElement('div');
     positionBar.classList.add('bar', 'position-bar');
-    positionBar.style.top = `${window.scrollY / document.body.scrollHeight * 100}%`;
     miniMap.appendChild(positionBar);
 
-    document.addEventListener('scroll', () => {
-        positionBar.style.top = `${window.scrollY / document.body.scrollHeight * 100}%`;
-    });
+    function updatePositionBar() {
+        const scrollPosition = (window.scrollY / document.body.scrollHeight) * 100;
+        positionBar.style.top = `${scrollPosition}%`;
+    }
+
+    document.addEventListener('scroll', updatePositionBar);
+    updatePositionBar();
 }
 
 function endSearch() {
     window.location.href = window.location.pathname;
 }
-</script>
 
+// Make the modal draggable
+dragElement(document.getElementById("searchAssistantModal"));
+
+function dragElement(elmnt) {
+    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    if (document.getElementById(elmnt.id + "header")) {
+        document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+    } else {
+        elmnt.onmousedown = dragMouseDown;
+    }
+
+    function dragMouseDown(e) {
+        e = e || window.event;
+        e.preventDefault();
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        document.onmouseup = closeDragElement;
+        document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+        e = e || window.event;
+        e.preventDefault();
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+    }
+
+    function closeDragElement() {
+        document.onmouseup = null;
+        document.onmousemove = null;
+    }
+}
+</script>
 
 
 </body>
