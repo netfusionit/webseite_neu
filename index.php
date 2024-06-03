@@ -568,65 +568,40 @@ function showSearchAssistant(query, lineNumber) {
     const miniMap = document.getElementById('miniMap');
     miniMap.innerHTML = '';
 
+    document.body.innerHTML = document.body.innerHTML.replace(new RegExp(query, 'gi'), match => `<mark>${match}</mark>`);
+
     const textNodes = [];
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
     while (walker.nextNode()) {
         textNodes.push(walker.currentNode);
     }
 
-    let accumulatedLength = 0;
-    let targetNode = null;
-    let offset = 0;
-
-    textNodes.some(node => {
-        accumulatedLength += node.textContent.length;
-        if (accumulatedLength >= lineNumber) {
-            targetNode = node;
-            offset = node.textContent.length - (accumulatedLength - lineNumber);
-            return true;
+    const highlights = document.querySelectorAll('mark');
+    highlights.forEach((highlight, index) => {
+        const bar = document.createElement('div');
+        bar.classList.add('bar');
+        const position = Math.round((highlight.offsetTop / document.body.scrollHeight) * 100);
+        bar.style.top = `${position}%`;
+        if (index === Number(lineNumber) - 1) {
+            bar.classList.add('current-bar');
+        } else {
+            bar.classList.add('other-bar');
         }
-        return false;
+        miniMap.appendChild(bar);
     });
 
-    if (targetNode) {
-        const range = document.createRange();
-        range.setStart(targetNode, offset);
-        range.setEnd(targetNode, offset + query.length);
-        const rect = range.getBoundingClientRect();
-        window.scrollTo({
-            top: window.scrollY + rect.top - window.innerHeight / 2,
-            behavior: "smooth"
-        });
+    const positionBar = document.createElement('div');
+    positionBar.classList.add('bar', 'position-bar');
+    miniMap.appendChild(positionBar);
 
-        document.body.innerHTML = document.body.innerHTML.replace(new RegExp(query, 'gi'), match => `<mark>${match}</mark>`);
-
-        const highlights = document.querySelectorAll('mark');
-        highlights.forEach((highlight, index) => {
-            const bar = document.createElement('div');
-            bar.classList.add('bar');
-            const position = Math.round((highlight.offsetTop / document.body.scrollHeight) * 100);
-            bar.style.top = `${position}%`;
-            if (index === Number(lineNumber) - 1) {
-                bar.classList.add('current-bar');
-            } else {
-                bar.classList.add('other-bar');
-            }
-            miniMap.appendChild(bar);
-        });
-
-        const positionBar = document.createElement('div');
-        positionBar.classList.add('bar', 'position-bar');
-        miniMap.appendChild(positionBar);
-
-        function updatePositionBar() {
-            const scrollPosition = (window.scrollY / document.body.scrollHeight) * 100;
-            positionBar.style.top = `${scrollPosition}%`;
-            positionIndicator.innerText = Math.round(scrollPosition);
-        }
-
-        document.addEventListener('scroll', updatePositionBar);
-        updatePositionBar();
+    function updatePositionBar() {
+        const scrollPosition = (window.scrollY / document.body.scrollHeight) * 100;
+        positionBar.style.top = `${scrollPosition}%`;
+        positionIndicator.innerText = Math.round(scrollPosition);
     }
+
+    document.addEventListener('scroll', updatePositionBar);
+    updatePositionBar();
 }
 
 function endSearch() {
