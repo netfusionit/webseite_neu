@@ -617,6 +617,7 @@ function showSearchAssistant(query, lineNumber) {
         document.body.style.overflow = 'auto';
         unlockScrollButton.style.display = 'none';
         unlockScrollButton.classList.remove('blinking');
+        window.removeEventListener('scroll', lockScroll);
     });
 
     function updatePositionBar() {
@@ -672,6 +673,7 @@ function showSearchAssistantResults() {
                 document.body.style.overflow = 'hidden';
                 document.getElementById('unlockScrollButton').style.display = 'block';
                 document.getElementById('unlockScrollButton').classList.add('blinking');
+                window.addEventListener('scroll', lockScroll);
             } else {
                 document.getElementById('remainingPercentage').innerText = remainingPercentage;
             }
@@ -716,12 +718,16 @@ function showSearchAssistantResults() {
     updatePositionBar();
 }
 
+function lockScroll() {
+    window.scrollTo(0, window.scrollY);
+}
+
 function endSearch() {
     window.location.href = window.location.pathname;
 }
 
 // Make the modal draggable
-dragElement(document.getElementById("searchAssistantModal"));
+dragElement(document.getElementById('searchAssistantModal'));
 
 function dragElement(elmnt) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -743,8 +749,8 @@ function dragElement(elmnt) {
         pos2 = pos4 - e.clientY;
         pos3 = e.clientX;
         pos4 = e.clientY;
-        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        elmnt.style.top = (elmnt.offsetTop - pos2) + 'px';
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + 'px';
     }
 
     function closeDragElement() {

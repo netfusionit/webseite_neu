@@ -1019,15 +1019,15 @@ footer {
         }
     }
     .blinking {
-        animation: blinker 1s linear infinite;
+        animation: blink 1s linear infinite;
     }
 
-    @keyframes blinker {
+    @keyframes blink {
         0%, 100% {
-            background-color: red;
+            background-color: #ff0000; /* Red */
         }
         50% {
-            background-color: blue;
+            background-color: #0000ff; /* Blue */
         }
     }
 
