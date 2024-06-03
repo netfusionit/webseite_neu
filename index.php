@@ -551,10 +551,9 @@
 document.addEventListener("DOMContentLoaded", function() {
     const params = new URLSearchParams(window.location.search);
     const query = params.get('query');
-    const lineNumber = window.location.hash.split("-")[1];
 
     if (query) {
-        showSearchAssistant(query, lineNumber);
+        showSearchAssistant(query);
         document.getElementById('searchAssistantModalToggle').classList.remove('hidden');
         markQuery(query);
     }
@@ -576,10 +575,11 @@ function communicateResultsToAssistant() {
     showSearchAssistantResults();
 }
 
-function showSearchAssistant(query, lineNumber) {
+function showSearchAssistant(query) {
     const searchAssistantModal = document.getElementById('searchAssistantModal');
     searchAssistantModal.style.display = 'block';
     const positionIndicator = document.getElementById('currentPosition');
+    const remainingIndicator = document.getElementById('remainingPercentage');
     const miniMapContainer = document.getElementById('miniMapContainer');
 
     miniMapContainer.innerHTML = '';
@@ -594,6 +594,12 @@ function showSearchAssistant(query, lineNumber) {
         const scrollPosition = (window.scrollY / document.body.scrollHeight) * 100;
         positionBar.style.top = `${scrollPosition}%`;
         positionIndicator.innerText = Math.round(scrollPosition);
+
+        if (window.searchResults.length > 0) {
+            const greenBarPosition = parseFloat(window.searchResults[0].top / document.body.scrollHeight) * 100;
+            const remaining = greenBarPosition - scrollPosition;
+            remainingIndicator.innerText = Math.max(0, Math.round(remaining));
+        }
     }
 
     document.addEventListener('scroll', updatePositionBar);
@@ -689,6 +695,7 @@ function toggleSearchAssistant() {
     }
 }
 </script>
+
 
 
 
