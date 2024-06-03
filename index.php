@@ -565,6 +565,9 @@ function showSearchAssistant(query, lineNumber) {
     searchAssistantModal.style.display = 'block';
     const positionIndicator = document.getElementById('currentPosition');
 
+    const miniMap = document.getElementById('miniMap');
+    miniMap.innerHTML = '';
+
     const textNodes = [];
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
     while (walker.nextNode()) {
@@ -618,16 +621,11 @@ function showSearchAssistant(query, lineNumber) {
         function updatePositionBar() {
             const scrollPosition = (window.scrollY / document.body.scrollHeight) * 100;
             positionBar.style.top = `${scrollPosition}%`;
+            positionIndicator.innerText = Math.round(scrollPosition);
         }
 
         document.addEventListener('scroll', updatePositionBar);
         updatePositionBar();
-
-        const indexPosition = bodyText.indexOf(query);
-        if (indexPosition !== -1) {
-            const percentagePosition = Math.round((indexPosition / bodyText.length) * 100);
-            positionIndicator.innerText = percentagePosition;
-        }
     }
 }
 
