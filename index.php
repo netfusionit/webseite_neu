@@ -172,11 +172,11 @@
                             <i class="bi bi-binoculars"></i>
                             <div>
                                 <h4>Netzwerktechnik und Internetdienstleistungen</h4>
-                                <p>Wir bieten umfassende Netzwerklösungen, einschließlich Einrichtung und Wartung von Netzwerkinfrastrukturen, um die Konnektivität und Effizienz Ihres Unternehmens zu optimieren.</p>
+                                <p>Optimierung Ihrer Netzwerkinfrastruktur und Sicherheit.</p>
                                 <ul>
-                                    <li><i class="bi bi-check-circle"></i> Planung und Implementierung von Netzwerkinfrastrukturen</li>
-                                    <li><i class="bi bi-check-circle"></i> Wartung und Support für bestehende Netzwerke</li>
-                                    <li><i class="bi bi-check-circle"></i> Sicherheitslösungen zur Absicherung Ihrer Daten</li>
+                                    <li><i class="bi bi-check-circle"></i> Planung und Implementierung</li>
+                                    <li><i class="bi bi-check-circle"></i> Wartung und Support</li>
+                                    <li><i class="bi bi-check-circle"></i> Sicherheitslösungen</li>
                                 </ul>
                             </div>
                         </a>
@@ -186,11 +186,11 @@
                             <i class="bi bi-box-seam"></i>
                             <div>
                                 <h4>WordPress-Webdesign</h4>
-                                <p>Wir erstellen ansprechende und funktionale WordPress-Websites, die auf die spezifischen Bedürfnisse und Ziele Ihres Unternehmens zugeschnitten sind.</p>
+                                <p>Individuelle und SEO-optimierte Webseiten.</p>
                                 <ul>
-                                    <li><i class="bi bi-check-circle"></i> Individuelle Designs und Templates</li>
-                                    <li><i class="bi bi-check-circle"></i> SEO-optimierte Seitenstruktur</li>
-                                    <li><i class="bi bi-check-circle"></i> Benutzerfreundliche CMS-Lösungen</li>
+                                    <li><i class="bi bi-check-circle"></i> Individuelle Designs</li>
+                                    <li><i class="bi bi-check-circle"></i> SEO-optimierte Struktur</li>
+                                    <li><i class="bi bi-check-circle"></i> Benutzerfreundlich</li>
                                 </ul>
                             </div>
                         </a>
@@ -200,11 +200,11 @@
                             <i class="bi bi-brightness-high"></i>
                             <div>
                                 <h4>Service, Support und Wartung</h4>
-                                <p>Unser engagiertes Team bietet kontinuierlichen Support und Wartungsdienste, um sicherzustellen, dass Ihre IT-Systeme stets reibungslos funktionieren.</p>
+                                <p>24/7 Unterstützung für Ihre IT-Systeme.</p>
                                 <ul>
-                                    <li><i class="bi bi-check-circle"></i> 24/7 Technischer Support</li>
-                                    <li><i class="bi bi-check-circle"></i> Regelmäßige Systemupdates und -wartungen</li>
-                                    <li><i class="bi bi-check-circle"></i> Schnelle Fehlerbehebung und Problemlösungen</li>
+                                    <li><i class="bi bi-check-circle"></i> 24/7 Support</li>
+                                    <li><i class="bi bi-check-circle"></i> Regelmäßige Updates</li>
+                                    <li><i class="bi bi-check-circle"></i> Schnelle Fehlerbehebung</li>
                                 </ul>
                             </div>
                         </a>
