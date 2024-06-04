@@ -691,8 +691,8 @@ function showSearchAssistantResults() {
                 if (elementTop > middleOffset) {
                     window.scrollTo(0, elementTop - middleOffset);
                 }
-                highlightElement.style.top = `${greenBarPosition - 3}%`; // Verschiebe die Grenze auf den grünen Balken nach oben
-                highlightElement.style.height = `3%`;
+                highlightElement.style.top = `${greenBarPosition}%`;
+                highlightElement.style.height = `calc(${Math.min(3, 100 - scrollPosition)}%)`;
                 highlightElement.classList.add('green');
                 remainingIndicator.innerText = 'Suchergebnis HIER';
                 remainingIndicator.classList.add('blinking');
