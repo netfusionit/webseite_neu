@@ -596,8 +596,10 @@ function showSearchAssistant(query, lineNumber) {
     const searchAssistantModal = document.getElementById('searchAssistantModal');
     searchAssistantModal.style.display = 'block';
     const positionIndicator = document.getElementById('currentPosition');
+    const remainingIndicator = document.getElementById('remainingIndicator');
     const miniMapContainer = document.getElementById('miniMapContainer');
     const toggleButton = document.getElementById('toggleButton');
+    const unlockScrollButton = document.getElementById('unlockScrollButton');
 
     miniMapContainer.innerHTML = '';
 
@@ -609,6 +611,13 @@ function showSearchAssistant(query, lineNumber) {
 
     toggleButton.addEventListener('click', () => {
         miniMapContainer.classList.toggle('show-more');
+    });
+
+    unlockScrollButton.addEventListener('click', () => {
+        document.body.style.overflow = 'auto';
+        unlockScrollButton.style.display = 'none';
+        unlockScrollButton.classList.remove('blinking');
+        window.removeEventListener('scroll', lockScroll);
     });
 
     function updatePositionBar() {
@@ -631,7 +640,7 @@ function showSearchAssistantResults() {
         const bar = document.createElement('div');
         bar.classList.add('bar');
         const position = Math.min(Math.round((result.top / (document.body.scrollHeight - window.innerHeight)) * 100), 100);
-        bar.style.top = `${position}%`;
+        bar.style.top = `${position - 5}%`; // Shift bars up slightly for better visibility
         if (index === 0) {
             bar.classList.add('current-bar');
         } else {
@@ -645,29 +654,72 @@ function showSearchAssistantResults() {
     positionBar.classList.add('bar', 'position-bar');
     miniMapContainer.appendChild(positionBar);
 
-    // Adding the green highlight element for the selected search result
+    // Adding the green highlight element
     const highlightElement = document.createElement('div');
     highlightElement.classList.add('highlight');
     miniMapContainer.appendChild(highlightElement);
 
-    function updateHighlightElement() {
-        if (window.searchResults.length > 0) {
-            const greenBarPosition = parseFloat(window.searchResults[0].top / (document.body.scrollHeight - window.innerHeight)) * 100;
-            highlightElement.style.top = `${greenBarPosition}%`;
-            highlightElement.style.height = `5%`; // Make the green bar more prominent
-            highlightElement.classList.add('green');
-        }
-    }
-
     function updatePositionBar() {
         const scrollPosition = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
         positionBar.style.top = `${Math.min(scrollPosition, 100)}%`;
-        positionIndicator.innerText = Math.round(scrollPosition);
+        document.getElementById('currentPosition').innerText = Math.round(scrollPosition);
+
+        if (window.searchResults.length > 0) {
+            const greenBarPosition = parseFloat(window.searchResults[0].top / (document.body.scrollHeight - window.innerHeight)) * 100;
+            const remaining = greenBarPosition - scrollPosition;
+            const remainingPercentage = Math.round(remaining);
+            if (remaining <= 3 && remaining >= -3) {
+                document.getElementById('remainingPercentage').innerText = 0;
+                document.body.style.overflow = 'hidden';
+                document.getElementById('unlockScrollButton').style.display = 'block';
+                document.getElementById('unlockScrollButton').classList.add('blinking');
+                window.addEventListener('scroll', lockScroll);
+            } else {
+                document.getElementById('remainingPercentage').innerText = remainingPercentage;
+            }
+
+            if (remaining > 0) {
+                highlightElement.style.top = `${Math.min(scrollPosition, 100)}%`;
+                highlightElement.style.height = `${Math.min(remainingPercentage, 100 - scrollPosition)}%`;
+                highlightElement.classList.add('green');
+                remainingIndicator.innerText = '';
+                remainingIndicator.classList.remove('blinking');
+                remainingIndicator.classList.remove('green-text');
+            } else if (Math.abs(remaining) <= 3) {
+                const middleOffset = window.innerHeight / 2;
+                const elementTop = window.searchResults[0].top;
+                if (elementTop > middleOffset) {
+                    window.scrollTo(0, elementTop - middleOffset);
+                }
+                highlightElement.style.top = `${Math.min(scrollPosition, 100)}%`;
+                highlightElement.style.height = `${Math.min(3, 100 - scrollPosition)}%`;
+                highlightElement.classList.add('green');
+                remainingIndicator.innerText = 'Suchergebnis HIER';
+                remainingIndicator.classList.add('blinking');
+                remainingIndicator.classList.add('green-text');
+            } else if (remaining < -3) {
+                highlightElement.style.top = `${Math.min(scrollPosition, 100)}%`;
+                highlightElement.style.height = `0%`;
+                highlightElement.classList.remove('green');
+                highlightElement.classList.add('yellow');
+                remainingIndicator.innerText = remainingPercentage;
+                remainingIndicator.classList.remove('blinking');
+                remainingIndicator.classList.remove('green-text');
+            } else {
+                highlightElement.style.height = '0%';
+                remainingIndicator.innerText = '';
+                remainingIndicator.classList.remove('blinking');
+                remainingIndicator.classList.remove('green-text');
+            }
+        }
     }
 
     document.addEventListener('scroll', updatePositionBar);
-    updateHighlightElement();
     updatePositionBar();
+}
+
+function lockScroll() {
+    window.scrollTo(0, window.scrollY);
 }
 
 function endSearch() {
@@ -718,7 +770,6 @@ function toggleSearchAssistant() {
         searchAssistantModalToggle.classList.add('open');
     }
 }
-
 
 
 </script>
