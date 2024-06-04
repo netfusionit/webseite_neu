@@ -109,7 +109,7 @@
                         echo "<h3>" . $row['title'] . "</h3>";
                         $cleanContent = strip_tags($row['content']);
                         $highlightedContent = str_ireplace($query, "<mark>$query</mark>", $cleanContent);
-                        $excerpt = implode(' ', array_slice(explode(' ', $highlightedContent), 0, 20));
+                        $excerpt = implode(' ', array_slice(explode(' ', $highlightedContent), 0, 10));
                         echo "<p>" . $excerpt . "...</p>";
                         echo "<a href='blog-details.php?id=" . $row['id'] . "' class='btn btn-primary mt-2'>Weiterlesen</a>";
                         echo "</div>";
@@ -129,7 +129,7 @@
                 foreach ($indexResults as $result) {
                     echo "<div class='result-item'>";
                     echo "<h3>Gefunden auf der Hauptseite</h3>";
-                    $excerpt = implode(' ', array_slice(explode(' ', $result['line']), 0, 20));
+                    $excerpt = implode(' ', array_slice(explode(' ', $result['line']), 0, 10));
                     echo "<p>" . $excerpt . "...</p>";
                     echo "<a href='/index.php?query=" . urlencode($query) . "#line-" . $result['line_number'] . "' class='btn btn-primary mt-2'>Zum Seiteninhalt springen</a>";
                     echo "</div>";
