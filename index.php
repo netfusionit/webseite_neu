@@ -596,10 +596,8 @@ function showSearchAssistant(query, lineNumber) {
     const searchAssistantModal = document.getElementById('searchAssistantModal');
     searchAssistantModal.style.display = 'block';
     const positionIndicator = document.getElementById('currentPosition');
-    const remainingIndicator = document.getElementById('remainingIndicator');
     const miniMapContainer = document.getElementById('miniMapContainer');
     const toggleButton = document.getElementById('toggleButton');
-    const unlockScrollButton = document.getElementById('unlockScrollButton');
 
     miniMapContainer.innerHTML = '';
 
@@ -611,13 +609,6 @@ function showSearchAssistant(query, lineNumber) {
 
     toggleButton.addEventListener('click', () => {
         miniMapContainer.classList.toggle('show-more');
-    });
-
-    unlockScrollButton.addEventListener('click', () => {
-        document.body.style.overflow = 'auto';
-        unlockScrollButton.style.display = 'none';
-        unlockScrollButton.classList.remove('blinking');
-        window.removeEventListener('scroll', lockScroll);
     });
 
     function updatePositionBar() {
@@ -649,77 +640,21 @@ function showSearchAssistantResults() {
         miniMapContainer.appendChild(bar);
     });
 
-    // Adding the red position bar to indicate the current scroll position
-    const positionBar = document.createElement('div');
-    positionBar.classList.add('bar', 'position-bar');
-    miniMapContainer.appendChild(positionBar);
-
-    // Adding the green highlight element
+    // Adding the green highlight element for the selected search result
     const highlightElement = document.createElement('div');
     highlightElement.classList.add('highlight');
     miniMapContainer.appendChild(highlightElement);
 
-    function updatePositionBar() {
-        const scrollPosition = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-        positionBar.style.top = `${Math.min(scrollPosition, 100)}%`;
-        document.getElementById('currentPosition').innerText = Math.round(scrollPosition);
-
+    function updateHighlightElement() {
         if (window.searchResults.length > 0) {
             const greenBarPosition = parseFloat(window.searchResults[0].top / (document.body.scrollHeight - window.innerHeight)) * 100;
-            const remaining = greenBarPosition - scrollPosition;
-            const remainingPercentage = Math.round(remaining);
-            if (remaining <= 3 && remaining >= -3) {
-                document.getElementById('remainingPercentage').innerText = 0;
-                document.body.style.overflow = 'hidden';
-                document.getElementById('unlockScrollButton').style.display = 'block';
-                document.getElementById('unlockScrollButton').classList.add('blinking');
-                window.addEventListener('scroll', lockScroll);
-            } else {
-                document.getElementById('remainingPercentage').innerText = remainingPercentage;
-            }
-
-            if (remaining > 0) {
-                highlightElement.style.top = `${greenBarPosition}%`;
-                highlightElement.style.height = `${Math.min(remainingPercentage, 100 - scrollPosition)}%`;
-                highlightElement.classList.add('green');
-                remainingIndicator.innerText = '';
-                remainingIndicator.classList.remove('blinking');
-                remainingIndicator.classList.remove('green-text');
-            } else if (Math.abs(remaining) <= 3) {
-                const middleOffset = window.innerHeight / 2;
-                const elementTop = window.searchResults[0].top;
-                if (elementTop > middleOffset) {
-                    window.scrollTo(0, elementTop - middleOffset);
-                }
-                highlightElement.style.top = `${greenBarPosition - 3}%`; // Verschiebe die Grenze auf den grünen Balken nach oben
-                highlightElement.style.height = `3%`;
-                highlightElement.classList.add('green');
-                remainingIndicator.innerText = 'Suchergebnis HIER';
-                remainingIndicator.classList.add('blinking');
-                remainingIndicator.classList.add('green-text');
-            } else if (remaining < -3) {
-                highlightElement.style.top = `${greenBarPosition}%`;
-                highlightElement.style.height = `0%`;
-                highlightElement.classList.remove('green');
-                highlightElement.classList.add('yellow');
-                remainingIndicator.innerText = remainingPercentage;
-                remainingIndicator.classList.remove('blinking');
-                remainingIndicator.classList.remove('green-text');
-            } else {
-                highlightElement.style.height = '0%';
-                remainingIndicator.innerText = '';
-                remainingIndicator.classList.remove('blinking');
-                remainingIndicator.classList.remove('green-text');
-            }
+            highlightElement.style.top = `${greenBarPosition}%`;
+            highlightElement.style.height = `3%`;
+            highlightElement.classList.add('green');
         }
     }
 
-    document.addEventListener('scroll', updatePositionBar);
-    updatePositionBar();
-}
-
-function lockScroll() {
-    window.scrollTo(0, window.scrollY);
+    updateHighlightElement();
 }
 
 function endSearch() {
