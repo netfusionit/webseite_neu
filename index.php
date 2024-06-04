@@ -640,7 +640,7 @@ function showSearchAssistantResults() {
         const bar = document.createElement('div');
         bar.classList.add('bar');
         const position = Math.min(Math.round((result.top / (document.body.scrollHeight - window.innerHeight)) * 100), 100);
-        bar.style.top = `${position}%`;
+        bar.style.top = `${position - 5}%`; // Shift bars up slightly for better visibility
         if (index === 0) {
             bar.classList.add('current-bar');
         } else {
@@ -679,7 +679,7 @@ function showSearchAssistantResults() {
             }
 
             if (remaining > 0) {
-                highlightElement.style.top = `${greenBarPosition}%`;
+                highlightElement.style.top = `${Math.min(scrollPosition, 100)}%`;
                 highlightElement.style.height = `${Math.min(remainingPercentage, 100 - scrollPosition)}%`;
                 highlightElement.classList.add('green');
                 remainingIndicator.innerText = '';
@@ -691,14 +691,14 @@ function showSearchAssistantResults() {
                 if (elementTop > middleOffset) {
                     window.scrollTo(0, elementTop - middleOffset);
                 }
-                highlightElement.style.top = `${greenBarPosition}%`;
-                highlightElement.style.height = `3%`;
+                highlightElement.style.top = `${Math.min(scrollPosition, 100)}%`;
+                highlightElement.style.height = `${Math.min(3, 100 - scrollPosition)}%`;
                 highlightElement.classList.add('green');
                 remainingIndicator.innerText = 'Suchergebnis HIER';
                 remainingIndicator.classList.add('blinking');
                 remainingIndicator.classList.add('green-text');
             } else if (remaining < -3) {
-                highlightElement.style.top = `${greenBarPosition}%`;
+                highlightElement.style.top = `${Math.min(scrollPosition, 100)}%`;
                 highlightElement.style.height = `0%`;
                 highlightElement.classList.remove('green');
                 highlightElement.classList.add('yellow');
@@ -770,7 +770,6 @@ function toggleSearchAssistant() {
         searchAssistantModalToggle.classList.add('open');
     }
 }
-
 
 
 </script>
