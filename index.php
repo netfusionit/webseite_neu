@@ -156,11 +156,11 @@
         </div>
     </section><!-- /About Section -->
 
-<!-- Features Section -->
-<section id="features" class="features section bg-alt-2">
+<!-- Leistungen Section -->
+<section id="leistungen" class="leistungen section bg-alt-2">
     <div class="container section-title" data-aos="fade-up">
-        <h2 class="text-center">Features</h2>
-        <p class="text-center">Unsere erstklassigen Dienstleistungen, die Ihr Unternehmen voranbringen</p>
+        <h2 class="text-center">Leistungen</h2>
+        <p class="text-center">Entdecken Sie unsere maßgeschneiderten Dienstleistungen, die darauf abzielen, Ihr Unternehmen zu unterstützen und voranzubringen. Unser erfahrenes Team bietet innovative Lösungen in den Bereichen Netzwerktechnik, Webdesign und IT-Support, um Ihre spezifischen Anforderungen zu erfüllen.</p>
     </div><!-- End Section Title -->
 
     <div class="container">
@@ -168,7 +168,7 @@
             <div class="col-lg-5 d-flex align-items-center">
                 <ul class="nav nav-tabs flex-column" data-aos="fade-up" data-aos-delay="100">
                     <li class="nav-item">
-                        <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#features-tab-1">
+                        <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#leistungen-tab-1">
                             <i class="bi bi-router"></i>
                             <div>
                                 <h4>Netzwerktechnik und Internetdienstleistungen</h4>
@@ -182,7 +182,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-2">
+                        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#leistungen-tab-2">
                             <i class="bi bi-wordpress"></i>
                             <div>
                                 <h4>WordPress-Webdesign</h4>
@@ -196,7 +196,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-3">
+                        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#leistungen-tab-3">
                             <i class="bi bi-headset"></i>
                             <div>
                                 <h4>Service, Support und Wartung</h4>
@@ -210,23 +210,24 @@
                         </a>
                     </li>
                 </ul><!-- End Tab Nav -->
-                </div>
-                <div class="col-lg-6">
-                    <div class="tab-content" data-aos="fade-up" data-aos-delay="200">
-                        <div class="tab-pane fade active show" id="features-tab-1">
-                            <img src="assets/img/tabs-1.jpg" alt="" class="img-fluid">
-                        </div><!-- End Tab Content Item -->
-                        <div class="tab-pane fade" id="features-tab-2">
-                            <img src="assets/img/tabs-2.jpg" alt="" class="img-fluid">
-                        </div><!-- End Tab Content Item -->
-                        <div class="tab-pane fade" id="features-tab-3">
-                            <img src="assets/img/tabs-3.jpg" alt="" class="img-fluid">
-                        </div><!-- End Tab Content Item -->
+            </div>
+            <div class="col-lg-7 d-flex align-items-center" data-aos="fade-up" data-aos-delay="200">
+                <div class="tab-content">
+                    <div class="tab-pane active show" id="leistungen-tab-1">
+                        <img src="path/to/your/network-image.jpg" alt="Netzwerktechnik und Internetdienstleistungen" class="img-fluid" style="height: 400px;">
+                    </div>
+                    <div class="tab-pane" id="leistungen-tab-2">
+                        <img src="path/to/your/wordpress-image.jpg" alt="WordPress-Webdesign" class="img-fluid" style="height: 400px;">
+                    </div>
+                    <div class="tab-pane" id="leistungen-tab-3">
+                        <img src="path/to/your/support-image.jpg" alt="Service, Support und Wartung" class="img-fluid" style="height: 400px;">
                     </div>
                 </div>
             </div>
         </div>
-    </section><!-- /Features Section -->
+    </div>
+</section>
+
 
     <!-- Features Details Section -->
     <section id="features-details" class="features-details section bg-alt-1">
