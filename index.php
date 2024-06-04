@@ -640,7 +640,7 @@ function showSearchAssistantResults() {
         const bar = document.createElement('div');
         bar.classList.add('bar');
         const position = Math.min(Math.round((result.top / (document.body.scrollHeight - window.innerHeight)) * 100), 100);
-        bar.style.top = `${position}%`; // Shift bars up slightly for better visibility
+        bar.style.top = `${position}%`;
         if (index === 0) {
             bar.classList.add('current-bar');
         } else {
@@ -679,7 +679,7 @@ function showSearchAssistantResults() {
             }
 
             if (remaining > 0) {
-                highlightElement.style.top = `${Math.min(scrollPosition, 100)}%`;
+                highlightElement.style.top = `${greenBarPosition}%`;
                 highlightElement.style.height = `${Math.min(remainingPercentage, 100 - scrollPosition)}%`;
                 highlightElement.classList.add('green');
                 remainingIndicator.innerText = '';
