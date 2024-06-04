@@ -467,7 +467,8 @@
 
 <div id="searchAssistantModal">
     <h3>Search Assistant</h3>
-    <p>Position: <span id="currentPosition">0</span>/100%</p>
+    <p>Position: <span id="currentPosition">0</span>/100</p>
+    <!-- <p>Verbleibend: <span id="remainingPercentage">0</span>%</p> -->
     <div class="mini-map" id="miniMapContainer"></div>
     <br>
     <div class="legend">
@@ -476,6 +477,7 @@
         <div><span class="position"></span>Rot: Aktuelle Position</div>
     </div>
     <div id="remainingIndicator" class="remaining-indicator"></div>
+    <button id="toggleButton">Toggle Results</button>
     <button onclick="endSearch()">Suche Beenden</button>
 </div>
 <button id="searchAssistantModalToggle" onclick="toggleSearchAssistant()" class="hidden"><i class="fas fa-search"></i></button>
@@ -651,7 +653,7 @@ function showSearchAssistantResults() {
         if (window.searchResults.length > 0) {
             const greenBarPosition = parseFloat(window.searchResults[0].top / (document.body.scrollHeight - window.innerHeight)) * 100;
             highlightElement.style.top = `${greenBarPosition - 2}%`; // Verschieben um 2% nach oben
-            highlightElement.style.height = `10px`; // Make the green bar more prominent
+            highlightElement.style.height = `12px`; // Make the green bar more prominent
         }
     }
 
