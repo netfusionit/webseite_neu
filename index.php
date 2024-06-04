@@ -692,7 +692,7 @@ function showSearchAssistantResults() {
                     window.scrollTo(0, elementTop - middleOffset);
                 }
                 highlightElement.style.top = `${Math.min(scrollPosition, 100)}%`;
-                highlightElement.style.height = `calc(${100 - Math.min(scrollPosition, 100)}%)`;
+                highlightElement.style.height = `${Math.min(3, 100 - scrollPosition)}%`;
                 highlightElement.classList.add('green');
                 remainingIndicator.innerText = 'Suchergebnis HIER';
                 remainingIndicator.classList.add('blinking');
