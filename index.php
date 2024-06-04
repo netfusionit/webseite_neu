@@ -613,7 +613,7 @@ function showSearchAssistant(query, lineNumber) {
 
     function updatePositionBar() {
         const scrollPosition = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-        positionBar.style.top = `${Math.min(scrollPosition, 100) - 2}%`; // Verschieben um 2% nach oben
+        positionBar.style.top = `${Math.min(scrollPosition, 100)}%`;
         positionIndicator.innerText = Math.round(scrollPosition);
     }
 
@@ -661,7 +661,7 @@ function showSearchAssistantResults() {
 
     function updatePositionBar() {
         const scrollPosition = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-        positionBar.style.top = `${Math.min(scrollPosition, 100) - 2}%`; // Verschieben um 2% nach oben
+        positionBar.style.top = `${Math.min(scrollPosition, 100)}%`;
         positionIndicator.innerText = Math.round(scrollPosition);
     }
 
@@ -718,7 +718,6 @@ function toggleSearchAssistant() {
         searchAssistantModalToggle.classList.add('open');
     }
 }
-
 
 
 </script>
