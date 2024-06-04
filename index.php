@@ -169,39 +169,42 @@
                 <ul class="nav nav-tabs flex-column" data-aos="fade-up" data-aos-delay="100">
                     <li class="nav-item">
                         <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#features-tab-1">
+                            <i class="bi bi-router"></i>
                             <div>
                                 <h4>Netzwerktechnik und Internetdienstleistungen</h4>
                                 <p>Optimierung Ihrer Netzwerkinfrastruktur und Sicherheit.</p>
                                 <ul>
-                                    <li>Planung und Implementierung</li>
-                                    <li>Wartung und Support</li>
-                                    <li>Sicherheitslösungen</li>
+                                    <li><i class="bi bi-check2-circle"></i> Planung und Implementierung</li>
+                                    <li><i class="bi bi-check2-circle"></i> Wartung und Support</li>
+                                    <li><i class="bi bi-check2-circle"></i> Sicherheitslösungen</li>
                                 </ul>
                             </div>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-2">
+                            <i class="bi bi-wordpress"></i>
                             <div>
                                 <h4>WordPress-Webdesign</h4>
                                 <p>Individuelle und SEO-optimierte Webseiten.</p>
                                 <ul>
-                                    <li>Individuelle Designs</li>
-                                    <li>SEO-optimierte Struktur</li>
-                                    <li>Benutzerfreundlich</li>
+                                    <li><i class="bi bi-check2-circle"></i> Individuelle Designs</li>
+                                    <li><i class="bi bi-check2-circle"></i> SEO-optimierte Struktur</li>
+                                    <li><i class="bi bi-check2-circle"></i> Benutzerfreundlich</li>
                                 </ul>
                             </div>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-3">
+                            <i class="bi bi-headset"></i>
                             <div>
                                 <h4>Service, Support und Wartung</h4>
                                 <p>24/7 Unterstützung für Ihre IT-Systeme.</p>
                                 <ul>
-                                    <li>24/7 Support</li>
-                                    <li>Regelmäßige Updates</li>
-                                    <li>Schnelle Fehlerbehebung</li>
+                                    <li><i class="bi bi-check2-circle"></i> 24/7 Support</li>
+                                    <li><i class="bi bi-check2-circle"></i> Regelmäßige Updates</li>
+                                    <li><i class="bi bi-check2-circle"></i> Schnelle Fehlerbehebung</li>
                                 </ul>
                             </div>
                         </a>
