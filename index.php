@@ -215,13 +215,13 @@
                 <div class="col-lg-6">
                     <div class="tab-content" data-aos="fade-up" data-aos-delay="200">
                         <div class="tab-pane fade active show" id="features-tab-1">
-                            <img src="assets/img/tabs-1.jpg" alt="" class="img-fluid">
+                            <img src="/img/" alt="" class="img-fluid">
                         </div><!-- End Tab Content Item -->
                         <div class="tab-pane fade" id="features-tab-2">
-                            <img src="assets/img/tabs-2.jpg" alt="" class="img-fluid">
+                            <img src="/img/features_wordpress.jpg" alt="" class="img-fluid">
                         </div><!-- End Tab Content Item -->
                         <div class="tab-pane fade" id="features-tab-3">
-                            <img src="assets/img/tabs-3.jpg" alt="" class="img-fluid">
+                            <img src="/img/tabs-3.jpg" alt="" class="img-fluid">
                         </div><!-- End Tab Content Item -->
                     </div>
                 </div>
