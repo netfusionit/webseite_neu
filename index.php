@@ -613,7 +613,7 @@ function showSearchAssistant(query, lineNumber) {
 
     function updatePositionBar() {
         const scrollPosition = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-        positionBar.style.top = `${Math.min(scrollPosition, 100)}%`;
+        positionBar.style.top = `${Math.min(scrollPosition, 100) - 2}%`; // Verschieben um 2% nach oben
         positionIndicator.innerText = Math.round(scrollPosition);
     }
 
@@ -631,7 +631,7 @@ function showSearchAssistantResults() {
         const bar = document.createElement('div');
         bar.classList.add('bar');
         const position = Math.min(Math.round((result.top / (document.body.scrollHeight - window.innerHeight)) * 100), 100);
-        bar.style.top = `${position}%`;
+        bar.style.top = `${position - 2}%`; // Verschieben um 2% nach oben
         if (index === 0) {
             bar.classList.add('current-bar');
         } else {
@@ -653,7 +653,7 @@ function showSearchAssistantResults() {
     function updateHighlightElement() {
         if (window.searchResults.length > 0) {
             const greenBarPosition = parseFloat(window.searchResults[0].top / (document.body.scrollHeight - window.innerHeight)) * 100;
-            highlightElement.style.top = `${greenBarPosition}%`;
+            highlightElement.style.top = `${greenBarPosition - 2}%`; // Verschieben um 2% nach oben
             highlightElement.style.height = `10px`; // Make the green bar more prominent
             highlightElement.classList.add('green');
         }
@@ -661,7 +661,7 @@ function showSearchAssistantResults() {
 
     function updatePositionBar() {
         const scrollPosition = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-        positionBar.style.top = `${Math.min(scrollPosition, 100)}%`;
+        positionBar.style.top = `${Math.min(scrollPosition, 100) - 2}%`; // Verschieben um 2% nach oben
         positionIndicator.innerText = Math.round(scrollPosition);
     }
 
@@ -718,6 +718,7 @@ function toggleSearchAssistant() {
         searchAssistantModalToggle.classList.add('open');
     }
 }
+
 
 
 </script>
