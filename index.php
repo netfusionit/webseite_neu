@@ -625,10 +625,10 @@ function showSearchAssistantResults() {
         const bar = document.createElement('div');
         bar.classList.add('bar');
         const position = Math.min(Math.round((result.top / (document.body.scrollHeight - window.innerHeight)) * 100), 100);
-        bar.style.top = `${position - 2}%`; // Verschieben um 2% nach oben
+        bar.style.top = `${position - 5}%`; // Verschieben um 5% nach oben
         if (index === 0) {
             bar.classList.add('current-bar');
-            selectedResult = bar;
+            selectedResult = result;
         } else {
             bar.classList.add('other-bar');
         }
@@ -636,27 +636,18 @@ function showSearchAssistantResults() {
     });
 
     if (selectedResult) {
-        selectedResult.classList.add('selected');
+        const highlightElement = document.createElement('div');
+        highlightElement.classList.add('highlight', 'green');
+        const greenBarPosition = parseFloat(selectedResult.top / (document.body.scrollHeight - window.innerHeight)) * 100;
+        highlightElement.style.top = `${greenBarPosition - 5}%`; // Verschieben um 5% nach oben
+        highlightElement.style.height = `2%`; // Längerer grüner Balken
+        miniMapContainer.appendChild(highlightElement);
     }
 
     // Adding the red position bar to indicate the current scroll position
     const positionBar = document.createElement('div');
     positionBar.classList.add('bar', 'position-bar');
     miniMapContainer.appendChild(positionBar);
-
-    // Adding the green highlight element for the selected search result
-    const highlightElement = document.createElement('div');
-    highlightElement.classList.add('highlight', 'green');
-    miniMapContainer.appendChild(highlightElement);
-
-    function updateHighlightElement() {
-        if (window.searchResults.length > 0) {
-            const selectedResult = window.searchResults[0];
-            const greenBarPosition = parseFloat(selectedResult.top / (document.body.scrollHeight - window.innerHeight)) * 100;
-            highlightElement.style.top = `${greenBarPosition - 2}%`; // Verschieben um 2% nach oben
-            highlightElement.style.height = `12px`; // Make the green bar more prominent
-        }
-    }
 
     function updatePositionBar() {
         const scrollPosition = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
@@ -665,9 +656,7 @@ function showSearchAssistantResults() {
 
     document.addEventListener('scroll', () => {
         updatePositionBar();
-        updateHighlightElement();
     });
-    updateHighlightElement();
     updatePositionBar();
 }
 
