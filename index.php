@@ -119,13 +119,13 @@
         </div>
     </section><!-- /Featured Services Section -->
 
-    <!-- About Section -->
-    <section id="about" class="about section">
+<!-- About Section -->
+<section id="about" class="about section">
     <div class="container">
         <div class="row gy-4">
             <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
                 <p class="who-we-are">ÜBER NetFusionIT</p>
-                <h3>Potential freisetzen mit kreativer Strategie</h3>
+                <h3>Innovative Strategien und Lösungen für Ihre IT</h3>
                 <p class="fst-italic">
                     Wir bieten maßgeschneiderte Lösungen im Bereich Netzwerktechnik und Internetdienstleistungen, um Ihr Unternehmen auf die nächste Stufe zu heben.
                 </p>
@@ -134,28 +134,30 @@
                     <li><i class="bi bi-check-circle"></i> <span>Modernes Wordpress-Webdesign für einen starken Online-Auftritt.</span></li>
                     <li><i class="bi bi-check-circle"></i> <span>Umfassender Service, Support und Wartung für dauerhafte Zuverlässigkeit.</span></li>
                 </ul>
-                    <a href="#features" class="read-more"><span>Mehr erfahren</span><i class="bi bi-arrow-right"></i></a>
-                </div>
-                <div class="col-lg-6 about-images" data-aos="fade-up" data-aos-delay="200">
-                    <div class="row gy-4">
-                        <div class="col-lg-6">
-                            <img src="/img/placeholder2.jpg" class="img-fluid" alt="">
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="row gy-4">
-                                <div class="col-lg-12 mb-2">
-                                    <img src="/img/placeholder.jpg" class="img-fluid" alt="">
-                                </div>
-                                <div class="col-lg-12">
-                                    <img src="/img/placeholder.jpg" class="img-fluid" alt="">
-                                </div>
+                <a href="#features" class="read-more"><span>Mehr erfahren</span><i class="bi bi-arrow-right"></i></a>
+            </div>
+            <div class="col-lg-6 about-images" data-aos="fade-up" data-aos-delay="200">
+                <div class="row gy-4">
+                    <div class="col-lg-6">
+                        <img src="/img/placeholder2.jpg" class="img-fluid" alt="">
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row gy-4">
+                            <div class="col-lg-12 mb-4">
+                                <img src="/img/placeholder.jpg" class="img-fluid" alt="">
+                            </div>
+                            <div class="col-lg-12">
+                                <img src="/img/placeholder.jpg" class="img-fluid" alt="">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section><!-- /About Section -->
+    </div>
+</section><!-- /About Section -->
+
+
 
 <!-- Features Section -->
 <section id="features" class="features section bg-alt-2">
