@@ -156,45 +156,60 @@
         </div>
     </section><!-- /About Section -->
 
-    <!-- Features Section -->
-    <section id="features" class="features section bg-alt-2">
-        <div class="container section-title" data-aos="fade-up">
-            <h2 class="text-center">Features</h2>
-            <p class="text-center">Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-        </div><!-- End Section Title -->
+<!-- Features Section -->
+<section id="features" class="features section bg-alt-2">
+    <div class="container section-title" data-aos="fade-up">
+        <h2 class="text-center">Features</h2>
+        <p class="text-center">Unsere erstklassigen Dienstleistungen, die Ihr Unternehmen voranbringen</p>
+    </div><!-- End Section Title -->
 
-        <div class="container">
-            <div class="row justify-content-between">
-                <div class="col-lg-5 d-flex align-items-center">
-                    <ul class="nav nav-tabs flex-column" data-aos="fade-up" data-aos-delay="100">
-                        <li class="nav-item">
-                            <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#features-tab-1">
-                                <i class="bi bi-binoculars"></i>
-                                <div>
-                                    <h4>Modi sit est dela pireda nest</h4>
-                                    <p>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-2">
-                                <i class="bi bi-box-seam"></i>
-                                <div>
-                                    <h4>Unde praesenti mara setra le</h4>
-                                    <p>Recusandae atque nihil. Delectus vitae non similique magnam molestiae sapiente similique tenetur aut voluptates sed voluptas ipsum voluptas</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-3">
-                                <i class="bi bi-brightness-high"></i>
-                                <div>
-                                    <h4>Pariatur explica nitro dela</h4>
-                                    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum Debitis nulla est maxime voluptas dolor aut</p>
-                                </div>
-                            </a>
-                        </li>
-                    </ul><!-- End Tab Nav -->
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-lg-5 d-flex align-items-center">
+                <ul class="nav nav-tabs flex-column" data-aos="fade-up" data-aos-delay="100">
+                    <li class="nav-item">
+                        <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#features-tab-1">
+                            <i class="bi bi-binoculars"></i>
+                            <div>
+                                <h4>Netzwerktechnik und Internetdienstleistungen</h4>
+                                <p>Wir bieten umfassende Netzwerklösungen, einschließlich Einrichtung und Wartung von Netzwerkinfrastrukturen, um die Konnektivität und Effizienz Ihres Unternehmens zu optimieren.</p>
+                                <ul>
+                                    <li><i class="bi bi-check-circle"></i> Planung und Implementierung von Netzwerkinfrastrukturen</li>
+                                    <li><i class="bi bi-check-circle"></i> Wartung und Support für bestehende Netzwerke</li>
+                                    <li><i class="bi bi-check-circle"></i> Sicherheitslösungen zur Absicherung Ihrer Daten</li>
+                                </ul>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-2">
+                            <i class="bi bi-box-seam"></i>
+                            <div>
+                                <h4>WordPress-Webdesign</h4>
+                                <p>Wir erstellen ansprechende und funktionale WordPress-Websites, die auf die spezifischen Bedürfnisse und Ziele Ihres Unternehmens zugeschnitten sind.</p>
+                                <ul>
+                                    <li><i class="bi bi-check-circle"></i> Individuelle Designs und Templates</li>
+                                    <li><i class="bi bi-check-circle"></i> SEO-optimierte Seitenstruktur</li>
+                                    <li><i class="bi bi-check-circle"></i> Benutzerfreundliche CMS-Lösungen</li>
+                                </ul>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-3">
+                            <i class="bi bi-brightness-high"></i>
+                            <div>
+                                <h4>Service, Support und Wartung</h4>
+                                <p>Unser engagiertes Team bietet kontinuierlichen Support und Wartungsdienste, um sicherzustellen, dass Ihre IT-Systeme stets reibungslos funktionieren.</p>
+                                <ul>
+                                    <li><i class="bi bi-check-circle"></i> 24/7 Technischer Support</li>
+                                    <li><i class="bi bi-check-circle"></i> Regelmäßige Systemupdates und -wartungen</li>
+                                    <li><i class="bi bi-check-circle"></i> Schnelle Fehlerbehebung und Problemlösungen</li>
+                                </ul>
+                            </div>
+                        </a>
+                    </li>
+                </ul><!-- End Tab Nav -->
                 </div>
                 <div class="col-lg-6">
                     <div class="tab-content" data-aos="fade-up" data-aos-delay="200">
