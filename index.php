@@ -125,7 +125,7 @@
         <div class="row gy-4">
             <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
                 <p class="who-we-are">ÜBER NetFusionIT</p>
-                <h3>Innovative Strategien und Lösungen für Ihre IT</h3>
+                <h3>Innovative Strategien für Ihren Unternehmenserfolg</h3>
                 <p class="fst-italic">
                     Wir bieten maßgeschneiderte Lösungen im Bereich Netzwerktechnik und Internetdienstleistungen, um Ihr Unternehmen auf die nächste Stufe zu heben.
                 </p>
@@ -139,15 +139,15 @@
             <div class="col-lg-6 about-images" data-aos="fade-up" data-aos-delay="200">
                 <div class="row gy-4">
                     <div class="col-lg-6">
-                        <img src="/img/placeholder2.jpg" class="img-fluid" alt="">
+                        <img src="/img/placeholder2.jpg" class="img-fluid" style="width:100%; height:auto;" alt="">
                     </div>
                     <div class="col-lg-6">
                         <div class="row gy-4">
-                            <div class="col-lg-12 mb-4">
-                                <img src="/img/placeholder.jpg" class="img-fluid" alt="">
+                            <div class="col-lg-12 mb-5">
+                                <img src="/img/placeholder.jpg" class="img-fluid" style="width:100%; height:auto;" alt="">
                             </div>
                             <div class="col-lg-12">
-                                <img src="/img/placeholder.jpg" class="img-fluid" alt="">
+                                <img src="/img/placeholder.jpg" class="img-fluid" style="width:100%; height:auto; position: relative; top: 50%;" alt="">
                             </div>
                         </div>
                     </div>
