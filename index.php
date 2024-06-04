@@ -593,7 +593,6 @@ function communicateResultsToAssistant() {
 function showSearchAssistant(query, lineNumber) {
     const searchAssistantModal = document.getElementById('searchAssistantModal');
     searchAssistantModal.style.display = 'block';
-    const positionIndicator = document.getElementById('currentPosition');
     const miniMapContainer = document.getElementById('miniMapContainer');
 
     miniMapContainer.innerHTML = '';
@@ -604,11 +603,9 @@ function showSearchAssistant(query, lineNumber) {
     positionBar.classList.add('bar', 'position-bar');
     miniMapContainer.appendChild(positionBar);
 
-
     function updatePositionBar() {
         const scrollPosition = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
         positionBar.style.top = `${Math.min(scrollPosition, 100)}%`;
-        positionIndicator.innerText = Math.round(scrollPosition);
     }
 
     document.addEventListener('scroll', updatePositionBar);
@@ -621,6 +618,7 @@ function showSearchAssistantResults() {
     const miniMapContainer = document.getElementById('miniMapContainer');
     miniMapContainer.innerHTML = '';
 
+    let selectedResult = null;
     window.searchResults.forEach((result, index) => {
         const bar = document.createElement('div');
         bar.classList.add('bar');
@@ -628,38 +626,28 @@ function showSearchAssistantResults() {
         bar.style.top = `${position - 2}%`; // Verschieben um 2% nach oben
         if (index === 0) {
             bar.classList.add('current-bar');
+            selectedResult = bar;
         } else {
             bar.classList.add('other-bar');
         }
         miniMapContainer.appendChild(bar);
     });
 
+    if (selectedResult) {
+        selectedResult.classList.add('selected');
+    }
+
     // Adding the red position bar to indicate the current scroll position
     const positionBar = document.createElement('div');
     positionBar.classList.add('bar', 'position-bar');
     miniMapContainer.appendChild(positionBar);
 
-    // Adding the green highlight element for the selected search result
-    const highlightElement = document.createElement('div');
-    highlightElement.classList.add('highlight', 'green');
-    miniMapContainer.appendChild(highlightElement);
-
-    function updateHighlightElement() {
-        if (window.searchResults.length > 0) {
-            const greenBarPosition = parseFloat(window.searchResults[0].top / (document.body.scrollHeight - window.innerHeight)) * 100;
-            highlightElement.style.top = `${greenBarPosition - 2}%`; // Verschieben um 2% nach oben
-            highlightElement.style.height = `12px`; // Make the green bar more prominent
-        }
-    }
-
     function updatePositionBar() {
         const scrollPosition = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
         positionBar.style.top = `${Math.min(scrollPosition, 100)}%`;
-        positionIndicator.innerText = Math.round(scrollPosition);
     }
 
     document.addEventListener('scroll', updatePositionBar);
-    updateHighlightElement();
     updatePositionBar();
 }
 

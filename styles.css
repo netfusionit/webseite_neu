@@ -1035,6 +1035,7 @@ footer {
         position: absolute;
         width: 10px; /* Increase width for better visibility */
         left: 0;
+        background-color: darkgreen; /* Always dark green */
         opacity: 0.3;
         z-index: 1;
     }
@@ -1048,24 +1049,11 @@ footer {
     }
     
     .green {
-        background-color: green;
+        background-color: darkgreen;
     }
     
     .yellow {
         background-color: yellow;
-    }
-    
-    .remaining-indicator {
-        position: fixed;
-        bottom: 60px; /* Move the indicator further down */
-        left: 10px;
-        z-index: 1000;
-        padding: 5px;
-        border-radius: 3px;
-    }
-    
-    .green-text {
-        color: green;
     }
     
     #miniMapContainer {
@@ -1086,7 +1074,7 @@ footer {
     }
     
     .current-bar {
-        background-color: rgb(7, 68, 7);
+        background-color: darkgreen; /* Always dark green */
         width: 10px; /* Increase width for better visibility */
     }
     
@@ -1097,3 +1085,4 @@ footer {
     #miniMapContainer.show-more {
         height: auto; /* Adjust height to show more results */
     }
+    
