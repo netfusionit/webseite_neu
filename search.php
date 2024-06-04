@@ -31,6 +31,8 @@
             margin-bottom: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
         }
 
         .search-results .result-item:hover {
@@ -51,6 +53,7 @@
         }
 
         .search-results .result-item a.btn {
+            align-self: flex-end;
             color: #fff;
             background-color: #007bff;
             text-decoration: none;
@@ -92,6 +95,15 @@
             $query = $_GET['query'];
             $search = "%$query%";
 
+            // Funktion zum Hervorheben des Suchbegriffs und der umgebenden Wörter
+            function highlightAndExtract($content, $query) {
+                $pattern = '/(\S+\s)?\S*' . preg_quote($query, '/') . '\S*(\s\S+)?/i';
+                if (preg_match($pattern, $content, $matches)) {
+                    return $matches[0];
+                }
+                return $query;
+            }
+
             // Suche in Blog-Beiträgen
             echo "<h2>Beiträge und Meldungen</h2>";
             $stmt = $conn->prepare("SELECT id, title, content FROM blog_posts WHERE title LIKE ? OR content LIKE ?");
@@ -106,10 +118,11 @@
                 if ($numResults > 0) {
                     while ($row = $result->fetch_assoc()) {
                         echo "<div class='result-item'>";
-                        echo "<h3>" . $row['title'] . "</h3>";
                         $cleanContent = strip_tags($row['content']);
                         $highlightedContent = str_ireplace($query, "<mark>$query</mark>", $cleanContent);
+                        $title = highlightAndExtract($row['title'], $query);
                         $excerpt = implode(' ', array_slice(explode(' ', $highlightedContent), 0, 10));
+                        echo "<h3>" . $title . "</h3>";
                         echo "<p>" . $excerpt . "...</p>";
                         echo "<a href='blog-details.php?id=" . $row['id'] . "' class='btn btn-primary mt-2'>Weiterlesen</a>";
                         echo "</div>";
@@ -124,11 +137,12 @@
             $indexResults = file_get_contents("https://netfusionit.de/get_indexsuche.php?query=" . urlencode($query));
             $indexResults = json_decode($indexResults, true);
 
+            echo "<h2>Hauptseite</h2>";
             if (!empty($indexResults)) {
-                echo "<h2>Hauptseite</h2>";
                 foreach ($indexResults as $result) {
                     echo "<div class='result-item'>";
-                    echo "<h3>Gefunden auf der Hauptseite</h3>";
+                    $highlightedLine = highlightAndExtract($result['line'], $query);
+                    echo "<h3>" . $highlightedLine . "</h3>";
                     $excerpt = implode(' ', array_slice(explode(' ', $result['line']), 0, 10));
                     echo "<p>" . $excerpt . "...</p>";
                     echo "<a href='/index.php?query=" . urlencode($query) . "#line-" . $result['line_number'] . "' class='btn btn-primary mt-2'>Zum Seiteninhalt springen</a>";
