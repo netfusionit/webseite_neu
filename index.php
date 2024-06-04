@@ -91,8 +91,8 @@
                     <div class="service-item d-flex">
                         <div class="icon flex-shrink-0"><i class="bi bi-briefcase"></i></div>
                         <div>
-                            <h4 class="title"><a href="#" class="stretched-link">Lorem Ipsum</a></h4>
-                            <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+                            <h4 class="title"><a href="#" class="stretched-link">Support/Helpdesk</a></h4>
+                            <p class="description">Hier gelangen Sie zu unserem Ticketsystem!</p>
                         </div>
                     </div>
                 </div>
@@ -100,8 +100,8 @@
                     <div class="service-item d-flex">
                         <div class="icon flex-shrink-0"><i class="bi bi-card-checklist"></i></div>
                         <div>
-                            <h4 class="title"><a href="#" class="stretched-link">Dolor Sitema</a></h4>
-                            <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip exa</p>
+                            <h4 class="title"><a href="#" class="stretched-link">Cloud</a></h4>
+                            <p class="description">Hier erhlaten Sie Direktzugriff zu unserer Cloud!</p>
                         </div>
                     </div>
                 </div>
