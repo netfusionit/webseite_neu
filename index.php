@@ -221,7 +221,7 @@
                             <img src="/img/features_wordpress.jpg" alt="" class="img-fluid">
                         </div><!-- End Tab Content Item -->
                         <div class="tab-pane fade" id="features-tab-3">
-                            <img src="/img/features_network.jpg" alt="" class="img-fluid">
+                            <img src="/img/features_support.jpg" alt="" class="img-fluid">
                         </div><!-- End Tab Content Item -->
                     </div>
                 </div>
