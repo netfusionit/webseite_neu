@@ -640,6 +640,11 @@ function showSearchAssistantResults() {
         miniMapContainer.appendChild(bar);
     });
 
+    // Adding the red position bar to indicate the current scroll position
+    const positionBar = document.createElement('div');
+    positionBar.classList.add('bar', 'position-bar');
+    miniMapContainer.appendChild(positionBar);
+
     // Adding the green highlight element for the selected search result
     const highlightElement = document.createElement('div');
     highlightElement.classList.add('highlight');
@@ -649,12 +654,20 @@ function showSearchAssistantResults() {
         if (window.searchResults.length > 0) {
             const greenBarPosition = parseFloat(window.searchResults[0].top / (document.body.scrollHeight - window.innerHeight)) * 100;
             highlightElement.style.top = `${greenBarPosition}%`;
-            highlightElement.style.height = `3%`;
+            highlightElement.style.height = `5%`; // Make the green bar more prominent
             highlightElement.classList.add('green');
         }
     }
 
+    function updatePositionBar() {
+        const scrollPosition = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+        positionBar.style.top = `${Math.min(scrollPosition, 100)}%`;
+        positionIndicator.innerText = Math.round(scrollPosition);
+    }
+
+    document.addEventListener('scroll', updatePositionBar);
     updateHighlightElement();
+    updatePositionBar();
 }
 
 function endSearch() {
