@@ -133,7 +133,7 @@
                     <li><i class="bi bi-check-circle"></i> <span>Modernes Wordpress-Webdesign für einen starken Online-Auftritt.</span></li>
                     <li><i class="bi bi-check-circle"></i> <span>Umfassender Service, Support und Wartung für dauerhafte Zuverlässigkeit.</span></li>
                 </ul>
-                    <a href="#" class="read-more"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+                    <a href="#features" class="read-more"><span>Mehr erfahren</span><i class="bi bi-arrow-right"></i></a>
                 </div>
                 <div class="col-lg-6 about-images" data-aos="fade-up" data-aos-delay="200">
                     <div class="row gy-4">
