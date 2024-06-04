@@ -122,7 +122,7 @@
 <!-- About Section -->
 <section id="about" class="about section">
     <div class="container">
-        <div class="row gy-4">
+        <div class="row gy-4 align-items-center">
             <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
                 <p class="who-we-are">ÜBER NetFusionIT</p>
                 <h3>Innovative Strategien für Ihren Unternehmenserfolg</h3>
@@ -137,18 +137,12 @@
                 <a href="#features" class="read-more"><span>Mehr erfahren</span><i class="bi bi-arrow-right"></i></a>
             </div>
             <div class="col-lg-6 about-images" data-aos="fade-up" data-aos-delay="200">
-                <div class="row gy-4">
-                    <div class="col-lg-6">
-                        <img src="/img/placeholder2.jpg" class="img-fluid" style="height: 100%; width: auto;" alt="">
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="row gy-4" style="height: 100%;">
-                            <div class="col-lg-12 mb-5" style="height: 50%;">
-                                <img src="/img/placeholder.jpg" class="img-fluid" style="height: 100%; width: auto;" alt="">
-                            </div>
-                            <div class="col-lg-12" style="height: 50%;">
-                                <img src="/img/placeholder.jpg" class="img-fluid" style="height: 100%; width: auto;" alt="">
-                            </div>
+                <div class="d-flex flex-column h-100 justify-content-between">
+                    <div class="d-flex flex-row mb-4">
+                        <img src="/img/placeholder2.jpg" class="img-fluid" style="width: 48%; height: auto; margin-right: 4%;" alt="">
+                        <div class="d-flex flex-column justify-content-between" style="width: 48%;">
+                            <img src="/img/placeholder.jpg" class="img-fluid mb-4" style="height: auto; width: 100%;" alt="">
+                            <img src="/img/placeholder.jpg" class="img-fluid" style="height: auto; width: 100%;" alt="">
                         </div>
                     </div>
                 </div>
