@@ -7,6 +7,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
     <?php include 'header.php'; ?>
@@ -160,7 +161,7 @@
 <section id="features" class="features section bg-alt-2">
     <div class="container section-title" data-aos="fade-up">
         <h2 class="text-center">Leistungen</h2>
-        <p class="text-center">Entdecken Sie unsere maßgeschneiderten Dienstleistungen, die darauf abzielen, Ihr Unternehmen zu unterstützen und voranzubringen. Unser erfahrenes Team bietet innovative Lösungen in den Bereichen Netzwerktechnik, Webdesign und IT-Support, um Ihre spezifischen Anforderungen zu erfüllen.</p>
+        <p class="text-center">Hier sehen Sie unsere Dienstleistungen, um Ihr Unternehmen zu unterstützen und voranzubringen. Unser erfahrenes Team bietet innovative Lösungen in den Bereichen Netzwerktechnik, Webdesign und IT-Support, um Ihre spezifischen Anforderungen zu erfüllen.</p>
     </div><!-- End Section Title -->
 
     <div class="container">
@@ -174,9 +175,9 @@
                                 <h4>Netzwerktechnik und Internetdienstleistungen</h4>
                                 <p>Optimierung Ihrer Netzwerkinfrastruktur und Sicherheit.</p>
                                 <ul>
-                                    <li>&bull; Planung und Implementierung</li>
-                                    <li>&bull; Wartung und Support</li>
-                                    <li>&bull; Sicherheitslösungen</li>
+                                    <li>Planung und Implementierung</li>
+                                    <li>Wireless/WLAN-Lösungen</li>
+                                    <li>Sicherheitslösungen</li>
                                 </ul>
                             </div>
                         </a>
@@ -188,9 +189,9 @@
                                 <h4>WordPress-Webdesign</h4>
                                 <p>Individuelle und SEO-optimierte Webseiten.</p>
                                 <ul>
-                                    <li>&bull; Individuelle Designs</li>
-                                    <li>&bull; SEO-optimierte Struktur</li>
-                                    <li>&bull; Benutzerfreundlich</li>
+                                    <li>Individuelle Designs</li>
+                                    <li>SEO-optimierte Struktur</li>
+                                    <li>Benutzerfreundlich</li>
                                 </ul>
                             </div>
                         </a>
@@ -202,9 +203,9 @@
                                 <h4>Service, Support und Wartung</h4>
                                 <p>24/7 Unterstützung für Ihre IT-Systeme.</p>
                                 <ul>
-                                    <li>&bull; 24/7 Support</li>
-                                    <li>&bull; Regelmäßige Updates</li>
-                                    <li>&bull; Schnelle Fehlerbehebung</li>
+                                    <li>Live-Chat & Ticketsystem</li>
+                                    <li>Regelmäßige Updates</li>
+                                    <li>Schnelle Fehlerbehebung</li>
                                 </ul>
                             </div>
                         </a>
