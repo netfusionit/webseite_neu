@@ -174,9 +174,9 @@
                                 <h4>Netzwerktechnik und Internetdienstleistungen</h4>
                                 <p>Optimierung Ihrer Netzwerkinfrastruktur und Sicherheit.</p>
                                 <ul>
-                                    <li><i class="bi bi-check2-circle"></i> Planung und Implementierung</li>
-                                    <li><i class="bi bi-check2-circle"></i> Wartung und Support</li>
-                                    <li><i class="bi bi-check2-circle"></i> Sicherheitslösungen</li>
+                                    <li><i class="bi bi-dot"></i> Planung und Implementierung</li>
+                                    <li><i class="bi bi-dot"></i> Wartung und Support</li>
+                                    <li><i class="bi bi-dot"></i> Sicherheitslösungen</li>
                                 </ul>
                             </div>
                         </a>
@@ -188,9 +188,9 @@
                                 <h4>WordPress-Webdesign</h4>
                                 <p>Individuelle und SEO-optimierte Webseiten.</p>
                                 <ul>
-                                    <li><i class="bi bi-check2-circle"></i> Individuelle Designs</li>
-                                    <li><i class="bi bi-check2-circle"></i> SEO-optimierte Struktur</li>
-                                    <li><i class="bi bi-check2-circle"></i> Benutzerfreundlich</li>
+                                    <li><i class="bi bi-dot"></i> Individuelle Designs</li>
+                                    <li><i class="bi bi-dot"></i> SEO-optimierte Struktur</li>
+                                    <li><i class="bi bi-dot"></i> Benutzerfreundlich</li>
                                 </ul>
                             </div>
                         </a>
@@ -202,9 +202,9 @@
                                 <h4>Service, Support und Wartung</h4>
                                 <p>24/7 Unterstützung für Ihre IT-Systeme.</p>
                                 <ul>
-                                    <li><i class="bi bi-check2-circle"></i> 24/7 Support</li>
-                                    <li><i class="bi bi-check2-circle"></i> Regelmäßige Updates</li>
-                                    <li><i class="bi bi-check2-circle"></i> Schnelle Fehlerbehebung</li>
+                                    <li><i class="bi bi-dot"></i> 24/7 Support</li>
+                                    <li><i class="bi bi-dot"></i> Regelmäßige Updates</li>
+                                    <li><i class="bi bi-dot"></i> Schnelle Fehlerbehebung</li>
                                 </ul>
                             </div>
                         </a>
