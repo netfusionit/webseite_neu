@@ -215,7 +215,7 @@
                 <div class="col-lg-6">
                     <div class="tab-content" data-aos="fade-up" data-aos-delay="200">
                         <div class="tab-pane fade active show" id="features-tab-1">
-                            <img src="/img/" alt="" class="img-fluid">
+                            <img src="/img/features_network.jpg" alt="" class="img-fluid">
                         </div><!-- End Tab Content Item -->
                         <div class="tab-pane fade" id="features-tab-2">
                             <img src="/img/features_wordpress.jpg" alt="" class="img-fluid">
