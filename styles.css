@@ -1049,7 +1049,7 @@ footer {
     }
     
     .green {
-        background-color: darkgreen;
+        background-color: darkgreen !important;
     }
     
     .yellow {
@@ -1074,7 +1074,7 @@ footer {
     }
     
     .current-bar {
-        background-color: darkgreen; /* Always dark green */
+        background-color: darkgreen !important; /* Always dark green */
         width: 10px; /* Increase width for better visibility */
     }
     

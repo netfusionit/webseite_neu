@@ -593,6 +593,7 @@ function communicateResultsToAssistant() {
 function showSearchAssistant(query, lineNumber) {
     const searchAssistantModal = document.getElementById('searchAssistantModal');
     searchAssistantModal.style.display = 'block';
+    const positionIndicator = document.getElementById('currentPosition');
     const miniMapContainer = document.getElementById('miniMapContainer');
 
     miniMapContainer.innerHTML = '';
@@ -606,6 +607,7 @@ function showSearchAssistant(query, lineNumber) {
     function updatePositionBar() {
         const scrollPosition = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
         positionBar.style.top = `${Math.min(scrollPosition, 100)}%`;
+        positionIndicator.innerText = Math.round(scrollPosition);
     }
 
     document.addEventListener('scroll', updatePositionBar);
@@ -642,12 +644,30 @@ function showSearchAssistantResults() {
     positionBar.classList.add('bar', 'position-bar');
     miniMapContainer.appendChild(positionBar);
 
+    // Adding the green highlight element for the selected search result
+    const highlightElement = document.createElement('div');
+    highlightElement.classList.add('highlight', 'green');
+    miniMapContainer.appendChild(highlightElement);
+
+    function updateHighlightElement() {
+        if (window.searchResults.length > 0) {
+            const selectedResult = window.searchResults[0];
+            const greenBarPosition = parseFloat(selectedResult.top / (document.body.scrollHeight - window.innerHeight)) * 100;
+            highlightElement.style.top = `${greenBarPosition - 2}%`; // Verschieben um 2% nach oben
+            highlightElement.style.height = `12px`; // Make the green bar more prominent
+        }
+    }
+
     function updatePositionBar() {
         const scrollPosition = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
         positionBar.style.top = `${Math.min(scrollPosition, 100)}%`;
     }
 
-    document.addEventListener('scroll', updatePositionBar);
+    document.addEventListener('scroll', () => {
+        updatePositionBar();
+        updateHighlightElement();
+    });
+    updateHighlightElement();
     updatePositionBar();
 }
 
@@ -699,6 +719,7 @@ function toggleSearchAssistant() {
         searchAssistantModalToggle.classList.add('open');
     }
 }
+
 
 
 
