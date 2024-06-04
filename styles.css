@@ -1031,7 +1031,13 @@ footer {
         }
     }
     
-
+    .highlight {
+        position: absolute;
+        width: 10px; /* Increase width for better visibility */
+        left: 0;
+        opacity: 0.3;
+        z-index: 1;
+    }
     
     .highlight-mark {
         background-color: yellow !important;

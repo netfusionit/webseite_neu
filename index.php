@@ -467,8 +467,7 @@
 
 <div id="searchAssistantModal">
     <h3>Search Assistant</h3>
-    <p>Position: <span id="currentPosition">0</span>/100</p>
-    <p>Verbleibend: <span id="remainingPercentage">0</span>%</p>
+    <p>Position: <span id="currentPosition">0</span>/100%</p>
     <div class="mini-map" id="miniMapContainer"></div>
     <br>
     <div class="legend">
@@ -477,8 +476,6 @@
         <div><span class="position"></span>Rot: Aktuelle Position</div>
     </div>
     <div id="remainingIndicator" class="remaining-indicator"></div>
-    <button id="unlockScrollButton" style="display:none;">Scrolling Freigeben</button>
-    <button id="toggleButton">Toggle Results</button>
     <button onclick="endSearch()">Suche Beenden</button>
 </div>
 <button id="searchAssistantModalToggle" onclick="toggleSearchAssistant()" class="hidden"><i class="fas fa-search"></i></button>
