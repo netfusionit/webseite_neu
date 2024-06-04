@@ -647,7 +647,7 @@ function showSearchAssistantResults() {
 
     // Adding the green highlight element for the selected search result
     const highlightElement = document.createElement('div');
-    highlightElement.classList.add('highlight');
+    highlightElement.classList.add('highlight', 'green');
     miniMapContainer.appendChild(highlightElement);
 
     function updateHighlightElement() {
@@ -655,7 +655,6 @@ function showSearchAssistantResults() {
             const greenBarPosition = parseFloat(window.searchResults[0].top / (document.body.scrollHeight - window.innerHeight)) * 100;
             highlightElement.style.top = `${greenBarPosition - 2}%`; // Verschieben um 2% nach oben
             highlightElement.style.height = `10px`; // Make the green bar more prominent
-            highlightElement.classList.add('green');
         }
     }
 
@@ -718,6 +717,7 @@ function toggleSearchAssistant() {
         searchAssistantModalToggle.classList.add('open');
     }
 }
+
 
 
 </script>
