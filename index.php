@@ -139,15 +139,15 @@
             <div class="col-lg-6 about-images" data-aos="fade-up" data-aos-delay="200">
                 <div class="row gy-4">
                     <div class="col-lg-6">
-                        <img src="/img/placeholder2.jpg" class="img-fluid" style="width:100%; height:auto;" alt="">
+                        <img src="/img/placeholder2.jpg" class="img-fluid" style="height: 100%; width: auto;" alt="">
                     </div>
                     <div class="col-lg-6">
-                        <div class="row gy-4">
-                            <div class="col-lg-12 mb-5">
-                                <img src="/img/placeholder.jpg" class="img-fluid" style="width:100%; height:auto;" alt="">
+                        <div class="row gy-4" style="height: 100%;">
+                            <div class="col-lg-12 mb-5" style="height: 50%;">
+                                <img src="/img/placeholder.jpg" class="img-fluid" style="height: 100%; width: auto;" alt="">
                             </div>
-                            <div class="col-lg-12">
-                                <img src="/img/placeholder.jpg" class="img-fluid" style="width:100%; height:auto; position: relative; top: 50%;" alt="">
+                            <div class="col-lg-12" style="height: 50%;">
+                                <img src="/img/placeholder.jpg" class="img-fluid" style="height: 100%; width: auto;" alt="">
                             </div>
                         </div>
                     </div>
@@ -156,6 +156,7 @@
         </div>
     </div>
 </section><!-- /About Section -->
+
 
 
 
