@@ -18,6 +18,9 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
         .modal .form-group {
             margin-bottom: 15px;
         }
+        .img-thumbnail.selected {
+            border: 2px solid #007bff;
+        }
     </style>
 </head>
 <body>
@@ -118,7 +121,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                                 $images = scandir('uploads/');
                                 foreach ($images as $image) {
                                     if ($image != '.' && $image != '..') {
-                                        echo "<img src='uploads/$image' class='img-thumbnail m-1' width='100' onclick=\"selectImage('$image')\">";
+                                        echo "<img src='uploads/$image' class='img-thumbnail m-1' width='100' onclick=\"selectImage('$image', 'selectedImage')\">";
                                     }
                                 }
                                 ?>
@@ -448,6 +451,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     <!-- Neue Änderung Modal -->
     <div class="modal fade" id="newChangeModal" tabindex="-1" aria-labelledby="newChangeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
+            <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="newChangeModalLabel">Neue Änderung</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Schließen">
@@ -509,12 +513,23 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
             }
         }
 
-        function selectImage(image) {
-            document.getElementById('selectedImage').value = image;
+        function selectImage(image, hiddenFieldId) {
+            document.getElementById(hiddenFieldId).value = image;
+            var thumbnails = document.querySelectorAll('#' + hiddenFieldId + 'Suggestions img');
+            thumbnails.forEach(function(thumbnail) {
+                thumbnail.classList.remove('selected');
+            });
+            document.querySelector("img[src='uploads/" + image + "']").classList.add('selected');
         }
 
         function selectImageEdit(image, postId) {
-            document.getElementById('selectedImageEdit' + postId).value = image;
+            var hiddenFieldId = 'selectedImageEdit' + postId;
+            document.getElementById(hiddenFieldId).value = image;
+            var thumbnails = document.querySelectorAll('#imageSuggestionsEdit' + postId + ' img');
+            thumbnails.forEach(function(thumbnail) {
+                thumbnail.classList.remove('selected');
+            });
+            document.querySelector("#imageSuggestionsEdit" + postId + " img[src='uploads/" + image + "']").classList.add('selected');
         }
 
         document.getElementById('searchComment').addEventListener('input', function() {
