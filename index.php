@@ -231,7 +231,7 @@
         <div class="container">
             <div class="row gy-4 justify-content-between features-item">
                 <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                    <img src="assets/img/features-1.jpg" class="img-fluid" alt="">
+                    <img src="assets/img/logo_transparent.jpg" class="img-fluid" alt="">
                 </div>
                 <div class="col-lg-5 d-flex align-items-center" data-aos="fade-up" data-aos-delay="200">
                     <div class="content">
