@@ -378,7 +378,7 @@
                     }
                     echo "</p>";
 
-                    echo "<a href='blog-details.php?id=" . $row['id'] . "' class='btn btn-primary'>Weiterlesen</a>";
+                    echo "<a href='aktuelles-details.php?id=" . $row['id'] . "' class='btn btn-primary'>Weiterlesen</a>";
                     echo "</div>";
                     echo "</div>";
                     echo "</div>";

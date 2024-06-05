@@ -29,7 +29,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
             <i class="fas fa-plus-circle"></i> Neuer Beitrag
         </button>
         <button type="button" class="btn btn-secondary mb-3" data-toggle="modal" data-target="#managePostsModal">
-            <i class="fas fa-tasks"></i> Beitr�ge verwalten
+            <i class="fas fa-tasks"></i> Beiträge verwalten
         </button>
         <button type="button" class="btn btn-secondary mb-3" data-toggle="modal" data-target="#manageCommentsModal">
             <i class="fas fa-comments"></i> Kommentarverwaltung
@@ -40,7 +40,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
         
         <h2>Benutzerverwaltung</h2>
         <button type="button" class="btn btn-secondary mb-3" data-toggle="modal" data-target="#userManagementModal">
-            <i class="fas fa-users"></i> Benutzer�bersicht
+            <i class="fas fa-users"></i> Benutzerübersicht
         </button>
         
         <h2>Meldungen</h2>
@@ -112,7 +112,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                             <input type="file" class="form-control-file" id="image" name="image">
                         </div>
                         <div class="form-group">
-                            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#imageSuggestions">Bildvorschl�ge anzeigen</button>
+                            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#imageSuggestions">Bildvorschläge anzeigen</button>
                             <div id="imageSuggestions" class="collapse mt-3">
                                 <?php
                                 $images = scandir('uploads/');
@@ -125,19 +125,19 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                             </div>
                         </div>
                         <input type="hidden" id="selectedImage" name="selectedImage">
-                        <button type="submit" class="btn btn-primary">Beitrag hinzuf�gen</button>
+                        <button type="submit" class="btn btn-primary">Beitrag hinzufügen</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Beitr�ge verwalten Modal -->
+    <!-- Beiträge verwalten Modal -->
     <div class="modal fade" id="managePostsModal" tabindex="-1" aria-labelledby="managePostsModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="managePostsModalLabel">Beitr�ge verwalten</h5>
+                    <h5 class="modal-title" id="managePostsModalLabel">Beiträge verwalten</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -220,7 +220,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                                                         <input type="file" class="form-control-file" id="image<?php echo $post['id']; ?>" name="image">
                                                     </div>
                                                     <div class="form-group">
-                                                        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#imageSuggestionsEdit<?php echo $post['id']; ?>">Bildvorschl�ge anzeigen</button>
+                                                        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#imageSuggestionsEdit<?php echo $post['id']; ?>">Bildvorschläge anzeigen</button>
                                                         <div id="imageSuggestionsEdit<?php echo $post['id']; ?>" class="collapse mt-3">
                                                             <?php
                                                             $images = scandir('uploads/');
@@ -233,7 +233,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                                                         </div>
                                                     </div>
                                                     <input type="hidden" id="selectedImageEdit<?php echo $post['id']; ?>" name="selectedImage">
-                                                    <button type="submit" class="btn btn-primary">�nderungen speichern</button>
+                                                    <button type="submit" class="btn btn-primary">Änderungen speichern</button>
                                                 </form>
                                             </div>
                                         </div>
@@ -320,7 +320,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="userManagementModalLabel">Benutzer�bersicht</h5>
+                    <h5 class="modal-title" id="userManagementModalLabel">Benutzerübersicht</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -374,7 +374,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                             <label for="popupMessageContent">Inhalt</label>
                             <textarea class="form-control" id="popupMessageContent" name="content" rows="5" required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Meldung hinzuf�gen</button>
+                        <button type="submit" class="btn btn-primary">Meldung hinzufügen</button>
                     </form>
                 </div>
             </div>
@@ -397,7 +397,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                             <label for="tickerMessageContent">Inhalt</label>
                             <textarea class="form-control" id="tickerMessageContent" name="content" rows="5" required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Meldung hinzuf�gen</button>
+                        <button type="submit" class="btn btn-primary">Meldung hinzufügen</button>
                     </form>
                 </div>
             </div>
@@ -432,7 +432,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                                 echo "<div class='col-md-3'>";
                                 echo "<div class='thumbnail'>";
                                 echo "<img src='uploads/$image' class='img-thumbnail'>";
-                                echo "<button class='btn btn-danger btn-sm btn-block mt-2' onclick=\"deleteImage('$image')\"><i class='fas fa-trash'></i> L�schen</button>";
+                                echo "<button class='btn btn-danger btn-sm btn-block mt-2' onclick=\"deleteImage('$image')\"><i class='fas fa-trash'></i> Löschen</button>";
                                 echo "</div>";
                                 echo "</div>";
                             }
@@ -443,9 +443,9 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
             </div>
         </div>
     </div>
-     <a href="logout.php" class="btn btn-danger">Logout</a>
+    <a href="logout.php" class="btn btn-danger">Logout</a>
 
-       <!-- Neue Änderung Modal -->
+    <!-- Neue Änderung Modal -->
     <div class="modal fade" id="newChangeModal" tabindex="-1" aria-labelledby="newChangeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -493,19 +493,19 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         function deletePost(id) {
-            if (confirm("M�chten Sie diesen Beitrag wirklich l�schen?")) {
+            if (confirm("Möchten Sie diesen Beitrag wirklich löschen?")) {
                 window.location.href = 'delete_post.php?id=' + id;
             }
         }
 
         function deleteComment(id) {
-            if (confirm("M�chten Sie diesen Kommentar wirklich l�schen?")) {
+            if (confirm("Möchten Sie diesen Kommentar wirklich löschen?")) {
                 window.location.href = 'delete_comment.php?id=' + id;
             }
         }
 
         function deleteImage(image) {
-            if (confirm("M�chten Sie dieses Bild wirklich l�schen?")) {
+            if (confirm("Möchten Sie dieses Bild wirklich löschen?")) {
                 window.location.href = 'delete_image.php?image=' + image;
             }
         }
