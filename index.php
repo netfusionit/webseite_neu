@@ -417,21 +417,21 @@
                     <i class="bi bi-envelope flex-shrink-0 icon-animated"></i>
                     <div class="ms-3">
                         <h3>Email</h3>
-                        <p>info@example.com</p>
+                        <p>info@netfusionit.de</p>
                     </div>
                 </div>
                 <div class="info-item d-flex align-items-start mb-4">
                     <i class="bi bi-phone flex-shrink-0 icon-animated"></i>
                     <div class="ms-3">
                         <h3>Telefon</h3>
-                        <p>+1 5589 55488 55</p>
+                        <p>02202/8185216</p>
                     </div>
                 </div>
                 <div class="info-item d-flex align-items-start mb-4">
                     <i class="bi bi-clock flex-shrink-0 icon-animated"></i>
                     <div class="ms-3">
                         <h3>Öffnungszeiten</h3>
-                        <p>Mo - Fr: 9:00 - 18:00</p>
+                        <p>Termine auf Anfrage!</p>
                     </div>
                 </div>
                 <div class="info-item d-flex align-items-start mb-4">
