@@ -18,8 +18,9 @@
                 <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
                     <h5 class="text-uppercase font-weight-bold">NetFusionIT</h5>
                     <p>
-                        Handelsregister: AG Stuttgart, HRB 361183<br>
-                        USt-IdNr.: DE203032334
+                       
+                    Vernetzen, Gestalten, Unterstützen<br>
+                        
                     </p>
                 </div>
 
