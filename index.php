@@ -36,11 +36,12 @@
     <div id="tickerMessage" class="bg-warning text-dark text-center py-2">
         <p class="mb-0" id="tickerContent"></p>
     </div>
-        <div class="alert alert-primary" role="alert">
+    <!-- Infomeldung für verschiedene Szenarien -->
+    <!-- <div class="alert alert-primary" role="alert">
         <h5>Willkommen bei NetFusionIT!</h5> <br>
         Unsere Webseite befindet sich derzeit im Aufbau! <br>
         Voraussichtliche Fertigsstellung: 10.06.2024
-    </div>
+    </div> -->
     
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
